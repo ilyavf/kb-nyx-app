@@ -8,14 +8,18 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 - bower (dependency manager)
 - grunt (build tool)
 
+## Initial setup
 To install package dependencies use bower (see /bower.json):
 ```cmd
 $ bower install
 ```
-
 To build the project  (see /Gruntfile.js for task details):
 ```cmd
 $ grunt build
+```
+To run locally in dev mode (will launch web server and will be watching for any changes in code to be reflected in browser):
+```cmd
+$ grunt serve
 ```
 
 ##Testing
