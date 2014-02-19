@@ -7,19 +7,38 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 
 - bower (dependency manager)
 - grunt (build tool)
+- Karma as a unit test runner (see section Testing)
+- Protractor and Selenium standalone server for e2e testing (see section Testing)
 
 ## Initial setup
 To install package dependencies use bower (see /bower.json):
 ```cmd
 $ bower install
 ```
-To build the project  (see /Gruntfile.js for task details):
+To run unit tests (see /karma.conf.js):
 ```cmd
-$ grunt build
+$ grunt test
 ```
 To run locally in dev mode (will launch web server and will be watching for any changes in code to be reflected in browser):
 ```cmd
 $ grunt serve
+```
+To build the project for production  (see /Gruntfile.js for task details) which will:
+- compile SASS;
+- concatinate / minify / uglify both app and bower packages javascript files;
+- version images updating css and html accordingly:
+```cmd
+$ grunt build
+...
+Done, without errors.
+
+Execution Time (2014-02-19 21:18:51 UTC)
+concurrent:dist     4.5s  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 28%
+autoprefixer:dist  174ms  ▇▇ 1%
+ngmin:dist          7.2s  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 46%
+copy:dist          713ms  ▇▇▇▇ 4%
+uglify:generated    2.6s  ▇▇▇▇▇▇▇▇▇▇▇▇▇ 16%
+Total 15.9s
 ```
 
 ##Testing
