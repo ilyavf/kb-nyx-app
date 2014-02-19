@@ -7,7 +7,9 @@ Kooboodle Single Page Web Application
 ##Testing
 
 ###Unit tests via Karma
-We are using Karma test runner. See config file: karma.conf.js
+We are using Jasmine (http://pivotal.github.io/jasmine/) as a unit test framework and Karma (http://karma-runner.github.io/) as a test runner.
+
+See config file: karma.conf.js
 
 To run unit tests use grunt task:
 ```cmd
@@ -28,8 +30,11 @@ karma:unit          2.8s  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 Total 7.8s
 ```
 
-###e2e via Protractor
-Read this article: https://github.com/angular/protractor/blob/master/docs/getting-started.md
+###End-to-end tests via Protractor
+
+End-to-end testing is a methodology used to test whether the flow of an application is performing as designed from start to finish. The purpose of carrying out end-to-end tests is to identify system dependencies and to ensure that the right information is passed between various system components and systems.
+
+Protractor is an end to end test framework for AngularJS applications built on top of WebDriverJS. Protractor runs tests against your application running in a real browser, interacting with it as a user would. Read this to get started: https://github.com/angular/protractor/blob/master/docs/getting-started.md
 
 1 Install Protractor:
 ```cmd
