@@ -3,6 +3,20 @@ Nyx.Web
 
 Kooboodle Single Page Web Application
 
+The project was created using yeoman toolset (http://yeoman.io/). Tools used:
+
+- bower (dependency manager)
+- grunt (build tool)
+
+To install package dependencies use bower (see /bower.json):
+```cmd
+$ bower install
+```
+
+To build the project  (see /Gruntfile.js for task details):
+```cmd
+$ grunt build
+```
 
 ##Testing
 
