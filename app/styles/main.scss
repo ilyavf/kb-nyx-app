@@ -89,3 +89,23 @@ body {
         border-bottom: 0;
     }
 }
+
+/* Fixes for bootstrap */
+.nyx-webapp {
+  .modal {
+    overflow-y: hidden;
+    .input-group {
+      width: 100%;
+      margin-bottom: 10px;
+      .input-group-addon.glyphicon {
+        position: static;
+      }
+    }
+    .modal-footer {
+      text-align: center;
+    }
+  }
+  &.modal-open {
+    overflow: auto;
+  }
+}
