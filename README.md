@@ -107,12 +107,12 @@ exports.config = {
 };
 ```
 
-To run tests locally:
+To run tests locally (selenium port is also reffered in /protractor.conf):
 ```cmd
-$ webdriver-manager start
+$ webdriver-manager --seleniumPort 7899 start
 $ grunt serve
 $ protractor protractor.conf.js
-Using the selenium server at http://localhost:4444/wd/hub
+Using the selenium server at http://localhost:7899/wd/hub
 ...
 
 Finished in 2.712 seconds
