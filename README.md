@@ -41,6 +41,19 @@ copy:dist          713ms  ▇▇▇▇ 4%
 uglify:generated    2.6s  ▇▇▇▇▇▇▇▇▇▇▇▇▇ 16%
 Total 15.9s
 ```
+##Enabling protractor in Jenkins
+
+First install the following grunt tasks:
+```cmd
+$  npm install grunt-protractor-runner --save-dev
+$  npm install grunt-protractor-webdriver --save-dev
+```
+
+Now run (with or without verbose flag):
+```cmd
+$ grunt p:test
+$ grunt p:test --verbose
+```
 
 ##Testing
 
