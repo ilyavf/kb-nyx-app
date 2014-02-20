@@ -43,16 +43,16 @@ Total 15.9s
 ```
 ##Enabling protractor in Jenkins
 
-First install the following grunt tasks:
-```cmd
-$  npm install grunt-protractor-runner --save-dev
-$  npm install grunt-protractor-webdriver --save-dev
-```
-
-Now run (with or without verbose flag):
+There is a grunt task for protractor running which starts Selemium, launches webserver and runs protractor:
 ```cmd
 $ grunt p:test
 $ grunt p:test --verbose
+```
+
+The following grunt tasks must be installed:
+```cmd
+$  npm install grunt-protractor-runner
+$  npm install grunt-protractor-webdriver
 ```
 
 ##Testing
