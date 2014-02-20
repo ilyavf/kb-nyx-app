@@ -84,6 +84,15 @@ module.exports = function (grunt) {
           ]
         }
       },
+      jk: {
+        options: {
+          port: 9001,
+          base: [
+            '.tmp',
+            '<%= yeoman.app %>'
+          ]
+        }
+      },
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
@@ -383,8 +392,9 @@ module.exports = function (grunt) {
       return grunt.task.run([
           'clean:server',
           'bower-install',
+          'compass:server',
           'autoprefixer',
-          'connect:test'
+          'connect:jk'
       ]);
     }
     if (target === 'dist') {
