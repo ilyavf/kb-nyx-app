@@ -43,13 +43,13 @@ Total 15.9s
 ```
 ##Enabling protractor in Jenkins
 
-There is a grunt task for protractor running which starts Selemium, launches webserver and runs protractor:
+There is a grunt task for for this which starts Selemium, launches local webserver (on port 9001) and runs protractor:
 ```cmd
 $ grunt p:test
 $ grunt p:test --verbose
 ```
 
-The following grunt tasks must be installed:
+The following packages must be installed:
 ```cmd
 $  npm install grunt-protractor-runner
 $  npm install grunt-protractor-webdriver
