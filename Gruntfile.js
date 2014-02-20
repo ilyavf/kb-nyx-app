@@ -383,7 +383,6 @@ module.exports = function (grunt) {
       return grunt.task.run([
           'clean:server',
           'bower-install',
-          'concurrent:server',
           'autoprefixer',
           'connect:test'
       ]);
@@ -440,7 +439,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('p:test', [
         'protractor_webdriver',
-        'connect:test',
+        'serve:jk',
         'protractor'
     ]);
 
