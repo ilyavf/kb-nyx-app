@@ -450,8 +450,8 @@ module.exports = function (grunt) {
   ]);
 
     grunt.registerTask('p:test', [
-        'protractor_webdriver',
         'serve:jk',
+        'protractor_webdriver',
         'protractor'
     ]);
 
