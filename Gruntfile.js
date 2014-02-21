@@ -390,11 +390,8 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', function (target) {
     if (target === 'jk') {
       return grunt.task.run([
-          'clean:server',
-          'bower-install',
-          'compass:server',
-          'autoprefixer',
-          'connect:jk'
+          'build',
+          'connect:dist'
       ]);
     }
     if (target === 'dist') {

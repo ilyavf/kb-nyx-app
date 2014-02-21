@@ -3,7 +3,7 @@
 describe('Kooboodle Nyx homepage navigation', function() {
 
     beforeEach(function() {
-        browser.get('http://127.0.0.1:9001');
+        browser.get('http://127.0.0.1:9000');
     });
 
     it('should be able to navigate to About page', function() {
