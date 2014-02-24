@@ -7,8 +7,9 @@ exports.config = {
     capabilities: {
         //'browserName': 'chrome'
         'browserName': 'phantomjs',
+        //'phantomjs.binary.path': '/usr/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs'
         //'phantomjs.binary.path': '/usr/local/lib/node_modules/phantomjs/bin/phantomjs'
-        'phantomjs.binary.path': '/usr/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs'
+        'phantomjs.binary.path': 'node_modules/phantomjs/bin/phantomjs'
     },
 
     // Spec patterns are relative to the location of the spec file. They may
