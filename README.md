@@ -6,23 +6,21 @@ Kooboodle Single Page Web Application
 
 The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 
-- bower (dependency manager)
-- grunt (build tool)
+- bower (dependency manager, http://bower.io/)
+- grunt (build tool, http://gruntjs.com/)
 - Karma as a unit test runner (see section Testing)
 - Protractor and Selenium standalone server for e2e testing (see section Testing)
 
 ## Initial setup
-Install package dependencies:
+First, install NodeJS http://nodejs.org/ which includes NPM https://www.npmjs.org/
+
+Install project dependencies:
 ```cmd
-$ npb install
+$ npm install
 ```
-To install dev package dependencies use bower (see /bower.json):
+Install package dependencies using bower (see /bower.json for config):
 ```cmd
 $ bower install
-```
-To run unit tests (see /karma.conf.js):
-```cmd
-$ grunt test
 ```
 To run locally in dev mode (will launch web server and will be watching for any changes in code to be reflected in browser):
 ```cmd
