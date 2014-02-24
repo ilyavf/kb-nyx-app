@@ -12,7 +12,11 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 - Protractor and Selenium standalone server for e2e testing (see section Testing)
 
 ## Initial setup
-To install package dependencies use bower (see /bower.json):
+Install package dependencies:
+```cmd
+$ npb install
+```
+To install dev package dependencies use bower (see /bower.json):
 ```cmd
 $ bower install
 ```
