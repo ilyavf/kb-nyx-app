@@ -5,7 +5,9 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        'browserName': 'chrome'
+        //'browserName': 'chrome'
+        'browserName': 'phantomjs',
+        'phantomjs.binary.path': '/usr/local/lib/node_modules/phantomjs/bin/phantomjs'
     },
 
     // Spec patterns are relative to the location of the spec file. They may
