@@ -45,17 +45,18 @@ Total 15.9s
 ```
 
 ##Enabling protractor in Jenkins
-There is a grunt task for for this which starts Selemium, launches local webserver (on port 9001) and runs protractor:
-```cmd
+Onetime setup (or when a new dependency added):
+```sh
 $ npm install
 $ bower install
-$ grunt p:test --verbose
 ```
-
-The following packages must be installed (will be installed with 'npm install'):
+For e2e tests there is a grunt task which starts Selemium, launches local webserver (on port 9000) and runs protractor:
 ```cmd
-$  npm install grunt-protractor-runner
-$  npm install grunt-protractor-webdriver
+$ grunt p:test
+```
+For unit tests run:
+```cmd
+$ grunt test
 ```
 
 ##Testing
