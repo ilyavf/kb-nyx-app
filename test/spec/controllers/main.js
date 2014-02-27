@@ -17,6 +17,6 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('MainCtrl should implement openSignInModal method', function () {
-    expect(typeof scope.openSignInModal1).toBe('function');
+    expect(typeof scope.openSignInModal).toBe('function');
   });
 });
