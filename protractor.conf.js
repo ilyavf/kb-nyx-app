@@ -5,11 +5,9 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        //'browserName': 'chrome'
-        'browserName': 'phantomjs',
-        //'phantomjs.binary.path': '/usr/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs'
-        //'phantomjs.binary.path': '/usr/local/lib/node_modules/phantomjs/bin/phantomjs'
-        'phantomjs.binary.path': 'node_modules/phantomjs/bin/phantomjs'
+        'browserName': 'chrome'
+        //'browserName': 'phantomjs',
+        //'phantomjs.binary.path': 'node_modules/phantomjs/bin/phantomjs'
     },
 
     // Spec patterns are relative to the location of the spec file. They may
@@ -21,6 +19,7 @@ exports.config = {
         showColors: true // Use colors in the command line report.
     },
 
+    // Generate junit xml result file for jenkins:
     onPrepare: function() {
         // The require statement must be down here, since jasmine-reporters
         // needs jasmine to be in the global and protractor does not guarantee
