@@ -53,7 +53,7 @@ module.exports = function(config) {
     singleRun: true,
     reporters: ['dots', 'junit'],
     junitReporter: {
-        outputFile: 'karma-test-results.xml'
+        outputFile: 'test-results-karma.xml'
     }
   });
 };
