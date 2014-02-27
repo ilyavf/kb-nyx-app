@@ -2,8 +2,8 @@
 
 angular.module('nyxWebApp', [
     'ngResource',
-    'ngRoute',
-    'ui.bootstrap'
+    'ngRoute'
+    //'ui.bootstrap'
 ])
     .config(function ($routeProvider) {
         $routeProvider
