@@ -108,4 +108,14 @@ body {
   &.modal-open {
     overflow: auto;
   }
+
+  .info-debug {
+    margin: 10px 0 0 0;
+    &.ok {
+      color: #4cae4c;
+    }
+    &.error {
+      color: darkred;
+    }
+  }
 }

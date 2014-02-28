@@ -1,14 +1,8 @@
 'use strict';
 
 angular.module('nyxWebApp')
-    .controller('MainCtrl', function ($scope, $modal, $log) {
+    .controller('MainCtrl', function ($scope, ModalSignIn) {
         $scope.openSignInModal = function () {
-            var modalInstance = $modal.open({
-                templateUrl: 'views/modal-sign-in.html',
-                controller: function ($scope) {
-                    $scope.signIn = function () {};
-                    $scope.signInFb = function () {};
-                }
-            });
+            ModalSignIn.login();
         };
     });
