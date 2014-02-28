@@ -15,7 +15,10 @@
                         <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
                     </div>
                     <button class="btn btn-success btn-block" ng-click="signIn()">Sign In</button>
-                    <div class="info-debug {{loginResult}}">{{message}}</div>
+                    <div class="info-debug">
+                        <p class="{{loginResult}}">{{loginMessage}}</p>
+                        <p class="{{profileResult}}">{{profileMessage}}</p>
+                    </div>
                 </div>
             </div>
         </div>

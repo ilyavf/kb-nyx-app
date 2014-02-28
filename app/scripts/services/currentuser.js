@@ -21,7 +21,8 @@ angular.module('nyxWebApp')
                     }),
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    }
+                    },
+                    withCredentials: true
                 }).
                 success(function(data, status, headers, config) {
                     deferred.resolve({
@@ -43,14 +44,26 @@ angular.module('nyxWebApp')
         function loadProfile () {
             var deferred = $q.defer();
 
-            $http({method: 'GET', url: profileUrl}).
+            $http({
+                    method: 'GET',
+                    url: profileUrl,
+                    withCredentials: true
+                }).
                 success(function(data, status, headers, config) {
                     $log.log('[CurrentUser.loadProfile]: received', arguments);
-                    deferred.resolve(true);
+                    deferred.resolve({
+                        success: !!data.result,
+                        data: data.result,
+                        message: data.message
+                    });
                 }).
                 error(function(data, status, headers, config) {
                     $log.error('[CurrentUser.loadProfile]: error', arguments);
-                    deferred.resolve(false);
+                    deferred.resolve({
+                        success: false,
+                        data: data.result,
+                        message: data.message || 'Error while trying to load user\'s profile'
+                    });
                 });
 
             return deferred.promise;

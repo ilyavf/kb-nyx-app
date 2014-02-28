@@ -111,11 +111,14 @@ body {
 
   .info-debug {
     margin: 10px 0 0 0;
-    &.ok {
+    .ok {
       color: #4cae4c;
     }
-    &.error {
+    .error {
       color: darkred;
+    }
+    .pending {
+      color: grey;
     }
   }
 }

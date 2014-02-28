@@ -9,18 +9,29 @@ angular.module('nyxWebApp')
                     $scope.user = {};
                     $scope.signIn = function () {
                         $log.log('Trying to log in using ' + $scope.user.name + ' and ' + $scope.user.password);
+                        $scope.loginResult = 'pending';
+                        $scope.loginMessage = 'Logging in...'
+                        $scope.profileMessage = '';
                         CurrentUser.login($scope.user.name, $scope.user.password).
                             then(function (loginResult) {
                                 $log.log('- login completed');
                                 if (loginResult.success) {
                                     $log.log('-- successfully');
-                                    $scope.message = loginResult.message;
+                                    $scope.loginMessage = loginResult.message;
                                     $scope.loginResult = 'ok';
+                                    $scope.profileMessage = "Loading user's profile...";
                                     CurrentUser.loadProfile().then(function (profile) {
-                                        $log.log('Profile result: ', profile);
+                                        if (profile.success) {
+                                            $scope.profileResult = 'ok';
+                                            $scope.profileMessage = 'Hi ' + profile.data.name + '! You have ' + profile.data.counts.photos + ' photos stored in Kooboodle.';
+                                            $log.log('Profile result: ', profile);
+                                        } else {
+                                            $scope.profileResult = 'error';
+                                            $scope.profileMessage = 'Profile error: ' + profile.message;
+                                        }
                                     });
                                 } else {
-                                    $scope.message = loginResult.message;
+                                    $scope.loginMessage = loginResult.message;
                                     $scope.loginResult = 'error';
                                 }
                             });
