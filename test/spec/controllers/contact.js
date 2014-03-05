@@ -1,22 +1,26 @@
-'use strict';
+define(['app'], function(app) {
 
-describe('Controller: ContactCtrl', function () {
+    'use strict';
 
-  // load the controller's module
-  beforeEach(module('nyxWebApp'));
+    describe('Controller: ContactCtrl', function () {
 
-  var ContactCtrl,
-    scope;
+      // load the controller's module
+      beforeEach(module('nyxWebApp'));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    ContactCtrl = $controller('ContactCtrl', {
-      $scope: scope
+      var ContactCtrl,
+        scope;
+
+      // Initialize the controller and a mock scope
+      beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        ContactCtrl = $controller('ContactCtrl', {
+          $scope: scope
+        });
+      }));
+
+      it('should show Contact page title', function () {
+          expect(scope.pageTitle).toBe('Contact');
+      });
     });
-  }));
 
-  it('should show Contact page title', function () {
-      expect(scope.pageTitle).toBe('Contact');
-  });
 });

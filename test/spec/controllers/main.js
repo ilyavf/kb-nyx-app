@@ -1,22 +1,26 @@
-'use strict';
+define(['app'], function(app) {
 
-describe('Controller: MainCtrl', function () {
+    'use strict';
 
-  // load the controller's module
-  beforeEach(module('nyxWebApp'));
+    describe('Controller: MainCtrl', function () {
 
-  var MainCtrl,
-    scope;
+      // load the controller's module
+      beforeEach(module('nyxWebApp'));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      var MainCtrl,
+        scope;
+
+      // Initialize the controller and a mock scope
+      beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        MainCtrl = $controller('MainCtrl', {
+          $scope: scope
+        });
+      }));
+
+      it('MainCtrl should implement openSignInModal method', function () {
+        expect(typeof scope.openSignInModal).toBe('function');
+      });
     });
-  }));
 
-  it('MainCtrl should implement openSignInModal method', function () {
-    expect(typeof scope.openSignInModal).toBe('function');
-  });
 });

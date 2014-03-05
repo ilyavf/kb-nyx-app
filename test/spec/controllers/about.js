@@ -1,22 +1,26 @@
-'use strict';
+define(['app'], function(app) {
 
-describe('Controller: AboutCtrl', function () {
+    'use strict';
 
-  // load the controller's module
-  beforeEach(module('nyxWebApp'));
+    describe('Controller: AboutCtrl', function () {
 
-  var AboutCtrl,
-    scope;
+      // load the controller's module
+      beforeEach(module('nyxWebApp'));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    AboutCtrl = $controller('AboutCtrl', {
-      $scope: scope
+      var AboutCtrl,
+        scope;
+
+      // Initialize the controller and a mock scope
+      beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        AboutCtrl = $controller('AboutCtrl', {
+          $scope: scope
+        });
+      }));
+
+      it('should show About page title', function () {
+        expect(scope.pageTitle).toBe('About');
+      });
     });
-  }));
 
-  it('should show About page title', function () {
-    expect(scope.pageTitle).toBe('About');
-  });
 });
