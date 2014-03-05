@@ -1,7 +1,12 @@
-'use strict';
+define([
+    'services/currentuser'
 
-angular.module('nyxWebApp')
-    .factory('ModalSignIn', function ($modal, $log, CurrentUser) {
+], function (currentuser) { return function (app) {
+    'use strict';
+
+    currentuser(app);
+
+    app.factory('ModalSignIn', function ($modal, $log, CurrentUser) {
         function login () {
             $modal.open({
                 templateUrl: 'views/modal-sign-in.html',
@@ -55,3 +60,6 @@ angular.module('nyxWebApp')
             }
         };
     });
+
+
+}});

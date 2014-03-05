@@ -383,6 +383,22 @@ module.exports = function (grunt) {
               args: {} // Target-specific arguments
           }
       }
+    },
+    requirejs: {
+        compile: {
+            options: {
+                baseUrl: '<%= yeoman.app %>/scripts',
+                paths: {},
+                shim: {},
+                //optimize: 'uglify2',
+                optimize: 'none',
+                uglify2: {
+                    mangle: false
+                },
+                name: 'app-bootstrap',
+                out: '<%= yeoman.dist %>/scripts/app-bootstrap.js'
+            }
+        }
     }
   });
 
@@ -438,6 +454,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'requirejs',
     'rev',
     'usemin',
     'htmlmin'

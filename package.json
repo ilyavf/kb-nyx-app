@@ -1,8 +1,7 @@
 {
   "name": "nyxweb",
   "version": "0.0.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
@@ -47,7 +46,8 @@
     "grunt-protractor-webdriver": "~0.1.4",
     "phantomjs": "~1.9.7-1",
     "karma-junit-reporter": "~0.2.1",
-    "jasmine-reporters": "~0.2.1"
+    "jasmine-reporters": "~0.2.1",
+    "grunt-contrib-requirejs": "~0.4.3"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -1,7 +1,9 @@
-'use strict';
+define([
 
-angular.module('nyxWebApp')
-    .factory('CurrentUser', function ($q, $http, $log) {
+], function () { return function (app) {
+    'use strict';
+
+    app.factory('CurrentUser', function ($q, $http, $log) {
 
         // should these be promises?
         var isLoggedIn = false,
@@ -85,3 +87,5 @@ angular.module('nyxWebApp')
             }
         };
     });
+
+}});

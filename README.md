@@ -135,3 +135,12 @@ Using the selenium server at http://localhost:7899/wd/hub
 Finished in 2.712 seconds
 3 tests, 4 assertions, 0 failures
 ```
+
+##Links
+###Must-Read:
+- http://docs.angularjs.org/guide/module
+- http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
+###Architecture / Code organization:
+- Scalable code organization in AngularJS: https://medium.com/opinionated-angularjs/9f01b594bf06
+- ANGULARJS + REQUIREJS: http://www.startersquad.com/blog/angularjs-requirejs/
+

@@ -1,8 +1,15 @@
-'use strict';
+define([
+    'services/modalsignin'
 
-angular.module('nyxWebApp')
-    .controller('MainCtrl', function ($scope, ModalSignIn) {
+], function (modalsignin) { return function (app) {
+    'use strict';
+
+    modalsignin(app);
+
+    app.controller('MainCtrl', function ($scope, ModalSignIn) {
         $scope.openSignInModal = function () {
             ModalSignIn.login();
         };
     });
+
+}});
