@@ -8,7 +8,16 @@ require.config({
 });
 
 //http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
-window.name = 'NG_DEFER_BOOTSTRAP!';
+var NG_DEFER_BOOTSTRAP = /^NG_DEFER_BOOTSTRAP!/,
+    nyxWebDontBootstrap = false;
+// Check if we are not already deferring (by Protractor runner):
+if (window && !NG_DEFER_BOOTSTRAP.test(window.name)) {
+    // defer ng bootstrap:
+    window.name = 'NG_DEFER_BOOTSTRAP!';
+} else {
+    // don't bootstrap since Protractor will do this for us:
+    nyxWebDontBootstrap = true;
+}
 
 require([
     'app'
@@ -16,17 +25,15 @@ require([
 ], function(app) {
     'use strict';
 
-    //console.log('[app-bootstrap]: subscribing to appPromise');
-    //appPromise.then(function (app) {
-    //});
-
     /* jshint ignore:start */
     var $html = angular.element(document.getElementsByTagName('html')[0]);
     /* jshint ignore:end */
 
-    console.log('[app-bootstrap]: starting ng app');
 
     angular.element().ready(function() {
-        angular.resumeBootstrap([app.name]);
+        if (!nyxWebDontBootstrap) {
+            console.log('[app-bootstrap]: starting ng app');
+            angular.resumeBootstrap([app.name]);
+        }
     });
 });
