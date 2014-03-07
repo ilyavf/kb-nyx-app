@@ -44,6 +44,15 @@ uglify:generated    2.6s  ▇▇▇▇▇▇▇▇▇▇▇▇▇ 16%
 Total 15.9s
 ```
 
+### Installing on Ubuntu Virtual Machine
+
+- Node:
+http://www.hacksparrow.com/how-to-install-node-js-on-ubuntu-linux.html
+- Ruby:
+https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
+
+
+
 ##Enabling protractor in Jenkins
 Onetime setup (or when a new dependency added):
 ```sh
@@ -135,6 +144,7 @@ Using the selenium server at http://localhost:7899/wd/hub
 Finished in 2.712 seconds
 3 tests, 4 assertions, 0 failures
 ```
+
 
 ##Links
 ###Must-Read:
