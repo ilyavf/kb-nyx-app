@@ -50,6 +50,8 @@ Total 15.9s
 http://www.hacksparrow.com/how-to-install-node-js-on-ubuntu-linux.html
 - Ruby:
 https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
+- JDK (for Selenium web driver):
+http://stackoverflow.com/questions/14788345/how-to-install-jdk-on-ubuntulinux
 
 
 
