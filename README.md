@@ -53,7 +53,46 @@ https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-
 - JDK (for Selenium web driver):
 http://stackoverflow.com/questions/14788345/how-to-install-jdk-on-ubuntulinux
 
+```sh
+// Node:
+$ sudo apt-get update
+$ sudo apt-get -y install build-essential g++ libssl-dev pkg-config
+$ cd node-v0.10.26
+$ ./configure
+$ make
+$ sudo make install
+$ node -v
 
+// Ruby, Compass/SASS:
+//$ sudo apt-get install ruby1.9.1
+$ sudo apt-get install curl
+$ curl -L https://get.rvm.io | bash -s stable
+$ source ~/.rvm/scripts/rvm
+$ rvm requirements
+$ rvm install ruby
+$ rvm use ruby --default
+$ ruby -v
+$ rvm rubygems current
+$ gem install compass
+
+// Git:
+$ sudo apt-get install git-core
+$ git --version
+
+// Grunt and bower globally:
+$ npm install -g grunt-cli
+$ npm install -g bower
+
+// Git project:
+$ mkdir ~/_dev
+$ cd ~/_dev
+$ git clone git@github.com:Clickfree/Nyx.Web.git
+$ cd Nyx.Web
+$ npm install
+$ bower install
+$ grunt test
+$ grunt serve
+```
 
 ##Enabling protractor in Jenkins
 Onetime setup (or when a new dependency added):
