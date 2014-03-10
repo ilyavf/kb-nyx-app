@@ -92,6 +92,14 @@ $ npm install
 $ bower install
 $ grunt test
 $ grunt serve
+
+// E2E tests with Protractor:
+// JDK for Selenium:
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get install oracle-java7-installer
+// Protractor with Selenium:
+$ sudo npm install -g protractor
+$ sudo webdriver-manager update
 ```
 
 ##Enabling protractor in Jenkins
