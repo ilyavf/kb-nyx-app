@@ -17,11 +17,11 @@ requirejs.config({
     // Karma serves files from '/base'
     baseUrl: '/base/app/scripts',
 
-    paths: {
-    },
-
-    shim: {
-    },
+    packages: [{
+        name: 'nyx.auth',
+        location: 'core/authentication',
+        main: 'AuthModule'
+    }],
 
     // ask Require.js to load these files (all our tests)
     deps: tests,

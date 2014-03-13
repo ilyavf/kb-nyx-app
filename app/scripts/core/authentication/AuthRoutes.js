@@ -9,13 +9,13 @@
     'use strict';
 
     define([
-        'utils/Logger'
+        //'utils/Logger'
     ],
-    function ($log) {
+    function () {
 
-        var RouteManager = function ( $routeProvider )
+        var RouteManager = function ($routeProvider)
         {
-            $log.debug( "Configuring $routeProvider...");
+            console.log( "Configuring $routeProvider...");
 
             $routeProvider
                 .when( '/login', {
@@ -29,9 +29,9 @@
 
         };
 
-        $log = $log.getInstance( "RouteManager" );
+        //$log = $log.getInstance( "RouteManager" );
 
-        return ["$routeProvider", RouteManager ];
+        return RouteManager;
     });
 
 }(define));

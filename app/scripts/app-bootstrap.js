@@ -11,8 +11,12 @@
 
     require.config({
         baseUrl: './scripts',
+        packages: [{
+            name: 'nyx.auth',
+            location: 'core/authentication',
+            main: 'AuthModule'
+        }],
         paths: {
-            'auth': 'core/authentication'
         },
         shim: {
         }

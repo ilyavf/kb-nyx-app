@@ -9,7 +9,7 @@
     'use strict';
 
     define([
-        'auth/AuthModule',
+        'nyx.auth',
         'controllers/main',
         'controllers/about',
         'controllers/contact'
@@ -21,7 +21,7 @@
         var app = angular.module('nyxWebApp', [
             'ngResource',
             'ngRoute',
-            'ui.bootstrap'
+            'Nyx.Auth'
         ])
         .config(function ($routeProvider) {
             $routeProvider

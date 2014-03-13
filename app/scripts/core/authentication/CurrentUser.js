@@ -12,13 +12,11 @@
         'models/UserProfileModel'
     ],
     function (UserProfileModel) {
-
-        var currentUser = function ($q, $resource, $http) {
+        var currentUser = function ($q, $http, $log) {
             var deferred = $q.defer(),
                 isLoggedIn = false,
                 loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
                 profileUrl = 'http://testb.kooboodle.com/user/profile.json';
-
             return {
                 get: function () {
                     // should this return every time a new promise if the prev is unsuccessful?
@@ -33,7 +31,6 @@
                 login: login,
                 loadProfile: loadProfile
             };
-
             function login (user, pswd) {
                 var deferred = $q.defer();
                 $http({
@@ -49,15 +46,13 @@
                     withCredentials: true
                 })
                 .success(function(data, status, headers, config) {
+                    // data: {code, message, result}
                     if (!!data.result) {
                         isLoggedIn = true;
-                        deferred.resolve(data.result);
+                        deferred.resolve(data);
                     } else {
                         isLoggedIn = false;
-                        deferred.reject({
-                            success: false,
-                            message: data.message || 'Unknown error'
-                        });
+                        deferred.reject(data);
                     }
                 })
                 .error(function(data, status, headers, config) {
@@ -69,10 +64,7 @@
                 });
                 return deferred.promise;
             };
-
             function loadProfile () {
-                //var deferred = $q.defer();
-
                 $http({
                     method: 'GET',
                     url: profileUrl,
@@ -87,8 +79,7 @@
                         isLoggedIn = false;
                         deferred.reject({
                             success: false,
-                            message: data.message || 'Unknown error'
-                        });
+                            message: data.message || 'Unknown error'});
                     }
                 })
                 .error(function(data, status, headers, config) {
@@ -96,15 +87,11 @@
                     deferred.reject({
                         success: false,
                         data: data.result,
-                        message: data.message || 'Error while trying to load user\'s profile'
-                    });
+                        message: data.message || 'Error while trying to load user\'s profile'});
                 });
-
-                //return deferred.promise;
+                return deferred.promise;
             };
         };
-
         return currentUser;
     });
-
 }(define));

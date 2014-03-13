@@ -10,17 +10,16 @@
 
     define([
     ],
-        function () {
-            var LoginController = function ($scope, currentUser) {
-                $scope.name;
-                $scope.name;
-                currentUser.then(function (name) {
-                    $scope.name = name;
-                });
-            };
+    function () {
+        var LoginController = function ($scope, currentUser) {
+            $scope.name;
+            currentUser.then(function (name) {
+                $scope.name = name;
+            });
+        };
 
-            return LoginController;
-        });
+        return LoginController;
+    });
 
 
 }(define, angular));

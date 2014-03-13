@@ -1,14 +1,12 @@
 define([
-    'services/modalsignin'
 
-], function (modalsignin) { return function (app) {
+], function () { return function (app) {
     'use strict';
 
-    modalsignin(app);
-
-    app.controller('MainCtrl', function ($scope, ModalSignIn) {
+    app.controller('MainCtrl', function ($scope, $rootScope) {
         $scope.openSignInModal = function () {
-            ModalSignIn.login();
+            //ModalSignIn.login();
+            $rootScope.$broadcast('signin');
         };
     });
 

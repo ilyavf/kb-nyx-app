@@ -9,20 +9,31 @@
     'use strict';
 
     define([
-        'auth/AuthRoutes',
-        'auth/CurrentUser',
-        'auth/LoginController',
-        'auth/SignupController'
+        './AuthRoutes',
+        './CurrentUser',
+        './LoginController',
+        //'./SignupController',
+        './ModalSignIn'
     ],
-    function (AuthRoutes, CurrentUser, LoginController, SignupController) {
-        var moduleName = "Nyx.Authenticate";
+    function (AuthRoutes, CurrentUser, LoginController, /*SignupController,*/ ModalSignIn) {
+        var moduleName = "Nyx.Auth";
 
         angular
-            .module(moduleName, [ ])
+            .module(moduleName, ['ngRoute', 'ui.bootstrap'])
             .config(AuthRoutes)
             .factory("currentUser", CurrentUser)
+            .factory("modalSignIn", ModalSignIn)
             .controller("LoginController", LoginController)
-            .controller("SignupController", SignupController);
+            //.controller("SignupController", SignupController)
+
+            // Handle global events:
+            .run(function ($rootScope, modalSignIn, $log) {
+                $rootScope.$on('signin', function (event, args) {
+                    $log.debug('EVENT: [AuthModule.run]: event signin captured');
+                    modalSignIn.login();
+                });
+            });
+
 
         return moduleName;
     });

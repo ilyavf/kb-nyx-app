@@ -3,7 +3,7 @@
 describe('Service: ModalSignIn', function () {
 
   // load the service's module
-  beforeEach(module('nyxWebApp'));
+  beforeEach(module('nyx.auth'));
 
   // instantiate service
   var ModalSignIn;
