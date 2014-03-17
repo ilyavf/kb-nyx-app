@@ -1,22 +1,25 @@
+Nyx.Web
+=======
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+**Table of Contents**
 
-- [Nyx.Web](#nyxweb)
+- [About the project](#about-the-project)
 - [Initial setup](#initial-setup)
+	- [Installing on Mac](#installing-on-mac)
 	- [Installing on Ubuntu Virtual Machine](#installing-on-ubuntu-virtual-machine)
 	- [Jenkins Setup](#jenkins-setup)
 - [Testing](#testing)
 	- [Unit tests via Karma](#unit-tests-via-karma)
 	- [End-to-end tests via Protractor](#end-to-end-tests-via-protractor)
 - [Links](#links)
-	- [Must-Read:](#must-read)
-	- [Architecture / Code organization:](#architecture--code-organization)
+	- [Must-Read](#must-read)
+	- [Architecture / Code organization](#architecture--code-organization)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Nyx.Web
-=======
+# About the project
 
 Kooboodle Single Page Web Application
 
@@ -27,7 +30,11 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 - Karma as a unit test runner (see section Testing)
 - Protractor and Selenium standalone server for e2e testing (see section Testing)
 
+
 # Initial setup
+
+## Installing on Mac
+
 First, install NodeJS http://nodejs.org/ which includes NPM https://www.npmjs.org/
 
 Install project dependencies:
@@ -216,11 +223,17 @@ Finished in 2.712 seconds
 ```
 
 
-#Links
-##Must-Read:
+# Links
+
+## Must-Read
+
 - http://docs.angularjs.org/guide/module
 - http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
-##Architecture / Code organization:
-- Scalable code organization in AngularJS: https://medium.com/opinionated-angularjs/9f01b594bf06
-- ANGULARJS + REQUIREJS: http://www.startersquad.com/blog/angularjs-requirejs/
+- http://docs.angularjs.org/api/ng/service/$q
+
+## Architecture / Code organization
+
+- Scalable code organization in AngularJS, https://medium.com/opinionated-angularjs/9f01b594bf06
+- ANGULARJS + REQUIREJS, http://www.startersquad.com/blog/angularjs-requirejs/
+- Angular + RequireJS, by Thomas Burleson on NG-Conf-2014, https://github.com/ThomasBurleson/angularjs-Quizzler
 
