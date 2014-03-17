@@ -102,19 +102,24 @@ $ sudo npm install -g protractor
 $ sudo webdriver-manager update
 ```
 
-##Enabling protractor in Jenkins
+## Jenkins Setup
 Onetime setup (or when a new dependency added):
 ```sh
 $ npm install
 $ bower install
 ```
-For e2e tests there is a grunt task which starts Selemium, launches local webserver (on port 9000) and runs protractor:
-```cmd
-$ grunt p:test
-```
 For unit tests run:
 ```cmd
 $ grunt test
+```
+For e2e tests (don't setup since this is not stable as of now) there is a grunt task which starts Selemium, launches local webserver (on port 9000) and runs protractor:
+```cmd
+$ grunt p:test
+```
+To setup unit test result parsing add this post-build action:
+```cmd
+Publish JUnit test result report:
+"test-results-*.xml"
 ```
 
 ##Testing
