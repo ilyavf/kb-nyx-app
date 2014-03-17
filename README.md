@@ -1,6 +1,22 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Nyx.Web](#nyxweb)
+- [Initial setup](#initial-setup)
+	- [Installing on Ubuntu Virtual Machine](#installing-on-ubuntu-virtual-machine)
+	- [Jenkins Setup](#jenkins-setup)
+- [Testing](#testing)
+	- [Unit tests via Karma](#unit-tests-via-karma)
+	- [End-to-end tests via Protractor](#end-to-end-tests-via-protractor)
+- [Links](#links)
+	- [Must-Read:](#must-read)
+	- [Architecture / Code organization:](#architecture--code-organization)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Nyx.Web
 =======
-
 
 Kooboodle Single Page Web Application
 
@@ -11,7 +27,7 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 - Karma as a unit test runner (see section Testing)
 - Protractor and Selenium standalone server for e2e testing (see section Testing)
 
-## Initial setup
+# Initial setup
 First, install NodeJS http://nodejs.org/ which includes NPM https://www.npmjs.org/
 
 Install project dependencies:
@@ -44,7 +60,7 @@ uglify:generated    2.6s  ▇▇▇▇▇▇▇▇▇▇▇▇▇ 16%
 Total 15.9s
 ```
 
-### Installing on Ubuntu Virtual Machine
+## Installing on Ubuntu Virtual Machine
 
 - Node:
 http://www.hacksparrow.com/how-to-install-node-js-on-ubuntu-linux.html
@@ -122,9 +138,9 @@ Publish JUnit test result report:
 "test-results-*.xml"
 ```
 
-##Testing
+#Testing
 
-###Unit tests via Karma
+##Unit tests via Karma
 We are using Jasmine (http://pivotal.github.io/jasmine/) as a unit test framework and Karma (http://karma-runner.github.io/) as a test runner.
 
 See config file: karma.conf.js
@@ -148,7 +164,7 @@ karma:unit          2.8s  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 Total 7.8s
 ```
 
-###End-to-end tests via Protractor
+##End-to-end tests via Protractor
 
 End-to-end testing is a methodology used to test whether the flow of an application is performing as designed from start to finish. The purpose of carrying out end-to-end tests is to identify system dependencies and to ensure that the right information is passed between various system components and systems.
 
@@ -200,11 +216,11 @@ Finished in 2.712 seconds
 ```
 
 
-##Links
-###Must-Read:
+#Links
+##Must-Read:
 - http://docs.angularjs.org/guide/module
 - http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
-###Architecture / Code organization:
+##Architecture / Code organization:
 - Scalable code organization in AngularJS: https://medium.com/opinionated-angularjs/9f01b594bf06
 - ANGULARJS + REQUIREJS: http://www.startersquad.com/blog/angularjs-requirejs/
 
