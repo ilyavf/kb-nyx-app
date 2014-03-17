@@ -3,8 +3,8 @@
 
     define([
         // ilya: Karma does not use requirejs config from grunt hence does not know about requirejs packages:
-        'nyx.auth'
-        //'core/authentication/AuthModule'
+        //'nyx.auth'
+        'core/authentication/AuthModule'
     ], function () {
 
         // See http://docs.angularjs.org/api/ngMock/service/$httpBackend
@@ -33,6 +33,7 @@
 
             it('should be able to login', inject(function($rootScope) {
                 console.log('TEST: currentUser login');
+                console.log(typeof currentUser);
                 $httpBackend.expectPOST('http://testb.kooboodle.com/user/openphoto/login.json');
                 var loginPromise = currentUser.login('user', '123456'),
                     loginResult;

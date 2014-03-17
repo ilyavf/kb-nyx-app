@@ -1,6 +1,7 @@
 /**
- * Authentication Module
+ * Authentication Module - angular module Nyx.Auth
  *
+ * @namespace   NyxAuth
  * @author      IlyaVF
  * @date        March 2014
  */
