@@ -8,18 +8,18 @@
 (function (define, angular) {
     'use strict';
 
-    define([
-    ],
-    function () {
+    define([], function () {
+
+        console.log('[Auth.LoginController] loaded');
+
         var LoginController = function ($scope, currentUser) {
-            $scope.name;
-            currentUser.then(function (name) {
-                $scope.name = name;
+            console.log('[Auth.LoginController] init');
+            currentUser.get().then(function (user) {
+                $scope.name = user.name;
             });
         };
 
         return LoginController;
     });
-
 
 }(define, angular));

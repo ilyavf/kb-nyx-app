@@ -15,15 +15,15 @@
 
         var RouteManager = function ($routeProvider)
         {
-            console.log( "Configuring $routeProvider...");
+            console.log( "[Auth.RouteManager] Configuring $routeProvider...");
 
             $routeProvider
                 .when( '/login', {
-                    templateUrl : "./core/authentication/views/login.tpl.html",
+                    templateUrl : "views/login.tpl.html",
                     controller  : "LoginController"
                 })
                 .when( '/signup', {
-                    templateUrl : "./core/authentication/views/signup.tpl.html",
+                    templateUrl : "views/signup.tpl.html",
                     controller  : "SignupController"
                 });
 
