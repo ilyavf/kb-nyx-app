@@ -22,7 +22,7 @@ describe('Kooboodle Nyx homepage navigation', function() {
         element(by.css('.nav a[href="#/about"]')).click();
         var activeNavLink = element(by.css('.nav li.active a'));
         expect(activeNavLink.getText()).toEqual('About');
-        element(by.css('.nav a[href="#/"]')).click();
+        element(by.css('.nav a[href="#/home"]')).click();
         activeNavLink = element(by.css('.nav li.active a'));
         expect(activeNavLink.getText()).toEqual('Home');
     });
