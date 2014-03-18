@@ -3,8 +3,8 @@
 
     define([
         // ilya: Karma does not use requirejs config from grunt hence does not know about requirejs packages:
-        //'nyx.auth'
-        'core/authentication/AuthModule'
+        'nyx.auth'
+        //'core/authentication/AuthModule'
     ], function () {
 
         // See http://docs.angularjs.org/api/ngMock/service/$httpBackend
