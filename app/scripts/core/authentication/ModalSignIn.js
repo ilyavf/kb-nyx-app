@@ -16,9 +16,9 @@
     define([
     ],
     function () {
-        var ModalSignIn = function ($modal, $log, currentUser, $rootScope, $timeout) {
+        var ModalSignIn = function ($modal, $log, currentUser, $rootScope) {
 
-            var modalCtrl = function ($scope, $modalInstance) {
+            var modalLoginCtrl = function ($scope, $modalInstance, currentUser) {
                 $scope.user = {};
                 $scope.signIn = function () {
                     $log.log('Trying to log in using ' + $scope.user.name + ' and ' + $scope.user.password);
@@ -36,10 +36,8 @@
                             $scope.loginResult = 'ok';
                             $scope.loginMessage = 'Hi ' + profile.name + '! You have ' + profile.counts.photos + ' photos stored in Kooboodle.';
                             $log.log('Profile result: ', profile);
-                            $timeout(function () {
-                                $modalInstance.close();
-                                $rootScope.$broadcast('user:statusChanged', true);
-                            }, 1000);
+                            $modalInstance.close();
+                            $rootScope.$broadcast('user:statusChanged', true);
                         })
                         .catch(function (error) {
                             $log.log('Error: ' + error.message);
@@ -50,24 +48,32 @@
                 $scope.signInFb = function () {};
             };
 
-            function login () {
-                $modal.open({
-                    templateUrl: 'views/modal-sign-in.html',
-                    controller: modalCtrl
-                });
-            }
+            var modalLogoutCtrl = function ($scope, $rootScope, $location, $modalInstance, currentUser) {
+                $scope.doLogout = function () {
+                    currentUser.logout();
+                    $rootScope.$broadcast('user:statusChanged', false);
+                    $modalInstance.close();
+                };
+            };
 
-            function logout () {
-                $log.log('Loggin out...');
+            function login () {
+                if (currentUser.isLoggedIn()) {
+                    $modal.open({
+                        templateUrl: 'views/modal_logout.html',
+                        controller: modalLogoutCtrl
+                    });
+                } else {
+                    $modal.open({
+                        templateUrl: 'views/modal_login.html',
+                        controller: modalLoginCtrl
+                    });
+                }
             }
 
             // Public API here
             return {
                 login: function () {
                     login();
-                },
-                logout: function () {
-                    logout();
                 }
             };
         };

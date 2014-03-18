@@ -20,12 +20,16 @@
 
     define([], function () {
 
-        var currentUser = function ($q, $http, $log) {
+        var currentUser = function ($q, $http, $log, $window) {
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
                 loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
                 profileUrl = 'http://testb.kooboodle.com/user/profile.json',
                 login, loadProfile;
+
+            checkLocalData();
+
+            userDeferred.promise.catch(logout);
 
             login = function (user, pswd) {
                 var deferred = $q.defer();
@@ -71,6 +75,8 @@
                     $log.log('[CurrentUser.loadProfile]: received', arguments);
                     if (!!data.result) {
                         isLoggedIn = true;
+                        $window.localStorage.setItem('UserProfile', JSON.stringify(data.result));
+                        $window.localStorage.setItem('IsLoggedIn', isLoggedIn);
                         userDeferred.resolve(data.result);
                     } else {
                         isLoggedIn = false;
@@ -91,6 +97,22 @@
                 return userDeferred.promise;
             };
 
+            function logout () {
+                $window.localStorage.removeItem('UserProfile');
+                $window.localStorage.setItem('IsLoggedIn', false);
+                isLoggedIn = false;
+            };
+
+            function checkLocalData () {
+                var userProfile = JSON.parse($window.localStorage.getItem('UserProfile')),
+                    _isLoggedIn = $window.localStorage.getItem('IsLoggedIn');
+
+                if (_isLoggedIn && userProfile) {
+                    userDeferred.resolve(userProfile);
+                    isLoggedIn = _isLoggedIn;
+                }
+            };
+
             // Public API here:
             return {
                 get: function () {
@@ -104,6 +126,7 @@
                     return isLoggedIn;
                 },
                 login: login,
+                logout: logout,
                 loadProfile: loadProfile
             };
         };
