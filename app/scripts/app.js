@@ -13,10 +13,12 @@
     define([
         'nyx.auth',
         'controllers/main',
-        'controllers/about',
-        'controllers/contact'
+        'controllers/anonymous/homepagemain',
+        'controllers/anonymous/about',
+        'controllers/anonymous/contact',
+        'controllers/userhome'
 
-    ], function (AuthenticateModule, MainCtrl, AboutCtrl, ContactCtrl) {
+    ], function (AuthenticateModule, MainCtrl, HomepageMainCtrl, AboutCtrl, ContactCtrl, UserHomeCtrl) {
 
         console.log('[app]: configuring app');
 
@@ -28,26 +30,32 @@
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'views/main.html',
-                    controller: 'MainCtrl'
+                    templateUrl: 'views/anonymous/main.html',
+                    controller: 'HomepageMainCtrl'
                 })
                 .when('/about', {
-                    templateUrl: 'views/about.html',
+                    templateUrl: 'views/anonymous/about.html',
                     controller: 'AboutCtrl'
                 })
                 .when('/contact', {
-                    templateUrl: 'views/contact.html',
+                    templateUrl: 'views/anonymous/contact.html',
                     controller: 'ContactCtrl'
+                })
+                .when('/auth', {
+                    templateUrl: 'views/authorized/user_home.html',
+                    controller: 'UserHomeCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
                 });
-        });
+        })
+        .controller('MainCtrl', MainCtrl)
+        .controller('UserHomeCtrl', UserHomeCtrl);
 
         console.log('[app]: plugging in controllers');
 
         // plugin controllers:
-        MainCtrl(app), AboutCtrl(app), ContactCtrl(app);
+        HomepageMainCtrl(app), AboutCtrl(app), ContactCtrl(app);
 
         return app;
     });

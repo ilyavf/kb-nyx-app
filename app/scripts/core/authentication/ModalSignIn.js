@@ -11,9 +11,9 @@
     define([
     ],
     function () {
-        var ModalSignIn = function ($modal, $log, currentUser) {
+        var ModalSignIn = function ($modal, $log, currentUser, $rootScope, $timeout) {
 
-            var modalCtrl = function ($scope) {
+            var modalCtrl = function ($scope, $modalInstance) {
                 $scope.user = {};
                 $scope.signIn = function () {
                     $log.log('Trying to log in using ' + $scope.user.name + ' and ' + $scope.user.password);
@@ -31,6 +31,10 @@
                             $scope.loginResult = 'ok';
                             $scope.loginMessage = 'Hi ' + profile.name + '! You have ' + profile.counts.photos + ' photos stored in Kooboodle.';
                             $log.log('Profile result: ', profile);
+                            $timeout(function () {
+                                $modalInstance.close();
+                                $rootScope.$broadcast('user:statusChanged', true);
+                            }, 1000);
                         })
                         .catch(function (error) {
                             $log.log('Error: ' + error.message);

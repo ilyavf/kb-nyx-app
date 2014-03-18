@@ -227,9 +227,11 @@ Finished in 2.712 seconds
 
 ## Must-Read
 
+- http://docs.angularjs.org/guide/di
+- http://docs.angularjs.org/guide/providers
 - http://docs.angularjs.org/guide/module
-- http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
 - http://docs.angularjs.org/api/ng/service/$q
+- http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
 
 ## Architecture / Code organization
 
