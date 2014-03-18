@@ -1,7 +1,8 @@
 /**
  * NyxWebApp - Kooboodle Online Web
  *
- * @name nyxWebApp
+ * @namespace nyxWebApp
+ * @object
  *
  * @author      IlyaVF
  * @date        March 2014

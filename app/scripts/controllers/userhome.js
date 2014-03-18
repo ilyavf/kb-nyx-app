@@ -1,6 +1,11 @@
 /**
  * Authorized user home page controller
  *
+ * @memberof nyxWebApp
+ * @member  UserHomeCtrl
+ * @object
+ * @property    {object} user - User profile
+ *
  * @author      IlyaVF
  * @date        March 2014
  */

@@ -1,6 +1,11 @@
 /**
  * App main controller
  *
+ * @memberof nyxWebApp
+ * @member  MainController
+ * @object
+ * @property    {string} state - State of the application {anonymous | authorized}
+ *
  * @author      IlyaVF
  * @date        March 2014
  */
@@ -13,7 +18,6 @@
         // Require $route service since there is no ng-view initially on the index page.
         var MainController = function ($scope, $rootScope, $route, $location, currentUser) {
             console.log('[MainController]: Initializing');
-            // { anonymous | authorized }
             $scope.state = 'anonymous';
             $scope.isLoggedIn = currentUser.isLoggedIn();
             if (!$scope.isLoggedIn) {

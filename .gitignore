@@ -6,3 +6,4 @@ dist
 app/bower_components
 phantomjsdriver.log
 test-results*.xml
+out

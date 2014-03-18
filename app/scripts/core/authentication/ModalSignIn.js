@@ -1,6 +1,11 @@
 /**
  * Login modal dialog
  *
+ * @memberOf    NyxAuth
+ * @member      ModalSignIn
+ * @property    {function} login  - Opens a modal for login
+ * @property    {function} logout  - NOT IMPLEMENTED
+ *
  * @author      IlyaVF
  * @date        March 2014
  */
