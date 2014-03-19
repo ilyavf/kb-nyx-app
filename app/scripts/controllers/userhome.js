@@ -1,8 +1,8 @@
 /**
  * Authorized user home page controller
  *
- * @memberof nyxWebApp
- * @member  UserHomeCtrl
+ * @memberof    nyxWebApp
+ * @member      UserHomeCtrl
  * @object
  * @property    {object} user - User profile
  *
@@ -15,7 +15,7 @@
 
     define([], function () {
 
-        var UserHomeCtrl = function ($scope, $location, currentUser) {
+        var UserHomeCtrl = function ($scope, $rootScope, $location, currentUser) {
             console.log('[UserHomeCtrl]: Initializing');
             if (!currentUser.isLoggedIn()) {
                 $location.path('/');
@@ -24,6 +24,8 @@
             currentUser.get().then(function (profile) {
                 $scope.user = profile;
             });
+
+            $rootScope.$broadcast('nav:landed', 'home');
         };
 
         return UserHomeCtrl;

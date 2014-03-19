@@ -11,14 +11,14 @@
 
     require.config({
         baseUrl: './scripts',
-        packages: [{
-            name: 'nyx.auth',
-            location: 'core/authentication',
-            main: 'AuthModule'
-        }],
+        //packages: [{
+        //    name: 'nyx.auth',
+        //    location: 'core/authentication',
+        //    main: 'AuthModule'
+        //}],
         paths: {
-        },
-        shim: {
+            'auth': 'core/authentication',
+            'home': 'homepage'
         }
     });
 
@@ -34,10 +34,8 @@
         nyxWebDontBootstrap = true;
     }
 
-    require([
-        'app'
+    require(['app'], function(app) {
 
-    ], function(app) {
         /* jshint ignore:start */
         var $html = angular.element(document.getElementsByTagName('html')[0]);
         /* jshint ignore:end */

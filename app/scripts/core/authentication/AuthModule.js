@@ -13,10 +13,9 @@
         './AuthRoutes',
         './CurrentUser',
         './LoginController',
-        //'./SignupController',
         './ModalSignIn'
     ],
-    function (AuthRoutes, CurrentUser, LoginController, /*SignupController,*/ ModalSignIn) {
+    function (AuthRoutes, CurrentUser, LoginController, ModalSignIn) {
         var moduleName = "Nyx.Auth";
 
         angular
@@ -25,7 +24,6 @@
             .factory("currentUser", CurrentUser)
             .factory("modalSignIn", ModalSignIn)
             .controller("LoginController", LoginController)
-            //.controller("SignupController", SignupController)
 
             // Handle global events:
             .run(function ($rootScope, modalSignIn, $log) {

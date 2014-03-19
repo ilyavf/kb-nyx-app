@@ -20,19 +20,21 @@
             console.log('[MainController]: Initializing');
             $scope.isLoggedIn = currentUser.isLoggedIn();
             $scope.state =  $scope.isLoggedIn ? 'authorized' : 'anonymous';
+            $scope.navBarActive = 'home';
             $scope.openSignInModal = function () {
                 $rootScope.$broadcast('signin');
             };
-            if (!$scope.isLoggedIn) {
-                $location.path('/');
-            }
-            $scope.gotoState = function (state) {
-                $scope.state = state;
-            };
+//            if (!$scope.isLoggedIn) {
+//                $location.path('/');
+//            }
             $rootScope.$on('user:statusChanged', function (e, userStatus) {
                 $scope.isLoggedIn = userStatus;
                 $scope.state = userStatus ? 'authorized' : 'anonymous';
                 $location.path(userStatus ? '/auth' : '/');
+            });
+            $rootScope.$on('nav:landed', function (e, navItemCode) {
+                console.log('EVENT nav:landed', arguments);
+                $scope.navBarActive = navItemCode;
             });
         };
 

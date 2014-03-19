@@ -1,6 +1,6 @@
 <div class="header">
     <ul class="nav nav-pills pull-right">
-        <li class=""><button class="btn btn-warning" ng-click="openSignInModal()">Logout</button></li>
+        <li class="{{navBarActive == 'home' ? 'active' : '' }}"><a ng-href="#/home">Home</a></li>
         <li class="{{navBarActive == 'about' ? 'active' : '' }}"><a ng-href="#/about">About</a></li>
         <li class="{{navBarActive == 'contact' ? 'active' : '' }}"><a ng-href="#/contact">Contact</a></li>
     </ul>

@@ -388,11 +388,10 @@ module.exports = function (grunt) {
         compile: {
             options: {
                 baseUrl: '<%= yeoman.app %>/scripts',
-                packages: [{
-                    name: 'nyx.auth',
-                    location: 'core/authentication',
-                    main: 'AuthModule'
-                }],
+                paths: {
+                    'auth': 'core/authentication',
+                    'home': 'homepage'
+                },
                 //optimize: 'uglify2',
                 optimize: 'none',
                 uglify2: {
