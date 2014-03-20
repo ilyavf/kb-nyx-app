@@ -17,10 +17,10 @@
 
         var UserHomeCtrl = function ($scope, $rootScope, $location, currentUser) {
             console.log('[UserHomeCtrl]: Initializing');
-            if (!currentUser.isLoggedIn()) {
-                $location.path('/');
-                return;
-            }
+//            if (!currentUser.isLoggedIn()) {
+//                $location.path('/');
+//                return;
+//            }
             currentUser.get().then(function (profile) {
                 $scope.user = profile;
             });
