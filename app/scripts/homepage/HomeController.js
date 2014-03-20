@@ -15,12 +15,7 @@
 
     define([], function () {
 
-        var HomePageHomeController = function ($scope, $rootScope, $location, currentUser) {
-
-            if (currentUser.isLoggedIn()) {
-                $location.path('/auth');
-                return;
-            }
+        var HomePageHomeController = function ($scope, $rootScope) {
 
             $scope.pageTitle = 'Anonymous Home Page';
 
