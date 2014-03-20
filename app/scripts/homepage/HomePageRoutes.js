@@ -13,7 +13,7 @@
 
     define([], function () {
 
-            var routeManager = function HomePageRouteManager ($routeProvider) {
+            var HomePageRouteManager = function ($routeProvider) {
 
                 console.log( "[HomePage.RouteManager] Configuring $routeProvider...");
 
@@ -36,7 +36,7 @@
                     });
             };
 
-            return routeManager;
+            return HomePageRouteManager;
         });
 
 }(define));

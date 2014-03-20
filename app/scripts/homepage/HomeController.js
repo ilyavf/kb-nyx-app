@@ -17,8 +17,6 @@
 
         var HomePageHomeController = function ($scope, $rootScope, $location, currentUser) {
 
-            console.log('[HomePage.HomeCtrl] initializing');
-
             if (currentUser.isLoggedIn()) {
                 $location.path('/auth');
                 return;

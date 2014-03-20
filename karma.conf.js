@@ -26,6 +26,10 @@ module.exports = function(config) {
         {pattern: 'app/scripts/*.js', included: false },
         {pattern: 'app/scripts/**/*.js', included: false },
         {pattern: 'test/spec/**/*.js', included: false },
+
+        //{pattern: 'test/spec/homepage/homeSpec.js', included: false },
+        //{pattern: 'test/spec/mainCtrlSpec.js', included: false },
+
         'test/test-bootstrap.js'
     ],
 

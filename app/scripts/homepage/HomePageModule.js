@@ -11,16 +11,17 @@
     'use strict';
 
     define([
+        'auth/AuthModule',
         './HomePageRoutes',
         './HomeController',
         './AboutController',
         './ContactController'
     ],
-    function (Routes, HomeCtrl, AboutCtrl, ContactCtrl) {
+    function (AuthModule, Routes, HomeCtrl, AboutCtrl, ContactCtrl) {
         var moduleName = "Nyx.HomePage";
 
         angular
-            .module(moduleName, ['ngRoute'])
+            .module(moduleName, ['ngRoute', 'Nyx.Auth'])
             .config(Routes)
             .controller("HomePage.HomeCtrl", HomeCtrl)
             .controller("HomePage.AboutCtrl", AboutCtrl)

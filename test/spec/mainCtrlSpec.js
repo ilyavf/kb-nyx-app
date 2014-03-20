@@ -3,25 +3,21 @@ define(['app'], function(app) {
     'use strict';
 
     describe('Controller: MainCtrl', function () {
-        console.log('[mainCtrlSpec] Testing main controller...');
 
         // load the controller's module
         beforeEach(module('nyxWebApp'));
 
-        var MainCtrl,
-            scope;
+        var scope;
 
         // Initialize the controller and a mock scope
         beforeEach(inject(function ($controller, $rootScope) {
-            console.log('[mainCtrlSpec.beforeEach] instantiating controller...');
             scope = $rootScope.$new();
-            MainCtrl = $controller('MainCtrl', {
+            $controller('MainCtrl', {
                 $scope: scope
             });
         }));
 
         it('should be in anonymous state', function () {
-            console.log('[mainCtrlSpec.it] running 1...' + scope.state);
             expect(scope.state).toBe('anonymous');
             expect(scope.isLoggedIn).toBe(false);
         });
