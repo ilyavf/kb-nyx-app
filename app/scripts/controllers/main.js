@@ -33,55 +33,15 @@
             $rootScope.$on('user:statusChanged', $scope.onUserStatusChanged);
 
             $scope.onNavLandedChanged = function (e, navItemCode) {
-                console.log('EVENT nav:landed', arguments);
                 $scope.navBarActive = navItemCode;
             }
             $rootScope.$on('nav:landed', $scope.onNavLandedChanged);
 
 
             // Route validation:
-
-            var authRoutes = ['/auth'],
-                anonRoutes = ['/home'],
-                mixedRoutes = ['/about', '/contact'];
-
-            $scope.isRouteValid = function (nextPath, isLoggedIn) {
-                var isValid = true;
-                if (isLoggedIn && anonRoutes.indexOf(nextPath) > -1 ) {
-                    console.log('- Trying to access anonymous when logged in.');
-                    isValid = false;
-                }
-                if (!isLoggedIn && authRoutes.indexOf(nextPath) > -1 ){
-                    console.log('- Trying to access auth page when NOT logged in.');
-                    isValid = false;
-                }
-                console.log('[MainController.isRouteValid] ( nextPath = ' + nextPath + ', isLoggedIn = ' + isLoggedIn + ' ) => ' + isValid);
-                return isValid;
-            };
-            $scope.validateRouteOnInit = function (nextPath) {
-                var isLoggedIn = $scope.isLoggedIn;
-
-                if (!$scope.isRouteValid(nextPath, isLoggedIn)) {
-                    $location.path(isLoggedIn ? '/auth' : '/home');
-                }
-            };
-            $scope.validateRouteOnInit($location.path());
-
-            $rootScope.$on("$locationChangeStart",function(event, next, current){
-                var nextPath = next.match(/#(.*)/)[1],
-                    isLoggedIn = $scope.isLoggedIn,
-                    newPath;
-
-                if (!$scope.isRouteValid(nextPath, isLoggedIn)) {
-                    console.log('- intercepting invalid routing');
-                    event.preventDefault();
-                    newPath = isLoggedIn ? '/auth' : '/home';
-                    console.log('- redirecting to ' + newPath);
-
-                    $timeout(function () {
-                        $location.path(newPath);
-                    }, 0);
-                }
+            $rootScope.$on("$routeChangeError",function(event, next, current){
+                console.log('[MainController::$routeChangeError] redirecting to ' + ($scope.isLoggedIn ? '/auth' : '/home'));
+                $location.path($scope.isLoggedIn ? '/auth' : '/home');
             });
         };
 

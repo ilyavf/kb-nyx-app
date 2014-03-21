@@ -35,7 +35,12 @@
             $routeProvider
                 .when('/auth', {
                     templateUrl: 'views/authorized/user_home.html',
-                    controller: 'UserHomeCtrl'
+                    controller: 'UserHomeCtrl',
+                    resolve: {
+                        isUserAuthenticated: function (currentUser) {
+                            return currentUser.isAuthenticated();
+                        }
+                    }
                 })
                 .otherwise({
                     redirectTo: '/'

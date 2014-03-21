@@ -20,16 +20,21 @@
                 $routeProvider
                     .when('/', {
                         templateUrl: 'views/homepage/home.html',
-                        controller: 'HomePage.HomeCtrl'
+                        controller: 'HomePage.HomeCtrl',
+                        resolve: {
+                            isUserAnonymous: function (currentUser) {
+                                return currentUser.isAnonymous();
+                            }
+                        }
                     })
                     .when('/home', {
                         templateUrl: 'views/homepage/home.html',
-                        controller: 'HomePage.HomeCtrl'
-//                        ,resolve: {
-//                            isLoggedIn: function (currentUser) {
-//                                return currentUser.isLoggedIn();
-//                            }
-//                        }
+                        controller: 'HomePage.HomeCtrl',
+                        resolve: {
+                            isUserAnonymous: function (currentUser) {
+                                return currentUser.isAnonymous();
+                            }
+                        }
                     })
                     .when('/about', {
                         templateUrl: 'views/homepage/about.html',

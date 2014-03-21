@@ -13,6 +13,8 @@
  * @property    {function} login       - Performs async login and returns a promise
  * @property    {function} loadProfile - Loads user's profile and returns a user data promise
  * @property    {function} isLoggedIn  - Returns boolean
+ * @property    {function} isAuthenticated  - Returns immediate promise of user login status. To be used for route resolvers
+ * @property    {function} isAnonymous      - Returns immediate promise of user login status. To be used for route resolvers
  */
 
 (function (define) {
@@ -124,6 +126,26 @@
                 },
                 isLoggedIn: function () {
                     return isLoggedIn;
+                },
+                // to be used for route resolvers:
+                isAuthenticated: function () {
+                    var deferred = $q.defer();
+                    if (isLoggedIn) {
+                        deferred.resolve(true);
+                    } else {
+                        deferred.reject();
+                    }
+                    return deferred.promise;
+                },
+                // to be used for route resolvers:
+                isAnonymous: function () {
+                    var deferred = $q.defer();
+                    if (!isLoggedIn) {
+                        deferred.resolve(true);
+                    } else {
+                        deferred.reject();
+                    }
+                    return deferred.promise;
                 },
                 login: login,
                 logout: logout,
