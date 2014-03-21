@@ -25,15 +25,18 @@
                 $rootScope.$broadcast('signin');
             };
 
-            $rootScope.$on('user:statusChanged', function (e, userStatus) {
+            $scope.onUserStatusChanged = function (e, userStatus) {
                 $scope.isLoggedIn = userStatus;
                 $scope.state = userStatus ? 'authorized' : 'anonymous';
                 $location.path(userStatus ? '/auth' : '/');
-            });
-            $rootScope.$on('nav:landed', function (e, navItemCode) {
+            };
+            $rootScope.$on('user:statusChanged', $scope.onUserStatusChanged);
+
+            $scope.onNavLandedChanged = function (e, navItemCode) {
                 console.log('EVENT nav:landed', arguments);
                 $scope.navBarActive = navItemCode;
-            });
+            }
+            $rootScope.$on('nav:landed', $scope.onNavLandedChanged);
 
 
             // Route validation:
@@ -55,14 +58,14 @@
                 console.log('[MainController.isRouteValid] ( nextPath = ' + nextPath + ', isLoggedIn = ' + isLoggedIn + ' ) => ' + isValid);
                 return isValid;
             };
-            $scope.validateRoute = function (nextPath) {
+            $scope.validateRouteOnInit = function (nextPath) {
                 var isLoggedIn = $scope.isLoggedIn;
 
                 if (!$scope.isRouteValid(nextPath, isLoggedIn)) {
                     $location.path(isLoggedIn ? '/auth' : '/home');
                 }
             };
-            $scope.validateRoute($location.path());
+            $scope.validateRouteOnInit($location.path());
 
             $rootScope.$on("$locationChangeStart",function(event, next, current){
                 var nextPath = next.match(/#(.*)/)[1],

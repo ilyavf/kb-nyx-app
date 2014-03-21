@@ -25,6 +25,11 @@
                     .when('/home', {
                         templateUrl: 'views/homepage/home.html',
                         controller: 'HomePage.HomeCtrl'
+//                        ,resolve: {
+//                            isLoggedIn: function (currentUser) {
+//                                return currentUser.isLoggedIn();
+//                            }
+//                        }
                     })
                     .when('/about', {
                         templateUrl: 'views/homepage/about.html',
