@@ -3,8 +3,7 @@
  *
  * @memberOf    NyxAuth
  * @member      ModalSignIn
- * @property    {function} login  - Opens a modal for login
- * @property    {function} logout  - NOT IMPLEMENTED
+ * @property    {function} login  - Opens a modal for login/logout
  *
  * @author      IlyaVF
  * @date        March 2014
