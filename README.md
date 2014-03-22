@@ -239,3 +239,7 @@ Finished in 2.712 seconds
 - ANGULARJS + REQUIREJS, http://www.startersquad.com/blog/angularjs-requirejs/
 - Angular + RequireJS, by Thomas Burleson on NG-Conf-2014, https://github.com/ThomasBurleson/angularjs-Quizzler
 
+## Testing:
+
+- https://github.com/angular/protractor/tree/master/docs
+- https://github.com/angular/protractor/blob/master/docs/getting-started.md
