@@ -15,7 +15,7 @@ Nyx.Web
 - [Links](#links)
 	- [Must-Read](#must-read)
 	- [Architecture / Code organization](#architecture--code-organization)
-	- [Testing:](#testing)
+	- [Resources about testing](#resources-about-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
