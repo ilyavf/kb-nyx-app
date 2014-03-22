@@ -2,7 +2,6 @@ Nyx.Web
 =======
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [About the project](#about-the-project)
@@ -16,6 +15,7 @@ Nyx.Web
 - [Links](#links)
 	- [Must-Read](#must-read)
 	- [Architecture / Code organization](#architecture--code-organization)
+	- [Testing:](#testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
