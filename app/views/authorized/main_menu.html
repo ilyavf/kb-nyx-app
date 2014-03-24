@@ -1,0 +1,9 @@
+<div class="menu auth-main-menu" ng-controller="Nyx.Menu.AuthMain.Ctrl">
+
+    <ul>
+        <li ng-repeat="item in items">
+            <a ng-href="{{item.href}}" ng-click="setActive($index);">{{item.name}}</a>
+        </li>
+    </ul>
+
+</div>

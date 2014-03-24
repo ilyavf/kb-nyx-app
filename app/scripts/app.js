@@ -17,10 +17,11 @@
 
         'auth/AuthModule',
         'home/HomePageModule',
+        'menu/authmain/MenuAuthMainModule',
         'controllers/main',
         'controllers/userhome'
 
-    ], function (AuthModule, HomePageModule, MainCtrl, UserHomeCtrl) {
+    ], function (AuthModule, HomePageModule, MenuModule, MainCtrl, UserHomeCtrl) {
 
         console.log('[app]: configuring app');
 
@@ -28,7 +29,8 @@
             'ngResource',
             'ngRoute',
             'Nyx.Auth',
-            'Nyx.HomePage'
+            'Nyx.HomePage',
+            'Nyx.Menu.AuthMain'
         ])
         .config(function ($routeProvider) {
             console.log( "[nyxWebApp.RouteManager] Configuring $routeProvider...");
