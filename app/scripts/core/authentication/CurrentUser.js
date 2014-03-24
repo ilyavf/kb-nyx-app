@@ -34,14 +34,17 @@
             userDeferred.promise.catch(logout);
 
             login = function (user, pswd) {
-                var deferred = $q.defer();
+                var deferred = $q.defer(),
+                    params = {
+                        email: user,
+                        password: pswd
+                    };
                 $http({
                     method: 'POST',
                     url: loginUrl,
-                    data: $.param({
-                        email: user,
-                        password: pswd
-                    }),
+                    data: Object.keys(params).map(function(key){
+                        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+                    }).join('&'),
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                     },
