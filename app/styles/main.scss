@@ -121,10 +121,24 @@ body {
       color: grey;
     }
   }
-}
 
-/* Testing try */
-.test {
-  font-size: 1.5em;
-  color: #FF00FF;
+
+  .css-form {
+    input.ng-invalid.ng-dirty {
+      background-color: #FA787E;
+    }
+
+    input.ng-valid.ng-dirty {
+      background-color: #78FA89;
+    }
+  }
+
+  #sign-in-modal {
+    &.login input[type=password] {
+      &.ng-valid, &.ng-invalid {
+        background: none;
+      }
+    }
+  }
+
 }
