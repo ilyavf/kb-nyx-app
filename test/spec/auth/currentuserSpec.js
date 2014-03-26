@@ -11,7 +11,8 @@
             var $httpBackend,
                 currentUser,
                 loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
-                profileUrl = 'http://testb.kooboodle.com/user/profile.json';
+                profileUrl = 'http://testb.kooboodle.com/user/profile.json',
+                signupUrl = 'http://testb.kooboodle.com/cf/user/register.json';
 
             // load the service's module
             beforeEach(module('Nyx.Auth'));
@@ -23,6 +24,7 @@
                 // data: {code, message, result}
                 $httpBackend.when('POST', loginUrl).respond({code: 200, result: {email: 'ilya.fadeev@clickfree.com'}, message: 'OK'});
                 $httpBackend.when('GET', profileUrl).respond({code: 200, result: {name: 'Ilya', userid: '12345'}, message: 'User profile'});
+                $httpBackend.when('POST', signupUrl).respond({code: 200, result: {email: 'ilya.fadeev@clickfree.com'}, message: 'OK'});
 
                 currentUser = _currentUser_;
             }));
@@ -44,8 +46,6 @@
                 $rootScope.$apply();
 
                 expect(serverResponse.code).toBe(200);
-                expect(serverResponse.message).toBe('OK');
-                expect(serverResponse.result.email).toBe('ilya.fadeev@clickfree.com');
                 expect(currentUser.isLoggedIn()).toBe(true);
             }));
 
@@ -62,6 +62,21 @@
 
                 expect(serverResponse.name).toBe('Ilya');
                 expect(serverResponse.userid).toBe('12345');
+                expect(currentUser.isLoggedIn()).toBe(true);
+            }));
+
+            it('should be able to signup', inject(function($rootScope) {
+                $httpBackend.expectPOST(signupUrl);
+                var responsePromise = currentUser.login('user@gmail.com', '123456', 'username'),
+                    serverResponse = {};
+                $httpBackend.flush();
+                responsePromise.then(function (result) {
+                    serverResponse = result;
+                });
+                // Resolve promises:
+                $rootScope.$apply();
+
+                expect(serverResponse.code).toBe(200);
                 expect(currentUser.isLoggedIn()).toBe(true);
             }));
 
