@@ -22,14 +22,49 @@
 
         var MenuAuthMainCtrl = function ($scope, $rootScope) {
 
-            $scope.active = 0;
-            $scope.items = [{
-                name: 'Test Albums',
-                href: '#'
+            $scope.oneAtATime = true;
+            $scope.active = {
+                menu: 'MyKooboodle',
+                item: 'albums'
+            };
+
+            $scope.menus = [{
+                title: 'My Kooboodle',
+                code: 'MyKooboodle',
+                isOpened: true,
+                items: [{
+                    name: 'Albums',
+                    code: 'albums'
+                },{
+                    name: 'Calendar',
+                    code: 'calendar'
+                },{
+                    name: 'Shared Photos',
+                    code: 'shared'
+                }]
             },{
-                name: 'Test Calendar',
-                href: '#'
+                title: 'GIVE\'N\'GET',
+                code: 'GiveNGet',
+                items: [{
+                    name: 'Find Friends',
+                    code: 'friends'
+                },{
+                    name: 'Notifications',
+                    code: 'notifications'
+                }]
             }];
+
+            $scope.setActive = function (e, menuCode, itemCode) {
+                e.preventDefault();
+//                var itemIndex = $scope.menus
+//                    .filter(function(m){return m.code == menuCode;})
+//                    .map(function(m){return m.items;})
+//                    .reduce(function(a,b){return a.concat(b);})
+//                    .filter(function(v, i){return i.code == itemCode;});
+                $scope.active.menu = menuCode;
+                $scope.active.item = itemCode;
+                $rootScope.$broadcast('navMain:selected', { menu: menuCode, item: itemCode });
+            };
 
             $scope.setItems = function (items, active) {
                 $scope.items = items;
@@ -44,13 +79,11 @@
                 return $scope.getItem($scope.active);
             };
 
-            $scope.setActive = function (itemCode) {
-                $scope.active = itemCode;
-                $rootScope.$broadcast('navMain:selected', { code: itemCode, item: $scope.getItemByCode(itemCode) });
-            };
-
             $rootScope.$on('navMain:changed', function (e, itemCode) {
                 $scope.active = itemCode;
+            });
+            $rootScope.$on('navMain:selected', function (e, menuItem) {
+                console.log(menuItem);
             });
         };
 
