@@ -16,13 +16,16 @@
     define([], function () {
 
         // Require $route service since there is no ng-view initially on the index page.
-        var MainController = function ($scope, $rootScope, $route, $location, $timeout, currentUser) {
+        var MainController = function ($scope, $rootScope, $route, $location, $timeout, $window, currentUser) {
             console.log('[MainController]: Initializing');
             $scope.isLoggedIn = currentUser.isLoggedIn();
             $scope.state =  $scope.isLoggedIn ? 'authorized' : 'anonymous';
             $scope.navBarActive = 'home';
-            $scope.openSignInModal = function () {
-                $rootScope.$broadcast('signin');
+            $scope.openSignInModal = function (mode) {
+                $rootScope.$broadcast('signin', mode);
+            };
+            $window.hiddenSignUp = function () {
+                $rootScope.$broadcast('signin', 'signup');
             };
 
             $scope.onUserStatusChanged = function (e, userStatus) {

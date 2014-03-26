@@ -17,13 +17,16 @@
     function () {
         var ModalSignIn = function ($modal, $log, currentUser, $rootScope) {
 
+            var mode = 'login';
+
             var modalLoginCtrl = function ($scope, $modalInstance, currentUser) {
                 $scope.user = {};
+                $scope.mode = mode;
                 $scope.signIn = function () {
-                    $log.log('Trying to log in using ' + $scope.user.name + ' and ' + $scope.user.password);
+                    $log.log('Trying to log in using ' + $scope.user.email + ' and ' + $scope.user.password);
                     $scope.loginResult = 'pending';
                     $scope.loginMessage = 'Logging in...';
-                    return currentUser.login($scope.user.name, $scope.user.password)
+                    return currentUser.login($scope.user.email, $scope.user.password, (mode === 'signup' && !!$scope.user.name ? '' : undefined))
                         .then(function (loginResult) {
                             $log.log('- login completed');
                             $scope.loginMessage = loginResult.message;
@@ -55,7 +58,8 @@
                 };
             };
 
-            function login () {
+            function login (_mode) {
+                mode = _mode;
                 if (currentUser.isLoggedIn()) {
                     $modal.open({
                         templateUrl: 'views/modal_logout.html',
@@ -72,7 +76,10 @@
             // Public API here
             return {
                 login: function () {
-                    login();
+                    login('login');
+                },
+                signup: function () {
+                    login('signup');
                 }
             };
         };

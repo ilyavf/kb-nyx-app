@@ -26,22 +26,29 @@
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
                 loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
+                requestUrl = loginUrl,
                 profileUrl = 'http://testb.kooboodle.com/user/profile.json',
-                login, loadProfile;
+                signupUrl = 'http://testb.kooboodle.com/cf/user/register.json',
+                login, logout, loadProfile, signup;
 
             checkLocalData();
 
-            userDeferred.promise.catch(logout);
-
-            login = function (user, pswd) {
+            login = function (email, pswd, name) {
                 var deferred = $q.defer(),
                     params = {
-                        email: user,
+                        email: email,
                         password: pswd
-                    };
+                    },
+                    mode = (typeof name === 'undefined' ? 'login' : 'signup');
+
+                if (mode === 'signup') {
+                    params.fullname = name;
+                    requestUrl = signupUrl;
+                }
+                console.log('[currentUser.login] mode = ' + mode + ', ' + JSON.stringify(params));
                 $http({
                     method: 'POST',
-                    url: loginUrl,
+                    url: requestUrl,
                     data: Object.keys(params).map(function(key){
                         return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
                     }).join('&'),
@@ -71,6 +78,9 @@
             };
 
             loadProfile = function () {
+                userDeferred = $q.defer()
+                userDeferred.promise.catch(logout);
+
                 $http({
                     method: 'GET',
                     url: profileUrl,
@@ -102,7 +112,7 @@
                 return userDeferred.promise;
             };
 
-            function logout () {
+            logout = function () {
                 $window.localStorage.removeItem('UserProfile');
                 $window.localStorage.setItem('IsLoggedIn', false);
                 isLoggedIn = false;

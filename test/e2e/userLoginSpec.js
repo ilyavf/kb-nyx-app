@@ -10,7 +10,7 @@ describe('Kooboodle Nyx login/logout', function() {
 
     it('should not be able to login with wrong credentials', function() {
         element(by.css('a.btn-login-modal')).click();
-        element(by.model('user.name')).sendKeys('user@clickfree.com');
+        element(by.model('user.email')).sendKeys('user@clickfree.com');
         element(by.model('user.password')).sendKeys('12345');
         element(by.css('button.btn-signin')).click();
 
@@ -21,7 +21,7 @@ describe('Kooboodle Nyx login/logout', function() {
 
     it('should be able to login', function() {
         element(by.css('a.btn-login-modal')).click();
-        element(by.model('user.name')).sendKeys('ilya.fadeev@clickfree.com');
+        element(by.model('user.email')).sendKeys('ilya.fadeev@clickfree.com');
         element(by.model('user.password')).sendKeys('123456');
         element(by.css('button.btn-signin')).click();
 

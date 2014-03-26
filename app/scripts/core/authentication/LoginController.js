@@ -5,7 +5,7 @@
  * @date        March 2014
  */
 
-(function (define, angular) {
+(function (define) {
     'use strict';
 
     define([], function () {
@@ -22,4 +22,4 @@
         return LoginController;
     });
 
-}(define, angular));
+}(define));

@@ -27,9 +27,14 @@
 
             // Handle global events:
             .run(function ($rootScope, modalSignIn, $log) {
-                $rootScope.$on('signin', function (event, args) {
-                    $log.debug('EVENT: [AuthModule.run]: event signin captured');
-                    modalSignIn.login();
+                $rootScope.$on('signin', function (event, mode) {
+                    mode = mode || 'login';
+                    $log.debug('EVENT: [AuthModule.run]: event signin captured ' + mode);
+                    if (mode === 'signup') {
+                        modalSignIn.signup();
+                    } else {
+                        modalSignIn.login();
+                    }
                 });
             });
 
