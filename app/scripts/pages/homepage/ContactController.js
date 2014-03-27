@@ -21,6 +21,7 @@
             $scope.pageTitle = 'Contact';
 
             $rootScope.$broadcast('nav:landed', 'contact');
+            $rootScope.$broadcast('navMain:changed');
         };
 
         return HomePageContactCtrl;

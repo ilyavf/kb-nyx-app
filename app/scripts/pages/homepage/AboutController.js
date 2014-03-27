@@ -21,6 +21,7 @@
             $scope.pageTitle = 'About';
 
             $rootScope.$broadcast('nav:landed', 'about');
+            $rootScope.$broadcast('navMain:changed');
         };
 
         return HomePageAboutCtrl;

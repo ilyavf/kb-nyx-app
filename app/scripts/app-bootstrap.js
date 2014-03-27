@@ -18,7 +18,7 @@
         //}],
         paths: {
             'auth': 'core/authentication',
-            'home': 'homepage'
+            'home': 'pages/homepage'
         }
     });
 

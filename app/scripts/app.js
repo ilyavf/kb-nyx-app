@@ -17,11 +17,12 @@
 
         'auth/AuthModule',
         'home/HomePageModule',
+        'pages/mykooboodle/MykooboodleModule',
         'menu/authmain/MenuAuthMainModule',
         'controllers/main',
         'controllers/userhome'
 
-    ], function (AuthModule, HomePageModule, MenuModule, MainCtrl, UserHomeCtrl) {
+    ], function (AuthModule, HomePageModule, MyPageModule, MenuModule, MainCtrl, UserHomeCtrl) {
 
         console.log('[app]: configuring app');
 
@@ -30,6 +31,7 @@
             'ngRoute',
             'Nyx.Auth',
             'Nyx.HomePage',
+            'Nyx.MyPage',
             'Nyx.Menu.AuthMain'
         ])
         .config(function ($routeProvider) {

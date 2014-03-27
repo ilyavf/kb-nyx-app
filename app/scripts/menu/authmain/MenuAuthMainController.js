@@ -25,7 +25,7 @@
             $scope.oneAtATime = true;
             $scope.active = {
                 menu: 'MyKooboodle',
-                item: 'albums'
+                item: ''
             };
 
             $scope.menus = [{
@@ -54,16 +54,20 @@
                 }]
             }];
 
-            $scope.setActive = function (e, menuCode, itemCode) {
+            $scope.setActive = function (menuCode, itemCode) {
+                $scope.active.menu = menuCode;
+                $scope.active.item = itemCode;
+            };
+
+            $scope.setActiveE = function (e, menuCode, itemCode) {
                 e.preventDefault();
 //                var itemIndex = $scope.menus
 //                    .filter(function(m){return m.code == menuCode;})
 //                    .map(function(m){return m.items;})
 //                    .reduce(function(a,b){return a.concat(b);})
 //                    .filter(function(v, i){return i.code == itemCode;});
-                $scope.active.menu = menuCode;
-                $scope.active.item = itemCode;
-                $rootScope.$broadcast('navMain:selected', { menu: menuCode, item: itemCode });
+                $scope.setActive(menuCode, itemCode);
+                $rootScope.$broadcast('navMain:selected', menuCode, itemCode);
             };
 
             $scope.setItems = function (items, active) {
@@ -79,11 +83,10 @@
                 return $scope.getItem($scope.active);
             };
 
-            $rootScope.$on('navMain:changed', function (e, itemCode) {
-                $scope.active = itemCode;
-            });
-            $rootScope.$on('navMain:selected', function (e, menuItem) {
-                console.log(menuItem);
+            console.log('[MenuAuthMainCtrl] subscribing to "navMain:changed" event.');
+            $rootScope.$on('navMain:changed', function (e, menuCode, itemCode) {
+                console.log('[MenuAuthMainCtrl] captured navMain:changed with ' + menuCode + ', ' + itemCode);
+                $scope.setActive(menuCode, itemCode);
             });
         };
 

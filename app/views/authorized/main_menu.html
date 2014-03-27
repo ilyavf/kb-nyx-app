@@ -4,10 +4,10 @@
 
     <accordion close-others="oneAtATime">
 
-        <accordion-group ng-repeat="menu in menus" heading="{{menu.title}}" is-open="menu.isOpened" xng-click="setActive($event, menu.code, menu.items[0].code);">
+        <accordion-group ng-repeat="menu in menus" heading="{{menu.title}}" is-open="menu.isOpened" xng-click="setActiveE($event, menu.code, menu.items[0].code);">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-repeat="item in menu.items" class="{{active.menu == menu.code && active.item == item.code ? 'active' : ''}}">
-                    <a ng-click="setActive($event, menu.code, item.code);">{{item.name}}</a>
+                    <a ng-click="setActiveE($event, menu.code, item.code);">{{item.name}}</a>
                 </li>
             </ul>
         </accordion-group>
