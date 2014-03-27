@@ -177,6 +177,8 @@ End-to-end testing is a methodology used to test whether the flow of an applicat
 
 Protractor is an end to end test framework for AngularJS applications built on top of WebDriverJS. Protractor runs tests against your application running in a real browser, interacting with it as a user would. Read this to get started: https://github.com/angular/protractor/blob/master/docs/getting-started.md
 
+### Installation
+
 1 Install Protractor:
 ```cmd
 $ npm install -g protractor
@@ -210,6 +212,7 @@ exports.config = {
 };
 ```
 
+### Running tests locally
 To run tests locally (selenium port is also reffered in /protractor.conf):
 ```cmd
 $ webdriver-manager --seleniumPort 7899 start
@@ -222,6 +225,24 @@ Finished in 2.712 seconds
 3 tests, 4 assertions, 0 failures
 ```
 
+### Debug tests
+To debug tests first run selenium and webserver and then use protractor's elementexplorer.js utility:
+```cmd
+$ webdriver-manager --seleniumPort 4444 start
+$ grunt serve
+$ /usr/local/lib/node_modules/protractor/bin/elementexplorer.js http://127.0.0.1:9000
+Type <tab> to see a list of locator strategies.
+Use the `list` helper function to find elements by strategy:
+  e.g., list(by.binding('')) gets all bindings.
+
+Getting page at: http://127.0.0.1:9000
+> element(by.css('a.btn-login-modal')).isPresent()
+true
+> element(by.css('a.btn-login-modal')).click();
+> element(by.model('user.email')).sendKeys('user@clickfree.com');
+> element(by.model('user.password')).sendKeys('12345');
+> element(by.css('button.btn-signin')).click();
+```
 
 # Links
 

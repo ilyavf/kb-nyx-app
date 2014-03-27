@@ -12,11 +12,10 @@
 
         console.log('[Auth.LoginController] loaded');
 
-        var LoginController = function ($scope, currentUser) {
-            console.log('[Auth.LoginController] init');
-            currentUser.get().then(function (user) {
-                $scope.name = user.name;
-            });
+        var LoginController = function ($scope, $location, $rootScope) {
+            var mode = $location.path() === '/signup-hidden' ? 'signup' : 'login';
+            console.log('[Auth.LoginController] init ' + mode);
+            $rootScope.$broadcast('signin', mode);
         };
 
         return LoginController;

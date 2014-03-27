@@ -1,31 +1,74 @@
 /* global: element, by */
 
-describe('Kooboodle Nyx login/logout', function() {
+describe('Kooboodle Nyx login/signup', function() {
 
-    var url = 'http://127.0.0.1:9000/#/';
+    describe('- login', function() {
+        var url = 'http://127.0.0.1:9000/#/';
 
-    beforeEach(function() {
-        browser.get(url);
+        beforeEach(function() {
+            browser.get(url);
+        });
+
+        it('should not be able to login with wrong credentials', function() {
+            element(by.css('a.btn-login-modal')).click();
+            element(by.model('user.email')).sendKeys('user@clickfree.com');
+            element(by.model('user.password')).sendKeys('12345');
+            element(by.css('button.btn-signin')).click();
+
+            var loginMessage = element(by.css('.login-result'));
+            expect(browser.getCurrentUrl()).toEqual(url);
+            expect(loginMessage.getText()).toEqual('User was not able to be logged in');
+        });
+
+        it('should be able to login', function() {
+            element(by.css('a.btn-login-modal')).click();
+            element(by.model('user.email')).sendKeys('ilya.fadeev@clickfree.com');
+            element(by.model('user.password')).sendKeys('123456');
+            element(by.css('button.btn-signin')).click();
+
+            expect(browser.getCurrentUrl()).toEqual(url + 'auth');
+
+            //Logout:
+            element(by.css('.btn-logout-modal')).click();
+            element(by.css('.btn-logout')).click();
+            expect(element(by.css('.btn-logout-modal')).isPresent()).toBe(false);
+        });
     });
 
-    it('should not be able to login with wrong credentials', function() {
-        element(by.css('a.btn-login-modal')).click();
-        element(by.model('user.email')).sendKeys('user@clickfree.com');
-        element(by.model('user.password')).sendKeys('12345');
-        element(by.css('button.btn-signin')).click();
+    describe('- sign up', function() {
 
-        var loginMessage = element(by.css('.login-result'));
-        expect(browser.getCurrentUrl()).toEqual(url);
-        expect(loginMessage.getText()).toEqual('User was not able to be logged in');
-    });
+        var url = 'http://127.0.0.1:9000/#/signup-hidden';
 
-    it('should be able to login', function() {
-        element(by.css('a.btn-login-modal')).click();
-        element(by.model('user.email')).sendKeys('ilya.fadeev@clickfree.com');
-        element(by.model('user.password')).sendKeys('123456');
-        element(by.css('button.btn-signin')).click();
+        beforeEach(function() {
+            browser.get(url);
+        });
 
-        expect(browser.getCurrentUrl()).toEqual(url + 'auth');
+        it('should validate name field', function() {
+            browser.wait(function () {
+                return $('#sign-in-modal').isDisplayed();
+            }, 1000, 'modal timeout').then(function () {
+
+                    element(by.model('user.name')).sendKeys('use');
+                    element(by.model('user.email')).sendKeys('user@gmail.com');
+                    element(by.model('user.password')).sendKeys('123456');
+                    var button = element(by.css('button.btn-signin'));
+                    expect(button.isEnabled()).toEqual(false);
+            });
+        });
+
+        it('should pass validation with correct fields', function() {
+            browser.wait(function () {
+                return $('#sign-in-modal').isDisplayed();
+            }, 1000, 'modal timeout').then(function () {
+
+                    element(by.model('user.name')).sendKeys('user');
+                    element(by.model('user.email')).sendKeys('user@gmail.com');
+                    element(by.model('user.password')).sendKeys('123456');
+                    var button = element(by.css('button.btn-signin'));
+                    expect(button.isEnabled()).toEqual(true);
+                });
+        });
+
     });
 
 });

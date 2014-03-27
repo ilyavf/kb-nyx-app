@@ -19,12 +19,12 @@
 
             $routeProvider
                 .when( '/login', {
-                    templateUrl : "views/login.tpl.html",
+                    templateUrl : "views/homepage/home.html",
                     controller  : "LoginController"
                 })
-                .when( '/signup', {
-                    templateUrl : "views/signup.tpl.html",
-                    controller  : "SignupController"
+                .when( '/signup-hidden', {
+                    templateUrl : "views/homepage/home.html",
+                    controller  : "LoginController"
                 });
 
         };
