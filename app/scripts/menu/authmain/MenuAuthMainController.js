@@ -80,22 +80,9 @@
                 $rootScope.$broadcast('navMain:selected', menuCode, itemCode);
             };
 
-            $scope.setItems = function (items, active) {
-                $scope.items = items;
-                $scope.setActive(active || 0);
-            };
-
-            $scope.getItem = function (itemCode) {
-                return $scope.items[itemCode];
-            };
-
-            $scope.getCurrentItem = function () {
-                return $scope.getItem($scope.active);
-            };
-
-            console.log('[MenuAuthMainCtrl] subscribing to "navMain:changed" event.');
+            //console.log('[MenuAuthMainCtrl] subscribing to "navMain:changed" event.');
             $rootScope.$on('navMain:changed', function (e, menuCode, itemCode) {
-                console.log('[MenuAuthMainCtrl] captured navMain:changed with ' + menuCode + ', ' + itemCode);
+                //console.log('[MenuAuthMainCtrl] captured navMain:changed with ' + menuCode + ', ' + itemCode);
                 $scope.setActive(menuCode, itemCode);
             });
         };

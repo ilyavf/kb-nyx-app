@@ -19,7 +19,7 @@ requirejs.config({
 
     paths: {
         'auth': 'core/authentication',
-        'home': 'homepage'
+        'home': 'pages/homepage'
     },
 
     // ask Require.js to load these files (all our tests)

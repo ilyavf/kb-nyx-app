@@ -390,7 +390,7 @@ module.exports = function (grunt) {
                 baseUrl: '<%= yeoman.app %>/scripts',
                 paths: {
                     'auth': 'core/authentication',
-                    'home': 'homepage'
+                    'home': 'pages/homepage'
                 },
                 //optimize: 'uglify2',
                 optimize: 'none',
