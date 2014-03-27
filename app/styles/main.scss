@@ -134,9 +134,11 @@ body {
   }
 
   #sign-in-modal {
-    &.login input[type=password] {
-      &.ng-valid, &.ng-invalid {
-        background: none;
+    &.login {
+      input[type=password], input[type=email] {
+        &.ng-valid, &.ng-invalid {
+          background: none;
+        }
       }
     }
   }
