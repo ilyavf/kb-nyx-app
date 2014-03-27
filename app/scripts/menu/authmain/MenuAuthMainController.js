@@ -51,6 +51,13 @@
                     name: 'Notifications',
                     code: 'notifications'
                 }]
+            },{
+                title: 'Settings',
+                code: 'settings',
+                items: [{
+                    name: 'General',
+                    code: 'settings'
+                }]
             }];
 
             $scope.isOpened = function (index, menuCode) {
