@@ -31,7 +31,7 @@
                             $log.log('- login completed');
                             $scope.loginMessage = loginResult.message;
                             $scope.loginResult = 'ok';
-                            $scope.loginMessage += "<br/>Loading user's profile...";
+                            $scope.loginMessage += " Loading user's profile...";
                             return currentUser.loadProfile();
                         })
                         .then(function (profile) {
