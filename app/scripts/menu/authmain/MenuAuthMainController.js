@@ -31,7 +31,6 @@
             $scope.menus = [{
                 title: 'My Kooboodle',
                 code: 'MyKooboodle',
-                isOpened: true,
                 items: [{
                     name: 'Albums',
                     code: 'albums'
@@ -47,12 +46,16 @@
                 code: 'GiveNGet',
                 items: [{
                     name: 'Find Friends',
-                    code: 'friends'
+                    code: 'find-friends'
                 },{
                     name: 'Notifications',
                     code: 'notifications'
                 }]
             }];
+
+            $scope.isOpened = function (index, menuCode) {
+                return !$scope.active.menu && index == 0 ? true : $scope.active.menu == menuCode;
+            };
 
             $scope.setActive = function (menuCode, itemCode) {
                 $scope.active.menu = menuCode;
