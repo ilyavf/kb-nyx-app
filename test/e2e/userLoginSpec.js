@@ -72,3 +72,35 @@ describe('Kooboodle Nyx login/signup', function() {
     });
 
 });
+
+//// Protractor Tests without a Backend (or how to mock a backend)
+//// https://github.com/angular/protractor/issues/125
+//
+//// Mocking backend api:
+//exports.httpBackendMock = function() {
+//    angular.module('httpBackendMock', ['mainApp', 'ngMockE2E'])
+//        .run(function($httpBackend) {
+//            console.log('Test platform bootstrapping');
+//            ...
+//            $httpBackend.whenGET('/events').respond([sampleEvent]);
+//            $httpBackend.whenGET('/events/' + sampleEventId).respond(sampleEvent);
+//            $httpBackend.whenGET('/login').passThrough();
+//            $httpBackend.whenGET(/partials\/.*/).passThrough();
+//            $httpBackend.whenPOST('/events').respond(function(method, url, data) {
+//                data._id = 123456789;
+//                return [200, angular.toJson(data), {}];
+//            });
+//            $httpBackend.whenDELETE('/events/' + sampleEventId).respond(function(method, url, data) {
+//                return [200, {
+//                    delete: sampleEvent
+//                }, {}];
+//            });
+//            console.log('Test platform bootstrapping ... done');
+//        });
+//}
+//
+//// In protractor scenario file:
+//var mockModule = require('./mocked-backend');
+//beforeEach(function() {
+//    ptor.addMockModule('httpBackendMock', mockModule.httpBackendMock);
+//});
