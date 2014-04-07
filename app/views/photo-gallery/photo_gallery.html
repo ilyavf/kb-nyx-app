@@ -1,0 +1,9 @@
+<div class="kb-photo-gallery">
+    <ul>
+        <li ng-repeat="item in items">
+            {{item.title}} {{item.totalCount}}
+            <img src="{{item.subItems[$index%4].url}}" />
+        </li>
+    </ul>
+
+</div>

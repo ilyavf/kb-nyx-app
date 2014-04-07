@@ -21,10 +21,11 @@
         'pages/givenget/GivengetModule',
         'pages/settings/SettingsModule',
         'menu/authmain/MenuAuthMainModule',
+        'gallery/PhotoGalleryModule',
         'controllers/main',
         'controllers/userhome'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, MainCtrl, UserHomeCtrl) {
+    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl) {
 
         console.log('[app]: configuring app');
 
@@ -36,7 +37,8 @@
             'Nyx.MyPage',
             'Nyx.GngPage',
             'Nyx.SettingsPage',
-            'Nyx.Menu.AuthMain'
+            'Nyx.Menu.AuthMain',
+            'Nyx.PhotoGallery'
         ])
         .config(function ($routeProvider) {
             console.log( "[nyxWebApp.RouteManager] Configuring $routeProvider...");
