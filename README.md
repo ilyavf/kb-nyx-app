@@ -77,7 +77,8 @@ https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-
 http://stackoverflow.com/questions/14788345/how-to-install-jdk-on-ubuntulinux
 
 ```sh
-// Node:
+// NodeJS:
+// Option one - build from source
 $ sudo apt-get update
 $ sudo apt-get -y install build-essential g++ libssl-dev pkg-config
 $ cd node-v0.10.26
@@ -85,6 +86,13 @@ $ ./configure
 $ make
 $ sudo make install
 $ node -v
+
+// Option two - follow instructions from https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint-elementary-os
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update
+$ sudo apt-get install python-software-properties python g++ make nodejs
+$ node -v
+v0.10.26
 
 // Ruby, Compass/SASS:
 //$ sudo apt-get install ruby1.9.1
