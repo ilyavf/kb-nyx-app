@@ -70,7 +70,8 @@ Total 15.9s
 ## Installing on Ubuntu Virtual Machine
 
 - Node:
-http://www.hacksparrow.com/how-to-install-node-js-on-ubuntu-linux.html
+ - https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint-elementary-os
+ - http://www.hacksparrow.com/how-to-install-node-js-on-ubuntu-linux.html
 - Ruby:
 https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
 - JDK (for Selenium web driver):
@@ -78,21 +79,24 @@ http://stackoverflow.com/questions/14788345/how-to-install-jdk-on-ubuntulinux
 
 ```sh
 // NodeJS:
-// Option one - build from source
+// Option one - follow instructions from here:
+// https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint-elementary-os
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update
+$ sudo apt-get install python-software-properties python g++ make nodejs
+$ node -v
+v0.10.26
+
+// Option two - build from source
 $ sudo apt-get update
 $ sudo apt-get -y install build-essential g++ libssl-dev pkg-config
+// download latest source and continue:
 $ cd node-v0.10.26
 $ ./configure
 $ make
 $ sudo make install
 $ node -v
 
-// Option two - follow instructions from https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint-elementary-os
-$ sudo add-apt-repository ppa:chris-lea/node.js
-$ sudo apt-get update
-$ sudo apt-get install python-software-properties python g++ make nodejs
-$ node -v
-v0.10.26
 
 // Ruby, Compass/SASS:
 //$ sudo apt-get install ruby1.9.1
