@@ -37,6 +37,13 @@ The project was created using yeoman toolset (http://yeoman.io/). Tools used:
 
 First, install NodeJS http://nodejs.org/ which includes NPM https://www.npmjs.org/
 
+Install bower and grunt-cli globally:
+```cmd
+$ sudo npm install -g bower
+...
+$ sudo npm install -g grunt-cli
+```
+
 Install project dependencies:
 ```cmd
 $ npm install
