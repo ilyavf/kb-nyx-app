@@ -21,6 +21,10 @@
 
             $scope.items = getItems();
 
+            $scope.log = function (data) {
+                console.log('GALLERY ITEM CLICK: ' + data);
+            };
+
         };
 
         return PhotoGalleryCtrl;
@@ -71,7 +75,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Winter',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -92,7 +96,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Spring',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -110,7 +114,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Autumn',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -131,7 +135,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Easter',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -149,7 +153,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Winter',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -170,7 +174,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Holidays',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -188,7 +192,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'New Year',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -209,7 +213,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Birthday',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -227,7 +231,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Party',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -248,7 +252,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Zoo',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -266,7 +270,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Picnic',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -287,7 +291,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'BBQ',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -305,7 +309,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Home',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -326,7 +330,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Waterpark',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
@@ -344,7 +348,7 @@ function getItems () {
         }]
     },{
         id: 0,
-        title: 'Pictures',
+        title: 'Lake',
         dateRange: {
             start: new Date('2013-02-02'),
             end: new Date('2014-04-01')
@@ -365,7 +369,7 @@ function getItems () {
         }]
     },{
         id: 1,
-        title: 'Summer',
+        title: 'Beach Ontario Lake - 2013',
         dateRange: {
             start: new Date('2010-06-02'),
             end: new Date('2012-08-10')
