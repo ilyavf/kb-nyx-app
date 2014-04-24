@@ -25,10 +25,10 @@
         var currentUser = function ($q, $http, $log, $window) {
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
-                loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
+                loginUrl = '/api/login',
                 requestUrl = loginUrl,
-                profileUrl = 'http://testb.kooboodle.com/user/profile.json',
-                signupUrl = 'http://testb.kooboodle.com/cf/user/register.json',
+                profileUrl = '/api/profile',
+                signupUrl = '/api/signup',
                 login, logout, loadProfile, signup;
 
             checkLocalData();
