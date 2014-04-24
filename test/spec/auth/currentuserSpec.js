@@ -10,9 +10,9 @@
         describe('Service: currentUser', function () {
             var $httpBackend,
                 currentUser,
-                loginUrl = 'http://testb.kooboodle.com/user/openphoto/login.json',
-                profileUrl = 'http://testb.kooboodle.com/user/profile.json',
-                signupUrl = 'http://testb.kooboodle.com/cf/user/register.json';
+                loginUrl = '/api/login',
+                profileUrl = '/api/profile',
+                signupUrl = '/api/signup';
 
             // load the service's module
             beforeEach(module('Nyx.Auth'));
