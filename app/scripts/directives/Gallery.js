@@ -2,7 +2,7 @@
  * Gallery item simple
  *
  * @memberof nyxWebApp
- * @member  GalleryItemSimple
+ * @member  Gallery
  * @object
  *
  * @author      IlyaVF
@@ -15,22 +15,22 @@
     define([], function () {
 
         // Require $route service since there is no ng-view initially on the index page.
-        var GalleryItemSimple = function () {
+        var GalleryDir = function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/photo-gallery/gallery-item-simple.html',
-                //transclude: true,
-                scope: {
-                    'title': '=title',
-                    'url': '=url',
-                    'click': '=onClick'
-                },
+                templateUrl: 'views/gallery/gallery.tpl.html',
+                transclude: true,
+                //scope: {
+                //    'title': '=title',
+                //    'url': '=url',
+                //    'click': '=onClick'
+                //},
                 link: function (scope) {
                 }
             };
         }
 
-        return GalleryItemSimple;
+        return GalleryDir;
     });
 
 

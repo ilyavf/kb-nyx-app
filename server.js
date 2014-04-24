@@ -37,6 +37,18 @@ app.use(express.static(clientDir));
 
 app.use(bodyParser());
 
+
+// API CORS:
+app.all('*', function (req, res, next) {
+    if (!req.get('Origin')) return next();
+    res.set('Access-Control-Allow-Origin', 'http://test.uat.kooboodle.com:9000');
+    res.set('Access-Control-Allow-Credentials', 'true');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    if ('OPTIONS' == req.method) return res.send(200);
+    next();
+});
+
 app.post('/api/login', proxy.post('http://uat.kooboodle.com/user/openphoto/login.json'));
 app.post('/api/signup', proxy.post('http://uat.kooboodle.com/cf/user/register.json'));
 app.get('/api/profile', proxy.get('http://uat.kooboodle.com/user/profile.json'));

@@ -22,13 +22,17 @@
 
     define([], function () {
 
-        var currentUser = function ($q, $http, $log, $window) {
+        var currentUser = function ($q, $http, $log, $window, $location) {
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
-                loginUrl = '/api/login',
+                proto = $location.protocol(),
+                host = $location.host(),
+                port = '1337',
+                prefix = proto + '://' + host + ':' + port,
+                loginUrl = prefix + '/api/login',
                 requestUrl = loginUrl,
-                profileUrl = '/api/profile',
-                signupUrl = '/api/signup',
+                profileUrl = prefix + '/api/profile',
+                signupUrl = prefix + '/api/signup',
                 login, logout, loadProfile, signup;
 
             checkLocalData();

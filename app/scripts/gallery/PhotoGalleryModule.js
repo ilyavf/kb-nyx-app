@@ -11,14 +11,20 @@
 
     define([
         './PhotoGalleryController',
-        '../directives/GalleryItemSimple'
+        '../directives/Gallery',
+        '../directives/GalleryPhotoItem',
+        '../directives/GalleryClusterItem'
     ],
-        function (Ctrl, GalleryItemSimple) {
+        function (Ctrl, Gallery, GalleryPhotoItem, GalleryClusterItem) {
             var moduleName = "Nyx.PhotoGallery";
 
             angular
                 .module(moduleName, [])
-                .directive('galleryItemSimple', GalleryItemSimple)
+
+                .directive('gallery', Gallery)
+                .directive('photoItem', GalleryPhotoItem)
+                .directive('clusterItem', GalleryClusterItem)
+
                 .controller('PhotoGallery.Ctrl', Ctrl);
 
             return moduleName;

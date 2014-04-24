@@ -1,8 +1,4 @@
-<h2>{{pageTitle}}</h2>
-<p>
-    Calendar day clusters here ...
-</p>
-
+Cluster gallery
 <gallery>
     <cluster-item ng-repeat="item in items" data-title="item.title" data-url="item.subItems[$index%3].url" on-click="log"></cluster-item>
 </gallery>
