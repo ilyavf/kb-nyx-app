@@ -49,7 +49,7 @@
                     params.fullname = name;
                     requestUrl = signupUrl;
                 }
-                console.log('[currentUser.login] mode = ' + mode + ', ' + JSON.stringify(params));
+                console.log('[currentUser.login] mode = ' + mode + ', url = ' + requestUrl + ', ' + JSON.stringify(params));
                 $http({
                     method: 'POST',
                     url: requestUrl,

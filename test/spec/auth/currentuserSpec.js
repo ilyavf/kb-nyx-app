@@ -10,9 +10,9 @@
         describe('Service: currentUser', function () {
             var $httpBackend,
                 currentUser,
-                loginUrl = '/api/login',
-                profileUrl = '/api/profile',
-                signupUrl = '/api/signup';
+                loginUrl = 'http://server:1337/api/login',
+                profileUrl = 'http://server:1337/api/profile',
+                signupUrl = 'http://server:1337/api/signup';
 
             // load the service's module
             beforeEach(module('Nyx.Auth'));
