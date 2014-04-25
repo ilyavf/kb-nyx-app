@@ -3,19 +3,22 @@
   ul {
 
     li {
-      display: inline-block;
 
       img.cover {
-        width: 100px;
-        height: 100px;
       }
     }
 
   }
 
   cluster-item {
-    img {
-      height: 200px;
+    img.item-cover {
+    }
+
+    .item-thumbs {
+      li {
+        img {
+        }
+      }
     }
   }
 

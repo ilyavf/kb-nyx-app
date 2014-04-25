@@ -21,9 +21,12 @@
                 templateUrl: 'views/gallery/gallery-cluster-item.html',
                 //transclude: true,
                 scope: {
-                    'title': '=title',
-                    'url': '=url',
-                    'click': '=onClick'
+                    'title': '=',
+                    'url': '=',
+                    'dateRange': '=',
+                    'items': '=',
+                    'totalCount': '=',
+                    'click': '='
                 },
                 link: function (scope) {
                 }

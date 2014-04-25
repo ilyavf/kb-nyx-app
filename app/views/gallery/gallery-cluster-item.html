@@ -1,9 +1,19 @@
-<div class="gallery-item gallery-cluster-item col-sm-6 col-md-4">
-    <div class="thumbnail">
+<div class="gallery-item gallery-cluster-item col-sm-6 col-md-4 col-lg-3">
+    <div class="thumbnail row">
         <div class="caption">Cluster {{title}}</div>
-        <img class="cover" src="{{url}}" ng-click="click(title)" />
+        <div class="item-content">
+            <div class="item-date-range">
+                {{dateRange.start}} - {{dateRange.end}}
+            </div>
+            <div class="thumbnail">
+                <img class="item-cover" src="{{url}}" ng-click="click(title)" />
+            </div>
+            <ul class="item-thumbs nyx-reset">
+                <li class="col-xs-3 thumbnail" ng-repeat="item in items">
+                    <img class="" src="{{item.url}}" />
+                </li>
+                <li class="col-xs-3 thumbnail item-total">{{totalCount}}</li>
+            </ul>
+        </div>
     </div>
-    <!--<img class="thumb" src="{{url1}}" ng-click="click(title)" class="small"/>-->
-    <!--<img class="thumb" src="{{url2}}" ng-click="click(title)" class="small" />-->
-    <!--<img class="thumb" src="{{url3}}" ng-click="click(title)" class="small" />-->
 </div>

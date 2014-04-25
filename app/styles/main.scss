@@ -92,6 +92,11 @@ body {
 
 /* Fixes for bootstrap */
 .nyx-webapp {
+
+  ul.nyx-reset {
+    padding-left: 0;
+  }
+
   .modal {
     overflow-y: hidden;
     .input-group {
