@@ -11,12 +11,40 @@
   }
 
   cluster-item {
-    img.item-cover {
+    .item-cover {
+      height: 200px;
+      overflow: hidden;
+
+      img {
+        max-width: 130%;
+        min-width: 100%;
+      }
     }
 
     .item-thumbs {
+      li:first-child {
+        margin-left: -4px;
+      }
+
       li {
-        img {
+        display: block;
+        padding: 4px;
+        .img-wrapper {
+          background-color: gray;
+          overflow: hidden;
+          height: 65px;
+          img {
+            max-width: 130%;
+            min-width: 100%;
+          }
+        }
+        &.item-total {
+          .img-wrapper {
+            background-color: purple;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+          }
         }
       }
     }

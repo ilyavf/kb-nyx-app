@@ -22,13 +22,18 @@
                 //transclude: true,
                 scope: {
                     'title': '=',
-                    'url': '=',
                     'dateRange': '=',
-                    'items': '=',
+                    'allItems': '=items',
                     'totalCount': '=',
                     'click': '='
                 },
                 link: function (scope) {
+                    scope.url = scope.allItems[0].url;
+                    var items = scope.allItems.slice(1,4);
+                    while (items.length < 3) {
+                        items.push({});
+                    }
+                    scope.items = items;
                 }
             };
         }

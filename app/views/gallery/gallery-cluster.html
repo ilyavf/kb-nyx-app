@@ -2,9 +2,9 @@ Cluster gallery
 <gallery>
     <cluster-item ng-repeat="item in items"
                   data-title="item.title"
-                  data-url="item.subItems[0].url"
+                  data-items="item.subItems"
                   data-date-range="item.dateRange"
-                  data-items="item.subItems.slice(1,4)"
                   data-total-count="item.totalCount"
                   on-click="log"></cluster-item>
 </gallery>
+

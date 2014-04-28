@@ -5,14 +5,20 @@
             <div class="item-date-range">
                 {{dateRange.start}} - {{dateRange.end}}
             </div>
-            <div class="thumbnail">
-                <img class="item-cover" src="{{url}}" ng-click="click(title)" />
+            <div class="item-cover img-wrapper">
+                <img class="" src="{{url}}" ng-click="click(title)" />
             </div>
             <ul class="item-thumbs nyx-reset">
-                <li class="col-xs-3 thumbnail" ng-repeat="item in items">
-                    <img class="" src="{{item.url}}" />
+                <li class="col-xs-3 " ng-repeat="item in items">
+                    <div class="img-wrapper">
+                        <img class="" src="{{item.url}}" ng-if="item.url" />
+                    </div>
                 </li>
-                <li class="col-xs-3 thumbnail item-total">{{totalCount}}</li>
+                <li class="col-xs-3  item-total">
+                    <div class="img-wrapper">
+                        {{totalCount}}
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
