@@ -11,12 +11,40 @@
   }
 
   cluster-item {
+
+    .gallery-cluster-item {
+    }
+    
+    .item-wrapper {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 20px;
+      line-height: 1.428571429;
+      background-color: white;
+      border-top: 2px solid #444;
+      transition: all 0.2s ease-in-out;
+
+      .caption {
+        padding: 15px 10px;
+        border: 1px solid #ddd;
+        border-top: none;
+      }
+
+      .item-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        padding: 10px;
+        overflow: hidden;
+      }
+    }
+
     .item-cover {
       height: 200px;
       overflow: hidden;
+      margin-bottom: 4px;
 
       img {
-        max-width: 130%;
+        max-width: 200%;
         min-width: 100%;
       }
     }
@@ -28,22 +56,26 @@
 
       li {
         display: block;
-        padding: 4px;
+        padding: 0px;
+        padding-left: 4px;
         .img-wrapper {
           background-color: gray;
           overflow: hidden;
           height: 65px;
           img {
-            max-width: 130%;
+            max-width: 250%;
             min-width: 100%;
           }
         }
         &.item-total {
+          padding-bottom: 15px;
+
           .img-wrapper {
             background-color: purple;
             color: white;
             text-align: center;
             line-height: 60px;
+            margin-right: -4px;
           }
         }
       }
