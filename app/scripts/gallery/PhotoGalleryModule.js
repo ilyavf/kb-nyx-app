@@ -13,9 +13,10 @@
         './PhotoGalleryController',
         '../directives/Gallery',
         '../directives/GalleryPhotoItem',
-        '../directives/GalleryClusterItem'
+        '../directives/GalleryClusterItem',
+        '../data/ClusterListData'
     ],
-        function (Ctrl, Gallery, GalleryPhotoItem, GalleryClusterItem) {
+        function (Ctrl, Gallery, GalleryPhotoItem, GalleryClusterItem, ClusterListData) {
             var moduleName = "Nyx.PhotoGallery";
 
             angular
@@ -24,6 +25,8 @@
                 .directive('gallery', Gallery)
                 .directive('photoItem', GalleryPhotoItem)
                 .directive('clusterItem', GalleryClusterItem)
+
+                .factory('clusterList', ClusterListData)
 
                 .controller('PhotoGallery.Ctrl', Ctrl);
 
