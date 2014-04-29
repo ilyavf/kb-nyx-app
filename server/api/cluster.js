@@ -13,8 +13,8 @@ var clusterList = function (req, res) {
             var clusterDeferred = Q.defer();
 
             itemPromises = [];
-            cluster.items.forEach(function (photo) {
-                itemPromises.push(getPhotoUrl(req, photo.pid));
+            cluster.items.forEach(function (photo, i) {
+                itemPromises.push(getPhotoUrl(req, photo.pid, (i == 0 ? '500x200' : '200x65')));
             });
 
             Q.all(itemPromises).then(function (photoUrls) {
@@ -58,11 +58,12 @@ function getClusterList (req) {
 
     return deferred.promise;
 }
-function getPhotoUrl (req, photoId) {
+function getPhotoUrl (req, photoId, size) {
     var deferred = Q.defer(),
         prefix = 'http://uat.kooboodle.com',
-        url = prefix + '/photo/{photoId}/url/100x100.json'
-            .replace('{photoId}', photoId);
+        url = prefix + '/photo/{photoId}/url/{size}.json'
+            .replace('{photoId}', photoId)
+            .replace('{size}', size);
 
     request.get({
         url: url,
