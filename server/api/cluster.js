@@ -3,13 +3,36 @@ var request = require('request'),
 
 
 var clusterList = function (req, res) {
-//    console.log(timestamp() + 'module cluster.list');
-//    var url = 'http://uat.kooboodle.com/albums/list.json';
-//    req.pipe(request(url)).pipe(res);
 
-    res.json({
-        success: true,
-        result: getItems()
+    var clusterPromises = [];
+
+    getClusterList(req).then(function (clusters) {
+        console.log('[clusterList.getClusterList] resolved with ' + clusters.length);
+        var itemPromises;
+        clusters.forEach(function (cluster) {
+            var clusterDeferred = Q.defer();
+
+            itemPromises = [];
+            cluster.items.forEach(function (photo) {
+                itemPromises.push(getPhotoUrl(req, photo.pid));
+            });
+
+            Q.all(itemPromises).then(function (photoUrls) {
+                cluster.title = cluster.name;
+                cluster.subItems = photoUrls;
+                clusterDeferred.resolve(cluster);
+            });
+
+            clusterPromises.push(clusterDeferred.promise);
+        })
+
+        Q.all(clusterPromises).then(function (clusters) {
+            console.log('[clusterList.getClusterList] resolved for all photos ' + clusters.length);
+            res.json({
+                success: true,
+                result: clusters
+            });
+        });
     });
 };
 
@@ -19,7 +42,44 @@ module.exports = {
 };
 
 
+function getClusterList (req) {
+    var deferred = Q.defer(),
+        url = 'http://z.uat.kooboodle.com/albums?items=4';
 
+    request.get({
+        url: url,
+        headers: req.headers
+    }, function (error, res, body) {
+        if (!error) {
+            var albums = JSON.parse(body).result.albums;
+            deferred.resolve(albums);
+        }
+    });
+
+    return deferred.promise;
+}
+function getPhotoUrl (req, photoId) {
+    var deferred = Q.defer(),
+        prefix = 'http://uat.kooboodle.com',
+        url = prefix + '/photo/{photoId}/url/100x100.json'
+            .replace('{photoId}', photoId);
+
+    request.get({
+        url: url,
+        headers: req.headers
+    }, function (error, res, body) {
+        if (!error) {
+            deferred.resolve({
+                id: photoId,
+                url: prefix + JSON.parse(body).result
+            });
+        } else {
+            console.log('ERROR::: [getPhotoUrl] url = ' + url, res);
+        }
+    });
+
+    return deferred.promise;
+}
 
 function timestamp () {
     return '[' + new Date().toJSON().replace('T',' ').replace(/.{5}$/,'') + '] ';
