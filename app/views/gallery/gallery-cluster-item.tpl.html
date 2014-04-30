@@ -6,12 +6,12 @@
                 {{dateRange.start}} - {{dateRange.end}}
             </div>
             <div class="item-cover img-wrapper">
-                <img class="" src="{{url}}" ng-click="click(title)" />
+                <img class="" ng-src="{{url}}" ng-click="click(title)" />
             </div>
             <ul class="item-thumbs nyx-reset">
                 <li class="col-xs-3 " ng-repeat="item in items" ng-click="preview(item)">
                     <div class="img-wrapper">
-                        <img class="" src="{{item.url}}" ng-if="item.url" />
+                        <img class="" ng-src="{{item.url}}" ng-if="item.url" />
                     </div>
                 </li>
                 <li class="col-xs-3  item-total">

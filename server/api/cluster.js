@@ -14,7 +14,7 @@ var clusterList = function (req, res) {
 
             itemPromises = [];
             cluster.items.forEach(function (photo, i) {
-                itemPromises.push(getPhotoUrl(req, photo.pid, (i == 0 ? '500x200' : '200x65')));
+                itemPromises.push(getPhotoUrl(req, photo.pid, (i == 0 || true ? '500x200' : '200x65')));
             });
 
             Q.all(itemPromises).then(function (photoUrls) {
