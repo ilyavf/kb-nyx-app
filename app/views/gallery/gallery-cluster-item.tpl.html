@@ -9,7 +9,7 @@
                 <img class="" src="{{url}}" ng-click="click(title)" />
             </div>
             <ul class="item-thumbs nyx-reset">
-                <li class="col-xs-3 " ng-repeat="item in items">
+                <li class="col-xs-3 " ng-repeat="item in items" ng-click="preview(item)">
                     <div class="img-wrapper">
                         <img class="" src="{{item.url}}" ng-if="item.url" />
                     </div>
