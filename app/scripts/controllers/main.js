@@ -27,13 +27,17 @@
             $window.hiddenSignUp = function () {
                 $rootScope.$broadcast('signin', 'signup');
             };
-
-            $scope.onUserStatusChanged = function (e, userStatus) {
+            $scope.onUserStatusChanged = function (userStatus) {
                 $scope.isLoggedIn = userStatus;
                 $scope.state = userStatus ? 'authorized' : 'anonymous';
                 $location.path(userStatus ? '/auth' : '/');
             };
-            $rootScope.$on('user:statusChanged', $scope.onUserStatusChanged);
+            $rootScope.$on('user:login', function () {
+                $scope.onUserStatusChanged(true);
+            });
+            $rootScope.$on('user:logout', function () {
+                $scope.onUserStatusChanged(false);
+            });
 
             $scope.onNavLandedChanged = function (e, navItemCode) {
                 $scope.navBarActive = navItemCode;

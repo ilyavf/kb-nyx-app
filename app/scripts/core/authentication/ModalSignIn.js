@@ -39,7 +39,6 @@
                             $scope.loginMessage = 'Hi ' + profile.name + '! You have ' + profile.counts.photos + ' photos stored in Kooboodle.';
                             $log.log('Profile result: ', profile);
                             $modalInstance.close();
-                            $rootScope.$broadcast('user:statusChanged', true);
                         })
                         .catch(function (error) {
                             $log.log('Error: ' + error.message);
@@ -53,7 +52,6 @@
             var modalLogoutCtrl = function ($scope, $rootScope, $location, $modalInstance, currentUser) {
                 $scope.doLogout = function () {
                     currentUser.logout();
-                    $rootScope.$broadcast('user:statusChanged', false);
                     $modalInstance.close();
                 };
             };

@@ -15,17 +15,21 @@
 
     define([], function () {
 
-        var ClusterListData = function ($q, $http, $log, $window, $location) {
-            var deferred = $q.defer(),
+        var ClusterListData = function ($q, $http, $log, $window, $location, $rootScope) {
+            var deferred,
                 proto = $location.protocol(),
                 host = $location.host(),
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
                 apiUrl = prefix + '/api/cluster/list';
 
-            //checkLocalData();
+            checkLocalData();
 
             var getClusterList = function () {
+                if (deferred) {
+                    return deferred.promise;
+                }
+
                 deferred = $q.defer();
 
                 $http({
@@ -56,18 +60,21 @@
                 return deferred.promise;
             };
 
-//            var logout = function () {
-//                $window.localStorage.removeItem('UserProfile');
-//                $window.localStorage.setItem('IsLoggedIn', false);
-//            };
+            function cleanupLocalData () {
+                deferred = null;
+                $window.localStorage.removeItem('ClusterListData');
+            };
 
-//            function checkLocalData () {
-//                var data = JSON.parse($window.localStorage.getItem('ClusterListData'));
-//
-//                if (data) {
-//                    deferred.resolve(data);
-//                }
-//            };
+            function checkLocalData () {
+                var data = JSON.parse($window.localStorage.getItem('ClusterListData'));
+
+                if (data) {
+                    deferred = $q.defer();
+                    deferred.resolve(data);
+                }
+
+                $rootScope.$on('user:logout', cleanupLocalData);
+            };
 
             // Public API here:
             return {

@@ -22,7 +22,7 @@
 
     define([], function () {
 
-        var currentUser = function ($q, $http, $log, $window, $location) {
+        var currentUser = function ($q, $http, $log, $window, $location, $rootScope) {
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
                 proto = $location.protocol(),
@@ -66,6 +66,7 @@
                     if (!!data.result) {
                         isLoggedIn = true;
                         deferred.resolve(data);
+                        $rootScope.$broadcast('user:login');
                     } else {
                         isLoggedIn = false;
                         deferred.reject(data);
@@ -120,6 +121,7 @@
                 $window.localStorage.removeItem('UserProfile');
                 $window.localStorage.setItem('IsLoggedIn', false);
                 isLoggedIn = false;
+                $rootScope.$broadcast('user:logout');
             };
 
             function checkLocalData () {
