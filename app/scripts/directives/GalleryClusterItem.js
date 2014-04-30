@@ -23,14 +23,14 @@
                 scope: {
                     'title': '=',
                     'dateRange': '=',
-                    'allItems': '=items',
+                    'allSubItems': '=subItems',
                     'totalCount': '=',
                     'click': '='
                 },
                 link: function (scope) {
-                    var cover = scope.allItems[0];
+                    var cover = scope.allSubItems[0];
                     scope.url = cover.url;
-                    var items = scope.allItems.slice(1,4);
+                    var items = scope.allSubItems.slice(1,4);
                     while (items.length < 3) {
                         items.push({});
                     }

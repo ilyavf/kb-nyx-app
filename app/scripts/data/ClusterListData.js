@@ -21,7 +21,9 @@
                 host = $location.host(),
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
-                apiUrl = prefix + '/api/cluster/list';
+                apiUrl = prefix + '/api/cluster/list',
+                pageSize = 4,
+                _pageNumber = 1;
 
             checkLocalData();
 
@@ -60,6 +62,27 @@
                 return deferred.promise;
             };
 
+            var pagesDeffered = [];
+            function next (pageNumber) {
+                pageNumber = typeof pageNumber !== 'undefined' ? pageNumber : _pageNumber++;
+
+                console.log('[ClusterListData.next] ' +  pageNumber);
+
+                if (pagesDeffered[pageNumber]) {
+                    return pagesDeffered[pageNumber].promise;
+                }
+                console.log('- creating a deferred for ' +  pageNumber);
+                pagesDeffered[pageNumber] = $q.defer();
+
+                getClusterList().then(function (items) {
+                    var newItems = items.slice(pageNumber * pageSize, pageNumber * pageSize + pageSize);
+                    console.log('- resolving items for ' +  pageNumber + ' ' + newItems.length, newItems);
+                    pagesDeffered[pageNumber].resolve(newItems);
+                });
+
+                return pagesDeffered[pageNumber].promise;
+            }
+
             function cleanupLocalData () {
                 deferred = null;
                 $window.localStorage.removeItem('ClusterListData');
@@ -78,7 +101,10 @@
 
             // Public API here:
             return {
-                get: getClusterList
+                get: function () {
+                    return next(0);
+                },
+                next: next
             };
         };
 

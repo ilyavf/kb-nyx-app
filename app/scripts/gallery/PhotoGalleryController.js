@@ -27,6 +27,15 @@
                 console.log('GALLERY ITEM CLICK: ' + data);
             };
 
+            $scope.next = function () {
+                clusterList.next().then(function (newItems) {
+                    console.log('[next] ' + newItems.length, newItems);
+                    newItems.forEach(function (newItem) {
+                        $scope.items.push(newItem);
+                    });
+                });
+            };
+
         };
 
         return PhotoGalleryCtrl;
