@@ -30,7 +30,7 @@
             $scope.onUserStatusChanged = function (userStatus) {
                 $scope.isLoggedIn = userStatus;
                 $scope.state = userStatus ? 'authorized' : 'anonymous';
-                $location.path(userStatus ? '/auth' : '/');
+                $location.path(userStatus ? '/auth' : '/home');
             };
             $rootScope.$on('user:login', function () {
                 $scope.onUserStatusChanged(true);

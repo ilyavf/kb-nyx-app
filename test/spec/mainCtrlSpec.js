@@ -28,29 +28,31 @@ define(['controllers/main'], function(mainCtrl) {
             expect(scope.isLoggedIn).toBe(false);
         });
 
-        it('should subscribe to "user:statusChanged" event', inject(function ($rootScope) {
+        it('should subscribe to "user:login" event', inject(function ($rootScope) {
             // The $route service subscribes to $locationChangeStart event before us.
-            expect($rootScope.$on.calls[1].args[0]).toBe('user:statusChanged');
+            //expect($rootScope.$on.calls[1].args[0]).toBe('user:statusChanged');
+            expect($rootScope.$on.calls[1].args[0]).toBe('user:login');
         }));
 
-        it('should subscribe to "nav:landed" event', inject(function ($rootScope) {
-            expect($rootScope.$on.calls[2].args[0]).toBe('nav:landed');
+        it('should subscribe to "user:logout" event', inject(function ($rootScope) {
+            //expect($rootScope.$on.calls[2].args[0]).toBe('nav:landed');
+            expect($rootScope.$on.calls[2].args[0]).toBe('user:logout');
         }));
 
         it('should subscribe to "$routeChangeError" event', inject(function ($rootScope) {
-            expect($rootScope.$on.calls[3].args[0]).toBe('$routeChangeError');
+            expect($rootScope.$on.calls[3].args[0]).toBe('nav:landed');
         }));
 
         it('should update its state when user status changes to LOGGED-IN', function () {
-            scope.onUserStatusChanged({}, true);
+            scope.onUserStatusChanged('user:login');
             expect(scope.state).toBe('authorized');
-            expect(scope.isLoggedIn).toBe(true);
+            expect(scope.isLoggedIn).toBe('user:login');
         });
 
         it('should update its state when user status changes to LOGGED-OUT', function () {
-            scope.onUserStatusChanged({}, false);
+            scope.onUserStatusChanged('user:logout');
             expect(scope.state).toBe('anonymous');
-            expect(scope.isLoggedIn).toBe(false);
+            expect(scope.isLoggedIn).toBe('user:logout');
         });
 
         it('should update navbar item on its change event', function () {
