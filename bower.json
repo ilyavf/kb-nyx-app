@@ -9,7 +9,9 @@
     "angular-route": "1.2.6",
     "angular-bootstrap": "~0.10.0",
     "requirejs": "~2.1.11",
-    "bootstrap-sass": "twbs/bootstrap-sass#~3.1.1"
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.1.1",
+    "jquery": "~2.1.1",
+    "rxjs": "~2.2.20"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
