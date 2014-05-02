@@ -22,7 +22,7 @@
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
                 apiUrl = prefix + '/api/cluster/list',
-                pageSize = 4,
+                pageSize = 12,
                 _pageNumber = 1;
 
             checkLocalData();
