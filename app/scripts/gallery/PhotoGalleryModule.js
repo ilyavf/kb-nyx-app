@@ -11,12 +11,13 @@
 
     define([
         './PhotoGalleryController',
+        './GalleryReactive',
         '../directives/Gallery',
         '../directives/GalleryPhotoItem',
         '../directives/GalleryClusterItem',
         '../data/ClusterListData'
     ],
-        function (Ctrl, Gallery, GalleryPhotoItem, GalleryClusterItem, ClusterListData) {
+        function (Ctrl, GalleryRx, Gallery, GalleryPhotoItem, GalleryClusterItem, ClusterListData) {
             var moduleName = "Nyx.PhotoGallery";
 
             angular
@@ -27,6 +28,7 @@
                 .directive('clusterItem', GalleryClusterItem)
 
                 .factory('clusterList', ClusterListData)
+                .factory('galleryRx', GalleryRx)
 
                 .controller('PhotoGallery.Ctrl', Ctrl);
 

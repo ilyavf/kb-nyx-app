@@ -2,5 +2,18 @@
 <p>
     Albums cluster gallery here ...
 
-    <div ng-controller="PhotoGallery.Ctrl" ng-include="'views/gallery/gallery-cluster.html'"></div>
+    <div ng-controller="PhotoGallery.Ctrl">
+
+        <gallery>
+            <cluster-item ng-repeat="item in items"
+                          data-title="item.title"
+                          data-sub-items="item.subItems"
+                          data-date-range="item.dateRange"
+                          data-total-count="item.totalCount"
+                          on-click="log"></cluster-item>
+        </gallery>
+
+        <!--<button ng-click="next()" class="btn-primary">Load next page</button>-->
+
+    </div>
 </p>

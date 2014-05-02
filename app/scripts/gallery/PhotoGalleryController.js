@@ -14,7 +14,7 @@
 
     define([], function () {
 
-        var PhotoGalleryCtrl = function ($scope, $rootScope, clusterList) {
+        var PhotoGalleryCtrl = function ($scope, $rootScope, clusterList, galleryRx) {
             console.log('[PhotoGallery.Ctrl] initializing');
 
             $scope.pageTitle = 'Photo Gallery';
@@ -35,6 +35,8 @@
                     });
                 });
             };
+
+            $rootScope.$on('doc:end', $scope.next);
 
         };
 
