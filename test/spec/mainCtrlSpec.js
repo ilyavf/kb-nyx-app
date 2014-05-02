@@ -44,15 +44,15 @@ define(['controllers/main'], function(mainCtrl) {
         }));
 
         it('should update its state when user status changes to LOGGED-IN', function () {
-            scope.onUserStatusChanged('user:login');
+            scope.onUserStatusChanged(true);
             expect(scope.state).toBe('authorized');
-            expect(scope.isLoggedIn).toBe('user:login');
+            expect(scope.isLoggedIn).toBe(true);
         });
 
         it('should update its state when user status changes to LOGGED-OUT', function () {
-            scope.onUserStatusChanged('user:logout');
+            scope.onUserStatusChanged(false);
             expect(scope.state).toBe('anonymous');
-            expect(scope.isLoggedIn).toBe('user:logout');
+            expect(scope.isLoggedIn).toBe(false);
         });
 
         it('should update navbar item on its change event', function () {
