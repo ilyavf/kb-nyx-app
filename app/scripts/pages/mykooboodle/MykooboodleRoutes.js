@@ -45,6 +45,15 @@
                                 return currentUser.isAuthenticated();
                             }
                         }
+                    })
+                    .when('/auth/album/:clusterName', {
+                        templateUrl: 'views/gallery/gallery-photo.html',
+                        controller: 'PhotoGallery.PhotoGalleryCtrl',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
                     });
             };
 

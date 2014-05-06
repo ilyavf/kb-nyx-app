@@ -19,6 +19,7 @@ var clusterList = function (req, res) {
 
             Q.all(itemPromises).then(function (photoUrls) {
                 cluster.title = cluster.name;
+                cluster.urlTitle = cluster.name.toLowerCase().replace(/\s/g, '-').replace(/[\-]+/g, '-');
                 cluster.subItems = photoUrls;
                 clusterDeferred.resolve(cluster);
             });

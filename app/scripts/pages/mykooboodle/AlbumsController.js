@@ -15,7 +15,8 @@
 
     define([], function () {
 
-        var AlbumsController = function ($scope, $rootScope, $timeout, albumClusterList, galleryRx) {
+        var AlbumsController = function ($scope, $rootScope, $location, $timeout, albumClusterList, galleryRx) {
+            console.log('[AlbumsController] init');
 
             $scope.pageTitle = 'Albums';
 
@@ -27,16 +28,17 @@
 
             // gallery:
             albumClusterList.get().then(function (albums) {
-                $scope.items = albums;
+                $scope.clusters = albums;
             });
-            $scope.log = function (data) {
-                console.log('GALLERY ITEM CLICK: ' + data);
+            $scope.gotoGallery = function (urlTitle) {
+                console.log('GALLERY ITEM CLICK: ' + urlTitle);
+                $location.path('/auth/album/' + urlTitle);
             };
             $scope.next = function () {
                 albumClusterList.next().then(function (newItems) {
                     console.log('[next] ' + newItems.length, newItems);
                     newItems.forEach(function (newItem) {
-                        $scope.items.push(newItem);
+                        $scope.clusters.push(newItem);
                     });
                 });
             };

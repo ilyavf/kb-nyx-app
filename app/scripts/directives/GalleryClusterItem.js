@@ -21,16 +21,17 @@
                 templateUrl: 'views/gallery/gallery-cluster-item.tpl.html',
                 //transclude: true,
                 scope: {
-                    'title': '=',
-                    'dateRange': '=',
-                    'allSubItems': '=subItems',
-                    'totalCount': '=',
-                    'click': '='
+                    'cluster': '=',
+                    'click': '=onClick'
                 },
                 link: function (scope) {
-                    var cover = scope.allSubItems[0];
+                    var cover = scope.cluster.subItems[0];
                     scope.url = cover.url;
-                    var items = scope.allSubItems.slice(1,4);
+                    scope.title = scope.cluster.title;
+                    scope.urlTitle = scope.cluster.urlTitle;
+                    scope.dateRange = scope.cluster.dateRange;
+                    scope.totalCount = scope.cluster.totalCount;
+                    var items = scope.cluster.subItems.slice(1,4);
                     while (items.length < 3) {
                         items.push({});
                     }
