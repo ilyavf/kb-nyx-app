@@ -15,7 +15,7 @@
 
     define([], function () {
 
-        var AlbumsController = function ($scope, $rootScope, $timeout) {
+        var AlbumsController = function ($scope, $rootScope, $timeout, albumClusterList, galleryRx) {
 
             $scope.pageTitle = 'Albums';
 
@@ -23,6 +23,24 @@
                 $rootScope.$broadcast('navMain:changed', 'MyKooboodle', 'albums');
             }, 100);
             $rootScope.$broadcast('nav:landed');
+
+
+            // gallery:
+            albumClusterList.get().then(function (albums) {
+                $scope.items = albums;
+            });
+            $scope.log = function (data) {
+                console.log('GALLERY ITEM CLICK: ' + data);
+            };
+            $scope.next = function () {
+                albumClusterList.next().then(function (newItems) {
+                    console.log('[next] ' + newItems.length, newItems);
+                    newItems.forEach(function (newItem) {
+                        $scope.items.push(newItem);
+                    });
+                });
+            };
+            $rootScope.$on('doc:end', $scope.next);
         };
 
         return AlbumsController;

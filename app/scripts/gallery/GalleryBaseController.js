@@ -14,10 +14,8 @@
 
     define([], function () {
 
-        var PhotoGalleryCtrl = function ($scope, $rootScope, clusterList, galleryRx) {
+        var GalleryBaseCtrl = function ($scope, $rootScope, clusterList, galleryRx) {
             console.log('[PhotoGallery.Ctrl] initializing');
-
-            $scope.pageTitle = 'Photo Gallery';
 
             clusterList.get().then(function (clusterList) {
                 $scope.items = clusterList;
@@ -37,10 +35,9 @@
             };
 
             $rootScope.$on('doc:end', $scope.next);
-
         };
 
-        return PhotoGalleryCtrl;
+        return GalleryBaseCtrl;
     });
 
 }(define));

@@ -10,14 +10,12 @@
     'use strict';
 
     define([
-        './PhotoGalleryController',
         './GalleryReactive',
         '../directives/Gallery',
         '../directives/GalleryPhotoItem',
-        '../directives/GalleryClusterItem',
-        '../data/ClusterListData'
+        '../directives/GalleryClusterItem'
     ],
-        function (Ctrl, GalleryRx, Gallery, GalleryPhotoItem, GalleryClusterItem, ClusterListData) {
+        function (GalleryRx, Gallery, GalleryPhotoItem, GalleryClusterItem) {
             var moduleName = "Nyx.PhotoGallery";
 
             angular
@@ -27,10 +25,7 @@
                 .directive('photoItem', GalleryPhotoItem)
                 .directive('clusterItem', GalleryClusterItem)
 
-                .factory('clusterList', ClusterListData)
-                .factory('galleryRx', GalleryRx)
-
-                .controller('PhotoGallery.Ctrl', Ctrl);
+                .factory('galleryRx', GalleryRx);
 
             return moduleName;
         });

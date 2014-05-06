@@ -14,17 +14,20 @@
         './MykooboodleRoutes',
         './AlbumsController',
         './CalendarController',
-        './SharedController'
+        './SharedController',
+        'data/AlbumClusterListData'
     ],
-    function (Routes, AlbumsCtrl, CalendarCtrl, SharedCtrl) {
+    function (Routes, AlbumsCtrl, CalendarCtrl, SharedCtrl, AlbumClusterListData) {
         var moduleName = "Nyx.MyPage";
 
         angular
-            .module(moduleName, ['ngRoute'])
+            .module(moduleName, ['ngRoute', 'Nyx.PhotoGallery'])
             .config(Routes)
-            .controller("MyPage.AlbumsCtrl", AlbumsCtrl)
-            .controller("MyPage.CalendarCtrl", CalendarCtrl)
-            .controller("MyPage.SharedCtrl", SharedCtrl)
+            .controller('MyPage.AlbumsCtrl', AlbumsCtrl)
+            .controller('MyPage.CalendarCtrl', CalendarCtrl)
+            .controller('MyPage.SharedCtrl', SharedCtrl)
+
+            .factory('albumClusterList', AlbumClusterListData)
 
             // Handle global events:
             .run(function ($rootScope, $location) {
