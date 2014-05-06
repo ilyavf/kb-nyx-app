@@ -14,13 +14,17 @@
 
     define([], function () {
 
-        var PhotoGalleryCtrl = function ($scope, $routeParams, galleryRx) {
+        var PhotoGalleryCtrl = function ($scope, $routeParams, albumClusterList, galleryRx) {
 
             console.log('[PhotoGallery.PhotoGalleryCtrl] initializing for ' + $routeParams.clusterName );
 
-            $scope.title = $routeParams.albumName;
+            var urlTitle = $routeParams.clusterName,
+                clusterP = albumClusterList.getItemByTitle(urlTitle);
 
-            $scope.pageMode = 'photo-gallery';
+            clusterP.then(function (cluster) {
+                $scope.title = cluster.title;
+                $scope.id = cluster.aid;
+            });
 
 //            clusterList.get().then(function (clusterList) {
 //                $scope.items = clusterList;

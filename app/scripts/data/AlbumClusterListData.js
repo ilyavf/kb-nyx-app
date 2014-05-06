@@ -99,11 +99,20 @@
                 $rootScope.$on('user:logout', cleanupLocalData);
             };
 
+            function getItemByTitle (urlTitle) {
+                return getClusterList().then(function (clusters) {
+                    return clusters.reduce(function (prev, cur) {
+                        return urlTitle == cur.urlTitle ? cur : prev
+                    });
+                });
+            }
+
             // Public API here:
             return {
                 get: function () {
                     return next(0);
                 },
+                getItemByTitle: getItemByTitle,
                 next: next
             };
         };

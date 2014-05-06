@@ -14,10 +14,9 @@
         './MykooboodleRoutes',
         './AlbumsController',
         './CalendarController',
-        './SharedController',
-        'data/AlbumClusterListData'
+        './SharedController'
     ],
-    function (Routes, AlbumsCtrl, CalendarCtrl, SharedCtrl, AlbumClusterListData) {
+    function (Routes, AlbumsCtrl, CalendarCtrl, SharedCtrl) {
         var moduleName = "Nyx.MyPage";
 
         angular
@@ -26,8 +25,6 @@
             .controller('MyPage.AlbumsCtrl', AlbumsCtrl)
             .controller('MyPage.CalendarCtrl', CalendarCtrl)
             .controller('MyPage.SharedCtrl', SharedCtrl)
-
-            .factory('albumClusterList', AlbumClusterListData)
 
             // Handle global events:
             .run(function ($rootScope, $location) {
