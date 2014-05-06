@@ -50,8 +50,14 @@
                 console.log('[MainController::$routeChangeError] redirecting to ' + ($scope.isLoggedIn ? '/auth' : '/home'));
                 $location.path($scope.isLoggedIn ? '/auth' : '/home');
             });
+
             $rootScope.$on("$routeChangeSuccess",function(event, next, current){
                 console.log('[MainController::$routeChangeSuccess] ' + $routeParams.clusterName, arguments);
+                if ($routeParams.clusterName) {
+                    $scope.pageMode = 'photo-gallery';
+                } else {
+                    $scope.pageMode = 'regular';
+                }
             });
 
 

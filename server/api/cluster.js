@@ -25,7 +25,7 @@ var clusterList = function (req, res) {
             });
 
             clusterPromises.push(clusterDeferred.promise);
-        })
+        });
 
         Q.all(clusterPromises).then(function (clusters) {
             console.log('[clusterList.getClusterList] resolved for all photos ' + clusters.length);
