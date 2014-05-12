@@ -6,21 +6,26 @@ var clusterList = function (req, res) {
 
     var clusterPromises = [];
 
-    getClusterList(req).then(function (clusters) {
+    getClusterList(req.headers).then(function (clusters) {
         console.log('[clusterList.getClusterList] resolved with ' + clusters.length);
         var itemPromises;
         clusters.forEach(function (cluster) {
             var clusterDeferred = Q.defer();
 
             itemPromises = [];
-            cluster.items.forEach(function (photo, i) {
-                itemPromises.push(getPhotoUrl(req, photo.pid, (i == 0 || true ? '500x200' : '200x65')));
+            cluster.items.forEach(function (photo) {
+                itemPromises.push(getPhotoUrl(photo.pid, '500x200', req.headers));
             });
 
             Q.all(itemPromises).then(function (photoUrls) {
                 cluster.title = cluster.name;
                 cluster.urlTitle = cluster.name.toLowerCase().replace(/\s/g, '-').replace(/[\-]+/g, '-');
-                cluster.subItems = photoUrls;
+                cluster.items.forEach(function (o) {
+                    var urlObj = photoUrls.reduce(function (prev, cur) {
+                        return cur.id == o.pid ? cur : prev;
+                    }, {});
+                    o.url = urlObj && urlObj.url;
+                });
                 clusterDeferred.resolve(cluster);
             });
 
@@ -37,29 +42,44 @@ var clusterList = function (req, res) {
     });
 };
 
+var albumPhotoList = function (req, res) {
 
-module.exports = {
-    list: clusterList
+    getAlbumPhotos().then(function () {
+
+    });
 };
 
 
-function getClusterList (req) {
-    var deferred = Q.defer(),
-        url = 'http://z.uat.kooboodle.com/albums?items=4';
+module.exports = {
+    getClusters: clusterList,
+    getAlbumPhotos: albumPhotoList
+};
+
+
+function getClusterList (headers) {
+    var url = 'http://z.uat.kooboodle.com/albums?items=4',
+        resultParseFunc = function (result) {
+            return result.albums;
+        };
+
+    return proxyTo(url, headers, resultParseFunc);
+};
+function proxyTo (url, headers, resultParseFunc) {
+    var deferred = Q.defer();
 
     request.get({
         url: url,
-        headers: req.headers
+        headers: headers
     }, function (error, res, body) {
         if (!error) {
-            var albums = JSON.parse(body).result.albums;
-            deferred.resolve(albums);
+            var result = resultParseFunc && resultParseFunc(JSON.parse(body).result) || JSON.parse(body).result;
+            deferred.resolve(result);
         }
     });
 
     return deferred.promise;
 }
-function getPhotoUrl (req, photoId, size) {
+function getPhotoUrl (photoId, size, headers) {
     var deferred = Q.defer(),
         prefix = 'http://uat.kooboodle.com',
         url = prefix + '/photo/{photoId}/url/{size}.json'
@@ -68,7 +88,7 @@ function getPhotoUrl (req, photoId, size) {
 
     request.get({
         url: url,
-        headers: req.headers
+        headers: headers
     }, function (error, res, body) {
         if (!error) {
             deferred.resolve({

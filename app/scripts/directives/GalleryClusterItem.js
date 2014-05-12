@@ -25,13 +25,13 @@
                     'click': '=onClick'
                 },
                 link: function (scope) {
-                    var cover = scope.cluster.subItems[0];
+                    var cover = scope.cluster.items[0];
                     scope.url = cover.url;
                     scope.title = scope.cluster.title;
                     scope.urlTitle = scope.cluster.urlTitle;
                     scope.dateRange = scope.cluster.dateRange;
                     scope.totalCount = scope.cluster.totalCount;
-                    var items = scope.cluster.subItems.slice(1,4);
+                    var items = scope.cluster.items.slice(1,4);
                     while (items.length < 3) {
                         items.push({});
                     }

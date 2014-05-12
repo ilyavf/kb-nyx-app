@@ -1,0 +1,44 @@
+
+ http://uat.kooboodle.com/photos/album-07a5f9fa19e9844bc6134ae357a6ec8ad8a01004/list.json?returnSizes=960x250
+
+ url = '{base}/photos/album-{albumID}/list.json?{params}
+
+ params = {
+    returnSizes: '{width}x{height},<size2>,<size3>,...',
+    page: pageNumber,   // starting with 1
+ }
+
+ Result:
+     {
+        "message": "Successfully retrieved user's photos",
+        "code": 200,
+        "result": [ ... ]
+     }
+
+ Result item:
+    {
+        id: GUID,
+        width: 'number-string',
+        height: 'number-string',
+        rotation: '{0|1}',
+        dateTaken: '<in seconds>',
+        dateUploaded: '<in seconds>',
+        filenameOriginal: '<string>',
+        pathBase: '<url to orig size>',
+        albums: [<album ids>],
+        'photo{width}x{height}': [
+            '<url>',
+            <width>,
+            <height>
+        ],
+        url: '<single photo page url>'
+    }
+
+ Result 1st item extras:
+    {
+        "currentPage": 2,
+        "currentRows": 26,
+        "pageSize": 30,
+        "totalPages": 2,
+        "totalRows": 56
+    }

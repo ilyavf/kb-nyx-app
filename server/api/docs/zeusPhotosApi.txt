@@ -1,0 +1,54 @@
+ZEUS API:
+
+ http://uat.kooboodle.com/photos/album-07a5f9fa19e9844bc6134ae357a6ec8ad8a01004/list.json?returnSizes=960x250
+
+ url = '{base}/photos/album-{albumID}/list.json?{params}
+
+ params = {
+    page: <number starting with 1>,
+    pageSize: <number>
+ }
+
+ Result:
+     {
+        "message": "Successfully retrieved user's photos",
+        "code": 200,
+        "result": {
+            "totalItems": 56,
+            "totalPages": 2,
+            "pageSize": 30,
+            "currentPage": 2,
+            "items": [ ... ]
+        }
+     }
+
+ Result item:
+    {
+        pid: <photo id>,
+        width: <width orig>,
+        height: <height orig>,
+        pathBase: '<url to orig size>',
+        rotation: '{0|1}',
+        dateTaken: '<in seconds>',
+        dateUploaded: '<in seconds>',
+        title: '<title>',
+        filenameOriginal: '<string>',
+        ...
+
+        thumbnail: '<url>'
+    }
+
+------------------------
+
+WEB APP:
+
+     {
+        ... ,
+        "result": {
+            ... ,
+            "items": [{
+                ... ,
+                thumbnail: <url>
+            }]
+        }
+     }
