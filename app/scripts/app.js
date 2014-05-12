@@ -23,9 +23,10 @@
         'menu/authmain/MenuAuthMainModule',
         'gallery/PhotoGalleryModule',
         'controllers/main',
-        'controllers/userhome'
+        'controllers/userhome',
+        'data/ListData'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl) {
+    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl, ListData) {
 
         console.log('[app]: configuring app');
 
@@ -56,6 +57,9 @@
                     redirectTo: '/'
                 });
         })
+
+        .factory('ListData', ListData)
+
         .controller('MainCtrl', MainCtrl)
         .controller('UserHomeCtrl', UserHomeCtrl);
 
