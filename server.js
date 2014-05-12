@@ -19,7 +19,7 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     proxy = require('./server/api/proxy'),
-    photoApi = require('./server/api/cluster'),
+    photoApi = require('./server/api/photos'),
     bodyParser = require('body-parser'),
     https = require('https'),
     fs = require('fs'),
@@ -54,6 +54,7 @@ app.post('/api/signup', proxy.post('http://uat.kooboodle.com/cf/user/register.js
 app.get('/api/profile', proxy.get('http://uat.kooboodle.com/user/profile.json'));
 
 app.get('/api/cluster/list', photoApi.getClusters);
+app.get('/api/album/:albumId/list', photoApi.getClusters);
 
 app.all('/', function(req, res) {
     res.sendfile(path.join(clientDir, 'index.html'));
