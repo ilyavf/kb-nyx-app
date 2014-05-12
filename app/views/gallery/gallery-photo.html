@@ -1,6 +1,6 @@
 Photo gallery {{title}} {{id}}
 <gallery>
-    <photo-item ng-repeat="item in items" data-title="item.title" data-url="item.subItems[$index%3].url" on-click="log"></photo-item>
+    <photo-item ng-repeat="item in items" data-title="item.title || item.filenameOriginal" data-url="item.thumbnail" on-click="log"></photo-item>
 </gallery>
 
 

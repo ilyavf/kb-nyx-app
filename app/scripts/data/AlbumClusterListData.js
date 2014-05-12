@@ -15,7 +15,7 @@
 
     define([], function () {
 
-        var ClusterListData = function ($q, $http, $log, $window, $location, $rootScope, ListData) {
+        var ClusterListData = function ($location, ListData) {
             var proto = $location.protocol(),
                 host = $location.host(),
                 port = '1337',
