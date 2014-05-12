@@ -31,7 +31,13 @@ var clusterList = function (req, res) {
 
 var albumPhotoList = function (req, res) {
     getAlbumPhotos(req.albumId, req.headers).then(function (photoListPage) {
-
+        addPhotoUrls(photoListPage.items, 'thumbnail', req.headers).then(function () {
+            console.log('[api.photos.getAlbumPhotos] resolved with photo urls for items: ' + photoListPage.items.length);
+            res.json({
+                success: true,
+                result: photoListPage
+            });
+        });
     });
 };
 
