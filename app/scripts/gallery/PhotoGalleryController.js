@@ -18,8 +18,8 @@
 
             console.log('[PhotoGallery.PhotoGalleryCtrl] initializing for ' + $routeParams.clusterName );
 
-            var urlTitle = $routeParams.clusterName,
-                clusterP = albumClusterList.getItemByTitle(urlTitle);
+            var dashedTitle = $routeParams.clusterDashedTitle,
+                clusterP = albumClusterList.getItemByDashedTitle(dashedTitle);
 
             clusterP.then(function (cluster) {
                 $scope.title = cluster.title;

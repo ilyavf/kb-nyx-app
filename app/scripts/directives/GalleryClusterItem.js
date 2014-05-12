@@ -28,7 +28,7 @@
                     var cover = scope.cluster.items[0];
                     scope.url = cover.url;
                     scope.title = scope.cluster.title;
-                    scope.urlTitle = scope.cluster.urlTitle;
+                    scope.dashedTitle = scope.cluster.dashedTitle;
                     scope.dateRange = scope.cluster.dateRange;
                     scope.totalCount = scope.cluster.totalCount;
                     var items = scope.cluster.items.slice(1,4);

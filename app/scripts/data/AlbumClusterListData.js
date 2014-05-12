@@ -21,7 +21,7 @@
                 host = $location.host(),
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
-                apiUrl = prefix + '/api/cluster/list',
+                apiUrl = prefix + '/api/clusters',
                 pageSize = 12,
                 _pageNumber = 1;
 
@@ -99,10 +99,10 @@
                 $rootScope.$on('user:logout', cleanupLocalData);
             };
 
-            function getItemByTitle (urlTitle) {
+            function getItemByDashedTitle (dashedTitle) {
                 return getClusterList().then(function (clusters) {
                     return clusters.reduce(function (prev, cur) {
-                        return urlTitle == cur.urlTitle ? cur : prev
+                        return dashedTitle == cur.dashedTitle ? cur : prev
                     });
                 });
             }
@@ -112,7 +112,7 @@
                 get: function () {
                     return next(0);
                 },
-                getItemByTitle: getItemByTitle,
+                getItemByDashedTitle: getItemByDashedTitle,
                 next: next
             };
         };

@@ -53,8 +53,8 @@ app.post('/api/login', proxy.post('http://uat.kooboodle.com/user/openphoto/login
 app.post('/api/signup', proxy.post('http://uat.kooboodle.com/cf/user/register.json'));
 app.get('/api/profile', proxy.get('http://uat.kooboodle.com/user/profile.json'));
 
-app.get('/api/cluster/list', photoApi.getClusters);
-app.get('/api/album/:albumId/list', photoApi.getClusters);
+app.get('/api/clusters', photoApi.getClusters);
+app.get('/api/album/:albumId/photos', photoApi.getAlbumPhotos);
 
 app.all('/', function(req, res) {
     res.sendfile(path.join(clientDir, 'index.html'));

@@ -46,7 +46,7 @@
                             }
                         }
                     })
-                    .when('/auth/album/:clusterName', {
+                    .when('/auth/album/:clusterDashedTitle', {
                         templateUrl: 'views/gallery/gallery-photo.html',
                         controller: 'PhotoGallery.PhotoGalleryCtrl',
                         resolve: {

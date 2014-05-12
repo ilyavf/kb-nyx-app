@@ -11,12 +11,12 @@ var clusterList = function (req, res) {
         clusters.forEach(function (cluster) {
 
             clusterPromises.push(
-                getPhotoUrls(cluster.items, 'url', req.headers)
+                addPhotoUrls(cluster.items, 'url', req.headers)
             );
 
             // also add some extras to the cluster:
             cluster.title = cluster.name;
-            cluster.urlTitle = cluster.name.toLowerCase().replace(/\s/g, '-').replace(/[\-]+/g, '-');
+            cluster.dashedTitle = cluster.name.toLowerCase().replace(/[\s\.\?,:;]/g, '-').replace(/[\-]+/g, '-');
         });
 
         Q.all(clusterPromises).then(function () {
@@ -30,7 +30,6 @@ var clusterList = function (req, res) {
 };
 
 var albumPhotoList = function (req, res) {
-
     getAlbumPhotos(req.albumId, req.headers).then(function (photoListPage) {
 
     });
@@ -45,13 +44,13 @@ module.exports = {
 //------- PRIVATE FUNCTIONS --------//
 
 /**
- * Retrieves photo url per item from OpenPhoto api.
+ * Retrieves photo url per item from OpenPhoto api and mutate items.
  * @param items - To be mutated by adding a new property urlPropertyName to each.
  * @param urlPropertyName
  * @param headers
  * @returns {Promise.promise|*}
  */
-function getPhotoUrls (items, urlPropertyName, headers) {
+function addPhotoUrls (items, urlPropertyName, headers) {
     var deferred = Q.defer(),
         itemPromises = [];
 
@@ -82,7 +81,7 @@ function getClusterList (headers) {
 }
 
 /**
- * Proxy to Zeus get request for list of photos of a given album.
+ * Proxy to Zeus GET request for list of photos of a given album.
  * @param albumId
  * @param headers
  * @returns {items<Array>, totalItems, currentPage, ...}
