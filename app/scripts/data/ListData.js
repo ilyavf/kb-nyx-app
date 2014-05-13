@@ -19,90 +19,99 @@
 
             return function (apiUrl, localStorageItemName) {
 
-                var deferred,
-                    pageSize = 12,
+                var pagesDeferred = [],
+                    pageSize = 10,
+                    totalPages = $q.defer(),
                     _pageNumber = 1,
-                    pagesDeferred = [],
                     CONFIG_LOCALSTORAGE_ITEMNAME = 'LISTDATA-' + localStorageItemName;
 
-                checkLocalData();
+                //$rootScope.$on('user:logout', cleanupLocalData);
 
-                var getClusterList = function () {
-                    if (deferred) {
-                        return deferred.promise;
+                function getPage (pageNumber) {
+
+                    if (checkLocalData(pageNumber) && pagesDeferred[pageNumber]) {
+                        return pagesDeferred[pageNumber].promise;
                     }
 
-                    deferred = $q.defer();
+                    pagesDeferred[pageNumber] = $q.defer();
+
+                    console.log('[getPage] ' + pageNumber + ' has no local data. Fetching...');
 
                     $http({
                         method: 'GET',
-                        url: apiUrl,
+                        url: apiUrl + '?page=' + (pageNumber + 1) + '&pageSize=' + pageSize,
                         withCredentials: true
                     })
                     .success(function(data, status, headers, config) {
-                        $log.log('[ClusterListData.getClusterList]: received', arguments);
+                        $log.log('[ClusterListData.getPage]: received', arguments);
                         if (data.success) {
-                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME, JSON.stringify(data.result));
-                            deferred.resolve(data.result);
+                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
+                            pagesDeferred[pageNumber].resolve(data.result);
+                            totalPages.resolve(data.result.totalPages);
                         } else {
-                            deferred.reject({
-                                    success: false,
-                                    message: data.message || 'Unknown error'}
+                            pagesDeferred[pageNumber].reject({
+                                success: false,
+                                message: data.message || 'Unknown error'}
                             );
                         }
                     })
                     .error(function(data, status, headers, config) {
-                        $log.error('[ClusterListData.getClusterList]: error', arguments);
-                        deferred.reject({
+                        $log.error('[ClusterListData.getPage]: error', arguments);
+                        pagesDeferred[pageNumber].reject({
                                 success: false,
                                 data: data.result,
                                 message: data.message || 'Error while trying to load cluster list'}
                         );
                     });
 
-                    return deferred.promise;
-                };
+                    return pagesDeferred[pageNumber].promise;
+                }
 
                 function next (pageNumber) {
                     pageNumber = typeof pageNumber !== 'undefined' ? pageNumber : _pageNumber++;
 
-                    console.log('[ClusterListData.next] ' +  pageNumber);
-
-                    if (pagesDeferred[pageNumber]) {
-                        return pagesDeferred[pageNumber].promise;
+                    if (pageNumber === 0) {
+                        console.log('[.next]: ' + pageNumber + ' - initial page, do getPage(0) ' + pageNumber);
+                        return getPage(pageNumber);
                     }
-                    console.log('- creating a deferred for ' +  pageNumber);
-                    pagesDeferred[pageNumber] = $q.defer();
 
-                    getClusterList().then(function (result) {
-                        var items = result.currentPage && result.items ? result.items : result;
-                        var newItems = items.slice(pageNumber * pageSize, pageNumber * pageSize + pageSize);
-                        console.log('- resolving items for ' +  pageNumber + ' ' + newItems.length, newItems);
-                        pagesDeferred[pageNumber].resolve(newItems);
+                    return totalPages.promise.then(function (totalPages) {
+                        if (pageNumber + 1 > totalPages) {
+                            console.log('- You reached page limit of  ' + totalPages);
+                            _pageNumber = totalPages;
+                            var deferred = $q.defer();
+                            deferred.reject('You reached page limit of ' + totalPages);
+                            return deferred.promise;
+                        }
+                        console.log('[.next] - totalPages is  ' + totalPages);
+                        return getPage(pageNumber);
                     });
-
-                    return pagesDeferred[pageNumber].promise;
                 }
 
                 function cleanupLocalData () {
-                    deferred = null;
-                    $window.localStorage.removeItem(CONFIG_LOCALSTORAGE_ITEMNAME);
+                    //deferred = null;
+                    //$window.localStorage.removeItem(CONFIG_LOCALSTORAGE_ITEMNAME);
                 }
 
-                function checkLocalData () {
-                    var data = JSON.parse($window.localStorage.getItem(CONFIG_LOCALSTORAGE_ITEMNAME));
-
-                    if (data) {
-                        deferred = $q.defer();
-                        deferred.resolve(data);
+                function checkLocalData (pageNumber) {
+                    if (pagesDeferred[pageNumber]) {
+                        return true;
                     }
 
-                    $rootScope.$on('user:logout', cleanupLocalData);
+                    var data = JSON.parse($window.localStorage.getItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber));
+
+                    if (data) {
+                        pagesDeferred[pageNumber] = $q.defer();
+                        pagesDeferred[pageNumber].resolve(data);
+                        totalPages.resolve(data.totalPages);
+                    }
+
+                    return !!pagesDeferred[pageNumber];
                 }
 
                 function getItemByDashedTitle (dashedTitle) {
-                    return getClusterList().then(function (clusters) {
-                        return clusters.reduce(function (prev, cur) {
+                    return getPage().then(function (clustersPage) {
+                        return clustersPage.items.reduce(function (prev, cur) {
                             return dashedTitle == cur.dashedTitle ? cur : prev
                         });
                     });

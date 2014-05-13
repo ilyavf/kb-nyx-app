@@ -30,14 +30,15 @@
                 return albumPhotos.get();
 
             }).then(function (photosPage) {
-                var photos = photosPage.items || photosPage;
+                var photos = photosPage.items;
                 console.log('[PhotoGalleryCtrl.albumPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
                 $scope.items = photos;
                 $scope.totalItems = photosPage.totalItems || photos.length;
             });
 
             $scope.next = function () {
-                albumPhotos.next().then(function (newItems) {
+                albumPhotos.next().then(function (newPage) {
+                    var newItems = newPage.items;
                     console.log('[next] ' + newItems.length, newItems);
                     newItems.forEach(function (newItem) {
                         $scope.items.push(newItem);

@@ -27,8 +27,8 @@
 
 
             // gallery:
-            albumClusterList.get().then(function (albums) {
-                $scope.clusters = albums;
+            albumClusterList.get().then(function (albumsPage) {
+                $scope.clusters = albumsPage.items;
             });
             $scope.gotoGallery = function (urlTitle) {
                 console.log('GALLERY ITEM CLICK: ' + urlTitle);
@@ -36,6 +36,8 @@
             };
             $scope.next = function () {
                 albumClusterList.next().then(function (newItems) {
+                    if (!newItems || !newItems.length) return;
+
                     console.log('[next] ' + newItems.length, newItems);
                     newItems.forEach(function (newItem) {
                         $scope.clusters.push(newItem);

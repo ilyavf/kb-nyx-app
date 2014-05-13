@@ -3,7 +3,8 @@ var request = require('request'),
 
 var clusterList = function (req, res) {
 
-    getClusterList(req.headers).then(function (clusters) {
+    getClusterList(req.headers).then(function (clustersPage) {
+        var clusters = clustersPage.items;
         console.log('[clusterList.getClusters] resolved with clusters: ' + clusters.length);
 
         var clusterPromises = [];
@@ -25,7 +26,7 @@ var clusterList = function (req, res) {
             console.log('[clusterList.getCluster] resolved with photo urls for all clusters: ' + clusters.length);
             res.json({
                 success: true,
-                result: clusters
+                result: clustersPage
             });
         });
     });
@@ -34,7 +35,7 @@ var clusterList = function (req, res) {
 var albumPhotoList = function (req, res) {
     var albumId = req.params.albumId;
     console.log('[api.photos.albumPhotoList] starting for ' + albumId);
-    getAlbumPhotos(albumId, req.headers).then(function (photoListPage) {
+    getAlbumPhotos(albumId, req.headers, req.query).then(function (photoListPage) {
         console.log('[api.photos.albumPhotoList] ' + albumId + ', resolved with list of photos: ' + photoListPage.length);
         addPhotoUrls(photoListPage, 'thumbnail', req.headers).then(function () {
             console.log('[api.photos.getAlbumPhotos] resolved with photo urls for items: ' + photoListPage.length);
@@ -43,9 +44,10 @@ var albumPhotoList = function (req, res) {
             res.json({
                 success: true,
                 result: {
-                    currentPage: 1,
-                    pageSize: 30,
-                    totalPages: 2,
+                    currentPage: items[0].currentPage,
+                    currentItems: items[0].currentRows,
+                    pageSize: items[0].pageSize,
+                    totalPages: items[0].totalPages,
                     totalItems: items[0].totalRows,
                     items: items
                 }
@@ -90,10 +92,17 @@ function addPhotoUrls (items, urlPropertyName, headers) {
     return deferred.promise;
 }
 
-function getClusterList (headers) {
-    var url = 'http://z.uat.kooboodle.com/albums?items=5',
+function getClusterList (headers, query) {
+    var url = 'http://z.uat.kooboodle.com/albums?items=5&'
+            + (query && query.page ? 'page=' + query.page : '')
+            + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''),
         resultParseFunc = function (result) {
-            return result.albums;
+            return {
+                currentPage: 1,
+                totalPages: 1,
+                totalItems: result.albums.length,
+                items: result.albums
+            };
         };
 
     return proxyTo(url, headers, resultParseFunc);
@@ -105,9 +114,12 @@ function getClusterList (headers) {
  * @param headers
  * @returns {items<Array>, totalItems, currentPage, ...}
  */
-function getAlbumPhotos (albumId, headers) {
-    var url = 'http://uat.kooboodle.com/photos/album-{albumId}/list.json'
-            .replace('{albumId}', albumId);
+function getAlbumPhotos (albumId, headers, query) {
+    var url = ('http://uat.kooboodle.com/photos/album-{albumId}/list.json?'
+        + (query && query.page ? 'page=' + query.page : '')
+        + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
+        .replace('{albumId}', albumId)
+        .replace(/\?$/, '');
     console.log('[.getAlbumPhotos] url = ' + url);
     return proxyTo(url, headers);
 }
