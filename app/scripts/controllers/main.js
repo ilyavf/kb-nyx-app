@@ -52,8 +52,8 @@
             });
 
             $rootScope.$on("$routeChangeSuccess",function(event, next, current){
-                console.log('[MainController::$routeChangeSuccess] ' + $routeParams.clusterName, arguments);
-                if ($routeParams.clusterName) {
+                console.log('[MainController::$routeChangeSuccess] ' + $routeParams.clusterDashedTitle, arguments);
+                if ($routeParams.clusterDashedTitle) {
                     $scope.pageMode = 'photo-gallery';
                 } else {
                     $scope.pageMode = 'regular';
