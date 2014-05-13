@@ -16,7 +16,7 @@
 
         var PhotoGalleryCtrl = function ($scope, $routeParams, $rootScope, albumClusterList, albumPhotosData, galleryRx) {
 
-            console.log('[PhotoGallery.PhotoGalleryCtrl] initializing for ' + $routeParams.clusterName );
+            console.log('[PhotoGallery.PhotoGalleryCtrl] initializing for ' + $routeParams.clusterDashedTitle );
 
             var dashedTitle = $routeParams.clusterDashedTitle,
                 clusterP = albumClusterList.getItemByDashedTitle(dashedTitle),
@@ -45,28 +45,7 @@
                     });
                 });
             };
-            $rootScope.$on('doc:end', $scope.next);
-
-
-
-//            clusterList.get().then(function (clusterList) {
-//                $scope.items = clusterList;
-//            });
-//
-//            $scope.log = function (data) {
-//                console.log('GALLERY ITEM CLICK: ' + data);
-//            };
-//
-//            $scope.next = function () {
-//                clusterList.next().then(function (newItems) {
-//                    console.log('[next] ' + newItems.length, newItems);
-//                    newItems.forEach(function (newItem) {
-//                        $scope.items.push(newItem);
-//                    });
-//                });
-//            };
-//
-//            $rootScope.$on('doc:end', $scope.next);
+            $scope.$on('doc:end', $scope.next);
         };
 
         return PhotoGalleryCtrl;

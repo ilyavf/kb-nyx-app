@@ -51,15 +51,15 @@
                 $location.path($scope.isLoggedIn ? '/auth' : '/home');
             });
 
-            $rootScope.$on("$routeChangeSuccess",function(event, next, current){
-                console.log('[MainController::$routeChangeSuccess] ' + $routeParams.clusterDashedTitle, arguments);
-                if ($routeParams.clusterDashedTitle) {
+            // Switch between page views (regular | photo-gallery). Events: $routeChangeStart, $routeChangeSuccess
+            $rootScope.$on("$routeChangeStart",function(event, next, current){
+                console.log('[MainController::$routeChangeStart] ' + next.params.clusterDashedTitle, arguments); //$routeParams.clusterDashedTitle
+                if (next.params.clusterDashedTitle) {
                     $scope.pageMode = 'photo-gallery';
                 } else {
                     $scope.pageMode = 'regular';
                 }
             });
-
 
         };
 

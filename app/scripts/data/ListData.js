@@ -83,7 +83,7 @@
                             deferred.reject('You reached page limit of ' + totalPages);
                             return deferred.promise;
                         }
-                        console.log('[.next] - totalPages is  ' + totalPages);
+                        console.log('[.next] ' + pageNumber + ' - totalPages is  ' + totalPages);
                         return getPage(pageNumber);
                     });
                 }

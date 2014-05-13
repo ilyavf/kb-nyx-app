@@ -44,7 +44,7 @@
                     });
                 });
             };
-            $rootScope.$on('doc:end', $scope.next);
+            $scope.$on('doc:end', $scope.next);
         };
 
         return AlbumsController;
