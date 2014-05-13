@@ -21,8 +21,10 @@
                 templateUrl: 'views/gallery/gallery-photo-item.tpl.html',
                 //transclude: true,
                 scope: {
-                    'title': '=title',
-                    'url': '=url',
+                    'title': '=',
+                    'url': '=',
+                    'date': '=',
+                    'total': '=',
                     'click': '=onClick'
                 },
                 link: function (scope) {

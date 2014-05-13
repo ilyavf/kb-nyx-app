@@ -1,4 +1,11 @@
-<div class="gallery-item gallery-item-simple">
-    {{title}}
-    <img ng-src="{{url}}" ng-click="click(title)" />
+<div class="gallery-item gallery-item-simple col-sm-6 col-md-4 col-lg-3">
+    <div class="item-wrapper row">
+        <div class="item-cover img-wrapper">
+            <img ng-src="{{url}}" ng-click="click(title)" />
+        </div>
+        <div class="caption">{{title}}</div>
+        <div class="item-date">
+            {{date * 1000 | date: 'medium'}}
+        </div>
+    </div>
 </div>

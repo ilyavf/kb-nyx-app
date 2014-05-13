@@ -29,10 +29,11 @@
                     scope.url = cover.url;
                     scope.title = scope.cluster.title;
                     scope.dashedTitle = scope.cluster.dashedTitle;
-                    scope.dateRange = scope.cluster.dateRange;
+                    scope.dateFrom = scope.cluster.dateFrom;
+                    scope.dateTo = scope.cluster.dateTo;
                     scope.totalCount = scope.cluster.totalCount;
-                    var items = scope.cluster.items.slice(1,4);
-                    while (items.length < 3) {
+                    var items = scope.cluster.items.slice(1, 5);
+                    while (items.length < 4) {
                         items.push({});
                     }
                     scope.items = items;

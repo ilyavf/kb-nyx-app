@@ -29,9 +29,11 @@
 
                 return albumPhotos.get();
 
-            }).then(function (photos) {
-                console.log('[PhotoGalleryCtrl.albumPhotos.get('+$scope.id+')]' + photos.length, photos);
+            }).then(function (photosPage) {
+                var photos = photosPage.items || photosPage;
+                console.log('[PhotoGalleryCtrl.albumPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
                 $scope.items = photos;
+                $scope.totalItems = photosPage.totalItems || photos.length;
             });
 
             $scope.next = function () {

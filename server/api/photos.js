@@ -16,6 +16,8 @@ var clusterList = function (req, res) {
 
             // also add some extras to the cluster:
             cluster.title = cluster.name;
+            cluster.dateFrom = '2004-04-24T12:00';
+            cluster.dateTo = '2013-02-05T12:00';
             cluster.dashedTitle = cluster.name.toLowerCase().replace(/[\s\.\?,:;]/g, '-').replace(/[\-]+/g, '-');
         });
 
@@ -36,9 +38,17 @@ var albumPhotoList = function (req, res) {
         console.log('[api.photos.albumPhotoList] ' + albumId + ', resolved with list of photos: ' + photoListPage.length);
         addPhotoUrls(photoListPage, 'thumbnail', req.headers).then(function () {
             console.log('[api.photos.getAlbumPhotos] resolved with photo urls for items: ' + photoListPage.length);
+            var items = photoListPage;
+
             res.json({
                 success: true,
-                result: photoListPage
+                result: {
+                    currentPage: 1,
+                    pageSize: 30,
+                    totalPages: 2,
+                    totalItems: items[0].totalRows,
+                    items: items
+                }
             });
         });
     });
@@ -81,7 +91,7 @@ function addPhotoUrls (items, urlPropertyName, headers) {
 }
 
 function getClusterList (headers) {
-    var url = 'http://z.uat.kooboodle.com/albums?items=4',
+    var url = 'http://z.uat.kooboodle.com/albums?items=5',
         resultParseFunc = function (result) {
             return result.albums;
         };

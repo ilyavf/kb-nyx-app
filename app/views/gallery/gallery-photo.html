@@ -1,16 +1,13 @@
-Photo gallery {{title}} {{id}}
+<div class="header-title"><strong>Album Name:</strong> {{title}} ({{totalItems}})</div>
+
 <gallery>
-    <photo-item ng-repeat="item in items" data-title="item.title || item.filenameOriginal" data-url="item.thumbnail" on-click="log"></photo-item>
+    <photo-item ng-repeat="item in items"
+                data-title="item.title || item.filenameOriginal"
+                data-url="item.thumbnail"
+                data-date="item.dateTaken"
+                data-url="item.thumbnail"
+                on-click="log"></photo-item>
 </gallery>
 
 
 
-<!--
-<div class="kb-photo-gallery">
-    <ul>
-        <li ng-repeat="item in items">
-            <gallery-item-simple data-title="item.title" data-url="item.subItems[$index%3].url" on-click="log"></gallery-item-simple>
-        </li>
-    </ul>
-</div>
--->

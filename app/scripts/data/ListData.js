@@ -74,7 +74,8 @@
                     console.log('- creating a deferred for ' +  pageNumber);
                     pagesDeferred[pageNumber] = $q.defer();
 
-                    getClusterList().then(function (items) {
+                    getClusterList().then(function (result) {
+                        var items = result.currentPage && result.items ? result.items : result;
                         var newItems = items.slice(pageNumber * pageSize, pageNumber * pageSize + pageSize);
                         console.log('- resolving items for ' +  pageNumber + ' ' + newItems.length, newItems);
                         pagesDeferred[pageNumber].resolve(newItems);
