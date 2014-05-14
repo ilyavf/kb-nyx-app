@@ -149,3 +149,15 @@ body {
   }
 
 }
+
+
+// Loader:
+.page-loading {
+  background: url(../images/ajax-loader.gif) no-repeat 50% 50%;
+  height: 100px;
+}
+@media (min-width: $screen-sm-min) {
+  .page-loading {
+    height: 400px;
+  }
+}

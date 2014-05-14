@@ -18,6 +18,7 @@ ZEUS API:
             "totalPages": 2,
             "pageSize": 30,
             "currentPage": 2,
+            "currentItems": 15,
             "items": [ ... ]
         }
      }

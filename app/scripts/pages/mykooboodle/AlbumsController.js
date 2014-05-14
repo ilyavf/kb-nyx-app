@@ -19,6 +19,7 @@
             console.log('[AlbumsController] init');
 
             $scope.pageTitle = 'Albums';
+            $scope.loading = true;
 
             $timeout(function () {
                 $rootScope.$broadcast('navMain:changed', 'MyKooboodle', 'albums');
@@ -29,19 +30,24 @@
             // gallery:
             albumClusterList.get().then(function (albumsPage) {
                 $scope.clusters = albumsPage.items;
+                $scope.loading = false;
             });
             $scope.gotoGallery = function (urlTitle) {
                 console.log('GALLERY ITEM CLICK: ' + urlTitle);
                 $location.path('/auth/album/' + urlTitle);
             };
             $scope.next = function () {
+                $scope.loading = true;
                 albumClusterList.next().then(function (newItems) {
+                    $scope.loading = false;
                     if (!newItems || !newItems.length) return;
 
                     console.log('[next] ' + newItems.length, newItems);
                     newItems.forEach(function (newItem) {
                         $scope.clusters.push(newItem);
                     });
+                }, function () {
+                    $scope.loading = false;
                 });
             };
             $scope.$on('doc:end', $scope.next);
