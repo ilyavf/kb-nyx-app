@@ -25,7 +25,21 @@ body {
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+
+  .logo {
+    height: 50px;
+    width: 187px;
+    padding: 10px 30px;
+    margin-top: -5px;
+    background-color: #b71d63;
+    border: 1px solid #900a47;
+  }
+}
+.header.row {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -161,3 +175,4 @@ body {
     height: 400px;
   }
 }
+
