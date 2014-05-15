@@ -2,7 +2,9 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
 
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap';
 
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+}
 
 .browsehappy {
     margin: 0.2em 0;
@@ -67,6 +69,11 @@ body { padding-top: 70px; }
     border-bottom: 1px solid #e5e5e5;
     background-color: rgba(255,255,255,0.85);
 
+    @media (max-width: $screen-sm-min) {
+      background-color: rgba(255, 235, 255,0.85);
+    }
+
+
     .logo {
       background-color: #b71d63;
       border: 1px solid #900a47;
@@ -130,17 +137,20 @@ body { padding-top: 70px; }
     }
   }
 
-}
-
-
-// Loader:
-.page-loading {
-  background: url(../images/ajax-loader.gif) no-repeat 50% 50%;
-  height: 100px;
-}
-@media (min-width: $screen-sm-min) {
+  // Loader:
   .page-loading {
-    height: 400px;
+    background: url(../images/ajax-loader.gif) no-repeat 50% 50%;
+    height: 100px;
   }
-}
+  @media (max-width: $screen-sm-min) {
+    .affix {
+      position: static;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    .page-loading {
+      height: 400px;
+    }
+  }
 
+}

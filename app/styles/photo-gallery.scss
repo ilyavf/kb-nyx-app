@@ -1,4 +1,5 @@
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables';
 
 @import 'colors';
 
@@ -102,6 +103,9 @@
         .img-wrapper {
           overflow: hidden;
           height: 44px;
+          @media (max-width: $screen-sm-min) {
+            height: 80px;
+          }
           margin: 0 -14px;
           img {
             max-width: 250%;

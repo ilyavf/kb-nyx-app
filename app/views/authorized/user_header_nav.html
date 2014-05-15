@@ -1,11 +1,25 @@
 <div class="header row">
-
-    <ul class="nav nav-pills pull-right">
-        <li class=""><button class="btn-logout-modal btn btn-warning" ng-click="openSignInModal()">Logout</button></li>
-        <li class="{{navBarActive == 'about' ? 'active' : '' }}"><a ng-href="#/about">About</a></li>
-        <li class="{{navBarActive == 'contact' ? 'active' : '' }}"><a ng-href="#/contact">Contact</a></li>
-    </ul>
-    <div class="col-sm-3 col-md-3 col-lg-2 col-xs-5 logo">
+    <div class="col-sm-3 col-md-3 col-lg-2 col-xs-12 logo hidden-xs">
         <img src="images/logo.png" /> <img src="images/kooboodle.png" />
+    </div>
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand visible-xs">
+            <img src="images/logo.png" />
+            <img src="images/kooboodle.png" />
+        </span>
+    </div>
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav nav-bar nav-pills navbar-right">
+            <li class=""><button class="btn-logout-modal btn btn-warning" ng-click="openSignInModal()">Logout</button></li>
+            <li class="{{navBarActive == 'about' ? 'active' : '' }}"><a ng-href="#/about">About</a></li>
+            <li class="{{navBarActive == 'contact' ? 'active' : '' }}"><a ng-href="#/contact">Contact</a></li>
+        </ul>
     </div>
 </div>

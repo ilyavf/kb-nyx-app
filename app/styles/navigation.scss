@@ -138,5 +138,15 @@
 
     }
   }
+}
 
+
+
+.navbar-header {
+  .icon-bar {
+    background-color: $primaryColor;
+  }
+  .navbar-brand {
+    padding-top: 10px;
+  }
 }
