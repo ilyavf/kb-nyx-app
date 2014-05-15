@@ -2,6 +2,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
 
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap';
 
+body { padding-top: 70px; }
 
 .browsehappy {
     margin: 0.2em 0;
@@ -11,24 +12,12 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  .logo {
-    background-color: #b71d63;
-    border: 1px solid #900a47;
-    padding-top: 7px;
-    padding-bottom: 7px;
-  }
-}
+//.header,
+//.marketing,
+//.footer {
+//    padding-left: 15px;
+//    padding-right: 15px;
+//}
 
 
 /* Make the masthead heading the same height as the navigation */
@@ -70,31 +59,21 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
     margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
-
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
-}
 
 /* Fixes for bootstrap */
 .nyx-webapp {
+
+  .header {
+    border-bottom: 1px solid #e5e5e5;
+    background-color: rgba(255,255,255,0.85);
+
+    .logo {
+      background-color: #b71d63;
+      border: 1px solid #900a47;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+  }
 
   ul.nyx-reset {
     padding-left: 0;

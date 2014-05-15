@@ -27,7 +27,7 @@
       transition: all 0.2s ease-in-out;
 
       .item-cover {
-        height: 200px;
+        height: 152px;
         overflow: hidden;
         margin-bottom: 2px;
 
@@ -37,7 +37,7 @@
         }
       }
       .caption {
-        margin: 9px 45px 9px 10px;
+        margin: 6px 45px 3px 10px;
         color: $primaryColor;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -46,7 +46,7 @@
       .item-date {
         color: #919baa;
         font-style: italic;
-        margin: 0 45px 10px 10px;
+        margin: 0 10px 6px 10px;
         font-size: 1.1rem;
         font-family: Arial;
       }
@@ -71,7 +71,7 @@
 
       .total {
         float: right;
-        margin-top: 4px;
+        margin-top: 10px;
         width: 42px;
         height: 30px;
         line-height: 30px;
@@ -80,11 +80,15 @@
         background-color: $primaryColor;
         @include border-left-radius(15px);
       }
+      .item-date {
+        margin-right: 45px;
+      }
     }
 
 
     .item-thumbs {
       overflow: hidden;
+      margin-bottom: 0;
 
       li:first-child .img-wrapper {
         margin-left: -15px;
@@ -97,7 +101,7 @@
         display: block;
         .img-wrapper {
           overflow: hidden;
-          height: 65px;
+          height: 44px;
           margin: 0 -14px;
           img {
             max-width: 250%;
