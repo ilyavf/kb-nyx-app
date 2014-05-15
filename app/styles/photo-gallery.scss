@@ -1,6 +1,6 @@
-@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap';
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
 
-$primaryColor: #8c82c3;
+@import 'colors';
 
 .header-title {
   color: $primaryColor;

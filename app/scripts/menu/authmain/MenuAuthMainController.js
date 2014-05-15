@@ -31,6 +31,7 @@
             $scope.menus = [{
                 title: 'My Kooboodle',
                 code: 'MyKooboodle',
+                iconClass: 'glyphicon-cloud',
                 items: [{
                     name: 'Albums',
                     code: 'albums'
@@ -44,6 +45,7 @@
             },{
                 title: 'GIVE\'N\'GET',
                 code: 'GiveNGet',
+                iconClass: 'glyphicon-retweet',
                 items: [{
                     name: 'Find Friends',
                     code: 'find-friends'
@@ -54,6 +56,7 @@
             },{
                 title: 'Settings',
                 code: 'settings',
+                iconClass: 'glyphicon-cog',
                 items: [{
                     name: 'General',
                     code: 'settings'
