@@ -2,6 +2,10 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
 
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap';
 
+body {
+  overflow-y: scroll;
+}
+
 .auth {
   padding-top: 70px;
 }

@@ -24,8 +24,9 @@
 
             $scope.oneAtATime = true;
             $scope.active = {
-                menu: 'MyKooboodle',
-                item: ''
+                menu: '',
+                item: '',
+                itemNumber: null
             };
 
             $scope.menus = [{
@@ -70,6 +71,9 @@
             $scope.setActive = function (menuCode, itemCode) {
                 $scope.active.menu = menuCode;
                 $scope.active.item = itemCode;
+                $scope.active.itemNumber = $scope.menus
+                    .reduce(function(p,c){return c.code&&c.code==menuCode ? c.items : p;}, [])
+                    .reduce(function(p,c,i){console.log(i + ' ' + p + ' ' + c);return c.code&&c.code==itemCode ? i : p}, null);
             };
 
             $scope.setActiveE = function (e, menuCode, itemCode) {
