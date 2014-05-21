@@ -51,8 +51,8 @@
                     name: 'Find Friends',
                     code: 'find-friends'
                 },{
-                    name: 'Notifications',
-                    code: 'notifications'
+                    name: 'Trade Photos',
+                    code: 'trade-photos'
                 }]
             },{
                 title: 'Settings',

@@ -1,6 +1,6 @@
 /**
  * Nyx.GngPage
- * This module serves Give'N'Get pages: /auth/find-friends, /auth/notifications.
+ * This module serves Give'N'Get pages: /auth/find-friends, /auth/trade-photos.
  *
  * @namespace   NyxGngPage
  * @author      IlyaVF
@@ -13,16 +13,16 @@
     define([
         './GivengetRoutes',
         './FindFriendsController',
-        './NotificationsController'
+        './TradePhotosController'
     ],
-    function (Routes, FindFriendsCtrl, NotificationsCtrl) {
+    function (Routes, FindFriendsCtrl, TradePhotosCtrl) {
         var moduleName = "Nyx.GngPage";
 
         angular
             .module(moduleName, ['ngRoute'])
             .config(Routes)
             .controller("GngPage.FindFriendsCtrl", FindFriendsCtrl)
-            .controller("GngPage.NotificationsCtrl", NotificationsCtrl)
+            .controller("GngPage.TradePhotosCtrl", TradePhotosCtrl)
 
             // Handle global events:
             .run(function ($rootScope, $location) {

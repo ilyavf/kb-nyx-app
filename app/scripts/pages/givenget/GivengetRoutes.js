@@ -1,6 +1,6 @@
 /**
  * Nyx.GngPage routing
- * This module serves Give'N'Get pages: /auth/find-friends, /auth/notifications.
+ * This module serves Give'N'Get pages: /auth/find-friends, /auth/trade-photos.
  *
  * @memberof    NyxGngPage
  * @member      RouteManager
@@ -28,9 +28,9 @@
                             }
                         }
                     })
-                    .when('/auth/notifications', {
-                        templateUrl: 'views/givenget/notifications.html',
-                        controller: 'GngPage.NotificationsCtrl',
+                    .when('/auth/trade-photos', {
+                        templateUrl: 'views/givenget/trade_photos.html',
+                        controller: 'GngPage.TradePhotosCtrl',
                         resolve: {
                             isUserAuthenticated: function (currentUser) {
                                 return currentUser.isAuthenticated();
