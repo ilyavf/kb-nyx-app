@@ -5,7 +5,7 @@
     <accordion close-others="oneAtATime">
 
         <accordion-group ng-repeat="menu in menus" is-open="isOpened($index, menu.code)" xng-click="setActiveE($event, menu.code, menu.items[0].code);"
-                         class="group-items group-{{$index}} {{active.menu == menu.code ? 'active  active-item-' + active.itemNumber : ''}}">
+                         class="group-items group-{{$index}} {{active.menu == menu.code ? 'active  active-item-' + active.itemIndex : ''}}">
             <accordion-heading>
                 <span class="glyphicon {{menu.iconClass}}"></span><span class="title-text">{{menu.title}}</span>
             </accordion-heading>

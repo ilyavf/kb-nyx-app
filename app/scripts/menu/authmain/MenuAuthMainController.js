@@ -26,7 +26,7 @@
             $scope.active = {
                 menu: '',
                 item: '',
-                itemNumber: null
+                itemIndex: null
             };
 
             $scope.menus = [{
@@ -71,9 +71,9 @@
             $scope.setActive = function (menuCode, itemCode) {
                 $scope.active.menu = menuCode;
                 $scope.active.item = itemCode;
-                $scope.active.itemNumber = $scope.menus
+                $scope.active.itemIndex = $scope.menus
                     .reduce(function(p,c){return c.code&&c.code==menuCode ? c.items : p;}, [])
-                    .reduce(function(p,c,i){console.log(i + ' ' + p + ' ' + c);return c.code&&c.code==itemCode ? i : p}, null);
+                    .reduce(function(p,c,i){return c.code&&c.code==itemCode ? i : p}, null);
             };
 
             $scope.setActiveE = function (e, menuCode, itemCode) {

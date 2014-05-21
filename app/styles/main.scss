@@ -104,7 +104,7 @@ body {
     }
   }
   &.modal-open {
-    overflow: auto;
+    overflow-y: scroll;
   }
 
   .info-debug {
