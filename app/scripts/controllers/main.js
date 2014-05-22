@@ -42,10 +42,6 @@
             $rootScope.$on('user:logout', function () {
                 $scope.onUserStatusChanged(false);
             });
-            $rootScope.$on('action-toolbar:ready', function () {
-                console.log('[MainController] EVENT action-toolbar:ready');
-                isActionToolbarReady.resolve();
-            });
 
             $scope.onNavLandedChanged = function (e, navItemCode) {
                 $scope.navBarActive = navItemCode;
@@ -67,6 +63,11 @@
                 } else {
                     $scope.pageMode = 'regular';
                 }
+            });
+
+            $rootScope.$on('action-toolbar:ready', function () {
+                console.log('[MainController] EVENT action-toolbar:ready');
+                isActionToolbarReady.resolve();
             });
 
         };
