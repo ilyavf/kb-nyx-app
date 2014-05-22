@@ -75,14 +75,16 @@ body {
 
     @media (max-width: $screen-sm-min) {
       background-color: rgba(255, 235, 255,0.85);
+      margin-right: 0px;
     }
 
 
     .logo {
       background-color: #b71d63;
       border: 1px solid #900a47;
-      padding-top: 7px;
-      padding-bottom: 7px;
+      padding: 10px;
+      margin-right: 0px;
+      margin-left: -15px;
     }
   }
 

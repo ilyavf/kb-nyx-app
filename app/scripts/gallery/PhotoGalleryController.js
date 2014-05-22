@@ -37,6 +37,11 @@
                 console.log('[PhotoGalleryCtrl.albumPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
                 $scope.items = photos;
                 $scope.totalItems = photosPage.totalItems || photos.length;
+
+                console.log('EVENT: action-toolbar:selectedTotal ' + photosPage.totalItems);
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
+                });
             });
 
             $scope.next = function () {

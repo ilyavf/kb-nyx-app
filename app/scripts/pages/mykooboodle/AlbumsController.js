@@ -31,6 +31,10 @@
             albumClusterList.get().then(function (albumsPage) {
                 $scope.clusters = albumsPage.items;
                 $scope.loading = false;
+                console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
+                });
             });
             $scope.gotoGallery = function (urlTitle) {
                 console.log('GALLERY ITEM CLICK: ' + urlTitle);

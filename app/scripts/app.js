@@ -24,9 +24,10 @@
         'gallery/PhotoGalleryModule',
         'controllers/main',
         'controllers/userhome',
-        'data/ListData'
+        'data/ListData',
+        'directives/ActionToolbar'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl, ListData) {
+    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir) {
 
         console.log('[app]: configuring app');
 
@@ -59,6 +60,8 @@
         })
 
         .factory('ListData', ListData)
+
+        .directive('nxActionToolbar', ActionToolbarDir)
 
         .controller('MainCtrl', MainCtrl)
         .controller('UserHomeCtrl', UserHomeCtrl);

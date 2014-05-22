@@ -1,8 +1,35 @@
 <div class="container" ng-switch="pageMode">
 
-    <div class="navbar-fixed-top container" ng-include="'views/authorized/user_header_nav.html'"></div>
-
     <div class="row" ng-switch-default>
+
+        <nx-action-toolbar data-config="'logo,sortCluster,share,view,select,help'">
+            <help class="hidden" title="Your Photo Albums">Here are all of your photos. Double click on an album to look at the photos in that album.</help>
+        </nx-action-toolbar>
+
+        <action-toolbar class="hidden">
+            <logo></logo>
+            <sort>
+                <ul>
+                    <li data-value="share-subbestions">Sharing Suggestions</li>
+                    <li data-value="all">All</li>
+                    <li data-value="not-shared">Not Shared</li>
+                    <li data-value="not-uploaded">Not Uploaded</li>
+                </ul>
+                <ul>
+                    <li>Date Taken</li>
+                    <li>Date Added</li>
+                    <li>Alphabetically</li>
+                    <li>Number of Photos</li>
+                </ul>
+                <asc-desc></asc-desc>
+                <reset></reset>
+            </sort>
+            <share></share>
+            <view></view>
+            <select-bar></select-bar>
+            <help title="Your Photo Albums">Here are all of your photos. Double click on an album to look at the photos in that album.</help>
+        </action-toolbar>
+
         <div class="col-sm-3 col-md-3 col-lg-2">
             <div class="affix" ng-include="'views/authorized/main_menu.html'"></div>
         </div>
@@ -13,6 +40,30 @@
     </div>
 
     <div ng-switch-when="photo-gallery">
+
+        <nx-action-toolbar data-config="'back,sortPhotos,share,select,help'">
+            <help class="hidden" title="Your Photo Albums">Here are all of your photos. Double click on an album to look at the photos in that album.</help>
+        </nx-action-toolbar>
+
+        <action-toolbar>
+            <back></back>
+            <sort></sort>
+            <share></share>
+            <view></view>
+            <select-bar></select-bar>
+            <help></help>
+        </action-toolbar>
+        <div class="" ng-view=""></div>
+    </div>
+
+    <div ng-switch-when="lightbox">
+        <action-toolbar>
+            <back></back>
+            <share></share>
+            <rotate></rotate>
+            <download></download>
+            <help></help>
+        </action-toolbar>
         <div class="" ng-view=""></div>
     </div>
 

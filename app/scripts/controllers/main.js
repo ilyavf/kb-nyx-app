@@ -16,11 +16,15 @@
     define([], function () {
 
         // Require $route service since there is no ng-view initially on the index page.
-        var MainController = function ($scope, $rootScope, $route, $routeParams, $location, $timeout, $window, currentUser) {
+        var MainController = function ($scope, $rootScope, $route, $routeParams, $location, $timeout, $window, $q, currentUser) {
+
+            var isActionToolbarReady = $q.defer();
+
             console.log('[MainController]: Initializing');
             $scope.isLoggedIn = currentUser.isLoggedIn();
             $scope.state =  $scope.isLoggedIn ? 'authorized' : 'anonymous';
             $scope.navBarActive = 'home';
+            $scope.isActionToolbarReady = isActionToolbarReady.promise;
             $scope.openSignInModal = function (mode) {
                 $rootScope.$broadcast('signin', mode);
             };
@@ -37,6 +41,10 @@
             });
             $rootScope.$on('user:logout', function () {
                 $scope.onUserStatusChanged(false);
+            });
+            $rootScope.$on('action-toolbar:ready', function () {
+                console.log('[MainController] EVENT action-toolbar:ready');
+                isActionToolbarReady.resolve();
             });
 
             $scope.onNavLandedChanged = function (e, navItemCode) {

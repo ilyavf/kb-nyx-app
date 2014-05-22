@@ -11,22 +11,22 @@
 
     define([
         './GalleryReactive',
-        '../directives/Gallery',
-        '../directives/GalleryPhotoItem',
-        '../directives/GalleryClusterItem',
+        'directives/Gallery',
+        'directives/GalleryPhotoItem',
+        'directives/GalleryClusterItem',
         './PhotoGalleryController',
         'data/AlbumClusterListData',
         'data/AlbumPhotosData'
     ],
-        function (GalleryRx, Gallery, GalleryPhotoItem, GalleryClusterItem, PhotoGalleryCtrl, AlbumClusterListData, AlbumPhotosData) {
+        function (GalleryRx, GalleryDir, GalleryPhotoItemDir, GalleryClusterItemDir, PhotoGalleryCtrl, AlbumClusterListData, AlbumPhotosData) {
             var moduleName = "Nyx.PhotoGallery";
 
             angular
                 .module(moduleName, [])
 
-                .directive('gallery', Gallery)
-                .directive('photoItem', GalleryPhotoItem)
-                .directive('clusterItem', GalleryClusterItem)
+                .directive('nxGallery', GalleryDir)
+                .directive('nxPhotoItem', GalleryPhotoItemDir)
+                .directive('nxClusterItem', GalleryClusterItemDir)
 
                 .factory('galleryRx', GalleryRx)
 
