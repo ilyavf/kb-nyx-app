@@ -41,6 +41,9 @@
                     scope.shareAction = function () {
                       //$rootScope.$broadcast('action-toolbar:share');
                     };
+                    scope.goBack = function () {
+                        scope.$emit('action-toolbar:goBack');
+                    };
                 }
             };
         }

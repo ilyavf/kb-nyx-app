@@ -38,7 +38,7 @@
             });
             $scope.gotoGallery = function (urlTitle) {
                 console.log('GALLERY ITEM CLICK: ' + urlTitle);
-                $location.path('/auth/album/' + urlTitle);
+                $location.path('/auth/albums/' + urlTitle);
             };
             $scope.next = function () {
                 $scope.loading = true;

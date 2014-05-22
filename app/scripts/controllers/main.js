@@ -64,10 +64,13 @@
                     $scope.pageMode = 'regular';
                 }
             });
-
             $rootScope.$on('action-toolbar:ready', function () {
                 console.log('[MainController] EVENT action-toolbar:ready');
                 isActionToolbarReady.resolve();
+            });
+            $rootScope.$on('action-toolbar:goBack', function () {
+                console.log('[MainController] EVENT action-toolbar:goBack');
+                $location.path($location.path().match(/(.*)\/[\w]+/)[1]);
             });
 
         };

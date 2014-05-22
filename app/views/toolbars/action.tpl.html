@@ -1,11 +1,13 @@
 <div class="navbar-fixed-top container header">
     <div class="row">
-        <div class="col-sm-3 col-md-3 col-lg-2 col-xs-12 hidden-xs">
-            <div ng-if="isLogoVisible" class="logo">
+        <ul class="nav navbar-nav col-sm-3 col-md-3 col-lg-2 col-xs-12 hidden-xs">
+            <li ng-if="isLogoVisible" class="logo">
                 <img src="images/logo.png" /> <img src="images/kooboodle.png" />
-            </div>
-            <div ng-if="isBackVisible"><span class="glyphicon glyphicon-arrow-left"></span>Back</div>
-        </div>
+            </li>
+            <li>
+                <a ng-click="goBack()" ng-if="isBackVisible"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+            </li>
+        </ul>
 
         <button type="button" class="btn btn-default navbar-btn dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -30,10 +32,10 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li ng-if="selectedFromTotal > 0" class="navbar-text">Selected {{selectedMnt || 0}}/{{selectedFromTotal}}</li>
-            <li><a href="#" class="navbar-link">Deselect All</a></li>
-            <li><a href="#" class="navbar-link">Select All</a></li>
+            <li><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
+            <li><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
             <li>
-                <a href="#"><span class="glyphicon glyphicon-question-sign"></span></a>
+                <a ng-click="help()" ><span class="glyphicon glyphicon-question-sign"></span></a>
                 <span ng-transclude></span>
             </li>
         </ul>

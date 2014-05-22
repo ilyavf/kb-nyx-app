@@ -1,6 +1,11 @@
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
 @import 'colors';
 
+
+.nav.navbar-nav li a {
+  cursor: pointer;
+}
+
 .menu {
 
   a, a:active, a:visited, a:hover {
