@@ -1,9 +1,19 @@
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/_variables';
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
 @import 'colors';
 
 
-.nav.navbar-nav li a {
-  cursor: pointer;
+.nav.navbar-nav li {
+  a {
+    cursor: pointer;
+  }
+
+  @media (max-width: $screen-md-min) {
+    a {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }
 
 .menu {
