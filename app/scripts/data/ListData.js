@@ -20,7 +20,7 @@
             return function (apiUrl, localStorageItemName) {
 
                 var pagesDeferred = [],
-                    pageSize = 10,
+                    pageSize = 30,
                     totalPages = $q.defer(),
                     _pageNumber = 1,
                     CONFIG_LOCALSTORAGE_ITEMNAME = 'LISTDATA-' + localStorageItemName;

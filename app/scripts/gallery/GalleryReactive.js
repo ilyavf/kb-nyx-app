@@ -37,7 +37,7 @@
                     return $($window).scrollTop();
                 })
                 .subscribe(function (scrollTop) {
-                    if (scrollTop > $(document).height() - $($window).height() - 200) {
+                    if (scrollTop > $(document).height() - $($window).height() - 600) {
                         console.log('SCROLL: should load more data');
                         $rootScope.$broadcast('doc:end');
                     }

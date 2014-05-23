@@ -193,3 +193,37 @@
     padding-top: 10px;
   }
 }
+
+nx-action-toolbar {
+  @media (max-width: $screen-sm-min) {
+    .navbar-collapse {
+      width: 150px;
+      position: fixed;
+      background-color: #eee;
+      right: 5px;
+      top: 53px;
+      padding: 0;
+      box-shadow: 1px 1px 5px #888888;
+
+      ul {
+        margin: 0;
+
+        li {
+          border-bottom: 1px gray solid;
+          a, a:hover, a:visited, a:active {
+            color: black;
+          }
+        }
+      }
+    }
+    .navbar-toggle {
+      margin-top: 2px;
+      margin-bottom: 2px;
+
+      .icon-bar {
+        width: 6px;
+        height: 6px;
+      }
+    }
+  }
+}

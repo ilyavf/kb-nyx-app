@@ -33,11 +33,18 @@
                         Sort by <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Sharing Suggestions</a></li>
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Not Shared</a></li>
+                        <li><a href="#">Not Uploaded</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">Date Taken</a></li>
+                        <li><a href="#">Date Added</a></li>
+                        <li><a href="#">Alphabetically</a></li>
+                        <li><a href="#">Number of Photos</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Ascending</a></li>
+                        <li><a href="#">Descending</a></li>
                     </ul>
                 </li>
                 <li>
@@ -53,7 +60,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li ng-if="selectedFromTotal > 0" class="navbar-text">Selected {{selectedMnt || 0}}/{{selectedFromTotal}}</li>
+                <li ng-if="selectedFromTotal > 0" class="navbar-text hidden-xs">Selected {{selectedMnt || 0}}/{{selectedFromTotal}}</li>
                 <li><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
                 <li><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
                 <li>
