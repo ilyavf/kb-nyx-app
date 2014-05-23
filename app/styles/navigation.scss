@@ -213,6 +213,9 @@ nx-action-toolbar {
           a, a:hover, a:visited, a:active {
             color: black;
           }
+          a:hover {
+            background-color: #fff;
+          }
         }
       }
     }
