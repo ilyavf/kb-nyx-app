@@ -34,10 +34,12 @@
                 console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
                 $scope.isActionToolbarReady.then(function () {
                     $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
+                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.clusters));
                 });
             });
             $scope.selectItem = function (cluster) {
                 cluster.isSelected = !cluster.isSelected;
+                $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.clusters));
             };
             $scope.gotoGallery = function (urlTitle) {
                 $location.path('/auth/albums/' + urlTitle);
@@ -55,6 +57,9 @@
                 }, function () {
                     $scope.loading = false;
                 });
+            };
+            $scope.countSelected = function (items) {
+                return items.reduce(function (acc, i) { return i.isSelected ? ++acc : acc; }, 0);
             };
             $scope.$on('doc:end', $scope.next);
         };

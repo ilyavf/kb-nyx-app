@@ -32,7 +32,7 @@
                         scope.selectedFromTotal = total;
                         console.log('ON EVENT action-toolbar:selectedTotal ' + total, arguments );
                     });
-                    scope.$on('action-toolbar:selected', function (selected) {
+                    scope.$on('action-toolbar:selected', function (event, selected) {
                         scope.selectedMnt = selected;
                     });
 
