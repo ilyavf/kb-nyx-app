@@ -61,12 +61,21 @@
             $scope.countSelected = function (items) {
                 return items.reduce(function (acc, i) { return i.isSelected ? ++acc : acc; }, 0);
             };
+            $scope.selectAll = function (items) {
+                items.forEach(function (i) {
+                    i.isSelected = true;
+                });
+            };
             $scope.deselectAll = function (items) {
                 items.forEach(function (i) {
                     i.isSelected = false;
                 });
             };
             $scope.$on('doc:end', $scope.next);
+            $scope.$on('action-toolbar:selectAll', function (event) {
+                $scope.selectAll($scope.clusters);
+                $rootScope.$broadcast('action-toolbar:selected', $scope.clusters.length);
+            });
             $scope.$on('action-toolbar:deselectAll', function (event) {
                 $scope.deselectAll($scope.clusters);
                 $rootScope.$broadcast('action-toolbar:selected', 0);
