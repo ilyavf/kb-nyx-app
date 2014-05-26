@@ -19,6 +19,7 @@
       @include border-top-radius(5px);
       @include border-bottom-radius(5px);
 
+      position: relative;
       border: 1px #ccc solid;
       overflow: hidden;
       margin-right: 0;
@@ -50,6 +51,27 @@
         margin: 0 10px 6px 10px;
         font-size: 1.1rem;
         font-family: Arial;
+      }
+    }
+
+    .nx-selected-icon {
+      display: none;
+    }
+    &.selected {
+      .nx-selected-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        background-color: rgba(0,0,0,0.3);
+        .glyphicon {
+          margin-top: 60px;
+          color: white;
+          font-size: 3.0rem;
+        }
       }
     }
 
