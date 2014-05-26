@@ -32,6 +32,7 @@
         height: 152px;
         overflow: hidden;
         margin-bottom: 2px;
+        cursor: pointer;
 
         img {
           max-width: 200%;
@@ -67,6 +68,7 @@
         right: 0;
         text-align: center;
         background-color: rgba(0,0,0,0.3);
+        cursor: pointer;
         .glyphicon {
           margin-top: 60px;
           color: white;
@@ -125,6 +127,7 @@
         .img-wrapper {
           overflow: hidden;
           height: 44px;
+          cursor: pointer;
           @media (max-width: $screen-sm-min) {
             height: 80px;
           }
@@ -137,6 +140,7 @@
           &.empty {
             background: url(../images/thumb-empty.jpg) no-repeat;
             background-size: 100% 100%;
+            cursor: default;
             /*border: 1px #e3e6ec solid;*/
           }
         }
