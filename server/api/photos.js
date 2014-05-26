@@ -17,6 +17,7 @@ var clusterList = function (req, res) {
 
             // also add some extras to the cluster:
             cluster.title = cluster.name;
+            cluster.id = cluster.aid;
             cluster.dateFrom = '2004-04-24T12:00';
             cluster.dateTo = '2013-02-05T12:00';
             cluster.dashedTitle = cluster.name.toLowerCase().replace(/[\s\.\?,:;]/g, '-').replace(/[\-]+/g, '-');

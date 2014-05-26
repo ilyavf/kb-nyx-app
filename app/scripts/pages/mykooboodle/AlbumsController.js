@@ -36,8 +36,11 @@
                     $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
                 });
             });
+            $scope.selectItem = function (photoId) {
+                console.log('GALLERY ITEM CLICK: ' + photoId);
+            };
             $scope.gotoGallery = function (urlTitle) {
-                console.log('GALLERY ITEM CLICK: ' + urlTitle);
+                console.log('GALLERY ITEM DBLCLICK: ' + urlTitle);
                 $location.path('/auth/albums/' + urlTitle);
             };
             $scope.next = function () {

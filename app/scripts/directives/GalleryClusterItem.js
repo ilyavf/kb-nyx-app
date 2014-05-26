@@ -22,12 +22,14 @@
                 //transclude: true,
                 scope: {
                     'cluster': '=',
-                    'click': '=onClick'
+                    'click': '=onClick',
+                    'dblclick': '=onDblClick'
                 },
                 link: function (scope) {
                     var cover = scope.cluster.items[0];
                     scope.url = cover.url;
                     scope.title = scope.cluster.title;
+                    scope.id = scope.cluster.id;
                     scope.dashedTitle = scope.cluster.dashedTitle;
                     scope.dateFrom = scope.cluster.dateFrom;
                     scope.dateTo = scope.cluster.dateTo;

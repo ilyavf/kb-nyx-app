@@ -1,7 +1,7 @@
 <div class="gallery-item gallery-cluster-item col-sm-6 col-md-4 col-lg-3">
     <div class="item-wrapper row">
         <div class="item-cover img-wrapper">
-            <img class="" ng-src="{{url}}" ng-click="click(dashedTitle)" />
+            <img class="" ng-src="{{url}}" ng-click="click(id)" ng-dblclick="dblclick(dashedTitle)" />
         </div>
         <ul class="item-thumbs nyx-reset">
             <li class="col-xs-3 " ng-repeat="item in items" ng-click="preview(item)">

@@ -1,7 +1,9 @@
 <nx-gallery>
     <nx-cluster-item ng-repeat="cluster in clusters"
                   data-cluster="cluster"
-                  on-click="gotoGallery"></nx-cluster-item>
+                  on-click="selectItem"
+                  on-dbl-click="gotoGallery"
+    ></nx-cluster-item>
 </nx-gallery>
 
 <div ng-if="loading" class="page-loading"></div>
