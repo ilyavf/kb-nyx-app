@@ -44,6 +44,9 @@
                     scope.goBack = function () {
                         scope.$emit('action-toolbar:goBack');
                     };
+                    scope.deselectAll = function () {
+                        scope.$emit('broadcast', 'action-toolbar:deselectAll');
+                    };
                 }
             };
         }

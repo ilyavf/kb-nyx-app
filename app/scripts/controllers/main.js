@@ -72,6 +72,10 @@
                 console.log('[MainController] EVENT action-toolbar:goBack');
                 $location.path($location.path().match(/(.*)\/[\w]+/)[1]);
             });
+            $scope.$on('broadcast', function (event, eventName) {
+                console.log('[MainController] EVENT broadcast: ' + eventName);
+                $scope.$broadcast(eventName);
+            });
 
         };
 

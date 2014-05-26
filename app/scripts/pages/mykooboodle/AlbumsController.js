@@ -61,7 +61,16 @@
             $scope.countSelected = function (items) {
                 return items.reduce(function (acc, i) { return i.isSelected ? ++acc : acc; }, 0);
             };
+            $scope.deselectAll = function (items) {
+                items.forEach(function (i) {
+                    i.isSelected = false;
+                });
+            };
             $scope.$on('doc:end', $scope.next);
+            $scope.$on('action-toolbar:deselectAll', function (event) {
+                $scope.deselectAll($scope.clusters);
+                $rootScope.$broadcast('action-toolbar:selected', 0);
+            });
         };
 
         return AlbumsController;
