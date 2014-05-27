@@ -44,6 +44,11 @@
                     scope.goBack = function () {
                         scope.$emit('action-toolbar:goBack');
                     };
+                    scope.view = function () {
+                        if (scope.selectedMnt == 1) {
+                            scope.$emit('broadcast', 'action-toolbar:view');
+                        }
+                    };
                     scope.selectAll = function () {
                         scope.$emit('broadcast', 'action-toolbar:selectAll');
                     };

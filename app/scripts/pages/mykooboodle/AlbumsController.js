@@ -41,8 +41,10 @@
                 cluster.isSelected = !cluster.isSelected;
                 $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.clusters));
             };
-            $scope.gotoGallery = function (urlTitle) {
-                $location.path('/auth/albums/' + urlTitle);
+            $scope.gotoGallery = function (dashedTitle) {
+                if (!dashedTitle) return;
+
+                $location.path('/auth/albums/' + dashedTitle);
             };
             $scope.next = function () {
                 $scope.loading = true;
@@ -79,6 +81,9 @@
             $scope.$on('action-toolbar:deselectAll', function (event) {
                 $scope.deselectAll($scope.clusters);
                 $rootScope.$broadcast('action-toolbar:selected', 0);
+            });
+            $scope.$on('action-toolbar:view', function (event) {
+                $scope.gotoGallery($scope.clusters.reduce(function (acc, i) { return i.isSelected ? i.dashedTitle : acc ;} ), '');
             });
         };
 
