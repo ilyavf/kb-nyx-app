@@ -12,13 +12,13 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define([
+        'gallery/GalleryBaseController'
+    ], function (GalleryBaseController) {
 
         var PhotoGalleryCtrl = function ($scope, $routeParams, $rootScope, albumClusterList, albumPhotosData, galleryRx) {
 
             console.log('[PhotoGallery.PhotoGalleryCtrl] initializing for ' + $routeParams.clusterDashedTitle );
-
-            $scope.loading = true;
 
             var dashedTitle = $routeParams.clusterDashedTitle,
                 clusterP = albumClusterList.getItemByDashedTitle(dashedTitle),
@@ -28,6 +28,9 @@
                 $scope.title = cluster.title;
                 $scope.id = cluster.aid;
                 albumPhotos = albumPhotosData(cluster.aid);
+
+                // inherit from the base class:
+                GalleryBaseController($scope, $rootScope, albumPhotos, viewAction);
 
                 return albumPhotos.get();
 
@@ -41,6 +44,7 @@
                 console.log('EVENT: action-toolbar:selectedTotal ' + photosPage.totalItems);
                 $scope.isActionToolbarReady.then(function () {
                     $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
+                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                 });
             });
 
@@ -57,7 +61,12 @@
                     $scope.loading = false;
                 });
             };
-            $scope.$on('doc:end', $scope.next);
+            $scope.openLightbox = function (id) {
+                console.log('[openLightbox] ', id);
+            };
+            function viewAction (event) {
+                $scope.openLightbox($scope.items.reduce(function (acc, i) { return i.isSelected ? i.id : acc ;}, ''));
+            };
         };
 
         return PhotoGalleryCtrl;

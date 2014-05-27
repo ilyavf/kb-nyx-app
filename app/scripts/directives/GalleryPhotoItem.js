@@ -21,11 +21,13 @@
                 templateUrl: 'views/gallery/gallery-photo-item.tpl.html',
                 //transclude: true,
                 scope: {
+                    'item': '=',
                     'title': '=',
                     'url': '=',
                     'date': '=',
                     'total': '=',
-                    'click': '=onClick'
+                    'click': '=onClick',
+                    'dblclick': '=onDblClick'
                 },
                 link: function (scope) {
                 }

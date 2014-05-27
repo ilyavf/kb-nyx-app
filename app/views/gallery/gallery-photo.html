@@ -2,11 +2,13 @@
 
 <nx-gallery>
     <nx-photo-item ng-repeat="item in items"
+                data-item="item"
                 data-title="item.title || item.filenameOriginal"
                 data-url="item.thumbnail"
                 data-date="item.dateTaken"
-                data-url="item.thumbnail"
-                on-click="log"></nx-photo-item>
+                on-click="selectItem"
+                on-dbl-click="openLightbox"
+    ></nx-photo-item>
 </nx-gallery>
 
 <div ng-if="loading" class="page-loading"></div>
