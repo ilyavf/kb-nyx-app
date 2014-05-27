@@ -24,6 +24,8 @@
                 clusterP = albumClusterList.getItemByDashedTitle(dashedTitle),
                 albumPhotos;
 
+            $scope.loading = true;
+
             clusterP.then(function (cluster) {
                 $scope.title = cluster.title;
                 $scope.id = cluster.aid;
@@ -48,22 +50,10 @@
                 });
             });
 
-            $scope.next = function () {
-                $scope.loading = true;
-                albumPhotos.next().then(function (newPage) {
-                    $scope.loading = false;
-                    var newItems = newPage.items;
-                    console.log('[next] ' + newItems.length, newItems);
-                    newItems.forEach(function (newItem) {
-                        $scope.items.push(newItem);
-                    });
-                }, function () {
-                    $scope.loading = false;
-                });
-            };
             $scope.openLightbox = function (id) {
                 console.log('[openLightbox] ', id);
             };
+
             function viewAction (event) {
                 $scope.openLightbox($scope.items.reduce(function (acc, i) { return i.isSelected ? i.id : acc ;}, ''));
             };

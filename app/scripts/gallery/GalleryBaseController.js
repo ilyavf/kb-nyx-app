@@ -20,10 +20,9 @@
 
             $scope.next = function () {
                 $scope.loading = true;
-                itemListData.next().then(function (newItems) {
+                itemListData.next().then(function (newPage) {
                     $scope.loading = false;
-                    if (!newItems || !newItems.length) return;
-
+                    var newItems = newPage.items;
                     console.log('[next] ' + newItems.length, newItems);
                     newItems.forEach(function (newItem) {
                         $scope.items.push(newItem);
