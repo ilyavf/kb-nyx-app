@@ -1,13 +1,14 @@
 define(['gallery/GalleryBaseController'], function(GalleryBaseController) {
     'use strict';
 
-    angular.module('mockApp', [])
-        .controller('GalleryBaseController', GalleryBaseController);
 
     describe('Controller: GalleryBaseController', function () {
 
+        angular.module('mockApp2', [])
+            .controller('GalleryBaseController', GalleryBaseController);
+
         // load the controller's module
-        beforeEach(module('mockApp'));
+        beforeEach(module('mockApp2'));
 
         var scope,
             itemListDataMock,
