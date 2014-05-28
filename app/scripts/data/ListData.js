@@ -110,7 +110,7 @@
                 }
 
                 function getItemByDashedTitle (dashedTitle) {
-                    return getPage().then(function (clustersPage) {
+                    return getPage(0).then(function (clustersPage) {
                         return clustersPage.items.reduce(function (prev, cur) {
                             return dashedTitle == cur.dashedTitle ? cur : prev
                         });
