@@ -25,9 +25,12 @@
         'controllers/main',
         'controllers/userhome',
         'data/ListData',
-        'directives/ActionToolbar'
+        'directives/ActionToolbar',
+        'directives/EditableTitle'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery, MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir) {
+    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery,
+                 MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir, EditableTitleDir
+    ) {
 
         console.log('[app]: configuring app');
 
@@ -62,6 +65,7 @@
         .factory('ListData', ListData)
 
         .directive('nxActionToolbar', ActionToolbarDir)
+        .directive('nxEditableTitle', EditableTitleDir)
 
         .controller('MainCtrl', MainCtrl)
         .controller('UserHomeCtrl', UserHomeCtrl);

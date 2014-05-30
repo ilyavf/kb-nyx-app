@@ -11,7 +11,7 @@
             </li>
         </ul>
         <div class="total">{{totalCount}}</div>
-        <div class="caption">{{title}}</div>
+        <nx-editable-title class="caption" data-title="title" data-item="cluster" data-update-title="updateTitle"></nx-editable-title>
         <div class="item-date">
             {{dateFrom | date: 'MMM d, y'}} - {{dateTo | date: 'MMM d, y'}}
         </div>

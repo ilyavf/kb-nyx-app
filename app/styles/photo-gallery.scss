@@ -40,11 +40,13 @@
         }
       }
       .caption {
+        display: block;
         margin: 6px 45px 3px 10px;
         color: $primaryColor;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        height: 26px;
       }
       .item-date {
         color: #919baa;
