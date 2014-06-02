@@ -23,7 +23,8 @@
                 templateUrl: 'views/toolbars/action.tpl.html',
                 transclude: true,
                 scope: {
-                    'configStr': '=config'
+                    'configStr': '=config',
+                    'openSignInModal': '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$emit('action-toolbar:ready');
@@ -54,6 +55,9 @@
                     };
                     scope.deselectAll = function () {
                         scope.$emit('broadcast', 'action-toolbar:deselectAll');
+                    };
+                    scope.logout = function () {
+                        scope.$emit('user:dologout');
                     };
                 }
             };
