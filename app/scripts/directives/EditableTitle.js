@@ -21,7 +21,8 @@
                 templateUrl: 'views/components/editable_title.tpl.html',
                 transclude: true,
                 scope: {
-                    'item': '='
+                    'item': '=',
+                    'updateTitle': '='
                 },
                 link: function (scope) {
                     scope.isInputVisible = false;
@@ -30,6 +31,7 @@
                         if (e.keyCode == 13) {
                             scope.isInputVisible = false;
                             scope.titleOrig = '';
+                            scope.updateTitle(scope.item);
                         }
                         if (e.keyCode == 27) {
                             scope.cancelInput();

@@ -1,7 +1,10 @@
 var request = require('request'),
-    Q = require('q');
+    Q = require('q'),
+    util = require('util');
 
 var clusterList = function (req, res) {
+
+    console.log(timestamp() + '[clusterList] ' + get_req_info(req));
 
     getClusterList(req.headers).then(function (clustersPage) {
         var clusters = clustersPage.items;
@@ -94,7 +97,7 @@ function addPhotoUrls (items, urlPropertyName, headers) {
 }
 
 function getClusterList (headers, query) {
-    var url = 'http://z.uat.kooboodle.com/albums?items=5&'
+    var url = 'http://z.dev.kooboodle.com/albums?items=5&'
             + (query && query.page ? 'page=' + query.page : '')
             + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''),
         resultParseFunc = function (result) {
@@ -116,7 +119,7 @@ function getClusterList (headers, query) {
  * @returns {items<Array>, totalItems, currentPage, ...}
  */
 function getAlbumPhotos (albumId, headers, query) {
-    var url = ('http://uat.kooboodle.com/photos/album-{albumId}/list.json?'
+    var url = ('http://dev.kooboodle.com/photos/album-{albumId}/list.json?'
         + (query && query.page ? 'page=' + query.page : '')
         + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
         .replace('{albumId}', albumId)
@@ -126,7 +129,7 @@ function getAlbumPhotos (albumId, headers, query) {
 }
 
 function getPhotoUrl (photoId, size, headers) {
-    var prefix = 'http://uat.kooboodle.com',
+    var prefix = 'http://dev.kooboodle.com',
         url = prefix + '/photo/{photoId}/url/{size}.json'
             .replace('{photoId}', photoId)
             .replace('{size}', size),
@@ -162,4 +165,8 @@ function proxyTo (url, headers, resultParseFunc) {
 
 function timestamp () {
     return '[' + new Date().toJSON().replace('T',' ').replace(/.{5}$/,'') + '] ';
+}
+
+function get_req_info (req) {
+    return util.format('%s: %s%s (referer: %s)', req.method, req.headers.host, req.url, req.headers.referer);
 }

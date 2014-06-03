@@ -47,7 +47,9 @@
                 $location.path('/auth/albums/' + dashedTitle);
             };
             function viewAction (event) {
-                $scope.gotoGallery($scope.items.reduce(function (acc, i) { return i.isSelected ? i.dashedTitle : acc ;} ), '');
+                var targetName = $scope.items.reduce(function (acc, i) { return i.isSelected ? i.dashedTitle : acc ;}, '');
+                console.log('[viewAction] ' + targetName);
+                $scope.gotoGallery(targetName);
             };
         };
 

@@ -22,7 +22,11 @@
                     templateUrl : "views/homepage/home.html",
                     controller  : "LoginController"
                 })
-                .when( '/signup-hidden', {
+                .when( '/logout', {
+                    templateUrl : "views/homepage/home.html",
+                    controller  : "LoginController"
+                })
+                .when( '/signup', {
                     templateUrl : "views/homepage/home.html",
                     controller  : "LoginController"
                 });

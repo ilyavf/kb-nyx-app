@@ -17,7 +17,7 @@
 
         var ListData = function ($q, $http, $log, $window, $rootScope) {
 
-            return function (apiUrl, localStorageItemName) {
+            return function (apiUrl, localStorageItemName, options) {
 
                 var pagesDeferred = [],
                     pageSize = 30,
@@ -46,6 +46,7 @@
                         $log.log('[ClusterListData.getPage]: received', arguments);
                         if (data.success) {
                             $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
+                            options && options.preprocess && options.preprocess(data.result);
                             pagesDeferred[pageNumber].resolve(data.result);
                             totalPages.resolve(data.result.totalPages);
                         } else {
@@ -102,6 +103,7 @@
 
                     if (data) {
                         pagesDeferred[pageNumber] = $q.defer();
+                        options && options.preprocess && options.preprocess(data);
                         pagesDeferred[pageNumber].resolve(data);
                         totalPages.resolve(data.totalPages);
                     }

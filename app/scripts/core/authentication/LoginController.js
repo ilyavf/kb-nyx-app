@@ -13,7 +13,7 @@
         console.log('[Auth.LoginController] loaded');
 
         var LoginController = function ($scope, $location, $rootScope) {
-            var mode = $location.path() === '/signup-hidden' ? 'signup' : 'login';
+            var mode = $location.path() === '/signup' ? 'signup' : 'login';
             console.log('[Auth.LoginController] init ' + mode);
             $rootScope.$broadcast('signin', mode);
         };

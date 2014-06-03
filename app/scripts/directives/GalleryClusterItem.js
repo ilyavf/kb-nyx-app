@@ -46,6 +46,10 @@
                             scope.url = cover.url;
                         }
                     };
+                    scope.updateTitle = function (cluster) {
+                        console.log('[updateTitle] ' + cluster.title);
+                        cluster.sync(cluster);
+                    };
                 }
             };
         }

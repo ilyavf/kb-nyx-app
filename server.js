@@ -41,7 +41,7 @@ app.use(bodyParser());
 // API CORS:
 app.all('*', function (req, res, next) {
     if (!req.get('Origin')) return next();
-    res.set('Access-Control-Allow-Origin', 'http://test.uat.kooboodle.com:9000');
+    res.set('Access-Control-Allow-Origin', 'http://test.dev.kooboodle.com');
     res.set('Access-Control-Allow-Credentials', 'true');
     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -49,9 +49,10 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-app.post('/api/login', proxy.post('http://uat.kooboodle.com/user/openphoto/login.json'));
-app.post('/api/signup', proxy.post('http://uat.kooboodle.com/cf/user/register.json'));
-app.get('/api/profile', proxy.get('http://uat.kooboodle.com/user/profile.json'));
+app.post('/api/login', proxy.post('http://dev.kooboodle.com/user/openphoto/login.json'));
+app.post('/api/signup', proxy.post('http://dev.kooboodle.com/cf/user/register.json'));
+app.get('/api/profile', proxy.get('http://dev.kooboodle.com/user/profile.json'));
+app.post('/api/album/update/:id', proxy.post('http://z.dev.kooboodle.com/album/update/:id'));
 
 app.get('/api/clusters', photoApi.getClusters);
 app.get('/api/album/:albumId/photos', photoApi.getAlbumPhotos);
