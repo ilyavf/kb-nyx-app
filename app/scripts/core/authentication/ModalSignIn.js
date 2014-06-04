@@ -60,12 +60,12 @@
                 mode = _mode;
                 if (currentUser.isLoggedIn()) {
                     $modal.open({
-                        templateUrl: 'views/modal_logout.html',
+                        templateUrl: 'views/modals/modal_logout.html',
                         controller: modalLogoutCtrl
                     });
                 } else {
                     $modal.open({
-                        templateUrl: 'views/modal_login.html',
+                        templateUrl: 'views/modals/modal_login.html',
                         controller: modalLoginCtrl
                     });
                 }
