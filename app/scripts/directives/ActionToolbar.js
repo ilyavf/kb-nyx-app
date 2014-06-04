@@ -59,6 +59,9 @@
                     scope.logout = function () {
                         scope.$emit('user:dologout');
                     };
+                    scope.share = function () {
+                        scope.$emit('broadcast', 'action-toolbar:share');
+                    };
                 }
             };
         }

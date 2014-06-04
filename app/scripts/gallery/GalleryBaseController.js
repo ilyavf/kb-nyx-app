@@ -61,6 +61,16 @@
                 viewAction(event);
                 //$scope.gotoGallery($scope.items.reduce(function (acc, i) { return i.isSelected ? i.dashedTitle : acc ;} ), '');
             });
+            $scope.$on('action-toolbar:share', function (event) {
+                var selected = $scope.items.filter(function(i){ return i.isSelected;});
+
+                if (selected.length == 0) return;
+
+                $rootScope.$broadcast(
+                    'share:photos',
+                    selected.map(function(i){return i.id;})
+                );
+            });
         };
 
         return GalleryBaseController;

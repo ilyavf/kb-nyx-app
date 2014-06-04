@@ -22,13 +22,14 @@
         'pages/settings/SettingsModule',
         'menu/authmain/MenuAuthMainModule',
         'gallery/PhotoGalleryModule',
+        'share/ShareModule',
         'controllers/main',
         'controllers/userhome',
         'data/ListData',
         'directives/ActionToolbar',
         'directives/EditableTitle'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGallery,
+    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule,
                  MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir, EditableTitleDir
     ) {
 
@@ -43,7 +44,8 @@
             'Nyx.GngPage',
             'Nyx.SettingsPage',
             'Nyx.Menu.AuthMain',
-            'Nyx.PhotoGallery'
+            'Nyx.PhotoGallery',
+            'Nyx.Share'
         ])
         .config(function ($routeProvider) {
             console.log( "[nyxWebApp.RouteManager] Configuring $routeProvider...");
