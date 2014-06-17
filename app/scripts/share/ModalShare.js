@@ -15,15 +15,28 @@
     define([
     ],
         function () {
-            var ModalShare = function ($modal, $log) {
+            var ModalShare = function ($modal) {
 
                 var ids = [];
 
-                var modalShareCtrl = function ($scope, $modalInstance) {
+                var modalShareCtrl = function ($scope, $modalInstance, sharePhotosData) {
                     $scope.ids = ids;
+                    $scope.contacts = {
+                        inputStr: 'ilya.fadeev@clickfree.com',
+                        items: []
+                    };
                     console.log('modal share: ' + ids.length);
                     $scope.close = function () {
                         $modalInstance.close();
+                    };
+                    $scope.send = function () {
+                        console.log('[modal share.send] ' + $scope.contacts.inputStr + ', ' + $scope.ids.length);
+                        sharePhotosData.send($scope.contacts.inputStr.split(' '), $scope.ids)
+                            .then(function (data) {
+                                console.log('[modalShareCtrl] success', data);
+                            }, function (data) {
+                                console.log('[modalShareCtrl] error', data);
+                            });
                     };
                 };
 

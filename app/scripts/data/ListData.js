@@ -52,8 +52,8 @@
                         } else {
                             pagesDeferred[pageNumber].reject({
                                 success: false,
-                                message: data.message || 'Unknown error'}
-                            );
+                                message: data.message || 'Unknown error'
+                            });
                         }
                     })
                     .error(function(data, status, headers, config) {
@@ -110,6 +110,10 @@
 
                     return !!pagesDeferred[pageNumber];
                 }
+
+                //var syncClusterLocal = _.curry(function(localStorage, pageNumber, cluster) {
+                //
+                //});
 
                 function getItemByDashedTitle (dashedTitle) {
                     return getPage(0).then(function (clustersPage) {

@@ -30,6 +30,7 @@
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
                 loginUrl = prefix + '/api/login',
+                //loginUrl = 'http://qa.kooboodle.com/user/openphoto/login.json',
                 requestUrl = loginUrl,
                 profileUrl = prefix + '/api/profile',
                 signupUrl = prefix + '/api/signup',
@@ -56,6 +57,7 @@
                     data: Object.keys(params).map(function(key){
                         return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
                     }).join('&'),
+                    //data: 'email=ilya1%40clickfree.com&password=123456&r=%2F&httpCodes=403',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                     },

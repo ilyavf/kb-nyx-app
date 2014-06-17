@@ -31,28 +31,29 @@ var APP_PORT = process.env.PORT || 1337,
     app_dir = process.env.NODE_ENV === 'production' ? 'dist_prod' : 'dist',
     clientDir = path.join(__dirname, app_dir),
     ssl_dir = path.join(__dirname, '../ssl'),
-    app = express();
+    app = express(),
+    cfg = require('./app/scripts/config');
 
 app.use(express.static(clientDir));
 
 app.use(bodyParser());
 
-
 // API CORS:
 app.all('*', function (req, res, next) {
-    if (!req.get('Origin')) return next();
-    res.set('Access-Control-Allow-Origin', 'http://test.dev.kooboodle.com');
+    if (!req.get('Origin') || req.get('Origin').search('kooboodle.com') === -1) return next();
+    res.set('Access-Control-Allow-Origin', req.get('Origin'));
     res.set('Access-Control-Allow-Credentials', 'true');
-    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     if ('OPTIONS' == req.method) return res.send(200);
     next();
 });
 
-app.post('/api/login', proxy.post('http://dev.kooboodle.com/user/openphoto/login.json'));
-app.post('/api/signup', proxy.post('http://dev.kooboodle.com/cf/user/register.json'));
-app.get('/api/profile', proxy.get('http://dev.kooboodle.com/user/profile.json'));
-app.post('/api/album/update/:id', proxy.post('http://z.dev.kooboodle.com/album/update/:id'));
+app.post('/api/login', proxy.post('http://' + cfg.opServer + '/user/openphoto/login.json'));
+app.post('/api/signup', proxy.post('http://' + cfg.opServer + '/cf/user/register.json'));
+app.get('/api/profile', proxy.get('http://' + cfg.opServer + '/user/profile.json'));
+app.post('/api/album/update/:id', proxy.post('http://' + cfg.zeusServer + '/album/update/:id'));
+app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServer + '/share/photos'));
 
 app.get('/api/clusters', photoApi.getClusters);
 app.get('/api/album/:albumId/photos', photoApi.getAlbumPhotos);
@@ -70,6 +71,7 @@ httpServer.listen(APP_PORT);
 
 console.log(timestamp() + process.env.NODE_ENV.toUpperCase() + '. Client app folder: ' + clientDir);
 console.log(timestamp() + 'HTTP:  on port ' + APP_PORT);
+console.log(timestamp() + 'Config: ' + cfg.opServer + ', ' + cfg.zeusServer);
 
 if (SSL) {
     // HTTPS options:

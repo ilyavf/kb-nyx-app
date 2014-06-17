@@ -3,7 +3,10 @@
                   data-cluster="cluster"
                   on-click="selectItem"
                   on-dbl-click="gotoGallery"
+                  ng-if="cluster.items.length > 0"
     ></nx-cluster-item>
 </nx-gallery>
 
 <div ng-if="loading" class="page-loading"></div>
+
+<p>{{error}}</p>

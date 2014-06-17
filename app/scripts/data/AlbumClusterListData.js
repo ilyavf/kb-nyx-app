@@ -29,8 +29,9 @@
                 port = '1337',
                 prefix = proto + '://' + host + ':' + port,
                 apiUrl = prefix + '/api/clusters',
-                zeus = proto + '://z.dev.kooboodle.com',
+                zeus = proto + '://zdev.kooboodle.com',
                 apiUrlUpdate = zeus + '/album/update/{id}',
+                //apiUrlUpdate = prefix + '/api/album/update/{id}',
                 sync;
 
 
@@ -39,15 +40,15 @@
                 console.log('[sync]: cluster item ' + cluster.title + ', id = ' + cluster.id + ', url: ');
                 $http({
                     method: 'POST',
-                    url: url,
-                    data: {name: cluster.title},
+                    url: url + '?name=' +  cluster.title,
+                    //data: {name: cluster.title},
                     withCredentials: true
                 })
                 .success(function(data, status, headers, config) {
-                   console.log('[sync]: SUCCESS! ' + data, data);
+                    console.log('[sync]: SUCCESS! ' + data, data);
                 })
                 .error(function(data, status, headers, config) {
-                        console.log('[sync]: ERROR ' + data, data);
+                    console.log('[sync]: ERROR ' + data, data);
                 });
             };
 

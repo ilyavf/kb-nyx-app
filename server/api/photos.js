@@ -1,6 +1,7 @@
 var request = require('request'),
     Q = require('q'),
-    util = require('util');
+    util = require('util'),
+    cfg = require('../../app/scripts/config');
 
 var clusterList = function (req, res) {
 
@@ -97,10 +98,16 @@ function addPhotoUrls (items, urlPropertyName, headers) {
 }
 
 function getClusterList (headers, query) {
-    var url = 'http://z.dev.kooboodle.com/albums?items=5&'
+    var url = util.format('http://%s/albums?items=5&', cfg.zeusServer)
             + (query && query.page ? 'page=' + query.page : '')
             + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''),
         resultParseFunc = function (result) {
+            if (!result) {
+                return {
+                    success: false,
+                    result: result
+                }
+            }
             return {
                 currentPage: 1,
                 totalPages: 1,
@@ -119,7 +126,7 @@ function getClusterList (headers, query) {
  * @returns {items<Array>, totalItems, currentPage, ...}
  */
 function getAlbumPhotos (albumId, headers, query) {
-    var url = ('http://dev.kooboodle.com/photos/album-{albumId}/list.json?'
+    var url = (util.format('http://%s/photos/album-{albumId}/list.json?', cfg.opServer)
         + (query && query.page ? 'page=' + query.page : '')
         + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
         .replace('{albumId}', albumId)
@@ -129,7 +136,7 @@ function getAlbumPhotos (albumId, headers, query) {
 }
 
 function getPhotoUrl (photoId, size, headers) {
-    var prefix = 'http://dev.kooboodle.com',
+    var prefix = 'http://' + cfg.opServer,
         url = prefix + '/photo/{photoId}/url/{size}.json'
             .replace('{photoId}', photoId)
             .replace('{size}', size),
@@ -147,16 +154,19 @@ function getPhotoUrl (photoId, size, headers) {
 function proxyTo (url, headers, resultParseFunc) {
     var deferred = Q.defer();
 
+    console.log('[proxyTo] ' + url);
+
     request.get({
         url: url,
         headers: headers
     }, function (error, res, body) {
         if (!error) {
             var result = resultParseFunc && resultParseFunc(JSON.parse(body).result) || JSON.parse(body).result;
-            console.log('[.proxyTo] url=' + url + ' : ' + (result.join ? result.length + ' items' : ''));
+            console.log('[.proxyTo] url=' + url + (result.join ? result.length + ': items' : ''), result);
             deferred.resolve(result);
         } else {
             console.log('ERROR: [.proxyTo] url=' + url, error);
+            deferred.reject(error);
         }
     });
 

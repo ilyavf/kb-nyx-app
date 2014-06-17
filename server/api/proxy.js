@@ -23,10 +23,12 @@ function proxyGet (url) {
         req.pipe(proxyRequest).pipe(res);
     }
 }
-function proxyPost (url) {
-    var id = '[module.proxy.post ' + rnd() + ']';
+function proxyPost (url, method) {
+    method = method || 'post';
+    var id = '[module.proxy.' + method + ': ' + rnd() + ']';
     return function (req, res) {
 
+        /*
         // /albums/:id/title/:action
         // /albums/{id}/title/{action}
         // {id: 5, action: 'update'}
@@ -47,11 +49,13 @@ function proxyPost (url) {
                 url
             ) || url;
         };
-        url = urlReplaceParams(getParamName, url, getParamsColumned(url), req.params);
+        url = urlReplaceParams(getParamName, url, getParamsColumned(url), req.params)
+            + (req._parsedUrl.query ? '?' + req._parsedUrl.query : '');
         //_.maybe(_.map)(urlReplaceParams, url.match(/:[a-z]+/g));
-
+*/
         console.log(timestamp() + id + ' url = ' + url);
-        var proxyRequest = request.post(url, get_callback(id));
+        console.log('Origin: ' + req.get('Origin'));
+        var proxyRequest = request[method](url, get_callback(id));
         req.pipe(proxyRequest).pipe(res);
         proxyRequest.form(req.body);
     }
@@ -59,5 +63,8 @@ function proxyPost (url) {
 
 module.exports = {
     get: proxyGet,
-    post: proxyPost
+    post: proxyPost,
+    put: function (url) {
+        return proxyPost(url, 'put')
+    }
 };

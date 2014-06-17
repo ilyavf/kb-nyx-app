@@ -25,6 +25,7 @@
             console.log('[AlbumsController] init');
 
             $scope.pageTitle = 'Albums';
+            $scope.error = '';
 
             $timeout(function () {
                 $rootScope.$broadcast('navMain:changed', 'MyKooboodle', 'albums');
@@ -40,6 +41,9 @@
                     $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
                     $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                 });
+            }, function (error) {
+                $scope.loading = false;
+                $scope.error = 'Unable to get the list of albums from server.';
             });
             $scope.gotoGallery = function (dashedTitle) {
                 if (!dashedTitle) return;

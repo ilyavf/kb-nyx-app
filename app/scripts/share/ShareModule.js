@@ -10,15 +10,17 @@
     'use strict';
 
     define([
-        './ModalShare'
+        './ModalShare',
+        'data/SharePhotosData'
     ],
-        function (ModalShare) {
+        function (ModalShare, SharePhotosData) {
             var moduleName = "Nyx.Share";
 
             angular
                 .module(moduleName, [])
 
                 .factory('modalShare', ModalShare)
+                .factory('sharePhotosData', SharePhotosData)
 
                 .run(function ($rootScope, modalShare) {
                     $rootScope.$on('share:photos', function (e, ids) {

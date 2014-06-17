@@ -5,7 +5,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <input type="text" class="form-control" ng-model="contactInput" />
+            <input type="text" class="form-control" ng-model="contacts.inputStr" />
         </div>
 
         <br />
@@ -19,11 +19,12 @@
             </div>
         </div>
         <p>
+            You selected {{ids.length}} items to share.
+        </p>
+        <!--p>
             {{ids.join(', ')}}
-        </p>
-        <p>
-            {{contactInput}} <br />
-            {{contacts.join(', ')}}
-        </p>
+            {{contacts.inputStr}} <br />
+            {{contacts.items.join(', ')}}
+        </p-->
     </div>
 </div>
