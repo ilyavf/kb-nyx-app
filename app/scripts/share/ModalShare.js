@@ -22,7 +22,7 @@
                 var modalShareCtrl = function ($scope, $modalInstance, sharePhotosData) {
                     $scope.ids = ids;
                     $scope.contacts = {
-                        inputStr: 'ilya.fadeev@clickfree.com',
+                        inputStr: '',
                         items: []
                     };
                     console.log('modal share: ' + ids.length);
@@ -34,6 +34,7 @@
                         sharePhotosData.send($scope.contacts.inputStr.split(' '), $scope.ids)
                             .then(function (data) {
                                 console.log('[modalShareCtrl] success', data);
+                                $modalInstance.close();
                             }, function (data) {
                                 console.log('[modalShareCtrl] error', data);
                             });

@@ -42,7 +42,7 @@
                 })
                 .success(function(data, status, headers, config) {
                     $log.log('[SharePhotosData.send]: received', arguments);
-                    if (data.success) {
+                    if (data.code == 200) {
                         deferred.resolve(data);
                     } else {
                         deferred.reject({
