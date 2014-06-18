@@ -13,7 +13,9 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define(['utils/nx-utils'], function (utils) {
+
+        var _ = utils._;
 
         var ListData = function ($q, $http, $log, $window, $rootScope) {
 
@@ -47,7 +49,9 @@
                         if (data.success) {
                             $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
                             options && options.preprocess && options.preprocess(data.result);
-                            pagesDeferred[pageNumber].resolve(data.result);
+                            pagesDeferred[pageNumber].resolve(
+                                dataToItems(getLocalPage(pageNumber), data.result)
+                            );
                             totalPages.resolve(data.result.totalPages);
                         } else {
                             pagesDeferred[pageNumber].reject({
@@ -104,16 +108,43 @@
                     if (data) {
                         pagesDeferred[pageNumber] = $q.defer();
                         options && options.preprocess && options.preprocess(data);
-                        pagesDeferred[pageNumber].resolve(data);
+                        pagesDeferred[pageNumber].resolve(
+                            dataToItems(getLocalPage(pageNumber), data)
+                        );
                         totalPages.resolve(data.totalPages);
                     }
 
                     return !!pagesDeferred[pageNumber];
                 }
 
-                //var syncClusterLocal = _.curry(function(localStorage, pageNumber, cluster) {
-                //
-                //});
+                var syncClusterLocal = _.curry(function(localPage, setLocalPage, cluster, prop) {
+                    var localItem = _.compose(_.find(_.where({id: cluster.id})), _.get('items'))(localPage);
+                    console.log('[syncClusterLocal] ' + localItem[prop] + ' to ' + cluster[prop], cluster, localItem);
+                    localItem[prop] = cluster[prop];
+                    setLocalPage(localPage);
+                });
+
+                var getLocalPage = _.curry(function getLocalPage(localStorage, itemName, pageNumber) {
+                    return JSON.parse(localStorage.getItem(itemName + '-' + pageNumber));
+                })($window.localStorage, CONFIG_LOCALSTORAGE_ITEMNAME);
+
+                var setLocalPage = _.curry(function getLocalPage(localStorage, itemName, dataPage) {
+                    localStorage.setItem(itemName + '-' + (dataPage.currentPage - 1), JSON.stringify(dataPage));
+                    return dataPage;
+                })($window.localStorage, CONFIG_LOCALSTORAGE_ITEMNAME);
+
+                var dataToItems = function (getLocalPage, data) {
+                    _.compose(
+                        _.map(utils.addProp(
+                            'syncLocal',
+                            syncClusterLocal(getLocalPage, setLocalPage)
+                        )),
+                        _.get('items')
+
+                    )(data);
+                    $window.test1 = data;
+                    return data;
+                };
 
                 function getItemByDashedTitle (dashedTitle) {
                     return getPage(0).then(function (clustersPage) {

@@ -13,15 +13,10 @@
 (function (define) {
     'use strict';
 
-    var _ = ramda;
-
-    define([], function () {
-        var addProp, ClusterListData;
-
-        addProp = _.curry(function (prop, value, obj) {
-            obj[prop] = value;
-            return obj;
-        });
+    define(['utils/nx-utils'], function (utils) {
+        var addProp = utils.addProp,
+            _ = utils._,
+            ClusterListData;
 
         ClusterListData = function ($location, $q, $http, ListData) {
             var proto = $location.protocol(),
@@ -37,7 +32,7 @@
 
             sync = function (cluster) {
                 var url = apiUrlUpdate.replace('{id}', cluster.id);
-                console.log('[sync]: cluster item ' + cluster.title + ', id = ' + cluster.id + ', url: ');
+                console.log('[sync]: cluster item ' + cluster.title + ', id = ' + cluster.id, cluster);
                 $http({
                     method: 'POST',
                     url: url + '?name=' +  cluster.title,
@@ -46,6 +41,7 @@
                 })
                 .success(function(data, status, headers, config) {
                     console.log('[sync]: SUCCESS! ' + data, data);
+                    cluster.syncLocal(cluster, 'title');
                 })
                 .error(function(data, status, headers, config) {
                     console.log('[sync]: ERROR ' + data, data);
