@@ -28,8 +28,8 @@
 
             clusterP.then(function (cluster) {
                 $scope.title = cluster.title;
-                $scope.id = cluster.aid;
-                albumPhotos = albumPhotosData(cluster.aid);
+                $scope.id = cluster.id;
+                albumPhotos = albumPhotosData(cluster.id);
 
                 // inherit from the base class:
                 GalleryBaseController($scope, $rootScope, albumPhotos, viewAction);

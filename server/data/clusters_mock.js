@@ -8,7 +8,7 @@ module.exports = {
         "totalItems": 2,
         "items": [
             {
-                "pid": "1",
+                "aid": "1",
                 "id": "1",
                 "title": "Album 1",
                 "dateFrom": "20120724",
@@ -33,7 +33,7 @@ module.exports = {
                 }]
             },
             {
-                "pid": "826ecad5d187f1c23d4ec000765849fb78259cd0",
+                "aid": "826ecad5d187f1c23d4ec000765849fb78259cd0",
                 "id": "826ecad5d187f1c23d4ec000765849fb78259cd0",
                 "title": "Album 2",
                 "dateFrom": "20120724",
