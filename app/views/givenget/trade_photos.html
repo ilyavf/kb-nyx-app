@@ -1,4 +1,15 @@
-<h2>{{pageTitle}}</h2>
-<p>
-    Notifications here ...
-</p>
+<nx-gallery>
+
+    <nx-trade-item ng-repeat="cluster in items" data-trade="cluster">
+        <nx-cluster-item data-cluster="cluster"
+                         on-click="selectItem"
+                         on-dbl-click="gotoGallery"
+                         ng-if="cluster.items.length > 0"
+                ></nx-cluster-item>
+        <nx-trade-user-item ng-repeat="userItem in cluster.items">{{userItem.id}} for user</nx-trade-user-item>
+    </nx-trade-item>
+</nx-gallery>
+
+<div ng-if="loading" class="page-loading"></div>
+
+<p>{{error}}</p>
