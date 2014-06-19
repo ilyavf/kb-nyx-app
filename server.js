@@ -28,6 +28,7 @@ var express = require('express'),
 var APP_PORT = process.env.PORT || 1337,
     APP_PORT_SECURE = process.env.PORT_SSL || 1338,
     SSL = process.env.SSL == 'false' ? false : false,
+    MOCK_API = process.env.MOCK_API || true,
     app_dir = process.env.NODE_ENV === 'production' ? 'dist_prod' : 'dist',
     clientDir = path.join(__dirname, app_dir),
     ssl_dir = path.join(__dirname, '../ssl'),
@@ -55,7 +56,7 @@ app.get('/api/profile', proxy.get('http://' + cfg.opServer + '/user/profile.json
 app.post('/api/album/update/:id', proxy.post('http://' + cfg.zeusServer + '/album/update/:id'));
 app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServer + '/share/photos'));
 
-app.get('/api/clusters', photoApi.getClusters);
+app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
 app.get('/api/album/:albumId/photos', photoApi.getAlbumPhotos);
 
 app.all('/', function(req, res) {
@@ -99,5 +100,12 @@ function clientErrorHandler(err, req, res, next) {
         res.send(500, { error: 'Something blew up!' });
     } else {
         next(err);
+    }
+}
+function mockApi (api) {
+    return function (req, res) {
+        var mock = require('./server/data/' + api + '_mock.js');
+        console.log('Responding with a mocked api for ' + req.url);
+        res.json(mock);
     }
 }
