@@ -57,7 +57,7 @@ app.post('/api/album/update/:id', proxy.post('http://' + cfg.zeusServer + '/albu
 app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServer + '/share/photos'));
 
 app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
-app.get('/api/album/:albumId/photos', photoApi.getAlbumPhotos);
+app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
 
 app.all('/', function(req, res) {
     res.sendfile(path.join(clientDir, 'index.html'));
