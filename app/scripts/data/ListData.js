@@ -54,6 +54,7 @@
                             );
                             totalPages.resolve(data.result.totalPages);
                         } else {
+                            console.log('Response is unsuccessful.', data);
                             pagesDeferred[pageNumber].reject({
                                 success: false,
                                 message: data.message || 'Unknown error'
@@ -146,12 +147,20 @@
                     return data;
                 };
 
+                //function getItemByDashedTitle1 (dashedTitle) {
+                //    return getPage(0).then(function (clustersPage) {
+                //        return clustersPage.items.reduce(function (prev, cur) {
+                //            return dashedTitle == cur.dashedTitle ? cur : prev
+                //        });
+                //    });
+                //}
+
                 function getItemByDashedTitle (dashedTitle) {
-                    return getPage(0).then(function (clustersPage) {
-                        return clustersPage.items.reduce(function (prev, cur) {
-                            return dashedTitle == cur.dashedTitle ? cur : prev
-                        });
-                    });
+                    var itemPromise = getPage(0)
+                        .then(_.get('items'))
+                        .then(_.find(_.where({dashedTitle: dashedTitle})));
+
+                    return itemPromise;
                 }
 
                 // Public API here:
