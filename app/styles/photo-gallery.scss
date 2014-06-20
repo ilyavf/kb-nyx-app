@@ -11,6 +11,10 @@
   margin-bottom: 30px;
 }
 
+$border-color:  #aaa;
+$border-color-dark:  #101010;
+
+
 .kb-photo-gallery {
 
   .gallery-item {
@@ -150,10 +154,42 @@
     }
   }
 
-  .nx-trade-item {
-    display: block;
-    border: 1px solid red;
-    margin-bottom: 10px;
+  nx-trade {
+    .nx-trade-item {
+      display: block;
+      border: 1px solid $border-color;
+      border-top: 3px $border-color-dark solid;
+      margin-bottom: 30px;
+
+      .title {
+        text-align: center;
+        border-bottom: 1px $border-color solid;
+        padding: 5px;
+        background-color: #eee;
+      }
+
+      .gallery-cluster-item {
+        margin-bottom: -20px;
+
+        .item-wrapper {
+          border: none;
+          @include border-top-radius(0px);
+          @include border-bottom-radius(0px);
+        }
+
+      }
+    }
+  }
+
+  nx-tradee {
+    .nx-tradee-item {
+      margin: 15px 15px 0 -15px;
+      .content {
+        border: 1px solid $border-color;
+        padding: 5px 20px;
+      }
+    }
+
   }
 
 }
