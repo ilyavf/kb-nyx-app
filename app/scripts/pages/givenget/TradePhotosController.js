@@ -17,10 +17,10 @@
         'gallery/GalleryBaseController'
     ], function (GalleryBaseController) {
 
-        var TradePhotosCtrl = function ($scope, $rootScope, $location, $timeout, albumClusterList, galleryRx) {
+        var TradePhotosCtrl = function ($scope, $rootScope, $location, $timeout, tradeListData, galleryRx) {
 
             // inherit from the base class:
-            GalleryBaseController($scope, $rootScope, albumClusterList, viewAction);
+            GalleryBaseController($scope, $rootScope, tradeListData, viewAction);
 
             console.log('[TradePhotosCtrl] init');
 
@@ -33,7 +33,7 @@
             $rootScope.$broadcast('nav:landed');
 
             // gallery:
-            albumClusterList.get().then(function (albumsPage) {
+            tradeListData.get().then(function (albumsPage) {
                 $scope.items = albumsPage.items;
                 $scope.loading = false;
                 console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
@@ -48,7 +48,7 @@
             $scope.gotoGallery = function (dashedTitle) {
                 if (!dashedTitle) return;
 
-                $location.path('/auth/albums/' + dashedTitle);
+                $location.path('/auth/trades/' + dashedTitle);
             };
             function viewAction (event) {
                 var targetName = $scope.items.reduce(function (acc, i) { return i.isSelected ? i.dashedTitle : acc ;}, '');

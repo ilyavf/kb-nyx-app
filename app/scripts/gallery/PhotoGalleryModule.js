@@ -12,18 +12,21 @@
     define([
         './GalleryReactive',
         './PhotoGalleryController',
+
         'directives/Gallery',
         'directives/GalleryPhotoItem',
         'directives/GalleryClusterItem',
-        'directives/GalleryTradeItem',
-        'directives/GalleryTradeUserItem',
+        'directives/GalleryTradeDir',
+        'directives/GalleryTradeeDir',
+
         'data/AlbumClusterListData',
-        'data/AlbumPhotosData'
+        'data/AlbumPhotosData',
+        'data/TradeListData'
     ],
         function (
             GalleryRx, PhotoGalleryCtrl,
-            GalleryDir, GalleryPhotoItemDir, GalleryClusterItemDir, GalleryTradeItemDir, GalleryTradeUserItemDir,
-            AlbumClusterListData, AlbumPhotosData
+            GalleryDir, GalleryPhotoItemDir, GalleryClusterItemDir, GalleryTradeDir, GalleryTradeeDir,
+            AlbumClusterListData, AlbumPhotosData, TradeListData
         ) {
             var moduleName = "Nyx.PhotoGallery";
 
@@ -33,13 +36,14 @@
                 .directive('nxGallery', GalleryDir)
                 .directive('nxPhotoItem', GalleryPhotoItemDir)
                 .directive('nxClusterItem', GalleryClusterItemDir)
-                .directive('nxTradeItem', GalleryTradeItemDir)
-                .directive('nxTradeUserItem', GalleryTradeUserItemDir)
+                .directive('nxTrade', GalleryTradeDir)
+                .directive('nxTradee', GalleryTradeeDir)
 
                 .factory('galleryRx', GalleryRx)
 
                 .factory('albumClusterList', AlbumClusterListData)
                 .factory('albumPhotosData', AlbumPhotosData)
+                .factory('tradeListData', TradeListData)
 
                 .controller('PhotoGallery.PhotoGalleryCtrl', PhotoGalleryCtrl);
 

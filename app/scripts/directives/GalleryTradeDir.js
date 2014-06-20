@@ -1,8 +1,8 @@
 /**
  * Gallery item for Trade page
  *
- * @memberof nyxWebApp
- * @member  GalleryPhotoItem
+ * @memberof    nyxWebApp
+ * @member      TradeDir
  * @object
  *
  * @author      IlyaVF
@@ -14,10 +14,10 @@
 
     define([], function () {
 
-        var GalleryTradeItem = function () {
+        var TradeDir = function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/gallery/gallery-trade-item.tpl.html',
+                templateUrl: 'views/gallery/gallery-trade.tpl.html',
                 transclude: true,
                 scope: {
                     'trade': '=',
@@ -33,7 +33,7 @@
             };
         }
 
-        return GalleryTradeItem;
+        return TradeDir;
     });
 
 

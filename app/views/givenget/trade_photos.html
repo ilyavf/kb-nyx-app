@@ -1,13 +1,15 @@
 <nx-gallery>
 
-    <nx-trade-item ng-repeat="cluster in items" data-trade="cluster">
-        <nx-cluster-item data-cluster="cluster"
+    <nx-trade ng-repeat="trade in items" data-trade="trade">
+        <nx-cluster-item data-cluster="trade"
                          on-click="selectItem"
                          on-dbl-click="gotoGallery"
-                         ng-if="cluster.items.length > 0"
+                         ng-if="trade.items.length > 0"
                 ></nx-cluster-item>
-        <nx-trade-user-item ng-repeat="userItem in cluster.items">{{userItem.id}} for user</nx-trade-user-item>
-    </nx-trade-item>
+
+        <nx-tradee ng-repeat="tradee in trade.tradees">{{tradee.name}} for user</nx-tradee>
+
+    </nx-trade>
 </nx-gallery>
 
 <div ng-if="loading" class="page-loading"></div>
