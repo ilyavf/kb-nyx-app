@@ -1,14 +1,14 @@
 <div class="header-title"><strong>Album Name:</strong> {{title}} ({{totalItems}})</div>
 
 <nx-gallery>
-    <nx-photo-item ng-repeat="item in items"
+    <nx-photo ng-repeat="item in items"
                 data-item="item"
                 data-title="item.title || item.filenameOriginal"
                 data-url="item.thumbnail"
                 data-date="item.dateTaken"
                 on-click="selectItem"
                 on-dbl-click="openLightbox"
-    ></nx-photo-item>
+    ></nx-photo>
 </nx-gallery>
 
 <div ng-if="loading" class="page-loading"></div>

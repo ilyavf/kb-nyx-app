@@ -15,10 +15,10 @@
     define([], function () {
 
         // Require $route service since there is no ng-view initially on the index page.
-        var GalleryClusterItem = function () {
+        var GalleryClusterDir = function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/gallery/gallery-cluster-item.tpl.html',
+                templateUrl: 'views/gallery/gallery-cluster.tpl.html',
                 //transclude: true,
                 scope: {
                     'cluster': '=',
@@ -54,7 +54,7 @@
             };
         }
 
-        return GalleryClusterItem;
+        return GalleryClusterDir;
     });
 
 

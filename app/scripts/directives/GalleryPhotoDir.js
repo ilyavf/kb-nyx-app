@@ -15,10 +15,10 @@
     define([], function () {
 
         // Require $route service since there is no ng-view initially on the index page.
-        var GalleryPhotoItem = function () {
+        var GalleryPhotoDir = function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/gallery/gallery-photo-item.tpl.html',
+                templateUrl: 'views/gallery/gallery-photo.tpl.html',
                 //transclude: true,
                 scope: {
                     'item': '=',
@@ -34,7 +34,7 @@
             };
         }
 
-        return GalleryPhotoItem;
+        return GalleryPhotoDir;
     });
 
 
