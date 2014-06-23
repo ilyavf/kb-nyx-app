@@ -19,7 +19,6 @@
             return {
                 restrict: 'E',
                 templateUrl: 'views/gallery/gallery-photo.tpl.html',
-                //transclude: true,
                 scope: {
                     'item': '=',
                     'title': '=',

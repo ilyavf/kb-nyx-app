@@ -27,12 +27,11 @@
 
     <!-- Add your site or application content here -->
     <div ng-controller="MainCtrl">
-        <div class="animate-switch-container"
-             ng-switch on="state">
-            <div class="animate-switch" ng-switch-when="anonymous">
+        <div ng-switch on="state" class="animate-switch-container">
+            <div ng-switch-when="anonymous" class="animate-switch">
                 <div ng-include="'views/anonymous_page.html'"></div>
             </div>
-            <div class="animate-switch auth" ng-switch-when="authorized">
+            <div ng-switch-when="authorized" class="animate-switch auth">
                 <div ng-include="'views/authorized_page.html'"></div>
             </div>
         </div>

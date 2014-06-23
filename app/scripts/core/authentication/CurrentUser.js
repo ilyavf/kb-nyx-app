@@ -138,12 +138,12 @@
 
             // Public API here:
             return {
+                login: login,
+                logout: logout,
+                loadProfile: loadProfile,
                 get: function () {
                     // should this return a new promise every time when the prev is unsuccessful or it was redefined by user?
                     return userDeferred.promise;
-                },
-                set: function (user) {
-
                 },
                 isLoggedIn: function () {
                     return isLoggedIn;
@@ -167,10 +167,7 @@
                         deferred.reject();
                     }
                     return deferred.promise;
-                },
-                login: login,
-                logout: logout,
-                loadProfile: loadProfile
+                }
             };
         };
 

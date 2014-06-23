@@ -19,7 +19,6 @@
             return {
                 restrict: 'E',
                 templateUrl: 'views/gallery/gallery-cluster.tpl.html',
-                //transclude: true,
                 scope: {
                     'cluster': '=',
                     'click': '=onClick',
