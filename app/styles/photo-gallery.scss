@@ -161,7 +161,7 @@ $border-color-dark:  #101010;
       border-top: 3px $border-color-dark solid;
       margin-bottom: 30px;
 
-      .title {
+      .trade-title {
         text-align: center;
         border-bottom: 1px $border-color solid;
         padding: 5px;
@@ -187,6 +187,10 @@ $border-color-dark:  #101010;
       .content {
         border: 1px solid $border-color;
         padding: 5px 20px;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 1.1em;
       }
     }
 

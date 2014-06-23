@@ -33,12 +33,14 @@ module.exports = {
             "tradees": [{
                 "name": "Kevin",
                 "userId": "12345",
-                "given": 2,
+                "given": 0,
+                "received": 1,
                 "status": "pending"
             },{
                 "name": "Martin",
                 "userId": "12345",
                 "given": 2,
+                "received": 10,
                 "status": "completed"
             }]
         },{

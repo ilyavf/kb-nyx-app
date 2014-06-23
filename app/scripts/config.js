@@ -4,8 +4,8 @@
 
 (function (global) {
     var cfg = {
-        opServer: 'dev.kooboodle.com',
-        zeusServer: 'zdev.kooboodle.com'
+        opServer: 'qa.kooboodle.com',
+        zeusServer: 'zqa.kooboodle.com'
     };
 
     if (typeof exports === 'object') {

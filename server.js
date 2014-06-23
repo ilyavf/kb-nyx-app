@@ -27,8 +27,8 @@ var express = require('express'),
 
 var APP_PORT = process.env.PORT || 1337,
     APP_PORT_SECURE = process.env.PORT_SSL || 1338,
-    SSL = process.env.SSL == 'false' ? false : false,
-    MOCK_API = process.env.MOCK_API || true,
+    SSL = getEnvParam(process.env.SSL, false),
+    MOCK_API = getEnvParam(process.env.MOCK_API, true),
     app_dir = process.env.NODE_ENV === 'production' ? 'dist_prod' : 'dist',
     clientDir = path.join(__dirname, app_dir),
     ssl_dir = path.join(__dirname, '../ssl'),
@@ -90,6 +90,7 @@ if (SSL) {
 } else {
     console.log(timestamp() + 'NO SSL');
 }
+console.log('MOCK_API=' + MOCK_API);
 
 
 function logErrors(err, req, res, next) {
@@ -109,4 +110,10 @@ function mockApi (api) {
         console.log('Responding with a mocked api for ' + req.url);
         res.json(mock);
     }
+}
+function getEnvParam(param, defaultValue) {
+    return typeof param === 'undefined' ? defaultValue
+        : (typeof defaultValue === 'boolean' ?
+            (param === 'true' ? true : false)
+            : param);
 }
