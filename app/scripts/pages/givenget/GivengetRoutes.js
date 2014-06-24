@@ -37,6 +37,15 @@
                             }
                         }
                     })
+                    .when('/auth/trade/:clusterDashedTitle/:userId', {
+                        templateUrl: 'views/gallery/gallery-photo.html',
+                        controller: 'GngPage.TradeClusterCtrl',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
+                    });
             };
 
             return GivengetRouteManager;

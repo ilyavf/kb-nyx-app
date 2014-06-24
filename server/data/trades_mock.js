@@ -10,7 +10,7 @@ module.exports = {
             "aid": "1",
             "id": "1",
             "title": "Sep 5, 2001 (6AM - 8AM)",
-            "dashedTitle": "album-1",
+            "dashedTitle": "water-sports-nm",
             "totalCount": "21",
             "dateFrom": "2004-04-24T12:00",
             "dateTo": "2004-04-24T12:00",
@@ -41,7 +41,7 @@ module.exports = {
                 }]
             },{
                 "name": "Martin",
-                "userId": "12345",
+                "userId": "67890",
                 "status": "completed",
                 "given": 2,
                 "received": 10,
@@ -59,7 +59,7 @@ module.exports = {
             "title": "Album 2",
             "dateFrom": "2003-01-22T12:00",
             "dateTo": "2004-02-14T12:00",
-            "dashedTitle": "album-2",
+            "dashedTitle": "new-images",
             "totalCount": "8",
             "items": [{
                 "id": "6",
@@ -76,7 +76,7 @@ module.exports = {
             }],
             "tradees": [{
                 "name": "Bob",
-                "userId": "12345",
+                "userId": "qwerty",
                 "given": 2,
                 "status": "pending",
                 "items": [
@@ -85,7 +85,7 @@ module.exports = {
                 ]
             },{
                 "name": "Lucy",
-                "userId": "12345",
+                "userId": "asdfgh",
                 "given": 2,
                 "status": "pending"
             }]

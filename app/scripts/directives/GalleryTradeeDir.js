@@ -22,14 +22,14 @@
                 scope: {
                     'tradee': '=',
                     'total': '=',
-                    'click': '=onClick',
-                    'dblclick': '=onDblClick'
+                    'cluster': '=',
+                    'callbacks': '='
                 },
                 link: function (scope) {
                     console.log(scope.tradee.name);
                 }
             };
-        }
+        };
 
         return TradeeDir;
     });
