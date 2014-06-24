@@ -33,15 +33,25 @@ module.exports = {
             "tradees": [{
                 "name": "Kevin",
                 "userId": "12345",
+                "status": "pending",
                 "given": 0,
                 "received": 1,
-                "status": "pending"
+                "items": [{
+                    "url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592205725_28523a6332_h-3d81e1_960x250.jpg"
+                }]
             },{
                 "name": "Martin",
                 "userId": "12345",
+                "status": "completed",
                 "given": 2,
                 "received": 10,
-                "status": "completed"
+                "items": [
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592691151_f85db1a35c_h-264db7_960x250.jpg"},
+                    {"url": "http://dev.kooboodle.com/photos/1a3a889a284350003479501/base/201404/first-rate-people-gentlemens-club-17c85f_500x200.jpg"},
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592205725_28523a6332_h-3d81e1_960x250.jpg"},
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592205725_28523a6332_h-3d81e1_960x250.jpg"},
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592205725_28523a6332_h-3d81e1_960x250.jpg"}
+                ]
             }]
         },{
             "aid": "826ecad5d187f1c23d4ec000765849fb78259cd0",
@@ -68,7 +78,11 @@ module.exports = {
                 "name": "Bob",
                 "userId": "12345",
                 "given": 2,
-                "status": "pending"
+                "status": "pending",
+                "items": [
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592205725_28523a6332_h-3d81e1_960x250.jpg"},
+                    {"url": "http://dev.kooboodle.com/photos/36f47773f2a35077629836/base/201406/8592691151_f85db1a35c_h-264db7_960x250.jpg"}
+                ]
             },{
                 "name": "Lucy",
                 "userId": "12345",

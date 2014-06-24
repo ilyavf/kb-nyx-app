@@ -1,0 +1,8 @@
+<ul class="item-thumbs nyx-reset row">
+    <li class="col-xs-4 {{$index == 0 && thumbs.length < shown ? 'col-md-offset-' + (4 * (shown - thumbs.length)) : ''}}" ng-repeat="item in thumbs" ng-click="click(item)">
+        <div class="img-wrapper {{!item.url ? 'empty' : ''}}">
+            <img class="" ng-src="{{item.url}}" ng-if="item.url" />
+        </div>
+    </li>
+</ul>
+<div class="total" ng-if="total">{{total}}</div>

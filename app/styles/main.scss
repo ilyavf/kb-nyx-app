@@ -138,4 +138,8 @@ body {
     @include border-top-radius(3px);
     @include border-bottom-radius(3px);
   }
+
+  .nowrap {
+    white-space: nowrap;
+  }
 }

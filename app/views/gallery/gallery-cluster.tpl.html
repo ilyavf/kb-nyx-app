@@ -1,9 +1,10 @@
 <div class="gallery-item gallery-cluster-item col-sm-6 col-md-4 col-lg-3 {{cluster.isSelected ? 'selected' : ''}}">
-    <div class="item-wrapper row">
+    <div class="item-wrapper">
         <div class="item-cover img-wrapper">
             <img class="" ng-src="{{url}}" ng-click="click(cluster)" ng-dblclick="dblclick(dashedTitle)" />
         </div>
-        <ul class="item-thumbs nyx-reset">
+
+        <ul class="item-thumbs nyx-reset row">
             <li class="col-xs-3 " ng-repeat="item in items" ng-click="preview(item)">
                 <div class="img-wrapper {{!item.url ? 'empty' : ''}}">
                     <img class="" ng-src="{{item.url}}" ng-if="item.url" />
@@ -11,6 +12,7 @@
             </li>
         </ul>
         <div class="total">{{totalCount}}</div>
+
         <nx-editable-title class="caption" data-title="title" data-item="cluster" data-update-title="updateTitle"></nx-editable-title>
         <div class="item-date">
             {{dateFrom | date: 'MMM d, y'}} - {{dateTo | date: 'MMM d, y'}}

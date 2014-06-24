@@ -1,19 +1,22 @@
 <div class="nx-tradee-item col-sm-6 col-md-8 col-lg-9">
-    <div class="content">
-        <p class="title">{{tradee.name}}</p>
-        <p ng-if="tradee.given" class="">
-            Given: <span class="squared">{{tradee.given}}</span> |
-            Received: <span class="squared">{{tradee.received}}</span>
-        </p>
-        <p ng-if="!tradee.given">
-            You and {{tradee.name}} have photos each other may want
-        </p>
-        <p>
-            <button ng-if="tradee.given && tradee.received" type="button" class="btn btn-danger">View</button>
-            <button ng-if="!tradee.given" type="button" class="btn btn-primary">Trade</button>
-            <button ng-if="!tradee.received" type="button" class="btn btn-warning">Remind</button>
-            <button ng-if="tradee.given && tradee.given < total" type="button" class="btn btn-default">Trade More Photos</button>
-            <button ng-if="!tradee.given" type="button" class="btn btn-link">Later</button>
-        </p>
+    <div class="content row">
+        <div class="col-md-7">
+            <p class="title">{{tradee.name}}</p>
+            <p ng-if="tradee.given" class="">
+                Given: <span class="squared">{{tradee.given}}</span> |
+                Received: <span class="squared">{{tradee.received}}</span>
+            </p>
+            <p ng-if="!tradee.given" class="nowrap">
+                You and {{tradee.name}} have photos each other may want
+            </p>
+            <p class="nowrap">
+                <button ng-if="tradee.given && tradee.received" type="button" class="btn btn-danger">View</button>
+                <button ng-if="!tradee.given" type="button" class="btn btn-primary">Trade</button>
+                <button ng-if="!tradee.received" type="button" class="btn btn-warning">Remind</button>
+                <button ng-if="tradee.given && tradee.given < total" type="button" class="btn btn-default">Trade More Photos</button>
+                <button ng-if="!tradee.given" type="button" class="btn btn-link">Later</button>
+            </p>
+        </div>
+        <div ng-transclude class="col-md-5"></div>
     </div>
 </div>

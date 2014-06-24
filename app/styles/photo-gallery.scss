@@ -115,42 +115,8 @@ $border-color-dark:  #101010;
         margin-right: 45px;
       }
     }
-
-
     .item-thumbs {
-      overflow: hidden;
-      margin-bottom: 0;
-
-      li:first-child .img-wrapper {
-        margin-left: -15px;
-      }
-      li:last-child .img-wrapper {
-        margin-right: -15px;
-      }
-
-      li {
-        display: block;
-        .img-wrapper {
-          overflow: hidden;
-          height: 44px;
-          cursor: pointer;
-          @media (max-width: $screen-sm-min) {
-            height: 80px;
-          }
-          margin: 0 -14px;
-          img {
-            max-width: 250%;
-            min-width: 100%;
-          }
-
-          &.empty {
-            background: url(../images/thumb-empty.jpg) no-repeat;
-            background-size: 100% 100%;
-            cursor: default;
-            /*border: 1px #e3e6ec solid;*/
-          }
-        }
-      }
+      margin: 0;
     }
   }
 
@@ -184,10 +150,6 @@ $border-color-dark:  #101010;
   nx-tradee {
     .nx-tradee-item {
       margin: 15px 15px 0 -15px;
-      .content {
-        border: 1px solid $border-color;
-        padding: 0px 20px;
-      }
       .title {
         font-weight: bold;
         font-size: 1.1em;
@@ -197,8 +159,79 @@ $border-color-dark:  #101010;
         padding-top: 2px;
         padding-bottom: 2px;
       }
+      .content {
+        border: 1px solid $border-color;
+        padding: 0px 50px 0px 0px;
+        margin: 0px;
+
+        @media (max-width: $screen-md-min) {
+          padding-right: 0;
+          .nowrap {
+            white-space: normal;
+          }
+        }
+
+        nx-thumbs-preview {
+          .item-thumbs {
+            margin-top: 24px;
+            @media (max-width: $screen-lg-min) {
+              margin-top: 30px;
+            }
+          }
+          .img-wrapper {
+            height: 60px;
+            margin: 0 -12px;
+            @media (max-width: $screen-lg-min) {
+              height: 45px;
+            }
+          }
+          .total {
+            position: absolute;
+            right: -51px;
+            top: 50%;
+          }
+        }
+      }
     }
-
   }
+}
 
+nx-thumbs-preview {
+  .total {
+    width: 42px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background-color: $primaryColor;
+    @include border-left-radius(15px);
+  }
+}
+
+.item-thumbs {
+  overflow: hidden;
+  margin-bottom: 0;
+
+  li {
+    display: block;
+    .img-wrapper {
+      overflow: hidden;
+      height: 44px;
+      cursor: pointer;
+      @media (max-width: $screen-sm-min) {
+        height: 80px;
+      }
+      margin: 0 -14px;
+      img {
+        max-width: 250%;
+        min-width: 100%;
+      }
+
+      &.empty {
+        background: url(../images/thumb-empty.jpg) no-repeat;
+        background-size: 100% 100%;
+        cursor: default;
+      }
+    }
+  }
 }
