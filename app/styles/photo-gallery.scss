@@ -186,11 +186,16 @@ $border-color-dark:  #101010;
       margin: 15px 15px 0 -15px;
       .content {
         border: 1px solid $border-color;
-        padding: 5px 20px;
+        padding: 0px 20px;
       }
       .title {
         font-weight: bold;
         font-size: 1.1em;
+        margin-top: 10px;
+      }
+      .btn {
+        padding-top: 2px;
+        padding-bottom: 2px;
       }
     }
 
