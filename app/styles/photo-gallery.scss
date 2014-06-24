@@ -149,7 +149,10 @@ $border-color-dark:  #101010;
 
   nx-tradee {
     .nx-tradee-item {
-      margin: 15px 15px 0 -15px;
+      margin-bottom: -1px;
+      @media (min-width: $screen-sm-min) {
+        margin: 15px 15px 0 -15px;
+      }
       .title {
         font-weight: bold;
         font-size: 1.1em;
@@ -161,8 +164,12 @@ $border-color-dark:  #101010;
       }
       .content {
         border: 1px solid $border-color;
-        padding: 0px 50px 0px 0px;
-        margin: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        @media (min-width: $screen-sm-min) {
+          padding: 0px 50px 0px 0px;
+          margin: 0px;
+        }
 
         @media (max-width: $screen-md-min) {
           padding-right: 0;
