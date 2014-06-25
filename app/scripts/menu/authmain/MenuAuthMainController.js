@@ -52,7 +52,7 @@
                     code: 'find-friends'
                 },{
                     name: 'Trade Photos',
-                    code: 'trade-photos'
+                    code: 'trade'
                 }]
             },{
                 title: 'Settings',

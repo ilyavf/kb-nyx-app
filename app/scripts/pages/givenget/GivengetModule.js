@@ -13,17 +13,17 @@
     define([
         './GivengetRoutes',
         './FindFriendsController',
-        './TradePhotosController',
+        './TradeCtrl',
         './TradeClusterCtrl'
     ],
-    function (Routes, FindFriendsCtrl, TradePhotosCtrl, TradeClusterCtrl) {
+    function (Routes, FindFriendsCtrl, TradeCtrl, TradeClusterCtrl) {
         var moduleName = "Nyx.GngPage";
 
         angular
             .module(moduleName, ['ngRoute'])
             .config(Routes)
             .controller("GngPage.FindFriendsCtrl", FindFriendsCtrl)
-            .controller("GngPage.TradePhotosCtrl", TradePhotosCtrl)
+            .controller("GngPage.TradeCtrl", TradeCtrl)
             .controller("GngPage.TradeClusterCtrl", TradeClusterCtrl)
 
             // Handle global events:

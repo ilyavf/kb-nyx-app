@@ -28,9 +28,9 @@
                             }
                         }
                     })
-                    .when('/auth/trade-photos', {
-                        templateUrl: 'views/givenget/trade_photos.html',
-                        controller: 'GngPage.TradePhotosCtrl',
+                    .when('/auth/trade', {
+                        templateUrl: 'views/givenget/trade.html',
+                        controller: 'GngPage.TradeCtrl',
                         resolve: {
                             isUserAuthenticated: function (currentUser) {
                                 return currentUser.isAuthenticated();
