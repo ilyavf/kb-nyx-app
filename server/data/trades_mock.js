@@ -51,6 +51,8 @@ module.exports = {
                         "updateTime": 1403272489,
 
                         // extras:
+                        "id": "40a5ec5c34a35397926695",
+                        "name": "Martin",
                         "given": 2,
                         "received": 3,
 
@@ -82,10 +84,12 @@ module.exports = {
                         "matchUid": "40a5ec5c34a35397926695",
                         "matchClusterId": "0877b461-37eb-417f-a776-1ccb9efa924a",
                         "matchEmail": "test2@shutest.com",
-                        "matchFullname": "test2@shutest.com",
+                        "matchFullname": "Peter",
                         "updateTime": 1403272489,
 
                         // extras:
+                        "id": "40a5ec5c34a35397926695",
+                        "name": "Peter",
                         "given": 0,
                         "received": 1,
 
@@ -146,6 +150,8 @@ module.exports = {
                         "updateTime": 1403272489,
 
                         // extras:
+                        "id": "40a5ec5c34a35397926695",
+                        "name": "Lucy",
                         "given": 2,
                         "received": 0,
 
@@ -164,10 +170,12 @@ module.exports = {
                         "matchUid": "40a5ec5c34a35397926695",
                         "matchClusterId": "0877b461-37eb-417f-a776-1ccb9efa924a",
                         "matchEmail": "test2@shutest.com",
-                        "matchFullname": "test2@shutest.com",
+                        "matchFullname": "Flipper",
                         "updateTime": 1403272489,
 
                         // extras:
+                        "id": "40a5ec5c34a35397926695",
+                        "name": "Flipper",
                         "given": 0,
                         "received": 2,
 

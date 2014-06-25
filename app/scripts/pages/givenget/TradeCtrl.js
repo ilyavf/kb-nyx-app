@@ -21,25 +21,25 @@
 
             // inherit from the base class:
             GalleryBaseController($scope, $rootScope, tradeListData, viewAction);
+            $scope.next = function () {};
 
             console.log('[TradePhotosCtrl] init');
 
-            $scope.pageTitle = 'Albums';
+            $scope.pageTitle = 'Trade';
             $scope.error = '';
 
             $timeout(function () {
-                $rootScope.$broadcast('navMain:changed', 'GiveNGet', 'trade-photos');
+                $rootScope.$broadcast('navMain:changed', 'GiveNGet', 'trade');
             }, 100);
             $rootScope.$broadcast('nav:landed');
 
             // gallery:
-            tradeListData.get().then(function (albumsPage) {
-                $scope.items = albumsPage.items;
+            tradeListData.get().then(function (clusterPage) {
+                $scope.items = clusterPage.items;
                 $scope.loading = false;
-                console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
+                console.log('EVENT: action-toolbar:selectedTotal ' + clusterPage.totalItems);
                 $scope.isActionToolbarReady.then(function () {
-                    $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
-                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                    $rootScope.$broadcast('action-toolbar:selectedTotal', clusterPage.totalItems);
                 });
             }, function (error) {
                 $scope.loading = false;

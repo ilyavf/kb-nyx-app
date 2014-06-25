@@ -48,7 +48,7 @@
                     i.isSelected = false;
                 });
             };
-            $scope.$on('doc:end', $scope.next);
+            $scope.$on('doc:end', function () { $scope.next(); });
             $scope.$on('action-toolbar:selectAll', function () {
                 $scope.selectAll($scope.items);
                 $rootScope.$broadcast('action-toolbar:selected', $scope.items.length);
