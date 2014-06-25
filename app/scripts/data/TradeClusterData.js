@@ -13,18 +13,15 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define(['utils/nx-utils'], function (utils) {
 
-        var TradeClusterData = function ($location, ListData) {
-            var proto = $location.protocol(),
-                host = $location.host(),
-                port = '1337',
-                prefix = proto + '://' + host + ':' + port,
-                apiUrl = prefix + '/api/album/{albumId}/photos',
-                albumsById = {};
+        var TradeClusterData = function ($location, albumPhotosData) {
+            var addPropIfMatch = utils.addPropIfMatch,
+                _ = utils._;
 
-            return function (albumId) {
-                return albumsById[albumId] || (albumsById[albumId] = ListData(apiUrl.replace('{albumId}', albumId), 'AlbumPhotos-' + albumId), albumsById[albumId]);
+            return function (clusterId, sharedItems) {
+                sharedItems = sharedItems || [];
+                return albumPhotosData(clusterId, {preprocess: _.compose(_.map(addPropIfMatch('alreadyShared', sharedItems)), _.get('items'))});
             }
         };
 

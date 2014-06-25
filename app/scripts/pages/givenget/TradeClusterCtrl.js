@@ -23,25 +23,26 @@
             var dashedTitle = $routeParams.clusterDashedTitle,
                 tradeeId = $routeParams.userId,
                 clusterP = tradeListData.getItemByDashedTitle(dashedTitle),
-                albumPhotos;
+                clusterPhotos;
 
             $scope.loading = true;
             $scope.title = 'What photos do you want to trade?'
 
             clusterP.then(function (cluster) {
+                console.log('- cluster id = ' + cluster.id);
                 //$scope.title = cluster.title;
                 $scope.id = cluster.id;
-                albumPhotos = tradeClusterData(cluster.id);
+                clusterPhotos = tradeClusterData(cluster.id, cluster.sharedItems);
 
                 // inherit from the base class:
-                GalleryBaseController($scope, $rootScope, albumPhotos, viewAction);
+                GalleryBaseController($scope, $rootScope, clusterPhotos, viewAction);
 
-                return albumPhotos.get();
+                return clusterPhotos.get();
 
             }).then(function (photosPage) {
                 $scope.loading = false;
                 var photos = photosPage.items;
-                console.log('[TradeClusterCtrl.albumPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
+                console.log('[TradeClusterCtrl.clusterPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
                 $scope.items = photos;
                 $scope.totalItems = photosPage.totalItems || photos.length;
 

@@ -19,6 +19,12 @@
         return obj;
     });
 
+    // (propName, propValue, predicate, arr, obj)
+    utils.addPropIfMatch = _.curry(function (prop, sharedItems, obj) {
+        obj[prop] = _.reduce(function (acc, cur) { return acc || cur.id == obj.id; }, false, sharedItems);
+        return obj;
+    });
+
     if (typeof exports === 'object') {
         module.exports = utils;
     } else if (global.define) {

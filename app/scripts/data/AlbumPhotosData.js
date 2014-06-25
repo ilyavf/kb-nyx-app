@@ -23,8 +23,8 @@
                 apiUrl = prefix + '/api/album/{albumId}/photos',
                 albumsById = {};
 
-            return function (albumId) {
-                return albumsById[albumId] || (albumsById[albumId] = ListData(apiUrl.replace('{albumId}', albumId), 'AlbumPhotos-' + albumId), albumsById[albumId]);
+            return function (albumId, options) {
+                return albumsById[albumId] || (albumsById[albumId] = ListData(apiUrl.replace('{albumId}', albumId), 'AlbumPhotos-' + albumId, options), albumsById[albumId]);
             }
         };
 

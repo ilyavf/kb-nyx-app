@@ -7,7 +7,7 @@ module.exports = {
         "currentPage": 1,
         "items": [
             {
-                "cluster_id": "05740827-8ff0-46e6-aaa0-2e73c9f61f55",
+                "cluster_id": "406a289f7b3cf25dfff7f50b20b259cd8514d597",
                 "deviceIds": [
                     "test19629d42-979f-4ced-ab1f-f2e4215e31a6"
                 ],
@@ -15,6 +15,7 @@ module.exports = {
                 "endDate": 986083082,
 
                 // extras: cluster info
+                "id": "406a289f7b3cf25dfff7f50b20b259cd8514d597",
                 "title": "Sep 5, 2001 (6AM - 8AM)",
                 "dashedTitle": "water-sports-nm",
                 "totalCount": "21",
@@ -106,7 +107,7 @@ module.exports = {
             },
 
             {
-                "cluster_id": "05740827-8ff0-46e6-aaa0-2e73c9f61f55",
+                "cluster_id": "12345",
                 "deviceIds": [
                     "test19629d42-979f-4ced-ab1f-f2e4215e31a6"
                 ],
@@ -114,8 +115,9 @@ module.exports = {
                 "endDate": 986083082,
 
                 // extras: cluster info
+                "id": "12345",
                 "title": "Sep 5, 2001 (6AM - 8AM)",
-                "dashedTitle": "water-sports-nm",
+                "dashedTitle": "sep-5-2001-6am-8am",
                 "totalCount": "21",
                 "dateFrom": "2004-04-24T12:00",
                 "dateTo": "2004-04-24T12:00",
