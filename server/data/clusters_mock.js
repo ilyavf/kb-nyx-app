@@ -1,5 +1,11 @@
 module.exports = {"success": true, "result": {"currentPage": 1, "totalPages": 1, "totalItems": 6, "items": [
-    {"aid": "8ad492a86e4b04c240ecc61b6864f0683226c1b8", "name": "beauty - NM", "updateTime": 1403558943, "totalCount": 34, "count": 34, "shared": 0, "items": [
+    {"aid": "8ad492a86e4b04c240ecc61b6864f0683226c1b8",
+    "name": "beauty - NM",
+    "updateTime": 1403558943,
+    "totalCount": 34,
+    "count": 34,
+    "shared": 0, 
+    "items": [
         {"pid": "754665c3d6fbedc08a23c505e0146984ab3acdaf", "url": "http://qa.kooboodle.com/photo/754665c3d6fbedc08a23c505e0146984ab3acdaf/create/eba8f/500x200.jpg"},
         {"pid": "898165d11a8b7cb8e91955cb9b14381a9efed9f2", "url": "http://qa.kooboodle.com/photo/898165d11a8b7cb8e91955cb9b14381a9efed9f2/create/3939b/500x200.jpg"},
         {"pid": "6d2917df81e6cf6c15d5e401873e74fcd1b492a0", "url": "http://qa.kooboodle.com/photo/6d2917df81e6cf6c15d5e401873e74fcd1b492a0/create/326f7/500x200.jpg"},
