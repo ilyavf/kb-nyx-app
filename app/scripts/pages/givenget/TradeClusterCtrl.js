@@ -26,7 +26,7 @@
                 clusterPhotos;
 
             $scope.loading = true;
-            $scope.title = 'What photos do you want to trade?'
+            $scope.title = false;
 
             clusterP.then(function (cluster) {
                 console.log('- cluster id = ' + cluster.id);
@@ -48,6 +48,17 @@
 
                 console.log('EVENT: action-toolbar:selectedTotal ' + photosPage.totalItems);
                 $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:config', {
+                        title: 'What photos do you want to trade?',
+                        send: true,
+                        back: false,
+                        sort: false,
+                        info: false,
+                        view: false,
+                        share: false,
+                        logout: false,
+                        help: false
+                    });
                     $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
                     $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                 });

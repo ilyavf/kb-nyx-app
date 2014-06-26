@@ -29,6 +29,20 @@
                 link: function (scope, element, attrs) {
                     scope.$emit('action-toolbar:ready');
                     console.log('DIRECTIVE ActionToolbarDir.link');
+
+                    scope.shareVisible = true;
+                    scope.viewVisible = true;
+                    scope.titleVisible = false;
+                    scope.sortVisible = true;
+                    scope.shareVisible = true;
+                    scope.sendVisible = false;
+                    scope.helpVisible = true;
+                    scope.logoutVisible = true;
+
+                    var config = scope.configStr.split(',').map(function(i){ return 'is' + i[0].toUpperCase() + i.slice(1,i.length) + 'Visible';});
+                    config.forEach(function (i) { scope[i] = true; });
+
+
                     scope.$on('action-toolbar:selectedTotal', function (e, total) {
                         scope.selectedFromTotal = total;
                         console.log('ON EVENT action-toolbar:selectedTotal ' + total, arguments );
@@ -36,9 +50,12 @@
                     scope.$on('action-toolbar:selected', function (event, selected) {
                         scope.selectedMnt = selected;
                     });
+                    scope.$on('action-toolbar:config', function (event, config) {
+                        angular.forEach(config, function (val, key) {
+                            scope[key + 'Visible'] = val;
+                        });
+                    });
 
-                    var config = scope.configStr.split(',').map(function(i){ return 'is' + i[0].toUpperCase() + i.slice(1,i.length) + 'Visible';});
-                    config.forEach(function (i) { scope[i] = true; });
                     scope.shareAction = function () {
                       //$rootScope.$broadcast('action-toolbar:share');
                     };
@@ -59,9 +76,9 @@
                     scope.logout = function () {
                         scope.$emit('user:dologout');
                     };
-                    scope.share = function () {
-                        scope.$emit('broadcast', 'action-toolbar:share');
-                    };
+                    scope.btnClick = function (action) {
+                        scope.$emit('broadcast', 'action-toolbar:' + action);
+                    }
                 }
             };
         }

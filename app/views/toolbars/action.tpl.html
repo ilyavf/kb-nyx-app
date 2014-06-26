@@ -23,17 +23,19 @@
 
         <div class="collapse navbar-collapse navbar-collapse-action-toolbar">
 
-            <ul class="nav navbar-nav col-sm-3 col-md-3 col-lg-2 col-xs-12 hidden-xs">
+            <ul ng-if="isLogoVisible || backVisible" class="nav navbar-nav col-sm-3 col-md-3 col-lg-2 col-xs-12 hidden-xs">
                 <li ng-if="isLogoVisible" class="logo">
                     <img src="images/logo.png" /> <img src="images/kooboodle.png" />
                 </li>
-                <li>
+                <li ng-if="backVisible">
                     <a ng-click="goBack()" ng-if="isBackVisible"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
                 </li>
             </ul>
 
+
             <ul class="nav navbar-nav">
-                <li class="dropdown">
+                <li ng-if="titleVisible" class="navbar-text title">{{titleVisible}}</li>
+                <li ng-if="sortVisible" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         Sort by <span class="caret"></span>
                     </a>
@@ -52,12 +54,12 @@
                         <li><a href="#">Descending</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a ng-click="share()">
+                <li ng-if="shareVisible">
+                    <a ng-click="btnClick('share')">
                         <span class="glyphicon glyphicon-share-alt"></span> Share
                     </a>
                 </li>
-                <li class="{{selectedMnt != 1 ? 'disabled' : ''}}">
+                <li ng-if="viewVisible" class="{{selectedMnt != 1 ? 'disabled' : ''}}">
                     <a ng-click="view()">
                         <span class="glyphicon glyphicon-eye-open"></span> View
                     </a>
@@ -68,11 +70,25 @@
                 <li ng-if="selectedFromTotal > 0" class="navbar-text hidden-xs">Selected {{selectedMnt || 0}}/{{selectedFromTotal}}</li>
                 <li><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
                 <li><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
-                <li>
+
+                <li ng-if="sendVisible">
+                    &nbsp;&nbsp;&nbsp;
+                    <button ng-click="btnClick('send')" type="button" class="navbar-btn btn btn-default">
+                        Cancel
+                    </button>
+                </li>
+                <li ng-if="sendVisible">
+                    &nbsp;&nbsp;&nbsp;
+                    <button ng-click="btnClick('send')" type="button" class="navbar-btn btn btn-primary">
+                        <span class="glyphicon glyphicon-send"></span> Send
+                    </button>
+                </li>
+
+                <li ng-if="helpVisible">
                     <a ng-click="help()" ><span class="glyphicon glyphicon-question-sign"></span></a>
                     <span ng-transclude></span>
                 </li>
-                <li>
+                <li ng-if="logoutVisible">
                     <a ng-click="openSignInModal()">
                         <span class="glyphicon glyphicon-log-out hidden-xs"></span>
                         <span class="visible-xs">Logout</span>

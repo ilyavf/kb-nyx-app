@@ -240,6 +240,17 @@
 }
 
 nx-action-toolbar {
+
+  .title {
+    color: $tertiary;
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
+
+  .navbar-nav.navbar-right:last-child {
+    margin-right: 15px;
+  }
+
   @media (max-width: $screen-sm-min) {
     .navbar-collapse {
       width: 150px;
