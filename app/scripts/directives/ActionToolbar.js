@@ -59,8 +59,9 @@
                     scope.shareAction = function () {
                       //$rootScope.$broadcast('action-toolbar:share');
                     };
-                    scope.goBack = function () {
-                        scope.$emit('action-toolbar:goBack');
+                    scope.goBack = function (levels) {
+                        levels = levels || 1;
+                        scope.$emit('action-toolbar:goBack', levels);
                     };
                     scope.view = function () {
                         if (scope.selectedMnt == 1) {

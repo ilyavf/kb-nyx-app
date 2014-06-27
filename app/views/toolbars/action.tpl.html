@@ -71,9 +71,9 @@
                 <li><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
                 <li><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
 
-                <li ng-if="sendVisible">
+                <li ng-if="cancelVisible">
                     &nbsp;&nbsp;&nbsp;
-                    <button ng-click="btnClick('send')" type="button" class="navbar-btn btn btn-default">
+                    <button ng-click="goBack(cancelVisible)" type="button" class="navbar-btn btn btn-default">
                         Cancel
                     </button>
                 </li>

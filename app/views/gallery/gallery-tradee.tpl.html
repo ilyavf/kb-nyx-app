@@ -11,9 +11,9 @@
             </p>
             <p class="nowrap">
                 <button ng-if="tradee.given && tradee.received" type="button" class="btn btn-danger">View</button>
-                <a ng-if="!tradee.given" href="#/auth/trade/{{cluster}}/{{tradee.id}}" ng-click="trade(cluster, tradee.id)" type="button" class="btn btn-primary">Trade</a>
+                <a ng-if="!tradee.given" href="#/auth/trade/{{cluster}}/{{tradee.id}}" type="button" class="btn btn-primary">Trade</a>
                 <button ng-if="!tradee.received" type="button" class="btn btn-warning">Remind</button>
-                <button ng-if="tradee.given && tradee.given < total" ng-click="trade(cluster, tradee.id)" type="button" class="btn btn-default">Trade More Photos</button>
+                <a ng-if="tradee.given && tradee.given < total" href="#/auth/trade/{{cluster}}/{{tradee.id}}" type="button" class="btn btn-default">Trade More Photos</a>
                 <button ng-if="!tradee.given" type="button" class="btn btn-link">Later</button>
             </p>
         </div>

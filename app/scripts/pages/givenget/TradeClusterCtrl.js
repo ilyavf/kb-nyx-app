@@ -51,6 +51,7 @@
                     $rootScope.$broadcast('action-toolbar:config', {
                         title: 'What photos do you want to trade?',
                         send: true,
+                        cancel: 2,
                         back: false,
                         sort: false,
                         info: false,

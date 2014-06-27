@@ -68,9 +68,13 @@
                 console.log('[MainController] EVENT action-toolbar:ready');
                 isActionToolbarReady.resolve();
             });
-            $rootScope.$on('action-toolbar:goBack', function () {
-                console.log('[MainController] EVENT action-toolbar:goBack');
-                $location.path($location.path().match(/(.*)\/[\w]+/)[1]);
+            $rootScope.$on('action-toolbar:goBack', function (event, levels) {
+                levels = parseInt(levels);
+                levels = typeof levels === 'number' && !isNaN(levels) ? levels : 1;
+                console.log('[MainController] EVENT action-toolbar:goBack by ' + levels);
+                var re = new RegExp("(.*)(\\/[^\\/]+){" + levels + "}"),
+                    pathMatches = $location.path().match(re);
+                pathMatches && pathMatches[1] && $location.path(pathMatches[1]);
             });
             $scope.$on('broadcast', function (event, eventName) {
                 console.log('[MainController] EVENT broadcast: ' + eventName);
