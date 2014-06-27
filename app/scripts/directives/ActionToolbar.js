@@ -30,7 +30,7 @@
                     scope.$emit('action-toolbar:ready');
                     console.log('DIRECTIVE ActionToolbarDir.link');
 
-                    scope.shareVisible = true;
+                    scope.backVisible = true;
                     scope.viewVisible = true;
                     scope.titleVisible = false;
                     scope.sortVisible = true;
