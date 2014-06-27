@@ -1,4 +1,4 @@
-<div class="gallery-item gallery-item-simple col-sm-4 col-md-3 col-lg-2 {{item.isSelected ? 'selected' : ''}}">
+<div class="gallery-item gallery-item-simple col-sm-4 col-md-3 col-lg-2 {{item.isSelected ? 'selected' : ''}} {{item.alreadyShared ? 'shared' : ''}} ">
     <div class="item-wrapper row">
         <div class="item-cover img-wrapper">
             <img ng-src="{{url}}" ng-click="click(item)" ng-dblclick="dblclick(item.id)" />
@@ -7,8 +7,8 @@
         <div class="item-date">
             {{date * 1000 | date: 'medium'}}
         </div>
-        <div class="nx-selected-icon" ng-click="click(item)" ng-dblclick="dblclick(item.id)" >
-            <span class="glyphicon glyphicon-ok-sign"></span>
-        </div>
+        <button class="nx-{{item.alreadyShared ? 'shared' : 'selected'}}-icon" ng-disabled="item.alreadyShared" ng-click="click(item)" ng-dblclick="dblclick(item.id)">
+            <span class="glyphicon glyphicon-{{item.alreadyShared ? 'send' : 'ok-sign'}}"></span>
+        </button>
     </div>
 </div>
