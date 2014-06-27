@@ -15,6 +15,7 @@
     define([
         'gallery/GalleryBaseController'
     ], function (GalleryBaseController) {
+        var _ = ramda;
 
         var TradeClusterCtrl = function ($scope, $routeParams, $rootScope, tradeListData, tradeClusterData, galleryRx) {
 
@@ -29,10 +30,10 @@
             $scope.title = false;
 
             clusterP.then(function (cluster) {
-                console.log('- cluster id = ' + cluster.id);
-                //$scope.title = cluster.title;
                 $scope.id = cluster.id;
-                clusterPhotos = tradeClusterData(cluster.id, cluster.sharedItems);
+                var sharedItems = _.compose(_.get('sharedItems'), _.find(_.where({id: tradeeId})), _.get('matches'))(cluster);
+                console.log('- cluster id = ' + cluster.id + ', sharedItems: ' + sharedItems);
+                clusterPhotos = tradeClusterData(cluster.id, sharedItems);
 
                 // inherit from the base class:
                 GalleryBaseController($scope, $rootScope, clusterPhotos, viewAction);

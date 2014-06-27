@@ -60,9 +60,9 @@ module.exports = {
                         "itemsToShare": [], // ???
                         "sharedItems": [
                             {
-                                "pid": "fd642a4d46694855b7f7f6e2a0ff7a7e",
+                                "id": "241a7e9c73efc1e7d433ab383710da5d14d8a9b4",
                             },{
-                                "pid": "5577509ff48e4d72b94448464d6f907e",
+                                "id": "3b5d661f12e3a8d543a5374de028e3128a361ef1",
                             }
                         ],
                         "receivedItems": [

@@ -1,7 +1,7 @@
 <div ng-if="title" class="header-title">{{title}} ({{totalItems}})</div>
 
 <nx-gallery>
-    <nx-photo ng-repeat="item in items"
+    <nx-photo ng-repeat="item in items | orderBy:'alreadyShared'"
                 data-item="item"
                 data-title="item.title || item.filenameOriginal"
                 data-url="item.thumbnail"
