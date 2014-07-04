@@ -59,6 +59,7 @@ app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServe
 app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
 app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
 app.get('/api/trades', MOCK_API || true ? mockApi('trades') : photoApi.getClusters);
+app.get('/zeus/recommendations', mockApi('zeus/recommendations'));
 
 app.all('/', function(req, res) {
     res.sendfile(path.join(clientDir, 'index.html'));

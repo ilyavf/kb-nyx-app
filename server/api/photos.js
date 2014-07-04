@@ -162,7 +162,7 @@ function proxyTo (url, headers, resultParseFunc) {
     }, function (error, res, body) {
         if (!error) {
             var result = resultParseFunc && resultParseFunc(JSON.parse(body).result) || JSON.parse(body).result;
-            console.log('[.proxyTo] url=' + url + (result.join ? result.length + ': items' : ''), result);
+            console.log('[.proxyTo] url=' + url + (result.join ? result.length + ': items' : ''));
             deferred.resolve(result);
         } else {
             console.log('ERROR: [.proxyTo] url=' + url, error);
