@@ -25,5 +25,8 @@ module.exports = {
         return a;
     },
     log2: log2,
-    log3: log3
+    log3: log3,
+    arrUnit: function (a) {
+        return [a];
+    }
 };

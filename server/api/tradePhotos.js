@@ -26,7 +26,7 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
 
 var getTrades = function (req, res) {
 
-    promiseGet(_.prop('result'), {Cookie:'EpiSession=92bd55f471400a85b38322f3ffc8ccb9'},
+    promiseGet(_.prop('result'), {Cookie:'EpiSession=d5e7007c98cbf109805e4e0dc80bedf8'},
         'http://zdev.kooboodle.com/recommendation?currentPage=1'
     )
         .then(log3('number of clusters', _.size))
@@ -43,21 +43,24 @@ var getTrades = function (req, res) {
                 log3('url promises flatten', _.size),
                 _.flatten,                          // >>> array(promises)
                 _.map(_.map(getUrlPromiseByPid)),   // >>> array(array(promises)
-                _.map(_.prop('thumbs'))             // >>> array(array({pid})
+                _.map(_.prop('items'))             // >>> array(array({pid})
             )(clusters).then(addThumbUrlsToCluster(clusters))
         })
         //.then(log2('result after addPropFn'))
-        .then(log3('result after addPropFn', _.map(_.prop('thumbs'))))
+        .then(log3('result after addPropFn', _.map(_.prop('items'))))
 
         .then(_.map(addMatchesFromCluster))
 
-        .then(_.map(_.pick(['id','clusterId','thumbs','matches','timestamp'])))
+        .then(_.map(_.pick(['id','clusterId','items','matches','timestamp'])))
 
         .then(function (tradeClusters) {
             res.json({
                 error: 0,
                 success: true,
-                result: tradeClusters
+                result: {
+                    currentPage: 1,
+                    items: tradeClusters
+                }
             });
         })
 
@@ -83,14 +86,14 @@ var reversedFind = _.curry(function (list, fn, obj) {
     return _.find(fn(obj), list);
 });
 
-var addThumbsFromItems = addPropFn('thumbs', _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare')));
+var addThumbsFromItems = addPropFn('items', _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare')));
 
-var addMatchesFromCluster = addPropFn('matches', _.pick(['matchUid','matchClusterId','matchEmail','matchFullname','matchType', 'itemsToShare']));
+var addMatchesFromCluster = addPropFn('matches', _.compose(utils.arrUnit, _.pick(['matchUid','matchClusterId','matchEmail','matchFullname','matchType', 'itemsToShare'])));
 
 var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 
 var addThumbUrlsToCluster = _.curry(function (clusters, urlPromises) {
-    _.map(_.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('thumbs')))(clusters);
+    _.map(_.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('items')))(clusters);
     return clusters;
 });
 
