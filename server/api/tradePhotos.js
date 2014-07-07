@@ -49,6 +49,10 @@ var getTrades = function (req, res) {
         //.then(log2('result after addPropFn'))
         .then(log3('result after addPropFn', _.map(_.prop('thumbs'))))
 
+        .then(_.map(addMatchesFromCluster))
+
+        .then(_.map(_.pick(['id','clusterId','thumbs','matches','timestamp'])))
+
         .then(function (tradeClusters) {
             res.json({
                 error: 0,
@@ -80,6 +84,8 @@ var reversedFind = _.curry(function (list, fn, obj) {
 });
 
 var addThumbsFromItems = addPropFn('thumbs', _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare')));
+
+var addMatchesFromCluster = addPropFn('matches', _.pick(['matchUid','matchClusterId','matchEmail','matchFullname','matchType', 'itemsToShare']));
 
 var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 
