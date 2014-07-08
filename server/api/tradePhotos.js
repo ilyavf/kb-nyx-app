@@ -26,7 +26,7 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
 
 var getTrades = function (req, res) {
 
-    promiseGet(_.prop('result'), {Cookie:'EpiSession=d5e7007c98cbf109805e4e0dc80bedf8'},
+    promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
         'http://zdev.kooboodle.com/recommendation?currentPage=1'
     )
         .then(log3('number of clusters', _.size))
@@ -51,7 +51,7 @@ var getTrades = function (req, res) {
 
         .then(_.map(addMatchesFromCluster))
 
-        .then(_.map(_.pick(['id','clusterId','items','matches','timestamp'])))
+        .then(_.map(_.pick(['id','cluster_id','items','matches','timestamp'])))
 
         .then(function (tradeClusters) {
             res.json({
