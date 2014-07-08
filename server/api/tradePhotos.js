@@ -87,6 +87,8 @@ var getTrades = function (req, res) {
                 )
             )
         )
+        .then(_.map(addPropFn('title', getTitleFromDates)))
+        .then(_.map(addPropFn('dashedTitle', getDashedTitleFromDates)))
 
         .then(function (tradeClusters) {
             res.json({
@@ -132,6 +134,13 @@ var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 var addThumbUrlsToCluster = _.curry(function (clusters, urlPromises) {
     _.map(_.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('items')))(clusters);
     return clusters;
+});
+
+var getTitleFromDates = _.curry(function (obj) {
+    return new Date(obj.startDate * 1000).toDateString() + ' - ' + new Date(obj.startDate * 1000).toDateString();
+});
+var getDashedTitleFromDates = _.curry(function (obj) {
+    return getTitleFromDates(obj).replace(/\s/g,'-').replace(/[-]+/g,'-');
 });
 
 
