@@ -13,6 +13,10 @@ var log3 = _.curry(function (msg, fn, a) {
     return a;
 });
 
+var size = function (arr) {
+    return arr && arr.length || 0;
+}
+
 module.exports = {
     ts: function timestamp () {
         return '[' + new Date().toJSON().replace('T',' ').replace(/.{5}$/,'') + '] ';
@@ -28,5 +32,6 @@ module.exports = {
     log3: log3,
     arrUnit: function (a) {
         return [a];
-    }
+    },
+    size: size
 };

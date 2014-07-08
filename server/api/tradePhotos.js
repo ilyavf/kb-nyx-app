@@ -5,6 +5,7 @@ var request = require('request'),
     log = utils.log,
     log2 = utils.log2,
     log3 = utils.log3,
+    size = utils.size,
     promiseGet = require('./promiseReq').get,
 
     cfg = require('../../app/scripts/config');
@@ -73,6 +74,19 @@ var getTrades = function (req, res) {
             )(clusters).then(addThumbUrlsToCluster(clusters))
         })
         .then(log3('result after addPropFn', _.map(_.prop('items'))))
+
+        .then(
+            _.map(
+                addPropFn(
+                    'totalCount',
+                    _.fork(
+                        _.add,
+                        _.compose(size, _.prop('itemsShared'), _.head, _.prop('matches')),
+                        _.compose(size, _.prop('itemsToShare'), _.head, _.prop('matches'))
+                    )
+                )
+            )
+        )
 
         .then(function (tradeClusters) {
             res.json({

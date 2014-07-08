@@ -20,13 +20,15 @@
                 templateUrl: 'views/gallery/gallery-tradee.tpl.html',
                 transclude: true,
                 scope: {
-                    'tradee': '=',
+                    'name': '=',
+                    'given': '=',
+                    'received': '=',
                     'total': '=',
                     'cluster': '=',
                     'callbacks': '='
                 },
                 link: function (scope) {
-                    console.log(scope.tradee.name);
+                    console.log(scope.name);0
                 }
             };
         };

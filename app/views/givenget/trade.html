@@ -2,8 +2,13 @@
 
     <nx-trade ng-repeat="trade in items" data-trade="trade">
         <nx-cluster data-cluster="trade" ng-if="trade.items.length > 0"></nx-cluster>
-        <nx-tradee ng-repeat="tradee in trade.matches" data-tradee="tradee" data-total="trade.totalCount" data-cluster="trade.dashedTitle">
-            <nx-thumbs-preview data-items="tradee.receivedItems" data-total="tradee.received" data-shown="3" class="hidden-sm hidden-xs"></nx-thumbs-preview>
+        <nx-tradee ng-repeat="tradee in trade.matches"
+                   data-name="tradee.matchFullname"
+                   data-given="tradee.itemsShared.length"
+                   data-received="tradee.itemsReceived.length"
+                   data-total="trade.totalCount"
+                   data-cluster="trade.dashedTitle">
+            <nx-thumbs-preview data-items="tradee.itemsReceived" data-total="tradee.received" data-shown="3" class="hidden-sm hidden-xs"></nx-thumbs-preview>
         </nx-tradee>
     </nx-trade>
 </nx-gallery>
