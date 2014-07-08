@@ -26,6 +26,17 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
 
 var getTrades = function (req, res) {
 
+    /* refactor:
+    pipe(merge([
+            getRecommendations(url1, cookies, normalize),
+            getTrades(url2, cookies)
+        ]),
+
+        addItemsFromMatches,
+        getItemsUrls
+     );
+     */
+
     // get recommendations:
     promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
         'http://' + cfg.zeusServer + '/recommendation?currentPage=1'
@@ -41,6 +52,7 @@ var getTrades = function (req, res) {
 
         // get trades and merge with recommendations:
         .then(function (recommendations) {
+
             return promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
                 'http://' + cfg.zeusServer + '/trade?currentPage=1'
             ).then(function (trades) {
