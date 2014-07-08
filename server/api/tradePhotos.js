@@ -26,17 +26,31 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
 
 var getTrades = function (req, res) {
 
+    // get recommendations:
     promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
-        'http://zdev.kooboodle.com/recommendation?currentPage=1'
+        'http://' + cfg.zeusServer + '/recommendation?currentPage=1'
     )
         .then(log3('number of clusters', _.size))
-        //.then(log3('1st cluster', _.head))
         .then(log3('id of the 1st cluster', _.compose(_.prop('clusterId'), _.head)))
         .then(log3('number of itemsToShare by cluster', _.map(_.compose(_.size, _.prop('itemsToShare')))))
 
+        // normalize structure:
+        .then(_.map(addPropFn('recommendation_id', _.prop('id'))))
+        .then(_.map(addMatchesFromCluster))
+        .then(_.map(_.pick(['recommendation_id','cluster_id','matches','timestamp','startDate','endDate'])))
+
+        // get trades and merge with recommendations:
+        .then(function (recommendations) {
+            return promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
+                'http://' + cfg.zeusServer + '/trade?currentPage=1'
+            ).then(function (trades) {
+                log('trades: ' + trades.length);
+                return recommendations.concat(trades);
+            });
+        })
+
         // for each cluster copy 1st five itemsToShare to items (only pid property):
         .then(_.map(addThumbsFromItems))
-
         .then(function (clusters) {
             return _.compose(
                 Q.all,
@@ -46,12 +60,7 @@ var getTrades = function (req, res) {
                 _.map(_.prop('items'))             // >>> array(array({pid})
             )(clusters).then(addThumbUrlsToCluster(clusters))
         })
-        //.then(log2('result after addPropFn'))
         .then(log3('result after addPropFn', _.map(_.prop('items'))))
-
-        .then(_.map(addMatchesFromCluster))
-
-        .then(_.map(_.pick(['id','cluster_id','items','matches','timestamp'])))
 
         .then(function (tradeClusters) {
             res.json({
@@ -86,7 +95,9 @@ var reversedFind = _.curry(function (list, fn, obj) {
     return _.find(fn(obj), list);
 });
 
-var addThumbsFromItems = addPropFn('items', _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare')));
+var addThumbsFromItems = addPropFn('items',
+    _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare'), _.head, _.prop('matches'))
+);
 
 var addMatchesFromCluster = addPropFn('matches', _.compose(utils.arrUnit, _.pick(['matchUid','matchClusterId','matchEmail','matchFullname','matchType', 'itemsToShare'])));
 
