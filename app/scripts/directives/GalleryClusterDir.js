@@ -21,6 +21,7 @@
                 templateUrl: 'views/gallery/gallery-cluster.tpl.html',
                 scope: {
                     'cluster': '=',
+                    'totalLabel': '=',
                     'click': '=onClick',
                     'dblclick': '=onDblClick'
                 },

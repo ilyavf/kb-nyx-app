@@ -125,6 +125,7 @@ $border-color-dark:  #101010;
       .total {
         float: right;
         margin-top: 10px;
+        margin-bottom: 10px;
         width: 42px;
         height: 30px;
         line-height: 30px;
@@ -132,6 +133,14 @@ $border-color-dark:  #101010;
         color: white;
         background-color: $primaryColor;
         @include border-left-radius(15px);
+      }
+      .total-label {
+        color: $primaryColor;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        height: 30px;
+        line-height: 30px;
       }
       .item-date {
         margin-right: 45px;

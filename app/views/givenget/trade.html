@@ -1,7 +1,7 @@
 <nx-gallery>
 
     <nx-trade ng-repeat="trade in items" data-trade="trade">
-        <nx-cluster data-cluster="trade" ng-if="trade.items.length > 0"></nx-cluster>
+        <nx-cluster data-cluster="trade" data-total-label="'Total photos in the album:'" ng-if="trade.items.length > 0"></nx-cluster>
         <nx-tradee ng-repeat="tradee in trade.matches"
                    data-name="tradee.matchFullname"
                    data-given="tradee.itemsShared.length"

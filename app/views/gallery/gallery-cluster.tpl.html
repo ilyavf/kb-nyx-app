@@ -11,12 +11,16 @@
                 </div>
             </li>
         </ul>
+
         <div class="total">{{totalCount}}</div>
 
-        <nx-editable-title class="caption" data-title="title" data-item="cluster" data-update-title="updateTitle"></nx-editable-title>
-        <div class="item-date">
+        <div ng-if="totalLabel" class="total-label">{{totalLabel}}</div>
+
+        <nx-editable-title ng-if="!totalLabel" class="caption" data-title="title" data-item="cluster" data-update-title="updateTitle"></nx-editable-title>
+        <div ng-if="!totalLabel" class="item-date">
             {{dateFrom | date: 'MMM d, y'}} - {{dateTo | date: 'MMM d, y'}}
         </div>
+
         <button class="nx-selected-icon" ng-click="click(cluster)" ng-dblclick="dblclick(dashedTitle)" >
             <span class="glyphicon glyphicon-ok-sign"></span>
         </button>
