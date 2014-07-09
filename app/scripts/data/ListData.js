@@ -46,7 +46,7 @@
                     })
                     .success(function(data, status, headers, config) {
                         $log.log('[ClusterListData.getPage]: received', arguments);
-                        if (data.success) {
+                        if (!data.error) {
                             $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
                             options && options.preprocess && options.preprocess(data.result);
                             pagesDeferred[pageNumber].resolve(
@@ -56,7 +56,7 @@
                         } else {
                             console.log('Response is unsuccessful.', data);
                             pagesDeferred[pageNumber].reject({
-                                success: false,
+                                error: 1,
                                 message: data.message || 'Unknown error'
                             });
                         }
@@ -64,7 +64,7 @@
                     .error(function(data, status, headers, config) {
                         $log.error('[ClusterListData.getPage]: error', arguments);
                         pagesDeferred[pageNumber].reject({
-                                success: false,
+                                error: 1,
                                 data: data.result,
                                 message: data.message || 'Error while trying to load cluster list'}
                         );

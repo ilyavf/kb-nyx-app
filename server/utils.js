@@ -1,4 +1,5 @@
-var _ = require('ramda');
+var _ = require('ramda'),
+    nxutils = require('../app/scripts/utils/nx-utils');
 
 var log2 = _.curry(function (msg, a) {
     if (typeof a === 'object')
@@ -17,7 +18,7 @@ var size = function (arr) {
     return arr && arr.length || 0;
 }
 
-module.exports = {
+module.exports = _.mixin(nxutils, {
     ts: function timestamp () {
         return '[' + new Date().toJSON().replace('T',' ').replace(/.{5}$/,'') + '] ';
     },
@@ -33,5 +34,10 @@ module.exports = {
     arrUnit: function (a) {
         return [a];
     },
+    resultUnit: function (data) {
+        return {
+            result: data
+        };
+    },
     size: size
-};
+});

@@ -4,7 +4,7 @@
     <nx-photo ng-repeat="item in items | orderBy:'alreadyShared'"
                 data-item="item"
                 data-title="item.title || item.filenameOriginal"
-                data-url="item.thumbnail"
+                data-url="item.url"
                 data-date="item.dateTaken"
                 on-click="selectItem"
                 on-dbl-click="openLightbox"

@@ -21,6 +21,7 @@
                 transclude: true,
                 scope: {
                     'name': '=',
+                    'uid': '=',
                     'given': '=',
                     'received': '=',
                     'total': '=',

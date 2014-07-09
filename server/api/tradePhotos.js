@@ -71,7 +71,7 @@ var getTrades = function (req, res) {
                 _.flatten,                          // >>> array(promises)
                 _.map(_.map(getUrlPromiseByPid)),   // >>> array(array(promises)
                 _.map(_.prop('items'))             // >>> array(array({pid})
-            )(clusters).then(addThumbUrlsToCluster(clusters))
+            )(clusters).then(addThumbUrlsToClusters(clusters))
         })
         .then(log3('result after addPropFn', _.map(_.prop('items'))))
 
@@ -131,8 +131,12 @@ var addMatchesFromCluster = addPropFn('matches', _.compose(utils.arrUnit, _.pick
 
 var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 
-var addThumbUrlsToCluster = _.curry(function (clusters, urlPromises) {
-    _.map(_.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('items')))(clusters);
+var addThumbUrlsToCluster = _.curry(function (urlPromises, cluster) {
+    _.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('items'))(cluster);
+    return cluster;
+});
+var addThumbUrlsToClusters = _.curry(function (clusters, urlPromises) {
+    _.map(addThumbUrlsToCluster(urlPromises))(clusters);
     return clusters;
 });
 
@@ -167,5 +171,7 @@ getTrades({},{json: log});
 
 module.exports = {
     getTrades: getTrades,
-    getPhotoUrl: getPhotoUrl
+    getPhotoUrl: getPhotoUrl,
+    getUrlPromiseByPid: getUrlPromiseByPid,
+    addThumbUrlsToCluster: addThumbUrlsToCluster
 };

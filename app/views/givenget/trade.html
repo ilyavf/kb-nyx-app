@@ -4,6 +4,7 @@
         <nx-cluster data-cluster="trade" data-total-label="'Total photos in the album:'" ng-if="trade.items.length > 0"></nx-cluster>
         <nx-tradee ng-repeat="tradee in trade.matches"
                    data-name="tradee.matchFullname"
+                   data-uid="tradee.matchUid"
                    data-given="tradee.itemsShared.length"
                    data-received="tradee.itemsReceived.length"
                    data-total="trade.totalCount"

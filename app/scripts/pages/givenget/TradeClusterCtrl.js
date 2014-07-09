@@ -30,9 +30,10 @@
             $scope.title = false;
 
             clusterP.then(function (cluster) {
+                cluster.id = cluster.cluster_id;
                 $scope.id = cluster.id;
-                var sharedItems = _.compose(_.get('sharedItems'), _.find(_.where({id: tradeeId})), _.get('matches'))(cluster);
-                console.log('- cluster id = ' + cluster.id + ', sharedItems: ' + sharedItems);
+                var sharedItems = _.compose(_.get('itemsShared'), _.find(_.where({matchUid: tradeeId})), _.get('matches'))(cluster);
+                console.log('- cluster id = ' + cluster.id + ', itemsShared: ' + sharedItems);
                 clusterPhotos = tradeClusterData(cluster.id, sharedItems);
 
                 // inherit from the base class:

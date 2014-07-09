@@ -1,6 +1,14 @@
 var request = require('request'),
     Q = require('q'),
+    _ = require('ramda'),
     util = require('util'),
+    nxutils = require('../utils'),
+    log = nxutils.log,
+    log2 = nxutils.log2,
+    log3 = nxutils.log3,
+    tradeApi = require('./tradePhotos'),
+    getUrlPromiseByPid = tradeApi.getUrlPromiseByPid,
+    addThumbUrlsToCluster = tradeApi.addThumbUrlsToCluster,
     cfg = require('../../app/scripts/config');
 
 var clusterList = function (req, res) {
@@ -9,7 +17,7 @@ var clusterList = function (req, res) {
 
     getClusterList(req.headers).then(function (clustersPage) {
         var clusters = clustersPage.items;
-        console.log('[clusterList.getClusters] resolved with clusters: ' + clusters.length);
+        console.log('[clusterList.getClusterList] resolved with clusters: ' + clusters.length);
 
         var clusterPromises = [];
 
@@ -37,7 +45,28 @@ var clusterList = function (req, res) {
     });
 };
 
-var albumPhotoList = function (req, res) {
+var clusterPhotoList = function (req, res) {
+    var clusterId = req.params.albumId || req.params.clusterId;
+    console.log('[api.photos.clusterPhotoList] starting for ' + clusterId);
+
+    getClusterPhotos(clusterId, _.pick(['cookie'],req.headers), req.query)
+
+        .then(function (photosPage) {
+            return _.compose(
+                Q.all,
+                _.map(getUrlPromiseByPid),          // >>> array(promises)
+                _.prop('items')                     // >>> array({pid})
+            )(photosPage).then(_.flip(addThumbUrlsToCluster)(photosPage))
+        })
+
+        .then(_.compose(log2('added error prop'), nxutils.addProp('error', 0), log2('wrapped into resultUnit'), nxutils.resultUnit))
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(_.compose(res.json, nxutils.addProp('error', 1), nxutils.resultUnit)); // check later :)
+};
+
+var _albumPhotoList = function (req, res) {
     var albumId = req.params.albumId;
     console.log('[api.photos.albumPhotoList] starting for ' + albumId);
     getAlbumPhotos(albumId, req.headers, req.query).then(function (photoListPage) {
@@ -63,7 +92,7 @@ var albumPhotoList = function (req, res) {
 
 module.exports = {
     getClusters: clusterList,
-    getAlbumPhotos: albumPhotoList
+    getAlbumPhotos: clusterPhotoList
 };
 
 
@@ -125,6 +154,15 @@ function getClusterList (headers, query) {
  * @param headers
  * @returns {items<Array>, totalItems, currentPage, ...}
  */
+function getClusterPhotos (clusterId, headers, query) {
+    var url = (util.format('http://%s/cluster/{clusterId}/list?', cfg.zeusServer)
+        + (query && query.page ? 'currentPage=' + query.page : '')
+        + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
+        .replace('{clusterId}', clusterId)
+        .replace(/\?$/, '');
+    console.log('[.getClusterPhotos] url = ' + url);
+    return proxyTo(url, headers);
+}
 function getAlbumPhotos (albumId, headers, query) {
     var url = (util.format('http://%s/photos/album-{albumId}/list.json?', cfg.opServer)
         + (query && query.page ? 'page=' + query.page : '')
@@ -162,6 +200,7 @@ function proxyTo (url, headers, resultParseFunc) {
     }, function (error, res, body) {
         if (!error) {
             var result = resultParseFunc && resultParseFunc(JSON.parse(body).result) || JSON.parse(body).result;
+            //console.log('[.proxyTo] url=' + url, result);
             console.log('[.proxyTo] url=' + url + (result.join ? result.length + ': items' : ''));
             deferred.resolve(result);
         } else {
