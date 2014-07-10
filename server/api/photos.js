@@ -9,6 +9,8 @@ var request = require('request'),
     tradeApi = require('./tradePhotos'),
     getUrlPromiseByPid = tradeApi.getUrlPromiseByPid,
     addThumbUrlsToCluster = tradeApi.addThumbUrlsToCluster,
+    promiseGet = require('./promiseReq').get,
+    errorResponse = require('./promiseReq').errorResponse,
     cfg = require('../../app/scripts/config');
 
 var clusterList = function (req, res) {
@@ -45,11 +47,26 @@ var clusterList = function (req, res) {
     });
 };
 
+/**
+ * Gets list of photos of the given cluster. Retrieves photo urls from OpenPhoto.
+ * @param req
+ * @param res
+ */
 var clusterPhotoList = function (req, res) {
-    var clusterId = req.params.albumId || req.params.clusterId;
-    console.log('[api.photos.clusterPhotoList] starting for ' + clusterId);
+    var clusterId = req.params.albumId || req.params.clusterId,
+        query = req.query,
+        url = (util.format('http://%s/cluster/{clusterId}/list?', cfg.zeusServer)
+            + (query && query.page ? 'currentPage=' + query.page : '')
+            + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
+            .replace('{clusterId}', clusterId)
+            .replace(/\?$/, '');
+    console.log('[api.photos.clusterPhotoList] starting for ' + clusterId + ', url=' + url);
 
-    getClusterPhotos(clusterId, _.pick(['cookie'],req.headers), req.query)
+    promiseGet(
+        _.prop('result'),
+        _.pick(['cookie'], req.headers),
+        url
+    )
 
         .then(function (photosPage) {
             return _.compose(
@@ -59,35 +76,12 @@ var clusterPhotoList = function (req, res) {
             )(photosPage).then(_.flip(addThumbUrlsToCluster)(photosPage))
         })
 
-        .then(_.compose(log2('added error prop'), nxutils.addProp('error', 0), log2('wrapped into resultUnit'), nxutils.resultUnit))
+        .then(_.compose(nxutils.addProp('error', 0), nxutils.resultUnit))
         .then(function (result) {
             res.json(result);
         })
-        .catch(_.compose(res.json, nxutils.addProp('error', 1), nxutils.resultUnit)); // check later :)
-};
-
-var _albumPhotoList = function (req, res) {
-    var albumId = req.params.albumId;
-    console.log('[api.photos.albumPhotoList] starting for ' + albumId);
-    getAlbumPhotos(albumId, req.headers, req.query).then(function (photoListPage) {
-        console.log('[api.photos.albumPhotoList] ' + albumId + ', resolved with list of photos: ' + photoListPage.length);
-        addPhotoUrls(photoListPage, 'thumbnail', req.headers).then(function () {
-            console.log('[api.photos.getAlbumPhotos] resolved with photo urls for items: ' + photoListPage.length);
-            var items = photoListPage;
-
-            res.json({
-                success: true,
-                result: {
-                    currentPage: items[0].currentPage,
-                    currentItems: items[0].currentRows,
-                    pageSize: items[0].pageSize,
-                    totalPages: items[0].totalPages,
-                    totalItems: items[0].totalRows,
-                    items: items
-                }
-            });
-        });
-    });
+        //.catch(_.compose(res.json, nxutils.addProp('error', 1), nxutils.resultUnit)); // check later :)
+        .catch(errorResponse(res));
 };
 
 module.exports = {
@@ -146,31 +140,12 @@ function getClusterList (headers, query) {
         };
 
     return proxyTo(url, headers, resultParseFunc);
-}
 
-/**
- * Proxy to Zeus GET request for list of photos of a given album.
- * @param albumId
- * @param headers
- * @returns {items<Array>, totalItems, currentPage, ...}
- */
-function getClusterPhotos (clusterId, headers, query) {
-    var url = (util.format('http://%s/cluster/{clusterId}/list?', cfg.zeusServer)
-        + (query && query.page ? 'currentPage=' + query.page : '')
-        + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
-        .replace('{clusterId}', clusterId)
-        .replace(/\?$/, '');
-    console.log('[.getClusterPhotos] url = ' + url);
-    return proxyTo(url, headers);
-}
-function getAlbumPhotos (albumId, headers, query) {
-    var url = (util.format('http://%s/photos/album-{albumId}/list.json?', cfg.opServer)
-        + (query && query.page ? 'page=' + query.page : '')
-        + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''))
-        .replace('{albumId}', albumId)
-        .replace(/\?$/, '');
-    console.log('[.getAlbumPhotos] url = ' + url);
-    return proxyTo(url, headers);
+    /*return promiseGet(
+        _.prop('result'),
+        _.pick(['cookie'], req.headers),
+        url
+    );*/
 }
 
 function getPhotoUrl (photoId, size, headers) {

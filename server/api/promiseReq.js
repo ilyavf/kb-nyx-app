@@ -9,12 +9,12 @@ var promiseGet = _.curry(function (resultParseFunc, headers, url) {
         headers: headers
     }, function (error, res, body) {
         if (!error) {
-            var res = tryParseBody(body);
-            if (res.error) {
-                console.log('[promiseGet] ERROR: ' + res.message + ' [promiseGet] url=' + url);
-                deferred.reject(res.message);
+            var json = tryParseBody(body);
+            if (json.error) {
+                console.log('[promiseGet] ERROR: ' + json.message + ' [promiseGet] url=' + url);
+                deferred.reject(json.message + ' (' + res.statusCode + ')');
             } else {
-                var result = resultParseFunc && resultParseFunc(res.body) || res.body;
+                var result = resultParseFunc && resultParseFunc(json.body) || json.body;
                 deferred.resolve(result);
             }
         } else {
@@ -38,6 +38,17 @@ function tryParseBody (body) {
     return res;
 }
 
+var errorResponse = _.curry(function(res, err) {
+    console.log('ERROR: ' + err);
+
+    res.json({
+        error: 1,
+        success: false,
+        message: err
+    });
+});
+
 module.exports = {
-    get: promiseGet
+    get: promiseGet,
+    errorResponse: errorResponse
 };

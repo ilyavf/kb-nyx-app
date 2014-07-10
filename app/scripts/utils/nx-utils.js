@@ -21,7 +21,7 @@
 
     // (propName, propValue, predicate, arr, obj)
     utils.addPropIfMatch = _.curry(function (prop, sharedItems, obj) {
-        obj[prop] = _.reduce(function (acc, cur) { return acc || cur.id == obj.id; }, false, sharedItems);
+        obj[prop] = _.reduce(function (acc, cur) { return acc || cur.pid == obj.pid; }, false, sharedItems);
         return obj;
     });
 

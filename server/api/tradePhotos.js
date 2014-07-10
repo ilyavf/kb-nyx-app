@@ -7,6 +7,7 @@ var request = require('request'),
     log3 = utils.log3,
     size = utils.size,
     promiseGet = require('./promiseReq').get,
+    errorResponse = require('./promiseReq').errorResponse,
 
     cfg = require('../../app/scripts/config');
 
@@ -43,8 +44,7 @@ var getTrades = function (req, res) {
         'http://' + cfg.zeusServer + '/recommendation?currentPage=1'
     )
         .then(log3('number of clusters', _.size))
-        .then(log3('id of the 1st cluster', _.compose(_.prop('clusterId'), _.head)))
-        .then(log3('number of itemsToShare by cluster', _.map(_.compose(_.size, _.prop('itemsToShare')))))
+        .then(log3('id of recommendation clusters', _.map(_.prop('cluster_id'))))
 
         // normalize structure:
         .then(_.map(addPropFn('recommendation_id', _.prop('id'))))
@@ -58,9 +58,13 @@ var getTrades = function (req, res) {
                 'http://' + cfg.zeusServer + '/trade?currentPage=1'
             ).then(function (trades) {
                 log('trades: ' + trades.length);
+                log3('id of trade clusters', _.map(_.prop('cluster_id')))(trades);
+
                 return recommendations.concat(trades);
             });
         })
+
+        .then(log3('number of itemsToShare by cluster', _.map(_.compose(_.size, _.prop('itemsToShare'), _.head, _.prop('matches')))))
 
         // for each cluster copy 1st five itemsToShare to items (only pid property):
         .then(_.map(addThumbsFromItems))
@@ -101,18 +105,8 @@ var getTrades = function (req, res) {
             });
         })
 
-        .catch(errorProxy(res));
+        .catch(errorResponse(res));
 };
-
-var errorProxy = _.curry(function(res, err) {
-    console.log('ERROR: ' + err);
-
-    res.json({
-        error: 1,
-        success: false,
-        message: err
-    });
-});
 
 var addPropFn = _.curry(function (prop, fnVal, obj) {
     obj[prop] = typeof fnVal === 'function' ? fnVal(obj) : fnVal;

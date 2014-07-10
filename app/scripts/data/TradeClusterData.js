@@ -21,7 +21,8 @@
 
             return function (clusterId, sharedItems) {
                 sharedItems = sharedItems || [];
-                return albumPhotosData(clusterId, {preprocess: _.compose(_.map(addPropIfMatch('alreadyShared', sharedItems)), _.get('items'))});
+                var addSharedFlag = _.compose(_.map(addPropIfMatch('alreadyShared', sharedItems)), _.get('items'));
+                return albumPhotosData(clusterId, {preprocess: addSharedFlag});
             }
         };
 
