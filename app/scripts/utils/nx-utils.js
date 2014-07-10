@@ -3,31 +3,28 @@
  */
 
 (function (global) {
+    function NxUtils (_) {
+        var utils = {};
 
-    var utils = {}, _;
+        utils['_'] = _;
 
-    if (typeof exports === 'object') {
-        _ = require('ramda');
-    } else {
-        _ = ramda;
+        utils.addProp = _.curry(function (prop, value, obj) {
+            obj[prop] = value;
+            return obj;
+        });
+
+        // (propName, propValue, predicate, arr, obj)
+        utils.addPropIfMatch = _.curry(function (prop, sharedItems, obj) {
+            obj[prop] = _.reduce(function (acc, cur) { return acc || cur.pid == obj.pid; }, false, sharedItems);
+            return obj;
+        });
+
+        return utils;
     }
 
-    utils['_'] = _;
-
-    utils.addProp = _.curry(function (prop, value, obj) {
-        obj[prop] = value;
-        return obj;
-    });
-
-    // (propName, propValue, predicate, arr, obj)
-    utils.addPropIfMatch = _.curry(function (prop, sharedItems, obj) {
-        obj[prop] = _.reduce(function (acc, cur) { return acc || cur.pid == obj.pid; }, false, sharedItems);
-        return obj;
-    });
-
     if (typeof exports === 'object') {
-        module.exports = utils;
+        module.exports = NxUtils(require('ramda'));
     } else if (global.define) {
-        global.define([], utils );
+        global.define(['lib/ramda'], NxUtils );
     }
 }(this))

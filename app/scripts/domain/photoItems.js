@@ -4,7 +4,7 @@
  */
 
 (function (global) {
-    function photoItemsDomain (utils) {
+    function PhotoItemsDomain (utils) {
         var _ = utils._,
             api = {};
 
@@ -26,11 +26,11 @@
     }
 
     if (typeof exports === 'object') {
-        module.exports = photoItemsDomain(require('../utils/nx-utils'));
+        module.exports = PhotoItemsDomain(require('../utils/nx-utils'));
     } else if (global.define) {
-        global.define(['utils/nx-utils'], photoItemsDomain);
+        global.define(['utils/nx-utils'], PhotoItemsDomain);
     }
-}(this))
+}(this));
 
 
 

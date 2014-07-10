@@ -23,11 +23,16 @@ module.exports = function(config) {
         // However we don't want to include all the files with index.html but load them with requirejs
         // See this link for more details:
         // http://karma-runner.github.io/0.10/plus/requirejs.html
+
+        // Include application scripts:
         {pattern: 'app/scripts/*.js', included: false },
         {pattern: 'app/scripts/**/*.js', included: false },
-        {pattern: 'test/spec/**/*.js', included: false },
 
+        // Include test specs:
+        {pattern: 'test/spec/**/*.js', included: false },
+        
         //{pattern: 'test/spec/homepage/homeSpec.js', included: false },
+        //{pattern: 'test/spec/domain/photoItemsSpec.js', included: false },
         //{pattern: 'test/spec/mainCtrlSpec.js', included: false },
 
         'test/test-bootstrap.js'
