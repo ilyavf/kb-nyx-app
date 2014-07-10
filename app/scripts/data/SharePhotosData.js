@@ -1,4 +1,4 @@
-/**
+    /**
  * SharePhotosData resource.
  *
  * @memberOf    DataSource
@@ -22,13 +22,18 @@
                 prefix = proto + '://' + host + ':' + port,
                 zeus = proto + '://zdev.kooboodle.com',
                 //apiUrl = prefix + '/api/share/photos';
-                apiUrl = zeus + '/share/photos';
+                shareUrl = zeus + '/share/photos',
+                shareRecommendationUrl = shareUrl + '/recommendation/{recommendationId}',
+                apiUrl = shareUrl;
 
-            var send = function (contacts, ids) {
-
+            var send = function (ids, contacts, recommendationId) {
                 var deferred = $q.defer();
 
-                $log.log('[SharePhotosData.send] ' + contacts.length + ' ' + ids.length, contacts, ids);
+                if (recommendationId) {
+                    apiUrl = shareRecommendationUrl.replace('{recommendationId}', recommendationId);
+                }
+
+                $log.log('[SharePhotosData.send] url=' + apiUrl + ', contacts=' + (contacts && contacts.length) + ', ids= ' + ids.length, contacts, ids);
 
                 $http({
                     method: 'POST',
@@ -36,7 +41,7 @@
                     data: {
                         shareType: 'email',
                         pids: ids.join(','),
-                        recipients: contacts.join(',')
+                        recipients: contacts && contacts.join(',') || ''
                     },
                     withCredentials: true
                 })

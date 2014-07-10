@@ -13,23 +13,30 @@
     'use strict';
 
     define([
-        'gallery/GalleryBaseController'
-    ], function (GalleryBaseController) {
+        'gallery/GalleryBaseController',
+        'utils/nx-utils',
+        'domain/PhotoItems'
+    ], function (GalleryBaseController, utils, DomainPhotoItems) {
         var _ = ramda;
 
-        var TradeClusterCtrl = function ($scope, $routeParams, $rootScope, tradeListData, tradeClusterData, galleryRx) {
+        var TradeClusterCtrl = function (
+            $scope, $routeParams, $rootScope,
+            tradeListData, tradeClusterData, galleryRx, sharePhotosData
+        ) {
 
             console.log('[GngPage.TradeClusterCtrl] initializing for ' + $routeParams.clusterDashedTitle + ' and user ' + $routeParams.userId);
 
             var dashedTitle = $routeParams.clusterDashedTitle,
                 tradeeId = $routeParams.userId,
                 clusterP = tradeListData.getItemByDashedTitle(dashedTitle),
-                clusterPhotos;
+                clusterPhotos,
+                _cluster;
 
             $scope.loading = true;
             $scope.title = false;
 
             clusterP.then(function (cluster) {
+                _cluster = cluster;
                 cluster.id = cluster.cluster_id;
                 $scope.id = cluster.id;
                 var sharedItems = _.compose(_.get('itemsShared'), _.find(_.where({matchUid: tradeeId})), _.get('matches'))(cluster);
@@ -64,11 +71,29 @@
                     });
                     $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
                     $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                    $scope.$on('action-toolbar:send', function(){
+                        $scope.sendShare(_cluster, $scope.items);
+                    });
                 });
             });
 
             $scope.openLightbox = function (id) {
                 console.log('[openLightbox] ', id);
+            };
+
+            $scope.sendShare = function (cluster, items) {
+                var pids = _.compose(_.map(_.prop('pid')), _.filter(_.where({isSelected: true})))(items),
+                    recipient = _.compose(_.prop('matchEmail'), _.find(_.where({matchUid: tradeeId})), _.get('matches'))(cluster);
+                console.log('[TradeClusterCtrl.sendShare] recommendation_id=' + cluster.recommendation_id + ', pids=' + pids);
+
+                sharePhotosData.send(pids, [recipient], cluster.recommendation_id)
+                    .then(function () {
+                        DomainPhotoItems.updateSharedItems(items, pids);
+                        alert('Sent ' + pids.length + ' items');
+                    })
+                    .catch(function (err) {
+                        alert('Cannot send items: ' + err);
+                    });
             };
 
             function viewAction (event) {

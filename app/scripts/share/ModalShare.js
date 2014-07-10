@@ -31,7 +31,7 @@
                     };
                     $scope.send = function () {
                         console.log('[modal share.send] ' + $scope.contacts.inputStr + ', ' + $scope.ids.length);
-                        sharePhotosData.send($scope.contacts.inputStr.split(' '), $scope.ids)
+                        sharePhotosData.send($scope.ids, $scope.contacts.inputStr.split(' '))
                             .then(function (data) {
                                 console.log('[modalShareCtrl] success', data);
                                 $modalInstance.close();
