@@ -30,7 +30,7 @@ module.exports = function(config) {
 
         // Include test specs:
         {pattern: 'test/spec/**/*.js', included: false },
-        
+
         //{pattern: 'test/spec/homepage/homeSpec.js', included: false },
         //{pattern: 'test/spec/domain/photoItemsSpec.js', included: false },
         //{pattern: 'test/spec/mainCtrlSpec.js', included: false },

@@ -1,6 +1,6 @@
 /**
  * Created by ilyafadeev on 2014-07-10.
- * Set of function to work with photo items.
+ * Set of functions to work with photo items.
  */
 
 (function (global) {
