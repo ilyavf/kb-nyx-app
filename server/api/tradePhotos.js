@@ -79,6 +79,16 @@ var getTrades = function (req, res) {
         })
         .then(log3('result after addPropFn', _.map(_.prop('items'))))
 
+        .then(function (clusters) {
+            return _.compose(
+                Q.all,
+                _.flatten,
+                _.map(_.map(_.map(getUrlPromiseByPid))),
+                _.map(_.map(_.compose(utils.maybeArr, _.prop('itemsReceived')))),
+                _.map(_.prop('matches'))
+            )(clusters).then(addThumbUrlsToItemsReceived(clusters))
+        })
+
         .then(
             _.map(
                 addPropFn(
@@ -125,12 +135,21 @@ var addMatchesFromCluster = addPropFn('matches', _.compose(utils.arrUnit, _.pick
 
 var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 
+var addThumbUrlsToItems = _.curry(function (itemsPropName, urlPromises, cluster) {
+    log2('urlPromises', urlPromises);
+    _.compose(_.map(addPropFn('url', _.compose(_.prop('url'), log2('urlPromise'), reversedFind(urlPromises, _.where), log2('photo pid'), _.pick(['pid']), log3('photo keys', _.keys)))), utils.maybeArr, _.prop(itemsPropName))(cluster);
+    return cluster;
+});
 var addThumbUrlsToCluster = _.curry(function (urlPromises, cluster) {
-    _.compose(_.map(addPropFn('url', _.compose(_.prop('url'), reversedFind(urlPromises, _.where),_.pick('pid')))), _.prop('items'))(cluster);
+    addThumbUrlsToItems('items', urlPromises, cluster);
     return cluster;
 });
 var addThumbUrlsToClusters = _.curry(function (clusters, urlPromises) {
     _.map(addThumbUrlsToCluster(urlPromises))(clusters);
+    return clusters;
+});
+var addThumbUrlsToItemsReceived = _.curry(function (clusters, urlPromises) {
+    _.map(_.compose(_.map(addThumbUrlsToItems('itemsReceived', urlPromises)), _.prop('matches')))(clusters)
     return clusters;
 });
 

@@ -19,6 +19,10 @@
             return obj;
         });
 
+        utils.maybeArr = function (arr) {
+            return arr || [];
+        };
+
         return utils;
     }
 
