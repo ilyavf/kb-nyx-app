@@ -35,6 +35,7 @@
                     scope.titleVisible = false;
                     scope.sortVisible = true;
                     scope.shareVisible = true;
+                    scope.selectVisible = true;
                     scope.sendVisible = false;
                     scope.helpVisible = true;
                     scope.logoutVisible = true;

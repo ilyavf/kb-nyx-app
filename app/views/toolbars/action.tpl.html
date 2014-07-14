@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                 </div>
             </button>
-            <a ng-click="goBack()" ng-if="isBackVisible" class="nx-nav-button visible-xs">
+            <a ng-click="goBack(backVisible)" ng-if="isBackVisible" class="nx-nav-button visible-xs">
                 <span class="glyphicon glyphicon-arrow-left"></span> Back
             </a>
         </div>
@@ -28,7 +28,7 @@
                     <img src="images/logo.png" /> <img src="images/kooboodle.png" />
                 </li>
                 <li ng-if="backVisible">
-                    <a ng-click="goBack()" ng-if="isBackVisible"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                    <a ng-click="goBack(backVisible)" ng-if="isBackVisible"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
                 </li>
             </ul>
 
@@ -68,8 +68,8 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="selectedFromTotal > 0" class="navbar-text hidden-xs">Selected {{selectedMnt || 0}}/{{selectedFromTotal}}</li>
-                <li><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
-                <li><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
+                <li ng-if="selectVisible"><a ng-click="deselectAll()" class="navbar-link">Deselect All</a></li>
+                <li ng-if="selectVisible"><a ng-click="selectAll()" class="navbar-link">Select All</a></li>
 
                 <li ng-if="cancelVisible">
                     &nbsp;&nbsp;&nbsp;

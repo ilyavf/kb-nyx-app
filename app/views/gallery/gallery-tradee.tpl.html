@@ -10,7 +10,7 @@
                 You and {{name}} have photos each other may want
             </p>
             <p class="nowrap">
-                <button ng-if="given && received" type="button" class="btn btn-danger">View</button>
+                <a ng-if="given && received" href="#/auth/trade/{{cluster}}/{{uid}}/received" type="button" class="btn btn-danger">View</a>
                 <a ng-if="!given" href="#/auth/trade/{{cluster}}/{{uid}}" type="button" class="btn btn-primary">Trade</a>
                 <button ng-if="!received" type="button" class="btn btn-warning">Remind</button>
                 <a ng-if="given && given < total" href="#/auth/trade/{{cluster}}/{{uid}}" type="button" class="btn btn-default">Trade More Photos</a>

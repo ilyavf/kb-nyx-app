@@ -45,6 +45,15 @@
                                 return currentUser.isAuthenticated();
                             }
                         }
+                    })
+                    .when('/auth/trade/:clusterDashedTitle/:userId/received', {
+                        templateUrl: 'views/gallery/gallery-photo.html',
+                        controller: 'GngPage.TradeClusterReceivedCtrl',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
                     });
             };
 

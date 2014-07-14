@@ -1,5 +1,5 @@
 /**
- * Contact page controller
+ * Trade cluster page controller
  *
  * @memberof    NyxPhotoGallery
  * @member      Ctrl
@@ -17,7 +17,7 @@
         'utils/nx-utils',
         'domain/PhotoItems'
     ], function (GalleryBaseController, utils, DomainPhotoItems) {
-        var _ = ramda;
+        var _ = utils._;
 
         var TradeClusterCtrl = function (
             $scope, $routeParams, $rootScope,
