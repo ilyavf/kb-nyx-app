@@ -27,8 +27,8 @@
 
     if (typeof exports === 'object') {
         module.exports = PhotoItemsDomain(require('../utils/nx-utils'));
-    } else if (global.define) {
-        global.define(['utils/nx-utils'], PhotoItemsDomain);
+    } else if (typeof define === 'function' && define.amd) {
+        define(['utils/nx-utils'], PhotoItemsDomain);
     }
 }(this));
 

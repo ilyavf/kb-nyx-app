@@ -15,6 +15,8 @@
         //'nyx.auth',
         //'core/authentication/AuthModule',
 
+        'config',
+
         'auth/AuthModule',
         'home/HomePageModule',
         'pages/mykooboodle/MykooboodleModule',
@@ -29,15 +31,16 @@
         'directives/ActionToolbar',
         'directives/EditableTitle'
 
-    ], function (AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule,
+    ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule,
                  MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir, EditableTitleDir
     ) {
 
-        console.log('[app]: configuring app');
+        console.log('[app]: configuring app ', cfg);
 
         var app = angular.module('nyxWebApp', [
             'ngResource',
             'ngRoute',
+            'ngFacebook',
             'Nyx.Auth',
             'Nyx.HomePage',
             'Nyx.MyPage',
@@ -62,6 +65,23 @@
                 .otherwise({
                     redirectTo: '/'
                 });
+        })
+
+        .config( function( $facebookProvider ) {
+            $facebookProvider.setAppId(cfg.fbAppId);
+            $facebookProvider.setCustomInit({
+                version    : 'v1.0'
+            });
+        })
+        // Load Facebook SDK:
+        .run(function () {
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         })
 
         .factory('ListData', ListData)

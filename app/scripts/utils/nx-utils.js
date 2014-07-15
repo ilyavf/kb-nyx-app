@@ -2,7 +2,7 @@
  * Created by ilyafadeev on 2014-06-17.
  */
 
-(function (global) {
+(function () {
     function NxUtils (_) {
         var utils = {};
 
@@ -28,7 +28,7 @@
 
     if (typeof exports === 'object') {
         module.exports = NxUtils(require('ramda'));
-    } else if (global.define) {
-        global.define(['lib/ramda'], NxUtils );
+    } else if (typeof define === 'function' && define.amd) {
+        define(['lib/ramda'], NxUtils );
     }
-}(this))
+}());
