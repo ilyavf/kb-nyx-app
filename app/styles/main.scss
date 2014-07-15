@@ -2,6 +2,8 @@ $icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstr
 
 @import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap';
 
+@import 'colors';
+
 body {
   overflow-y: scroll;
 }
@@ -141,5 +143,40 @@ body {
 
   .nowrap {
     white-space: nowrap;
+  }
+}
+
+.primaryColor {
+  color: $primaryColor;
+}
+.cap {
+  text-transform: capitalize;
+}
+
+/* Social buttons */
+.btn {
+  min-width: 90px;
+  img {
+    display: block;
+    margin: auto;
+  }
+
+}
+.btn-fb {
+  background: #3B5998;
+  &:hover {
+    background: #3B5998;
+  }
+}
+.btn-yahoo {
+  background: #731A8B;
+  &:hover {
+    background: #731A8B;
+  }
+}
+.btn-gmail {
+  background: #DD4B39;
+  &:hover {
+    background: #DD4B39;
   }
 }

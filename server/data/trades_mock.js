@@ -2,12 +2,12 @@ module.exports = {
     "success": true,
     "code": 200,
     "message": "match for device test19629d42-979f-4ced-ab1f-f2e4215e31a6",
-    
+
     "result": {
         "currentPage": 1,
         "items": [
             {
-                "cluster_id": "406a289f7b3cf25dfff7f50b20b259cd8514d597",
+                "cluster_id": "8c7b46238631a3bc21baf1ffa7f0e20e0997f744",
                 "deviceIds": [
                     "test19629d42-979f-4ced-ab1f-f2e4215e31a6"
                 ],
@@ -15,7 +15,7 @@ module.exports = {
                 "endDate": 986083082,
 
                 // extras: cluster info
-                "id": "406a289f7b3cf25dfff7f50b20b259cd8514d597",
+                "id": "8c7b46238631a3bc21baf1ffa7f0e20e0997f744",
                 "title": "Sep 5, 2001 (6AM - 8AM)",
                 "dashedTitle": "water-sports-nm",
                 "totalCount": "21",
@@ -45,14 +45,14 @@ module.exports = {
                 "matches": [
                     {
                         "matchType": "event_by_time",
-                        "matchUid": "40a5ec5c34a35397926695",
+                        "matchUid": "8c7b46238631a3bc21baf1ffa7f0e20e0997f744",
                         "matchClusterId": "0877b461-37eb-417f-a776-1ccb9efa924a",
                         "matchEmail": "test2@shutest.com",
                         "matchFullname": "Martin",
                         "updateTime": 1403272489,
 
                         // extras:
-                        "id": "40a5ec5c34a35397926695",
+                        "id": "8c7b46238631a3bc21baf1ffa7f0e20e0997f744",
                         "name": "Martin",
                         "given": 2,
                         "received": 3,
@@ -60,9 +60,9 @@ module.exports = {
                         "itemsToShare": [], // ???
                         "sharedItems": [
                             {
-                                "id": "241a7e9c73efc1e7d433ab383710da5d14d8a9b4",
+                                "id": "a41a6d17a1c94fa8d8c27d3353d1af4ceaabab4b",
                             },{
-                                "id": "3b5d661f12e3a8d543a5374de028e3128a361ef1",
+                                "id": "be776e1d66881d347bd1cfebfa23fafd4edc8896",
                             }
                         ],
                         "receivedItems": [

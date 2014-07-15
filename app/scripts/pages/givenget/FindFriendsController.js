@@ -17,7 +17,8 @@
 
         var FindFriendsCtrl = function ($scope, $rootScope, $timeout, $facebook) {
 
-            $scope.pageTitle = 'Find Friends';
+            $scope.pageTitle = 'Add friends to get photos from shared events';
+            //$scope.pageContent = "";
             $scope.welcomeMsg = 'Please log in with Facebook';
 
             $timeout(function () {

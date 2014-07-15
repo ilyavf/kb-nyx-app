@@ -1,9 +1,22 @@
-<h2>{{pageTitle}}</h2>
-<p>
-    Find friends here ...
-</p>
+<div class="well">
+<h5 class="primaryColor cap">{{pageTitle}}</h5>
 
-<button class="btn btn-primary" ng-click="fbLogin()">Facebook</button>
+<div class="row">
+    <div class="col-sm-6 col-md-8 col-lg-9 contentCopy">
+        <p>Add friends to get photos they have taken of you plus shared events you have attended together.</p>
+        <p>Click on an icon to import contacts. <strong>We will NOT invite anyone from your contact list automatically.</strong>
+            Importing contacts make it easy to invite friends. You can also discover friends who are already on Kooboodle.</p>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        <img src="http://ppcdn.500px.org/57161416/10bdc743b198c1e8c6d93b8fc6c0b213d868927d/2048.jpg" width="224" class="img-thumbnail" />
+    </div>
+</div>
+
+<button class="btn btn-primary btn-gmail" ng-click=""><img src="http://raw.githubusercontent.com/danleech/simple-icons/master/icons/gmail/gmail-48.png" />Gmail</button>
+<button class="btn btn-primary btn-yahoo" ng-click=""><img src="http://raw.githubusercontent.com/danleech/simple-icons/master/icons/yahoo/yahoo-48.png" />Yahoo</button>
+<button class="btn btn-primary btn-fb" ng-click="fbLogin()"><img src="http://raw.githubusercontent.com/danleech/simple-icons/master/icons/facebook/facebook-48.png" />Facebook</button>
 <button class="btn btn-primary" ng-click="fbMe()">Facebook Me</button>
 
 {{welcomeMsg}}
+
+</div>
