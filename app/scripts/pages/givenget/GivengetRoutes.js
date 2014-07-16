@@ -28,6 +28,16 @@
                             }
                         }
                     })
+                    .when('/auth/find-friends/fb', {
+                        templateUrl: 'views/givenget/fb-friends.html',
+                        controller: 'GngPage.FbFriendsCtrl',
+                        pageMode: 'photo-gallery',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
+                    })
                     .when('/auth/trade', {
                         templateUrl: 'views/givenget/trade.html',
                         controller: 'GngPage.TradeCtrl',

@@ -1,12 +1,12 @@
 /**
- * Gallery item for Trade page
+ * Friend item for Find Friends page
  *
  * @memberof    nyxWebApp
- * @member      TradeeDir
+ * @member      FriendDir
  * @object
  *
  * @author      IlyaVF
- * @date        June 19, 2014
+ * @date        July 16, 2014
  */
 
 (function (define) {
@@ -14,19 +14,17 @@
 
     define([], function () {
 
-        var TradeeDir = function () {
+        var FriendDir = function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/gallery/gallery-tradee.tpl.html',
+                templateUrl: 'views/gallery/gallery-friend.tpl.html',
                 transclude: true,
                 scope: {
                     'name': '=',
-                    'uid': '=',
-                    'given': '=',
-                    'received': '=',
-                    'total': '=',
-                    'cluster': '=',
-                    'callbacks': '='
+                    'id': '=',
+                    'url': '=',
+                    'email': '=',
+                    'alreadyKooboodle': '='
                 },
                 link: function (scope) {
                     console.log(scope.name);
@@ -34,7 +32,7 @@
             };
         };
 
-        return TradeeDir;
+        return FriendDir;
     });
 
 

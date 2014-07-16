@@ -15,9 +15,10 @@
         './FindFriendsController',
         './TradeCtrl',
         './TradeClusterCtrl',
-        './TradeClusterReceivedCtrl'
+        './TradeClusterReceivedCtrl',
+        './FbFriendsCtrl'
     ],
-    function (Routes, FindFriendsCtrl, TradeCtrl, TradeClusterCtrl, TradeClusterReceivedCtrl) {
+    function (Routes, FindFriendsCtrl, TradeCtrl, TradeClusterCtrl, TradeClusterReceivedCtrl, FbFriendsCtrl) {
         var moduleName = "Nyx.GngPage";
 
         angular
@@ -27,6 +28,7 @@
             .controller("GngPage.TradeCtrl", TradeCtrl)
             .controller("GngPage.TradeClusterCtrl", TradeClusterCtrl)
             .controller("GngPage.TradeClusterReceivedCtrl", TradeClusterReceivedCtrl)
+            .controller("GngPage.FbFriendsCtrl", FbFriendsCtrl)
 
             // Handle global events:
             .run(function ($rootScope, $location) {

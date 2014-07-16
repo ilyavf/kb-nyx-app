@@ -1,0 +1,13 @@
+<div class="gallery-item gallery-cluster-item col-sm-6 col-md-4 col-lg-3 {{cluster.isSelected ? 'selected' : ''}}">
+    <div class="item-wrapper">
+        <div class="item-cover img-wrapper">
+            <img class="" ng-src="{{url}}" />
+        </div>
+
+        <div class="total">{{totalCount}}</div>
+
+        <div ng-if="totalLabel" class="total-label">{{totalLabel}}</div>
+
+        <div ng-transclude></div>
+    </div>
+</div>

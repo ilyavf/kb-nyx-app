@@ -1,0 +1,11 @@
+<nx-gallery>
+
+    <nx-friend ng-repeat="friend in items" data-name="friend.name" data-url="friend.picture">
+        thumbs with tags here
+        <nx-thumblist data-items="friend.tags" data-shown="4"></nx-thumblist>
+    </nx-friend>
+</nx-gallery>
+
+<div ng-if="loading" class="page-loading"></div>
+
+<p>{{error}}</p>

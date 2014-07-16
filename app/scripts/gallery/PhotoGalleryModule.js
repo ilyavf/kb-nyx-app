@@ -19,6 +19,7 @@
         'directives/GalleryTradeDir',
         'directives/GalleryTradeeDir',
         'directives/ThumbsPreviewDir',
+        'directives/GalleryFriendDir',
 
         'data/AlbumClusterListData',
         'data/AlbumPhotosData',
@@ -27,7 +28,7 @@
     ],
         function (
             GalleryRx, PhotoGalleryCtrl,
-            GalleryDir, GalleryPhotoDir, GalleryClusterDir, GalleryTradeDir, GalleryTradeeDir, ThumbsPreviewDir,
+            GalleryDir, GalleryPhotoDir, GalleryClusterDir, GalleryTradeDir, GalleryTradeeDir, ThumbsPreviewDir, FriendDir,
             AlbumClusterListData, AlbumPhotosData, TradeListData, TradeClusterData
         ) {
             var moduleName = "Nyx.PhotoGallery";
@@ -41,6 +42,7 @@
                 .directive('nxTrade', GalleryTradeDir)
                 .directive('nxTradee', GalleryTradeeDir)
                 .directive('nxThumbsPreview', ThumbsPreviewDir)
+                .directive('nxFriend', FriendDir)
 
                 .factory('galleryRx', GalleryRx)
 

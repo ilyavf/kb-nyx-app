@@ -57,8 +57,11 @@
 
             // Switch between page views (regular | photo-gallery). Events: $routeChangeStart, $routeChangeSuccess
             $rootScope.$on("$routeChangeStart",function(event, next, current){
-                console.log('[MainController::$routeChangeStart] ' + next.$$route.originalPath, next.params);
-                if (next.params.clusterDashedTitle) {
+                console.log('[MainController::$routeChangeStart] ' + next.$$route.originalPath, next);
+                if (next.$$route.pageMode) {
+                    $scope.pageMode = next.$$route.pageMode;
+                }
+                else if (next.params.clusterDashedTitle) {
                     $scope.pageMode = 'photo-gallery';
                 } else {
                     $scope.pageMode = 'regular';

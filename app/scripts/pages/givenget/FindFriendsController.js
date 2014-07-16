@@ -15,7 +15,7 @@
 
     define([], function () {
 
-        var FindFriendsCtrl = function ($scope, $rootScope, $timeout, FbData) {
+        var FindFriendsCtrl = function ($scope, $rootScope, $timeout, $location, FbData) {
 
             $scope.pageTitle = 'Add friends to get photos from shared events';
             //$scope.pageContent = "";
@@ -56,6 +56,7 @@
                     function(response) {
                         console.log('FB login', response);
                         $scope.welcomeMsg = "Welcome " + response;
+                        $location.path('/auth/find-friends/fb');
                     },
                     function(err) {
                         $scope.welcomeMsg = "Please log in";
