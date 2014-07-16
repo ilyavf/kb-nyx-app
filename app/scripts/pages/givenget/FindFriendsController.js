@@ -19,6 +19,7 @@
 
             $scope.pageTitle = 'Add friends to get photos from shared events';
             //$scope.pageContent = "";
+            $scope.isDisabled = false;
             $scope.welcomeMsg = 'Please log in with Facebook';
 
             $timeout(function () {

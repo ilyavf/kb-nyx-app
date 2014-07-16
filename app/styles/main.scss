@@ -154,29 +154,44 @@ body {
 }
 
 /* Social buttons */
-.btn {
-  min-width: 90px;
-  img {
-    display: block;
-    margin: auto;
-  }
+.importButtons {
+  .btn {
+    min-width: 90px;
+    color: #fff;
+    img {
+      display: block;
+      margin: auto;
+    }
 
-}
-.btn-fb {
-  background: #3B5998;
-  &:hover {
+  }
+  .btn-fb {
+    border-color: #3B5998;
     background: #3B5998;
+    &:hover {
+      background: #3b6198;
+    }
+    &:active {
+      background: #3B5998;
+    }
   }
-}
-.btn-yahoo {
-  background: #731A8B;
-  &:hover {
+  .btn-yahoo {
+    border-color: #731A8B;
     background: #731A8B;
+    &:hover {
+      background: #861a8b;
+    }
+    &:active {
+      background: #731A8B;
+    }
   }
-}
-.btn-gmail {
-  background: #DD4B39;
-  &:hover {
+  .btn-gmail {
+    border-color: #DD4B39;
     background: #DD4B39;
+    &:hover {
+      background: #dd5939;
+    }
+    &:active {
+      background: #DD4B39;
+    }
   }
 }
