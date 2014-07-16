@@ -20,7 +20,13 @@
         var FbData = function ($q, $facebook) {
 
             var friends = function () {
-                return $facebook.cachedApi('/me/friends').then(_.compose(utils.maybeArr, _.prop('data')));
+                return $facebook.cachedApi('/me/friends').then(
+                    _.compose(
+                        _.map(utils.addPropFn('picture', _.compose(utils.str('https://graph.facebook.com/%s/picture?height=150&width=150'), _.prop('id')))),
+                        utils.maybeArr,
+                        _.prop('data')
+                    )
+                );
             };
 
             var tags = function () {

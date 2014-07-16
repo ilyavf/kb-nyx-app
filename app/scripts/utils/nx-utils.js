@@ -68,6 +68,10 @@
             return ''.concat(a);
         };
 
+        utils.str = _.curry(function (str, val) {
+            return str.replace('%s', val);
+        });
+
         return utils;
     }
 
