@@ -28,6 +28,20 @@
 
             $rootScope.$broadcast('nav:landed');
 
+            $scope.isActionToolbarReady.then(function () {
+                $rootScope.$broadcast('action-toolbar:config', {
+                    title: 'Find Friends',
+                    back: 3,
+                    sort: false,
+                    info: false,
+                    view: false,
+                    share: false,
+                    select: false,
+                    logout: false,
+                    help: false
+                });
+            });
+
             $scope.fbMe = function () {
                 FbData.me().then(
                     function(response) {
