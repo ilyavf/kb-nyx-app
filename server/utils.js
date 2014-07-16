@@ -16,8 +16,6 @@ module.exports = _.mixin(nxutils, {
         console.log(a);
         return a;
     },
-    log2: log2,
-    log3: log3,
     arrUnit: function (a) {
         return [a];
     },
