@@ -15,7 +15,7 @@
 
     define([], function () {
 
-        var FindFriendsCtrl = function ($scope, $rootScope, $timeout, $facebook) {
+        var FindFriendsCtrl = function ($scope, $rootScope, $timeout, FbData) {
 
             $scope.pageTitle = 'Add friends to get photos from shared events';
             //$scope.pageContent = "";
@@ -29,7 +29,7 @@
             $rootScope.$broadcast('nav:landed');
 
             $scope.fbMe = function () {
-                $facebook.api("/me").then(
+                FbData.me().then(
                     function(response) {
                     $scope.welcomeMsg = "Welcome " + response.name;
                 },
@@ -38,7 +38,7 @@
                 });
             };
             $scope.fbLogin = function () {
-                $facebook.login().then(
+                FbData.perm('user_photos').then(
                     function(response) {
                         console.log('FB login', response);
                         $scope.welcomeMsg = "Welcome " + response;
@@ -48,6 +48,7 @@
                     }
                 );
             };
+            window.FbData = FbData;
         };
 
         return FindFriendsCtrl;

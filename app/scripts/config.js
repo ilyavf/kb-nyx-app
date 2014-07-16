@@ -6,7 +6,7 @@
     var cfg = {
         opServer: 'dev.kooboodle.com',
         zeusServer: 'zdev.kooboodle.com',
-        fbAppId: '203880539796100'
+        fbAppId: '278989038951916'
     };
 
     if (typeof exports === 'object') {

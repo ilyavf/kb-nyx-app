@@ -1,19 +1,6 @@
 var _ = require('ramda'),
     nxutils = require('../app/scripts/utils/nx-utils');
 
-var log2 = _.curry(function (msg, a) {
-    if (typeof a === 'object')
-        console.log(msg + ': ', a);
-    else
-        console.log(msg + ': ' + a);
-    return a;
-});
-
-var log3 = _.curry(function (msg, fn, a) {
-    log2(msg, fn(a));
-    return a;
-});
-
 var size = function (arr) {
     return arr && arr.length || 0;
 }

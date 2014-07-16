@@ -28,11 +28,12 @@
         'controllers/main',
         'controllers/userhome',
         'data/ListData',
+        'data/FbData',
         'directives/ActionToolbar',
         'directives/EditableTitle'
 
     ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule,
-                 MainCtrl, UserHomeCtrl, ListData, ActionToolbarDir, EditableTitleDir
+                 MainCtrl, UserHomeCtrl, ListData, FbData, ActionToolbarDir, EditableTitleDir
     ) {
 
         console.log('[app]: configuring app ', cfg);
@@ -85,6 +86,7 @@
         })
 
         .factory('ListData', ListData)
+        .factory('FbData', FbData)
 
         .directive('nxActionToolbar', ActionToolbarDir)
         .directive('nxEditableTitle', EditableTitleDir)

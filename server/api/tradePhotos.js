@@ -5,7 +5,9 @@ var request = require('request'),
     log = utils.log,
     log2 = utils.log2,
     log3 = utils.log3,
+    reversedFind = utils.reversedFind,
     size = utils.size,
+    addPropFn = utils.addPropFn,
     promiseGet = require('./promiseReq').get,
     errorResponse = require('./promiseReq').errorResponse,
 
@@ -117,15 +119,6 @@ var getTrades = function (req, res) {
 
         .catch(errorResponse(res));
 };
-
-var addPropFn = _.curry(function (prop, fnVal, obj) {
-    obj[prop] = typeof fnVal === 'function' ? fnVal(obj) : fnVal;
-    return obj;
-});
-
-var reversedFind = _.curry(function (list, fn, obj) {
-    return _.find(fn(obj), list);
-});
 
 var addThumbsFromItems = addPropFn('items',
     _.compose(_.map(_.pick(['pid'])), _.take(5), _.prop('itemsToShare'), _.head, _.prop('matches'))
