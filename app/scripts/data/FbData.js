@@ -15,14 +15,15 @@
 
     define(['utils/nx-utils'], function (utils) {
 
-        var _ = utils._;
+        var _ = utils._,
+            fbPictureUrl = 'https://graph.facebook.com/%s/picture?height=150&width=150';
 
         var FbData = function ($q, $facebook) {
 
             var friends = function () {
                 return $facebook.cachedApi('/me/friends').then(
                     _.compose(
-                        _.map(utils.addPropFn('picture', _.compose(utils.str('https://graph.facebook.com/%s/picture?height=150&width=150'), _.prop('id')))),
+                        _.map(utils.addPropFn('picture', _.compose(utils.str(fbPictureUrl), _.prop('id')))),
                         utils.maybeArr,
                         _.prop('data')
                     )
