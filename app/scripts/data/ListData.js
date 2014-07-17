@@ -13,19 +13,33 @@
 (function (define) {
     'use strict';
 
-    define(['utils/nx-utils'], function (utils) {
+    define(['utils/nx-utils', 'config'], function (utils, cfg) {
 
         var _ = utils._;
 
-        var ListData = function ($q, $http, $log, $window, $rootScope) {
+        var ListData = function ($q, $http, $log, $window, $location) {
+
+            var proto = $location.protocol(),
+                host = $location.host(),
+                port = cfg.apiPort,
+                apiPrefix = proto + '://' + host + ':' + port;
 
             return function (apiUrl, localStorageItemName, options) {
 
+                if (!apiUrl || typeof apiUrl !== 'string') {
+                    throw new Error('Api url is required for the ListData service.');
+                    return;
+                }
+
                 var pagesDeferred = [],
-                    pageSize = 30,
+                    pageSize = options && options.pageSize || 30,
                     totalPages = $q.defer(),
                     _pageNumber = 1,
                     CONFIG_LOCALSTORAGE_ITEMNAME = 'LISTDATA-' + localStorageItemName;
+
+                if (apiUrl[0] === '/') {
+                    apiUrl = apiPrefix + apiUrl;
+                }
 
                 //$rootScope.$on('user:logout', cleanupLocalData);
 

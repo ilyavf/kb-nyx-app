@@ -55,6 +55,19 @@
                 return $facebook.api('/me/permissions').then(_.compose(_.keys, _.head, _.prop('data')));
             };
 
+            var friendIds = function () {
+                return friends().then(_.map(_.prop('id')));
+            }
+
+            var kbUserInfo = function (ids) {
+                var apiUrl = '/api/fb-user-info?ids=' + ids.join(',');
+                return ListData(apiUrl, 'FacebookUsersOnKb', {pageSize: 100});
+            };
+
+            var getKbUserInfo = function () {
+                return friendIds().then(kbUserInfo);
+            };
+
             return {
                 login: $facebook.login,
                 perm: $facebook.login,
@@ -63,8 +76,10 @@
                     return $facebook.cachedApi('/me');
                 },
                 friends: friends,
+                friendIds: friendIds,
                 tags: tags,
                 friendsWithTags: friendsWithTags,
+                getKbUserInfo: getKbUserInfo,
                 utils: utils
             }
         };

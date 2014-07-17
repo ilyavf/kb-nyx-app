@@ -21,6 +21,7 @@ var express = require('express'),
     proxy = require('./server/api/proxy'),
     photoApi = require('./server/api/photos'),
     tradeApi = require('./server/api/tradePhotos'),
+    userApi = require('./server/api/kbUsers'),
     bodyParser = require('body-parser'),
     https = require('https'),
     fs = require('fs'),
@@ -60,6 +61,7 @@ app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServe
 app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
 app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
 app.get('/api/trades', MOCK_API ? mockApi('trades') : tradeApi.getTrades);
+app.get('/api/fb-user-info', userApi.fbUserInfo);
 app.get('/zeus/recommendations', mockApi('zeus/recommendations'));
 
 app.all('/', function(req, res) {
