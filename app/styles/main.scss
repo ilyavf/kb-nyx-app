@@ -153,6 +153,15 @@ body {
   text-transform: capitalize;
 }
 
+.img-sample-bg {
+  background: url('../images/stackedPhotos.png') no-repeat;
+}
+.img-sample {
+  width: 197px;
+  height: 143px;
+  padding: 10px 10px 12px 1px;
+}
+
 /* Social buttons */
 .importButtons {
   .btn {
