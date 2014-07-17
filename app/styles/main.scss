@@ -182,8 +182,7 @@ body {
   }
 
   .btn-gmail {
-    border-color: #DD4B39;
-    //background: #DD4B39;
+    border-color: $gmailColor;
     background: url('../images/sprite_mail.png') 5px 10px #fff;
     &:hover {
       background: url('../images/sprite_mail.png') 5px 10px rgba(255, 255, 255, 0.7);
@@ -193,8 +192,7 @@ body {
     }
   }
   .btn-yahoo {
-    border-color: #731A8B;
-    //background: #731A8B;
+    border-color: $ymailColor;
     background: url('../images/sprite_mail.png') -70px 10px #fff;
     &:hover {
       background: url('../images/sprite_mail.png') -70px 10px rgba(255, 255, 255, 0.7);
@@ -204,8 +202,7 @@ body {
     }
   }
   .btn-fb {
-    border-color: #3B5998;
-    //background: #3B5998;
+    border-color: $fbColor;
     background: url('../images/sprite_mail.png') -144px 10px #fff;
     &:hover {
       background: url('../images/sprite_mail.png') -144px 10px rgba(255, 255, 255, 0.7);
@@ -215,8 +212,7 @@ body {
     }
   }
   .btn-others {
-    border-color: #c3ad82;
-    //background: #c3ad82;
+    border-color: $othersColor;
     background: url('../images/sprite_mail.png') -221px 10px #fff;
     &:hover {
       background: url('../images/sprite_mail.png') -221px 10px rgba(255, 255, 255, 0.7);
