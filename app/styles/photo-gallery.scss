@@ -24,13 +24,19 @@ $border-color-dark:  #101010;
       @include border-bottom-radius(5px);
 
       position: relative;
-      border: 1px #ccc solid;
+      border: 1px #d7dce1 solid;
       overflow: hidden;
       margin-right: 0;
       margin-left: 0;
       margin-bottom: 20px;
       background-color: white;
       transition: all 0.2s ease-in-out;
+
+      @include box-shadow(1px 2px 7px rgba(0, 0, 0, 0.125));
+
+      &:hover {
+        @include box-shadow(1px 2px 7px 3px rgba(0, 0, 0, 0.125));
+      }
 
       .item-cover {
         height: 152px;
@@ -240,14 +246,21 @@ $border-color-dark:  #101010;
         background-color: #edf6ff;
       }
 
-      .item-wrapper .item-cover {
-        height: 120px;
-        width: 120px;
-        margin: 10px auto;
-        img {
-          max-width: none;
-          min-width: initial;
-          height: 100%;
+      .item-wrapper {
+        background-color: #f9fafc;
+
+        &:hover {
+          background-color: white;
+        }
+        .item-cover {
+          height: 120px;
+          width: 120px;
+          margin: 10px auto;
+          img {
+            max-width: none;
+            min-width: initial;
+            height: 100%;
+          }
         }
       }
       
@@ -296,7 +309,7 @@ $border-color-dark:  #101010;
         .tag-label {
           font-size: 85%;
           color: white;
-          background-color: $primaryColor;
+          background-color: $fbConnectColor;
           padding: 2px 6px;
           @include border-left-radius(3px);
           @include border-right-radius(3px);
@@ -305,7 +318,7 @@ $border-color-dark:  #101010;
           margin-left: -2px;
           top: -1px;
           font-size: 0.8rem;
-          color: $primaryColor;
+          color: $fbConnectColor;
         }
       }
 
@@ -329,7 +342,19 @@ $border-color-dark:  #101010;
         &.invited {
           cursor: default;
           background-color: $primaryColor;
+          border-color: $primaryColor;
           color: white;
+        }
+
+        &:hover {
+          .glyphicon {
+            color: $primaryColor;
+          }
+          &.invited {
+            .glyphicon {
+              color: white;
+            }
+          }
         }
       }
     }
