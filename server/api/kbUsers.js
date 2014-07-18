@@ -10,6 +10,7 @@ var request = require('request'),
     getUrlPromiseByPid = tradeApi.getUrlPromiseByPid,
     addThumbUrlsToCluster = tradeApi.addThumbUrlsToCluster,
     promisePost = require('./promiseReq').post,
+    promiseGet = require('./promiseReq').get,
     errorResponse = require('./promiseReq').errorResponse,
     cfg = require('../../app/scripts/config');
 
@@ -24,15 +25,29 @@ var fbUserInfo = function (req, res) {
             candidates: ids.map(function (id) { return {id: id, identityType: "facebook"} })
         };
 
-    promisePost(
-        _.compose(_.prop('users'), _.prop('result')),
-        {
-            headers: _.mixin(_.pick(['cookie'],req.headers), {'Content-Type': 'application/json'}),
-            data: data
-        },
-        'http://' + cfg.zeusServer + '/user/verify'
-    )
+    Q.all([
+        promisePost(
+            _.compose(_.prop('users'), _.prop('result')),
+            {
+                headers: _.mixin(_.pick(['cookie'],req.headers), {'Content-Type': 'application/json'}),
+                data: data
+            },
+            'http://' + cfg.zeusServer + '/user/verify'
+        ),
+        promiseGet(
+            _.compose(_.prop('contacts'), _.prop('result')),
+            {
+                headers: _.mixin(_.pick(['cookie'],req.headers), {'Content-Type': 'application/json'})
+            },
+                'http://' + cfg.zeusServer + '/contact/sent_invite'
+        )
+            .then(nxutils.filterByProp(ids, 'contactInfo'))
+            .then(_.map(nxutils.addPropFn('facebookId', _.prop('contactInfo'))))
+    ])
+        .then(_.flatten)
+
         .then(log2('fbUserInfo'))
+
 
         .then(function (items) {
             res.json({
