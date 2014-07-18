@@ -288,9 +288,11 @@ $border-color-dark:  #101010;
         padding: 5px 8px;
         color: #8d9295;
         font-size: 1.3rem;
+        white-space: nowrap;
       }
 
       .tag {
+        margin-bottom: 10px;
         .tag-label {
           font-size: 85%;
           color: white;
@@ -305,6 +307,11 @@ $border-color-dark:  #101010;
           font-size: 0.8rem;
           color: $primaryColor;
         }
+      }
+
+      nx-thumblist {
+        display: block;
+        padding: 0 14px;
       }
     }
   }

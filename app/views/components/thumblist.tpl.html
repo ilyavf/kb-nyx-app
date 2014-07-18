@@ -1,0 +1,7 @@
+<ul class="item-thumbs nyx-reset row">
+    <li class="col-xs-3" ng-repeat="item in thumbs">
+        <div class="img-wrapper {{!item.url ? 'empty' : ''}}">
+            <img class="" ng-src="{{item.url}}" ng-if="item.url" />
+        </div>
+    </li>
+</ul>
