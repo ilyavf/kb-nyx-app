@@ -18,7 +18,7 @@
         var _ = utils._,
             fbPictureUrl = 'https://graph.facebook.com/%s/picture?height=150&width=150';
 
-        var FbData = function ($q, $facebook, ListData) {
+        var FbData = function ($q, $facebook, $http, ListData) {
 
             var friends = function () {
                 return $facebook.cachedApi('/me/friends').then(
@@ -102,6 +102,31 @@
                     });
             };
 
+            var invite = function (facebookId) {
+                var deferred = $q.defer(),
+                    link = 'http://www.kooboodle.com?fb=' + facebookId
+
+                FB.ui({
+                    method: 'send',
+                    to: facebookId,
+                    link: link
+                }, function (response) {
+                    // no response according to https://developers.facebook.com/docs/reference/dialogs/send/
+                    console.log('[FbServices.requestMsg] resolved. Sent to ' + facebookId + ', link: ' + link, response);
+                    if (response && response.success) {
+                        deferred.resolve({
+                            msg: 'Sent'
+                        });
+                    } else {
+                        deferred.reject({
+                            msg: 'Rejected by user'
+                        });
+                    }
+                });
+
+                return deferred.promise;
+            };
+
             return {
                 login: $facebook.login,
                 perm: $facebook.login,
@@ -115,6 +140,7 @@
                 friendsWithTags: friendsWithTags,
                 getFbUserKbInfo: getFbUserKbInfo,
                 getFriendsWithInfo: getFriendsWithInfo,
+                invite: invite,
                 utils: utils
             }
         };

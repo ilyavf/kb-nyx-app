@@ -325,7 +325,9 @@ $border-color-dark:  #101010;
         color: #ccc;
         border: #ccc solid 1px;
         border-right: none;
+        cursor: pointer;
         &.invited {
+          cursor: default;
           background-color: $primaryColor;
           color: white;
         }

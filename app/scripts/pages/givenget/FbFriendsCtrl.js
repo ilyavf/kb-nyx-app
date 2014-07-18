@@ -23,6 +23,16 @@
             FbData.getFriendsWithInfo().then(function (friends) {
                 $scope.items = friends;
             });
+
+            $scope.invite = function (friend, remind) {
+                if (friend.isInvited && !remind) {
+                    return;
+                }
+                FbData.invite(friend.id).then(function () {
+                    friend.isInvited = true;
+                    console.log('invite success', friend);
+                });
+            }
         };
 
         return FindFriendsCtrl;
