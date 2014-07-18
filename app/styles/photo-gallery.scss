@@ -232,6 +232,63 @@ $border-color-dark:  #101010;
       }
     }
   }
+
+  nx-friend {
+    .gallery-item {
+
+      &.invited .item-wrapper {
+        background-color: #edf6ff;
+      }
+
+      .item-wrapper .item-cover {
+        height: 120px;
+        width: 120px;
+        margin: 10px auto;
+        img {
+          max-width: none;
+          min-width: initial;
+          height: 100%;
+        }
+      }
+      
+      .name {
+        text-align: center;
+        font-size: 1.5rem;
+        color: $primaryColor;
+        font-weight: bold;
+      }
+
+      .is-kb-user {
+        line-height: 28px;
+        .kb-user, .non-kb-user {
+          height: 28px;
+          float: left;
+          margin-right: 5px;
+        }
+      }
+      .kb-user, .non-kb-user, .remind-icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: no-repeat url(../images/sprite_icons.png);
+      }
+      .non-kb-user {
+        background-position: -19px;
+      }
+
+      .remind-icon {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background-position: -39px;
+        cursor: pointer;
+      }
+
+      .user-info {
+        padding: 5px 8px;
+      }
+    }
+  }
 }
 
 nx-thumbs-preview {

@@ -24,7 +24,8 @@
                     'id': '=',
                     'url': '=',
                     'email': '=',
-                    'alreadyKooboodle': '='
+                    'isKooboodle': '=',
+                    'isInvited': '='
                 },
                 link: function (scope) {
                     console.log(scope.name);

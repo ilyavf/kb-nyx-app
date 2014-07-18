@@ -1,8 +1,22 @@
 <nx-gallery>
 
-    <nx-friend ng-repeat="friend in items" data-name="friend.name" data-url="friend.picture">
-        thumbs with tags here
-        <nx-thumblist data-items="friend.tags" data-shown="4"></nx-thumblist>
+    <nx-friend ng-repeat="friend in items"
+               data-name="friend.name"
+               data-url="friend.picture"
+               data-is-invited="friend.isInvited"
+               data-is-kooboodle="friend.isKooboodle">
+
+        <div class="user-info">
+            <div class="is-kb-user">
+                <span class="{{friend.isKooboodle ? 'kb-user' : 'non-kb-user'}}"></span>
+                {{friend.isKooboodle ? 'Already' : 'Not yet'}} on Kooboodle
+            </div>
+            <div>{{friend.tags.length || 0}} Total photo tags</div>
+            <nx-thumblist data-items="friend.tags" data-shown="4"></nx-thumblist>
+
+        </div>
+
+        <div class="remind-icon" ng-if="friend.isInvited"></div>
     </nx-friend>
 </nx-gallery>
 

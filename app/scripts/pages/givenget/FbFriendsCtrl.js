@@ -20,7 +20,7 @@
             $scope.pageTitle = 'Add friends to get photos from shared events';
             $scope.items;
 
-            FbData.friendsWithTags().then(function (friends) {
+            FbData.getFriendsWithInfo().then(function (friends) {
                 $scope.items = friends;
             });
         };
