@@ -17,6 +17,10 @@
 
         </div>
 
+        <div class="invite-icon {{friend.isInvited ? 'invited' : ''}}" ng-click="click(friend.facebookId);">
+            <span class="glyphicon glyphicon-user"></span><sup><span class="glyphicon glyphicon-{{friend.isInvited ? 'ok' : 'plus'}}"></span></sup>
+        </div>
+
         <div class="remind-icon" ng-if="friend.isInvited"></div>
     </nx-friend>
 </nx-gallery>

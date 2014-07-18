@@ -313,6 +313,23 @@ $border-color-dark:  #101010;
         display: block;
         padding: 0 14px;
       }
+
+      .invite-icon {
+        position: absolute;
+        right: 0px;
+        top: 180px;
+        display: block;
+        padding: 5px 10px;
+        @include border-left-radius(15px);
+        background-color: white;
+        color: #ccc;
+        border: #ccc solid 1px;
+        border-right: none;
+        &.invited {
+          background-color: $primaryColor;
+          color: white;
+        }
+      }
     }
   }
 }
