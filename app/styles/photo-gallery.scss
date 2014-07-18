@@ -286,6 +286,25 @@ $border-color-dark:  #101010;
 
       .user-info {
         padding: 5px 8px;
+        color: #8d9295;
+        font-size: 1.3rem;
+      }
+
+      .tag {
+        .tag-label {
+          font-size: 85%;
+          color: white;
+          background-color: $primaryColor;
+          padding: 2px 6px;
+          @include border-left-radius(3px);
+          @include border-right-radius(3px);
+        }
+        .glyphicon {
+          margin-left: -2px;
+          top: -1px;
+          font-size: 0.8rem;
+          color: $primaryColor;
+        }
       }
     }
   }
