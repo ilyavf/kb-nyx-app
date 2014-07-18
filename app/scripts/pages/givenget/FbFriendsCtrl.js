@@ -32,7 +32,23 @@
                     friend.isInvited = true;
                     console.log('invite success', friend);
                 });
-            }
+            };
+
+            $scope.isActionToolbarReady.then(function () {
+                $rootScope.$broadcast('action-toolbar:config', {
+                    title: 'Find Friends',
+                    cancel: true,
+                    mainActionTitle: 'Finish Inviting',
+                    back: true,
+                    sort: false,
+                    info: false,
+                    view: false,
+                    share: false,
+                    logout: false,
+                    select: false,
+                    help: false
+                });
+            });
         };
 
         return FindFriendsCtrl;

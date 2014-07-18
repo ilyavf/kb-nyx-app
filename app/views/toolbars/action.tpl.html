@@ -74,7 +74,7 @@
                 <li ng-if="cancelVisible">
                     &nbsp;&nbsp;&nbsp;
                     <button ng-click="goBack(cancelVisible)" type="button" class="navbar-btn btn btn-default">
-                        Cancel
+                        {{mainActionTitleVisible || 'Cancel'}}
                     </button>
                 </li>
                 <li ng-if="sendVisible">

@@ -37,8 +37,8 @@
                     view: false,
                     share: false,
                     select: false,
-                    logout: false,
-                    help: false
+                    logout: true,
+                    help: true
                 });
             });
 
