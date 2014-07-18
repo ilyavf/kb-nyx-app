@@ -18,7 +18,7 @@
         var _ = utils._,
             fbPictureUrl = 'https://graph.facebook.com/%s/picture?height=150&width=150';
 
-        var FbData = function ($q, $facebook) {
+        var FbData = function ($q, $facebook, ListData) {
 
             var friends = function () {
                 return $facebook.cachedApi('/me/friends').then(
@@ -64,8 +64,42 @@
                 return ListData(apiUrl, 'FacebookUsersOnKb', {pageSize: 100});
             };
 
-            var getKbUserInfo = function () {
-                return friendIds().then(kbUserInfo);
+            var getFbUserKbInfo = function () {
+                return friendIds()
+                    .then(function (ids) {
+                        return kbUserInfo(ids).get();
+                    })
+                    .then(_.prop('items'))
+                    .then(utils.log2('getFbUserKbInfo'));
+            };
+
+            var getFriendsWithInfo = function () {
+
+                return friendsWithTags()
+                    .then(function (friends) {
+                        return getFbUserKbInfo()
+                            .then(function (info) {
+                                // if there is uid its a Kooboodle user (isKooboodle=true)
+                                // if there is status=0 it is an invited user (isInvited=true)
+                                // if there is status=1 it is a connected user (isConnected=true)
+
+                                info.forEach(function (userInfo) {
+                                    var facebookId = userInfo.facebookId;
+                                    var friend = _.find(_.where({id: facebookId}), friends);
+                                    if (userInfo && userInfo.uid) {
+                                        friend.isKooboodle = true;
+                                    }
+                                    if (userInfo && userInfo.status === 0) {
+                                        friend.isInvited = true;
+                                    }
+                                    if (userInfo && userInfo.status === 1) {
+                                        friend.isAccepted = true;
+                                    }
+                                });
+
+                                return friends;
+                            })
+                    });
             };
 
             return {
@@ -79,7 +113,8 @@
                 friendIds: friendIds,
                 tags: tags,
                 friendsWithTags: friendsWithTags,
-                getKbUserInfo: getKbUserInfo,
+                getFbUserKbInfo: getFbUserKbInfo,
+                getFriendsWithInfo: getFriendsWithInfo,
                 utils: utils
             }
         };

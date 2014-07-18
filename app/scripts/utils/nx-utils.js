@@ -36,6 +36,10 @@
             return _.filter(fn(obj), list);
         });
 
+        utils.filterByProp = _.curry(function (list, propName, objArr) {
+            return _.filter(_.compose(_.flip(_.contains)(list), _.prop(propName)), objArr);
+        });
+
         utils.unitProp = _.curry(function (prop, val) {
             var o = {};
             o[prop] = val;
