@@ -23,6 +23,7 @@
             console.log('[MainController]: Initializing');
             $scope.isLoggedIn = currentUser.isLoggedIn();
             $scope.state =  $scope.isLoggedIn ? 'authorized' : 'anonymous';
+            $scope.isModal = false;
             $scope.navBarActive = 'home';
             $scope.isActionToolbarReady = isActionToolbarReady.promise;
             $scope.openSignInModal = function (mode) {
@@ -45,7 +46,7 @@
 
             $scope.onNavLandedChanged = function (e, navItemCode) {
                 $scope.navBarActive = navItemCode;
-            }
+            };
             $rootScope.$on('nav:landed', $scope.onNavLandedChanged);
 
 
@@ -82,6 +83,10 @@
             $scope.$on('broadcast', function (event, eventName) {
                 console.log('[MainController] EVENT broadcast: ' + eventName);
                 $scope.$broadcast(eventName);
+            });
+            var $body = angular.element('body');
+            $rootScope.$on('pageMode:modal', function (on) {
+                $body[on ? 'addClass' : 'removeClass']('page-modal');
             });
 
         };

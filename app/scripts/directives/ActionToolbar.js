@@ -30,18 +30,30 @@
                     scope.$emit('action-toolbar:ready');
                     console.log('DIRECTIVE ActionToolbarDir.link');
 
-                    scope.backVisible = true;
-                    scope.viewVisible = true;
-                    scope.titleVisible = false;
-                    scope.sortVisible = true;
-                    scope.shareVisible = true;
-                    scope.selectVisible = true;
-                    scope.sendVisible = false;
-                    scope.helpVisible = true;
-                    scope.logoutVisible = true;
+                    scope.configVisibleProps = [
+                        'logo',
+                        'back',
+                        'view',
+                        'title',
+                        'sort',
+                        'share',
+                        'select',
+                        'send',
+                        'cancel',
+                        'help',
+                        'logout',
+                        'mainActionTitle'
+                    ];
+                    scope.configure = function (configOpts) {
+                        scope.configVisibleProps.forEach(function (prop) {
+                            scope[prop + 'Visible'] = configOpts && !configOpts.join && configOpts[prop]
+                                || configOpts && configOpts.join && configOpts.indexOf(prop) !== -1
+                                || false;
+                        });
+                    };
 
-                    var config = scope.configStr.split(',').map(function(i){ return 'is' + i[0].toUpperCase() + i.slice(1,i.length) + 'Visible';});
-                    config.forEach(function (i) { scope[i] = true; });
+                    var configArr = scope.configStr.split(',').map(function(i){ return i + 'Visible'; });
+                    scope.configure(configArr);
 
 
                     scope.$on('action-toolbar:selectedTotal', function (e, total) {
@@ -52,9 +64,7 @@
                         scope.selectedMnt = selected;
                     });
                     scope.$on('action-toolbar:config', function (event, config) {
-                        angular.forEach(config, function (val, key) {
-                            scope[key + 'Visible'] = val;
-                        });
+                        scope.configure(config);
                     });
 
                     scope.shareAction = function () {

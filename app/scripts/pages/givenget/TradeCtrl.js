@@ -56,18 +56,18 @@
                 $scope.gotoGallery(targetName);
             };
 
-            $scope.isActionToolbarReady.then(function () {
-                $rootScope.$broadcast('action-toolbar:config', {
-                    title: 'Give Photos to Friends and Family and Get Photos from Them',
-                    sort: false,
-                    info: false,
-                    view: false,
-                    share: false,
-                    logout: true,
-                    select: false,
-                    help: true
+            $scope.setupToolbar = function () {
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:config', {
+                        logo: true,
+                        title: 'Give Photos to Friends and Family and Get Photos from Them',
+                        help: true,
+                        logout: true
+                    });
                 });
-            });
+            };
+            $scope.$on('action-toolbar:reconfig', $scope.setupToolbar);
+            $scope.setupToolbar();
         };
 
         return TradePhotosCtrl;

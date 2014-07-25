@@ -57,24 +57,23 @@
 
                 console.log('EVENT: action-toolbar:selectedTotal ' + photosPage.totalItems);
                 $scope.isActionToolbarReady.then(function () {
-                    $rootScope.$broadcast('action-toolbar:config', {
-                        title: 'What photos do you want to trade?',
-                        send: true,
-                        cancel: 2,
-                        back: false,
-                        sort: false,
-                        info: false,
-                        view: false,
-                        share: false,
-                        logout: false,
-                        help: false
-                    });
-                    $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
-                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                     $scope.$on('action-toolbar:send', function(){
                         $scope.sendShare(_cluster, $scope.items);
                     });
                 });
+                $scope.setupToolbar = function () {
+                    $scope.isActionToolbarReady.then(function () {
+                        $rootScope.$broadcast('action-toolbar:config', {
+                            title: 'What photos do you want to trade?',
+                            send: true,
+                            cancel: 2
+                        });
+                        $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
+                        $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                    });
+                };
+                $scope.$on('action-toolbar:reconfig', $scope.setupToolbar);
+                $scope.setupToolbar();
             });
 
             $scope.openLightbox = function (id) {

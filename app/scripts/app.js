@@ -25,6 +25,8 @@
         'menu/authmain/MenuAuthMainModule',
         'gallery/PhotoGalleryModule',
         'share/ShareModule',
+        'lightbox/LightboxModule',
+
         'controllers/main',
         'controllers/userhome',
         'data/ListData',
@@ -32,7 +34,7 @@
         'directives/ActionToolbar',
         'directives/EditableTitle'
 
-    ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule,
+    ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule, LightboxModule,
                  MainCtrl, UserHomeCtrl, ListData, FbData, ActionToolbarDir, EditableTitleDir
     ) {
 
@@ -49,7 +51,8 @@
             'Nyx.SettingsPage',
             'Nyx.Menu.AuthMain',
             'Nyx.PhotoGallery',
-            'Nyx.Share'
+            'Nyx.Share',
+            'Nyx.Lightbox'
         ])
         .config(function ($routeProvider) {
             console.log( "[nyxWebApp.RouteManager] Configuring $routeProvider...");
@@ -68,6 +71,7 @@
                 });
         })
 
+        // Configure Facebook module:
         .config( function( $facebookProvider ) {
             $facebookProvider.setAppId(cfg.fbAppId);
             $facebookProvider.setCustomInit({

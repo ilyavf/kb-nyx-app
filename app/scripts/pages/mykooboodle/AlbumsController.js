@@ -27,6 +27,21 @@
             $scope.pageTitle = 'Albums';
             $scope.error = '';
 
+            $scope.setupToolbar = function () {
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:config', {
+                        logo: true,
+                        share: true,
+                        view: true,
+                        select: true,
+                        help: true,
+                        logout: true
+                    });
+                });
+            };
+            $scope.$on('action-toolbar:reconfig', $scope.setupToolbar);
+            $scope.setupToolbar();
+
             $timeout(function () {
                 $rootScope.$broadcast('navMain:changed', 'MyKooboodle', 'albums');
             }, 100);

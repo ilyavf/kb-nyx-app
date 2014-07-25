@@ -26,6 +26,20 @@
 
             $scope.loading = true;
 
+            $scope.setupToolbar = function () {
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:config', {
+                        back: true,
+                        share: true,
+                        view: true,
+                        select: true,
+                        help: true
+                    });
+                });
+            };
+            $scope.$on('action-toolbar:reconfig', $scope.setupToolbar);
+            $scope.setupToolbar();
+
             clusterP.then(function (cluster) {
                 $scope.title = cluster.title;
                 $scope.id = cluster.id;
@@ -52,6 +66,9 @@
 
             $scope.openLightbox = function (id) {
                 console.log('[openLightbox] ', id);
+                clusterP.then(function (cluster) {
+                    $scope.$emit('lightbox:show', cluster, id);
+                });
             };
 
             function viewAction (event) {
