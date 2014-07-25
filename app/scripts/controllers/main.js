@@ -84,10 +84,10 @@
                 console.log('[MainController] EVENT broadcast: ' + eventName);
                 $scope.$broadcast(eventName);
             });
-            var $body = angular.element('body');
-            $rootScope.$on('pageMode:modal', function (on) {
-                $body[on ? 'addClass' : 'removeClass']('page-modal');
-            });
+            //var $body = angular.element('body');
+            //$rootScope.$on('pageMode:modal', function (on) {
+            //    $body[on ? 'addClass' : 'removeClass']('page-modal');
+            //});
 
         };
 
