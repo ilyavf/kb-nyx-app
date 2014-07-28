@@ -356,6 +356,10 @@ $border-color-dark:  #101010;
             }
           }
         }
+
+        @media (min-width: $screen-lg-min) {
+          top: 188px;
+        }
       }
     }
   }
@@ -381,10 +385,13 @@ nx-thumbs-preview {
     display: block;
     .img-wrapper {
       overflow: hidden;
-      height: 44px;
+      height: 38px;
       cursor: pointer;
       @media (max-width: $screen-sm-min) {
         height: 80px;
+      }
+      @media (min-width: $screen-lg-min) {
+        height: 30px;
       }
       margin: 0 -14px;
       img {

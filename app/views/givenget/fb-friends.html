@@ -11,7 +11,7 @@
                 <span class="{{friend.isKooboodle ? 'kb-user' : 'non-kb-user'}}"></span>
                 {{friend.isKooboodle ? 'Already' : 'Not yet'}} on Kooboodle
             </div>
-            <div class="tag"><span class="tag-label">{{friend.tags.length || 0}}</span><span class="glyphicon glyphicon-play"></span> Total photo tags</div>
+            <div class="tag"><span class="tag-label">{{friend.tags.length || 0}}</span><span class="glyphicon glyphicon-play"></span> Total <span class="hidden-lg">photo</span> tags</div>
 
             <nx-thumblist data-items="friend.tags" data-shown="4"></nx-thumblist>
 
