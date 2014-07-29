@@ -361,6 +361,17 @@ $border-color-dark:  #101010;
           top: 188px;
         }
       }
+
+      .item-thumbs {
+        li {
+          .img-wrapper {
+            height: 38px;
+            @media (min-width: $screen-lg-min) {
+              height: 30px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -385,13 +396,10 @@ nx-thumbs-preview {
     display: block;
     .img-wrapper {
       overflow: hidden;
-      height: 38px;
+      height: 44px;
       cursor: pointer;
       @media (max-width: $screen-sm-min) {
         height: 80px;
-      }
-      @media (min-width: $screen-lg-min) {
-        height: 30px;
       }
       margin: 0 -14px;
       img {
@@ -407,3 +415,4 @@ nx-thumbs-preview {
     }
   }
 }
+
