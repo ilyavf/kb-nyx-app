@@ -84,6 +84,10 @@
                     </button>
                 </li>
 
+                <li ng-if="refreshVisible">
+                    <a ng-click="btnClick('refresh')" ><span class="glyphicon glyphicon-refresh"></span></a>
+                    <span ng-transclude></span>
+                </li>
                 <li ng-if="helpVisible">
                     <a ng-click="help()" ><span class="glyphicon glyphicon-question-sign"></span></a>
                     <span ng-transclude></span>

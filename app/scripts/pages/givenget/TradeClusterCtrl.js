@@ -61,19 +61,7 @@
                         $scope.sendShare(_cluster, $scope.items);
                     });
                 });
-                $scope.setupToolbar = function () {
-                    $scope.isActionToolbarReady.then(function () {
-                        $rootScope.$broadcast('action-toolbar:config', {
-                            title: 'What photos do you want to trade?',
-                            send: true,
-                            cancel: 2
-                        });
-                        $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
-                        $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
-                    });
-                };
                 $scope.$on('action-toolbar:reconfig', $scope.setupToolbar);
-                $scope.setupToolbar();
             });
 
             $scope.openLightbox = function (id) {
@@ -94,6 +82,19 @@
                         alert('Cannot send items: ' + err);
                     });
             };
+
+            $scope.setupToolbar = function () {
+                $scope.isActionToolbarReady.then(function () {
+                    $rootScope.$broadcast('action-toolbar:config', {
+                        title: 'What photos do you want to trade?',
+                        send: true,
+                        cancel: 2
+                    });
+                    $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
+                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                });
+            };
+            $scope.setupToolbar();
 
             function viewAction (event) {
                 $scope.openLightbox($scope.items.reduce(function (acc, i) { return i.isSelected ? i.id : acc ;}, ''));

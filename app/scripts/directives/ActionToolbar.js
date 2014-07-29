@@ -40,6 +40,7 @@
                         'select',
                         'send',
                         'cancel',
+                        'refresh',
                         'help',
                         'logout',
                         'mainActionTitle'

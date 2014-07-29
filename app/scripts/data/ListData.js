@@ -17,7 +17,7 @@
 
         var _ = utils._;
 
-        var ListData = function ($q, $http, $log, $window, $location) {
+        var ListData = function ($q, $http, $log, $window, $location, $rootScope) {
 
             var proto = $location.protocol(),
                 host = $location.host(),
@@ -41,7 +41,7 @@
                     apiUrl = apiPrefix + apiUrl;
                 }
 
-                //$rootScope.$on('user:logout', cleanupLocalData);
+                $rootScope.$on('user:logout', cleanupLocalData);
 
                 function getPage (pageNumber) {
 
@@ -108,9 +108,12 @@
                     });
                 }
 
+                function removeItem (key) {
+                    localStorage.removeItem(key);
+                }
                 function cleanupLocalData () {
                     //deferred = null;
-                    //$window.localStorage.removeItem(CONFIG_LOCALSTORAGE_ITEMNAME);
+                    _.map(removeItem, _.filter(_.match(/^LISTDATA/), _.keys(localStorage)))
                 }
 
                 function checkLocalData (pageNumber) {
@@ -157,17 +160,8 @@
                         _.get('items')
 
                     )(data);
-                    $window.test1 = data;
                     return data;
                 };
-
-                //function getItemByDashedTitle1 (dashedTitle) {
-                //    return getPage(0).then(function (clustersPage) {
-                //        return clustersPage.items.reduce(function (prev, cur) {
-                //            return dashedTitle == cur.dashedTitle ? cur : prev
-                //        });
-                //    });
-                //}
 
                 function getItemByDashedTitle (dashedTitle) {
                     var itemPromise = getPage(0)
