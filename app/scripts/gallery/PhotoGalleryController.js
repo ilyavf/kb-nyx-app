@@ -22,6 +22,7 @@
 
             var dashedTitle = $routeParams.clusterDashedTitle,
                 clusterP = albumClusterList.getItemByDashedTitle(dashedTitle),
+                _cluster, _items,
                 albumPhotos;
 
             $scope.loading = true;
@@ -42,6 +43,7 @@
             $scope.setupToolbar();
 
             clusterP.then(function (cluster) {
+                _cluster = cluster;
                 $scope.title = cluster.title;
                 $scope.id = cluster.id;
                 albumPhotos = albumPhotosData(cluster.id);
@@ -54,6 +56,7 @@
             }).then(function (photosPage) {
                 $scope.loading = false;
                 var photos = photosPage.items;
+                _items = photos;
                 console.log('[PhotoGalleryCtrl.albumPhotos.get('+$scope.id+')]' + photos.length + ' (of ' + photosPage.totalItems + ')', photos);
                 $scope.items = photos;
                 $scope.totalItems = photosPage.totalItems || photos.length;
@@ -63,17 +66,16 @@
                     $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
                     $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                 });
+
+                $scope.openLightbox = function (id) {
+                    console.log('[openLightbox] ', id);
+                    $scope.$emit('lightbox:show', _cluster, _items, id);
+                };
             });
 
-            $scope.openLightbox = function (id) {
-                console.log('[openLightbox] ', id);
-                clusterP.then(function (cluster) {
-                    $scope.$emit('lightbox:show', cluster, id);
-                });
-            };
-
             function viewAction (event) {
-                $scope.openLightbox($scope.items.reduce(function (acc, i) { return i.isSelected ? i.id : acc ;}, ''));
+                var itemId = $scope.items.reduce(function (acc, i) { return i.isSelected ? i.pid : acc ;});
+                $scope.openLightbox && $scope.openLightbox(itemId);
             };
         };
 

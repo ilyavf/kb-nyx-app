@@ -20,14 +20,17 @@
         var LightboxCtrl = function ($scope, $rootScope) {
             $scope.isVisible = false;
             $scope.title = 'Lightbox';
-            $scope.cluster = {items:[]};
+            $scope.cluster = {};
+            $scope.items = [];
             $scope.currentItem = _.head($scope.cluster.items);
 
-            $scope.show = function (cluster, current) {
-                current = current || 0;
+            $scope.show = function (cluster, items, currentId) {
                 $scope.cluster = cluster;
-                $scope.currentItem = _.nth(current, $scope.cluster.items);
+                $scope.items = items;
+                $scope.currentItem = _.find(_.where({pid: currentId}), items) || _.head(items);
+                console.log('Lightbox.show: current=' + currentId + ', currentItem:', $scope.currentItem);
                 $scope.isVisible = true;
+                $scope.url = $scope.currentItem.url;
             };
             $scope.hide = function () {
                 $scope.isVisible = false;
@@ -37,10 +40,10 @@
                 $rootScope.$broadcast('action-toolbar:reconfig');
             };
 
-            $rootScope.$on('lightbox:show', function (e, cluster, current) {
+            $rootScope.$on('lightbox:show', function (e, cluster, items, currentId) {
                 $scope.$emit('pageMode:modal', true);
                 $scope.setupToolbar();
-                $scope.show(cluster, current);
+                $scope.show(cluster, items, currentId);
             });
 
             // setup toolbar:

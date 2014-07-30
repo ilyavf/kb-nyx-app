@@ -2,13 +2,12 @@
 
     <div class="container">
         <div class="img-container">
-            <img ng-src="{{current.url}}" />
+            <img ng-src="{{currentItem.pathBase}}" />
         </div>
         <div class="details">
             <p>Photo Details</p>
-            <p>Page title: {{title}}</p>
-            <p># of items: {{cluster.items.length}}</p>
-            <p>Current item: {{currentItem.title}}</p>
+            <p>Title: {{currentItem.filenameOriginal}}</p>
+            <p>Album: {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
 
             <button ng-click="hide()">Close</button>
         </div>

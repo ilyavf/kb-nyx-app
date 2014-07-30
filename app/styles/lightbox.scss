@@ -8,10 +8,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: lightyellow;
+  //background-color: lightyellow;
   
   .container {
-    background-color: lightblue;
+    //background-color: lightblue;
     position: absolute;
     top:0;
     bottom:0;
@@ -20,7 +20,7 @@
   }
 
   .img-container {
-    background-color: yellow;
+    background-color: black;
     @include border-left-radius(5px);
     @include border-right-radius(5px);
     position: absolute;
@@ -28,13 +28,19 @@
     right: 200px;
     top: 30px;
     bottom: 30px;
+    overflow: hidden;
+    text-align: center;
+
+    img {
+      height: 100%;
+    }
   }
   .details {
     position: absolute;
     top: 30px;
     right: 15px;
     width: 165px;
-    background-color: lightcoral;
+    //background-color: lightcoral;
   }
 
 }
