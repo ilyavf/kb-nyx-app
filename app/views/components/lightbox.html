@@ -1,9 +1,17 @@
 <div class="lightbox" ng-show="isVisible">
 
-    <p>Page title: {{title}}</p>
+    <div class="container">
+        <div class="img-container">
+            <img ng-src="{{current.url}}" />
+        </div>
+        <div class="details">
+            <p>Photo Details</p>
+            <p>Page title: {{title}}</p>
+            <p># of items: {{cluster.items.length}}</p>
+            <p>Current item: {{currentItem.title}}</p>
 
-    <p># of items: {{cluster.items.length}}</p>
-
-    <p>Current item: {{currentItem.title}}</p>
+            <button ng-click="hide()">Close</button>
+        </div>
+    </div>
 
 </div>

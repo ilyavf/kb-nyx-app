@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-9 col-md-9 col-lg-10">
 
-            <div class="" ng-view=""></div>
+            <div class="view-container" ng-view=""></div>
         </div>
     </div>
 
@@ -20,18 +20,7 @@
         <nx-action-toolbar data-config="'back,sortPhotos,share,select,help'">
             <help class="hidden" title="Your Photo Albums">Here are all of your photos. Double click on an album to look at the photos in that album.</help>
         </nx-action-toolbar>
-        <div class="" ng-view=""></div>
-    </div>
-
-    <div ng-switch-when="lightbox">
-        <action-toolbar>
-            <back></back>
-            <share></share>
-            <rotate></rotate>
-            <download></download>
-            <help></help>
-        </action-toolbar>
-        <div class="" ng-view=""></div>
+        <div class="view-container" ng-view=""></div>
     </div>
 
 </div>

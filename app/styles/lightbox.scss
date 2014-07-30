@@ -1,0 +1,40 @@
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables';
+@import 'colors';
+
+.lightbox {
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: lightyellow;
+  
+  .container {
+    background-color: lightblue;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+  }
+
+  .img-container {
+    background-color: yellow;
+    @include border-left-radius(5px);
+    @include border-right-radius(5px);
+    position: absolute;
+    left:15px;
+    right: 200px;
+    top: 30px;
+    bottom: 30px;
+  }
+  .details {
+    position: absolute;
+    top: 30px;
+    right: 15px;
+    width: 165px;
+    background-color: lightcoral;
+  }
+
+}

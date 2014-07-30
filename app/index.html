@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/photo-gallery.css">
     <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/lightbox.css">
     <!-- endbuild -->
   </head>
   <body ng-app="nyxWebApp" class="nyx-webapp">
@@ -23,7 +24,7 @@
 
     <!-- Add your site or application content here -->
     <div ng-controller="MainCtrl">
-        <div ng-switch on="state" class="animate-switch-container">
+        <div ng-switch on="state" class="animate-switch-container {{pageModeModal}}">
             <div ng-switch-when="anonymous" class="animate-switch">
                 <div ng-include="'views/anonymous_page.html'"></div>
             </div>

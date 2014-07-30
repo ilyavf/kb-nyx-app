@@ -144,6 +144,14 @@ body {
   .nowrap {
     white-space: nowrap;
   }
+
+  // to be used for Lightbox
+  &.page-modal {
+    overflow: hidden !important;
+    .view-container {
+      visibility: hidden;
+    }
+  }
 }
 
 .primaryColor {
