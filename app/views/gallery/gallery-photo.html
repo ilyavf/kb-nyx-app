@@ -1,7 +1,10 @@
 <div ng-if="title" class="header-title">{{title}} ({{totalItems}})</div>
 
 <nx-gallery>
-    <nx-photo ng-repeat="item in items | orderBy:'alreadyShared'"
+    <!-- removed orderBy - it should be a function with implementation per page.
+    <nx-photo ng-repeat="item in items | orderBy:'alreadyShared'"-->
+
+    <nx-photo ng-repeat="item in items"
                 data-item="item"
                 data-title="item.title || item.filenameOriginal"
                 data-url="item.url"

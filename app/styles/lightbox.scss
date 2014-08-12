@@ -43,4 +43,32 @@
     //background-color: lightcoral;
   }
 
+  .arrows {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    right: 200px;
+    font-size: 60px;
+    margin-top: -30px;
+    padding: 0 30px;
+    color: white;
+    .left, .right {
+      cursor: pointer;
+      opacity: 0.5;
+      &:hover {
+        opacity: 0.8;
+      }
+      &.disabled {
+        cursor: default;
+        opacity: 0.2;
+      }
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+  }
+
 }

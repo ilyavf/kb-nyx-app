@@ -23,14 +23,19 @@
             $scope.cluster = {};
             $scope.items = [];
             $scope.currentItem = _.head($scope.cluster.items);
+            $scope.currentIndex = 0;
+            $scope.isPrevActive = false;
+            $scope.isNextActive = false;
 
             $scope.show = function (cluster, items, currentId) {
+                console.log('[Lightbox.show] cluster, items, currentId:', cluster, items, currentId);
                 $scope.cluster = cluster;
                 $scope.items = items;
                 $scope.currentItem = _.find(_.where({pid: currentId}), items) || _.head(items);
-                console.log('Lightbox.show: current=' + currentId + ', currentItem:', $scope.currentItem);
+                $scope.currentIndex = $scope.items.indexOf($scope.currentItem);
+                console.log('Lightbox.show: currentId=' + currentId + ', currentIndex=' + $scope.currentIndex + ', currentItem:', $scope.currentItem);
                 $scope.isVisible = true;
-                $scope.url = $scope.currentItem.url;
+                $scope.checkArrows($scope.currentIndex, $scope.items.length - 1);
             };
             $scope.hide = function () {
                 $scope.isVisible = false;
@@ -61,6 +66,24 @@
                         help: true
                     });
                 });
+            };
+            $scope.checkArrows = function (cur, total) {
+                $scope.isNextActive = cur < total;
+                $scope.isPrevActive = cur > 0;
+            };
+            $scope.next = function () {
+                if ($scope.currentIndex < $scope.items.length - 1) {
+                    $scope.currentIndex++;
+                    $scope.currentItem = $scope.items[$scope.currentIndex];
+                    $scope.checkArrows($scope.currentIndex, $scope.items.length - 1);
+                }
+            };
+            $scope.prev = function () {
+                if ($scope.currentIndex > 0) {
+                    $scope.currentIndex--;
+                    $scope.currentItem = $scope.items[$scope.currentIndex];
+                    $scope.checkArrows($scope.currentIndex, $scope.items.length - 1);
+                }
             };
         };
 

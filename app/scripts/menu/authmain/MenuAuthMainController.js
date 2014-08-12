@@ -36,13 +36,13 @@
                 items: [{
                     name: 'Albums',
                     code: 'albums'
-                },{
+                }/*,{
                     name: 'Calendar',
                     code: 'calendar'
                 },{
                     name: 'Shared Photos',
                     code: 'shared'
-                }]
+                }*/]
             },{
                 title: 'GIVE\'N\'GET',
                 code: 'GiveNGet',
@@ -54,7 +54,7 @@
                     name: 'Trade Photos',
                     code: 'trade'
                 }]
-            },{
+            }/*,{
                 title: 'Settings',
                 code: 'settings',
                 iconClass: 'glyphicon-cog',
@@ -62,7 +62,7 @@
                     name: 'General',
                     code: 'settings'
                 }]
-            }];
+            }*/];
 
             $scope.isOpened = function (index, menuCode) {
                 return !$scope.active.menu && index == 0 ? true : $scope.active.menu == menuCode;
