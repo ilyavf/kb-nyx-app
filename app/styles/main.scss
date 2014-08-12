@@ -145,6 +145,10 @@ body {
     white-space: nowrap;
   }
 
+  .text-overflow {
+    @include text-overflow();
+  }
+
   // to be used for Lightbox
   &.page-modal {
     overflow: hidden !important;

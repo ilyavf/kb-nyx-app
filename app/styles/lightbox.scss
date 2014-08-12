@@ -25,7 +25,7 @@
     @include border-right-radius(5px);
     position: absolute;
     left:15px;
-    right: 200px;
+    right: 225px;
     top: 30px;
     bottom: 30px;
     overflow: hidden;
@@ -39,15 +39,30 @@
     position: absolute;
     top: 30px;
     right: 15px;
-    width: 165px;
+    width: 190px;
     //background-color: lightcoral;
+    .title {
+      text-align: center;
+      color: $quaternaryColor;
+      font-size: 1.6rem;
+      //font-weight: bold;
+      margin-bottom: 15px;
+    }
+    label {
+      color: $quinaryColor;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+    }
+
   }
 
   .arrows {
     position: absolute;
     top: 50%;
     left: 15px;
-    right: 200px;
+    right: 225px;
     font-size: 60px;
     margin-top: -30px;
     padding: 0 30px;

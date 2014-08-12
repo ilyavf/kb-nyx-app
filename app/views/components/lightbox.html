@@ -5,15 +5,18 @@
             <img ng-src="{{currentItem.pathBase}}" />
         </div>
         <div class="details">
-            <p class="title">Photo Details</p>
+            <!--<div class="title">Photo Details</div>-->
 
-            <p>Date: {{currentItem.dateTaken * 1000 | date: 'longDate'}}</p>
-            <p>Title: {{currentItem.title || 'Untitled'}}</p>
+            <p><label>Date:</label> {{currentItem.dateTaken * 1000 | date: 'longDate'}}</p>
+            <p><label>Title:</label> {{currentItem.title || 'Untitled'}}</p>
+            <br />
 
-            <p>Album: {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
-            <p>Added: {{currentItem.dateUploaded * 1000 | date: 'longDate'}}</p>
-            <p>File: {{currentItem.filenameOriginal}}</p>
-            <p>Showing {{currentIndex + 1}} of {{items.length}}</p>
+            <p><label>Album:</label> {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
+            <p><label>Added:</label> {{currentItem.dateUploaded * 1000 | date: 'longDate'}}</p>
+            <p class="text-overflow"><label>File:</label> {{currentItem.filenameOriginal}}</p>
+            <br />
+
+            <p><label>Showing:</label> {{currentIndex + 1}} of {{items.length}}</p>
         </div>
         <div class="arrows">
             <span class="left glyphicon glyphicon-chevron-left {{isPrevActive ? '' : 'disabled'}}" ng-click="prev()"></span>
