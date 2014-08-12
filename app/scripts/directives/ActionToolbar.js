@@ -45,7 +45,9 @@
                         'logout',
                         'mainActionTitle'
                     ];
+                    scope.configOpts;
                     scope.configure = function (configOpts) {
+                        scope.configOpts = configOpts;
                         scope.configVisibleProps.forEach(function (prop) {
                             scope[prop + 'Visible'] = configOpts && !configOpts.join && configOpts[prop]
                                 || configOpts && configOpts.join && configOpts.indexOf(prop) !== -1
@@ -72,6 +74,10 @@
                       //$rootScope.$broadcast('action-toolbar:share');
                     };
                     scope.goBack = function (levels) {
+                        if (scope.configOpts.back && scope.configOpts.back.event) {
+                            scope.$emit('broadcast', scope.configOpts.back.event);
+                            return;
+                        }
                         levels = levels || 1;
                         scope.$emit('action-toolbar:goBack', levels);
                     };

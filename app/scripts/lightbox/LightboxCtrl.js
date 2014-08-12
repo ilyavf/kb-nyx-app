@@ -50,13 +50,14 @@
                 $scope.setupToolbar();
                 $scope.show(cluster, items, currentId);
             });
+            $scope.$on('lightbox:hide', $scope.hide);
 
             // setup toolbar:
             $scope.setupToolbar = function () {
                 $scope.isActionToolbarReady.then(function () {
                     $rootScope.$broadcast('action-toolbar:config', {
                         cancel: false,
-                        back: true,
+                        back: {event: 'lightbox:hide'},
                         sort: false,
                         info: false,
                         view: false,

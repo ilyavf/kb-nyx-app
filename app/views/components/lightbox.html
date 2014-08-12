@@ -13,11 +13,7 @@
             <p>Album: {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
             <p>Added: {{currentItem.dateUploaded * 1000 | date: 'longDate'}}</p>
             <p>File: {{currentItem.filenameOriginal}}</p>
-
-            <button ng-click="hide()">Close</button>
-
-            <p>currentIndex = {{currentIndex}}</p>
-            <p>total items = {{items.length}}</p>
+            <p>Showing {{currentIndex + 1}} of {{items.length}}</p>
         </div>
         <div class="arrows">
             <span class="left glyphicon glyphicon-chevron-left {{isPrevActive ? '' : 'disabled'}}" ng-click="prev()"></span>
