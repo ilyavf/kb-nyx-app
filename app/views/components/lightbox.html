@@ -19,8 +19,8 @@
             <p><label>Showing:</label> {{currentIndex + 1}} of {{items.length}}</p>
         </div>
         <div class="arrows">
-            <span class="left glyphicon glyphicon-chevron-left {{isPrevActive ? '' : 'disabled'}}" ng-click="prev()"></span>
-            <span class="right glyphicon glyphicon-chevron-right {{isNextActive ? '' : 'disabled'}}" ng-click="next()"></span>
+            <span class="left {{isPrevActive ? '' : 'disabled'}}" ng-click="prev()"></span>
+            <span class="right {{isNextActive ? '' : 'disabled'}}" ng-click="next()"></span>
         </div>
     </div>
 
