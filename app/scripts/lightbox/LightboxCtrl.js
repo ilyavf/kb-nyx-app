@@ -42,7 +42,7 @@
                 $scope.cluster = {items:[]};
                 $scope.currentItem = {};
                 $scope.$emit('pageMode:modal', false);
-                $rootScope.$broadcast('action-toolbar:reconfig');
+                $scope.$emit('broadcast', 'action-toolbar:reconfig');
             };
 
             $rootScope.$on('lightbox:show', function (e, cluster, items, currentId) {
@@ -60,8 +60,8 @@
                     });
                 });
             };
-            $scope.checkArrows = function (cur, total) {
-                $scope.isNextActive = cur < total;
+            $scope.checkArrows = function (cur, last) {
+                $scope.isNextActive = cur < last;
                 $scope.isPrevActive = cur > 0;
             };
             $scope.next = function () {
