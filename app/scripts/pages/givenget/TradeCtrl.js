@@ -61,7 +61,6 @@
                     $rootScope.$broadcast('action-toolbar:config', {
                         logo: true,
                         title: 'Give Photos to Friends and Family and Get Photos from Them',
-                        help: true,
                         logout: true
                     });
                 });

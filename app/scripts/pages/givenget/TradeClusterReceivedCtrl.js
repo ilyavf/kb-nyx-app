@@ -51,14 +51,7 @@
                 $scope.isActionToolbarReady.then(function () {
                     $rootScope.$broadcast('action-toolbar:config', {
                         title: 'You received ' + itemsReceived.length + ' photos from ' + userName,
-                        back: 3,
-                        sort: false,
-                        info: false,
-                        view: false,
-                        share: false,
-                        select: false,
-                        logout: false,
-                        help: false
+                        back: 3
                     });
                 });
             });

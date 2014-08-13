@@ -12,9 +12,9 @@
             <p class="nowrap">
                 <a ng-if="given && received" href="#/auth/trade/{{cluster}}/{{uid}}/received" type="button" class="btn btn-danger">View</a>
                 <a ng-if="!given" href="#/auth/trade/{{cluster}}/{{uid}}" type="button" class="btn btn-primary">Trade</a>
-                <button ng-if="!received" type="button" class="btn btn-warning">Remind</button>
+                <!--<button ng-if="!received" type="button" class="btn btn-warning">Remind</button>-->
                 <a ng-if="given && given < total" href="#/auth/trade/{{cluster}}/{{uid}}" type="button" class="btn btn-default">Trade More Photos</a>
-                <button ng-if="!given" type="button" class="btn btn-link">Later</button>
+                <!--<button ng-if="!given" type="button" class="btn btn-link">Later</button>-->
             </p>
         </div>
         <div ng-transclude class="col-md-5"></div>

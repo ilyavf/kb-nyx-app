@@ -33,8 +33,7 @@
                     $rootScope.$broadcast('action-toolbar:config', {
                         logo: true,
                         title: 'Find Friends',
-                        logout: true,
-                        help: true
+                        logout: true
                     });
                 });
             };

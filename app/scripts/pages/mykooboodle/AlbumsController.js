@@ -34,7 +34,6 @@
                         share: true,
                         view: true,
                         select: true,
-                        help: true,
                         logout: true
                     });
                 });

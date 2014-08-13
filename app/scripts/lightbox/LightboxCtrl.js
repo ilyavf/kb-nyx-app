@@ -56,15 +56,7 @@
             $scope.setupToolbar = function () {
                 $scope.isActionToolbarReady.then(function () {
                     $rootScope.$broadcast('action-toolbar:config', {
-                        cancel: false,
-                        back: {event: 'lightbox:hide'},
-                        sort: false,
-                        info: false,
-                        view: false,
-                        share: true,
-                        logout: false,
-                        select: false,
-                        help: true
+                        back: {event: 'lightbox:hide'}
                     });
                 });
             };
