@@ -48,6 +48,10 @@ $border-color-dark:  #101010;
           max-width: 200%;
           min-width: 100%;
         }
+
+        @media (max-width: $screen-sm-min) {
+          height: 200px;
+        }
       }
       .caption {
         display: block;
