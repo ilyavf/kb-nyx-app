@@ -248,7 +248,10 @@ nx-action-toolbar {
   }
 
   .navbar-nav.navbar-right:last-child {
-    margin-right: 15px;
+    margin-right: 0px;
+    button {
+      margin-right: 15px;
+    }
   }
 
   @media (max-width: $screen-sm-min) {
