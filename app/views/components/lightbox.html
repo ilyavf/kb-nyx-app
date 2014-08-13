@@ -8,13 +8,13 @@
             <!--<div class="title">Photo Details</div>-->
 
             <p><label>Date:</label> {{currentItem.dateTaken * 1000 | date: 'longDate'}}</p>
-            <p><label>Title:</label> {{currentItem.title || 'Untitled'}}</p>
-            <br />
+            <p class="hidden-xs"><label>Title:</label> {{currentItem.title || 'Untitled'}}</p>
+            <br class="hidden-xs" />
 
-            <p><label>Album:</label> {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
-            <p><label>Added:</label> {{currentItem.dateUploaded * 1000 | date: 'longDate'}}</p>
-            <p class="text-overflow"><label>File:</label> {{currentItem.filenameOriginal}}</p>
-            <br />
+            <p class="hidden-xs"><label>Album:</label> {{cluster.name}} <span ng-iv="cluster.count">({{cluster.count}})</span></p>
+            <p class="hidden-xs"><label>Added:</label> {{currentItem.dateUploaded * 1000 | date: 'longDate'}}</p>
+            <p class="text-overflow hidden-xs"><label>File:</label> {{currentItem.filenameOriginal}}</p>
+            <br class="hidden-xs" />
 
             <p><label>Showing:</label> {{currentIndex + 1}} of {{items.length}}</p>
         </div>
