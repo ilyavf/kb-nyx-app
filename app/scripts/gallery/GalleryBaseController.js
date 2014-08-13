@@ -68,7 +68,7 @@
 
                 $rootScope.$broadcast(
                     'share:photos',
-                    selected.map(function(i){return i.id;})
+                    selected.map(function(i){return i.pid;})
                 );
             });
         };
