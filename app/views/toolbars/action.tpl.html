@@ -79,9 +79,9 @@
                 </li>
                 <li ng-if="sendVisible">
                     &nbsp;&nbsp;&nbsp;
-                    <button ng-click="btnClick('send')" type="button" class="navbar-btn btn btn-primary">
+                    <nx-ajax-button data-btn-class="'navbar-btn btn btn-primary'" data-on-click="sendBtnAction()" data-control="sendBtnControl">
                         <span class="glyphicon glyphicon-send"></span> Send
-                    </button>
+                    </nx-ajax-button>
                 </li>
 
                 <li ng-if="refreshVisible">

@@ -29,14 +29,20 @@
                     $scope.close = function () {
                         $modalInstance.close();
                     };
+                    $scope.errorMsg = '';
+                    $scope.sendBtnControl = { reset: function(){} };
                     $scope.send = function () {
                         console.log('[modal share.send] ' + $scope.contacts.inputStr + ', ' + $scope.ids.length);
+                        $scope.errorMsg = '';
                         sharePhotosData.send($scope.ids, $scope.contacts.inputStr.split(' '))
                             .then(function (data) {
                                 console.log('[modalShareCtrl] success', data);
+                                $scope.sendBtnControl.reset();
                                 $modalInstance.close();
                             }, function (data) {
                                 console.log('[modalShareCtrl] error', data);
+                                $scope.errorMsg = data.message;
+                                $scope.sendBtnControl.reset();
                             });
                     };
                 };

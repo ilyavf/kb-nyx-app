@@ -1,0 +1,15 @@
+nx-ajax-button {
+  button {
+    &.loading {
+      span {
+        visibility: hidden;
+      }
+      background-image: url(../images/ajax-loader-blue.gif);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      cursor: default;
+    }
+    &.normal {
+    }
+  }
+}

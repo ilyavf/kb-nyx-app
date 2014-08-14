@@ -2,11 +2,11 @@
     <div class="content row">
         <div class="col-md-7">
             <p class="title">{{name}}</p>
-            <p ng-if="given" class="">
-                Given: <span class="squared">{{given}}</span> |
+            <p ng-if="given || received" class="">
+                Given: <span class="squared">{{given || 0}}</span> |
                 Received: <span class="squared">{{received || 0}}</span>
             </p>
-            <p ng-if="!given" class="nowrap">
+            <p ng-if="!given && !received" class="nowrap">
                 You and {{name}} have photos each other may want
             </p>
             <p class="nowrap">

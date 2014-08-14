@@ -77,9 +77,11 @@
                     .then(function () {
                         DomainPhotoItems.updateSharedItems(items, pids);
                         alert('Sent ' + pids.length + ' items');
+                        $scope.$emit('broadcast', 'action-toolbar:sendReset');
                     })
                     .catch(function (err) {
                         alert('Cannot send items: ' + err);
+                        $scope.$emit('broadcast', 'action-toolbar:sendReset');
                     });
             };
 
@@ -88,10 +90,11 @@
                     $rootScope.$broadcast('action-toolbar:config', {
                         title: 'What photos do you want to trade?',
                         send: true,
-                        cancel: 2
+                        cancel: 2,
+                        back: 2
                     });
-                    $rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
-                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                    //$rootScope.$broadcast('action-toolbar:selectedTotal', photosPage.totalItems);
+                    //$rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
                 });
             };
             $scope.setupToolbar();

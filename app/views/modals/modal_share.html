@@ -9,12 +9,15 @@
         </div>
 
         <br />
+        <div ng-show="errorMsg" class="alert alert-danger" role="alert">{{errorMsg}}</div>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="pull-right">
                     <button type="button" class="btn btn-link" ng-click="close()">Cancel</button>
-                    <button type="button" class="btn btn-primary" ng-click="send()">Send</button>
+                    <nx-ajax-button data-btn-class="'btn btn-primary'" data-on-click="send()" data-control="sendBtnControl">
+                        <span class="glyphicon glyphicon-send"></span> Send
+                    </nx-ajax-button>
                 </div>
             </div>
         </div>

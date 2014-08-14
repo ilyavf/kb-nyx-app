@@ -98,6 +98,14 @@
                     scope.btnClick = function (action) {
                         scope.$emit('broadcast', 'action-toolbar:' + action);
                     }
+                    scope.sendBtnAction = function () {
+                        scope.btnClick('send')
+                    };
+                    scope.sendBtnControl = {};
+                    scope.$on('action-toolbar:sendReset', function (event) {
+                        console.log('[ActionToolbar]: event received: action-toolbar:sendReset');
+                        scope.sendBtnControl.reset();
+                    });
                 }
             };
         }

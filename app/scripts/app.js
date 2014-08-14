@@ -32,10 +32,11 @@
         'data/ListData',
         'data/FbData',
         'directives/ActionToolbar',
-        'directives/EditableTitle'
+        'directives/EditableTitle',
+        'directives/AjaxButtonDir'
 
     ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule, LightboxModule,
-                 MainCtrl, UserHomeCtrl, ListData, FbData, ActionToolbarDir, EditableTitleDir
+                 MainCtrl, UserHomeCtrl, ListData, FbData, ActionToolbarDir, EditableTitleDir, AjaxButtonDir
     ) {
 
         console.log('[app]: configuring app ', cfg);
@@ -94,6 +95,7 @@
 
         .directive('nxActionToolbar', ActionToolbarDir)
         .directive('nxEditableTitle', EditableTitleDir)
+        .directive('nxAjaxButton', AjaxButtonDir)
 
         .controller('MainCtrl', MainCtrl)
         .controller('UserHomeCtrl', UserHomeCtrl);
