@@ -9,6 +9,9 @@
   left: 0;
   right: 0;
   //background-color: lightyellow;
+  @media (max-width: $screen-sm-min) {
+    top: 0;
+  }
   
   .container {
     //background-color: lightblue;
