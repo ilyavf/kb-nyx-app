@@ -164,6 +164,23 @@ Publish JUnit test result report:
 "test-results-*.xml"
 ```
 
+# Hosting with NodeJS
+
+The client web app itself is all static HTML/CSS/javascript. Could be hosted on any webserver.
+NodeJS server app is an API gateway for simplifying and aggregating Zeus and OpenPhoto API calls.
+
+## To serve static app:
+Run with parameters:
+- $ NODE_ENV=production SERVE_STATIC=true APP_PORT=1337 node server.js
+- $ NODE_ENV=development SERVE_STATIC=true node server.js
+
+## To serve server api:
+Run with parameters:
+- $ NODE_ENV=production SERVE_API=true APP_PORT=1338 node server.js
+
+Keep in mind the web app config located in 'app/scripts/config.js' which has api port parameter to be used by the client app.
+
+
 #Testing
 
 ##Unit tests via Karma

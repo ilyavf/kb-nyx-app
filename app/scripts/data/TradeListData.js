@@ -13,12 +13,12 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define(['config'], function (config) {
         var TradeListData = function ($location, $q, $http, ListData) {
 
             var proto = $location.protocol(),
                 host = $location.host(),
-                port = '1337',
+                port = config.apiPort,
                 prefix = proto + '://' + host + ':' + port,
                 apiUrl = prefix + '/api/trades';
 

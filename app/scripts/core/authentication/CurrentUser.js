@@ -20,14 +20,14 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define(['config'], function (config) {
 
         var currentUser = function ($q, $http, $log, $window, $location, $rootScope) {
             var userDeferred = $q.defer(),
                 isLoggedIn = false,
                 proto = $location.protocol(),
                 host = $location.host(),
-                port = '1337',
+                port = config.apiPort,
                 prefix = proto + '://' + host + ':' + port,
                 loginUrl = prefix + '/api/login',
                 //loginUrl = 'http://qa.kooboodle.com/user/openphoto/login.json',

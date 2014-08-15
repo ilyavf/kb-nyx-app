@@ -13,14 +13,14 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define(['config'], function (config) {
 
         var SharePhotosData = function ($location, $q, $http, $log) {
             var proto = $location.protocol(),
                 host = $location.host(),
-                port = '1337',
+                port = config.apiPort,
                 prefix = proto + '://' + host + ':' + port,
-                zeus = proto + '://zdev.kooboodle.com',
+                zeus = proto + '://' + config.zeusServer,
                 //apiUrl = prefix + '/api/share/photos';
                 shareUrl = zeus + '/share/photos',
                 shareRecommendationUrl = shareUrl + '/recommendation/{recommendationId}',

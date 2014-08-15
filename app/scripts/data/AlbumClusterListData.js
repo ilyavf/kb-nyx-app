@@ -13,7 +13,7 @@
 (function (define) {
     'use strict';
 
-    define(['utils/nx-utils'], function (utils) {
+    define(['config', 'utils/nx-utils'], function (config, utils) {
         var addProp = utils.addProp,
             _ = utils._,
             ClusterListData;
@@ -21,10 +21,10 @@
         ClusterListData = function ($location, $q, $http, ListData) {
             var proto = $location.protocol(),
                 host = $location.host(),
-                port = '1337',
+                port = config.apiPort,
                 prefix = proto + '://' + host + ':' + port,
                 apiUrl = prefix + '/api/clusters',
-                zeus = proto + '://zdev.kooboodle.com',
+                zeus = proto + '://' + config.zeusServer,
                 apiUrlUpdate = zeus + '/album/update/{id}',
                 //apiUrlUpdate = prefix + '/api/album/update/{id}',
                 sync;

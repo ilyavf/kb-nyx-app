@@ -29,6 +29,8 @@ var express = require('express'),
 
 var APP_PORT = process.env.PORT || 1337,
     APP_PORT_SECURE = process.env.PORT_SSL || 1338,
+    SERVE_API = getEnvParam(process.env.SERVE_API, false),
+    SERVE_STATIC = getEnvParam(process.env.SERVE_STATIC, false),
     SSL = getEnvParam(process.env.SSL, false),
     MOCK_API = getEnvParam(process.env.MOCK_API, false),
     app_dir = process.env.NODE_ENV === 'production' ? 'dist_prod' : 'dist',
@@ -37,36 +39,39 @@ var APP_PORT = process.env.PORT || 1337,
     app = express(),
     cfg = require('./app/scripts/config');
 
-app.use(express.static(clientDir));
+if (SERVE_API) {
+    app.use(bodyParser());
 
-app.use(bodyParser());
+    // API CORS:
+    app.all('*', function (req, res, next) {
+        if (!req.get('Origin') || req.get('Origin').search('kooboodle.com') === -1) return next();
+        res.set('Access-Control-Allow-Origin', req.get('Origin'));
+        res.set('Access-Control-Allow-Credentials', 'true');
+        res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+        res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        if ('OPTIONS' == req.method) return res.send(200);
+        next();
+    });
 
-// API CORS:
-app.all('*', function (req, res, next) {
-    if (!req.get('Origin') || req.get('Origin').search('kooboodle.com') === -1) return next();
-    res.set('Access-Control-Allow-Origin', req.get('Origin'));
-    res.set('Access-Control-Allow-Credentials', 'true');
-    res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    if ('OPTIONS' == req.method) return res.send(200);
-    next();
-});
+    app.post('/api/login', proxy.post('http://' + cfg.opServer + '/user/openphoto/login.json'));
+    app.post('/api/signup', proxy.post('http://' + cfg.opServer + '/cf/user/register.json'));
+    app.get('/api/profile', proxy.get('http://' + cfg.opServer + '/user/profile.json'));
+    app.post('/api/album/update/:id', proxy.post('http://' + cfg.zeusServer + '/album/update/:id'));
+    app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServer + '/share/photos'));
 
-app.post('/api/login', proxy.post('http://' + cfg.opServer + '/user/openphoto/login.json'));
-app.post('/api/signup', proxy.post('http://' + cfg.opServer + '/cf/user/register.json'));
-app.get('/api/profile', proxy.get('http://' + cfg.opServer + '/user/profile.json'));
-app.post('/api/album/update/:id', proxy.post('http://' + cfg.zeusServer + '/album/update/:id'));
-app.post('/api/share/photos', bodyParser(), proxy.post('http://' + cfg.zeusServer + '/share/photos'));
+    app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
+    app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
+    app.get('/api/trades', MOCK_API ? mockApi('trades') : tradeApi.getTrades);
+    app.get('/api/fb-user-info', userApi.fbUserInfo);
+    app.get('/zeus/recommendations', mockApi('zeus/recommendations'));
+}
 
-app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
-app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
-app.get('/api/trades', MOCK_API ? mockApi('trades') : tradeApi.getTrades);
-app.get('/api/fb-user-info', userApi.fbUserInfo);
-app.get('/zeus/recommendations', mockApi('zeus/recommendations'));
-
-app.all('/', function(req, res) {
-    res.sendfile(path.join(clientDir, 'index.html'));
-});
+if (SERVE_STATIC) {
+    app.use(express.static(clientDir));
+    app.all('/', function (req, res) {
+        res.sendfile(path.join(clientDir, 'index.html'));
+    });
+}
 
 // Error handling:
 app.use(logErrors);
@@ -76,7 +81,9 @@ var httpServer = http.createServer(app);
 httpServer.listen(APP_PORT);
 
 console.log(timestamp() + process.env.NODE_ENV.toUpperCase() + '. Client app folder: ' + clientDir);
-console.log(timestamp() + 'HTTP:  on port ' + APP_PORT);
+console.log(timestamp() + 'HTTP:  on port ' + APP_PORT + ' '
+    + (SERVE_STATIC &&  SERVE_API ? 'STATIC and API'
+        : (SERVE_API ? 'API only' : 'STATIC only')));
 console.log(timestamp() + 'Config: ' + cfg.opServer + ', ' + cfg.zeusServer);
 
 if (SSL) {

@@ -7,7 +7,7 @@
         opServer: 'dev.kooboodle.com',
         zeusServer: 'zdev.kooboodle.com',
         fbAppId: '278989038951916',
-        apiPort: '1337'
+        apiPort: '1338'
     };
 
     if (typeof exports === 'object') {
