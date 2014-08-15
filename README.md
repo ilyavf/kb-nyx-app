@@ -9,9 +9,15 @@ Nyx.Web
 	- [Installing on Mac](#installing-on-mac)
 	- [Installing on Ubuntu Virtual Machine](#installing-on-ubuntu-virtual-machine)
 	- [Jenkins Setup](#jenkins-setup)
+- [Hosting with NodeJS](#hosting-with-nodejs)
+	- [To serve static app:](#to-serve-static-app)
+	- [To serve server api:](#to-serve-server-api)
 - [Testing](#testing)
 	- [Unit tests via Karma](#unit-tests-via-karma)
 	- [End-to-end tests via Protractor](#end-to-end-tests-via-protractor)
+		- [Installation](#installation)
+		- [Running tests locally](#running-tests-locally)
+		- [Debug tests](#debug-tests)
 - [Links](#links)
 	- [Must-Read](#must-read)
 	- [Architecture / Code organization](#architecture--code-organization)
@@ -164,17 +170,16 @@ Publish JUnit test result report:
 "test-results-*.xml"
 ```
 
-# Hosting with NodeJS
+## Hosting with NodeJS
 
 The client web app itself is all static HTML/CSS/javascript. Could be hosted on any webserver.
 NodeJS server app is an API gateway for simplifying and aggregating Zeus and OpenPhoto API calls.
 
-## To serve static app:
+### To serve static app:
 Run with parameters:
 - $ NODE_ENV=production SERVE_STATIC=true APP_PORT=1337 node server.js
-- $ NODE_ENV=development SERVE_STATIC=true node server.js
 
-## To serve server api:
+### To serve server api:
 Run with parameters:
 - $ NODE_ENV=production SERVE_API=true APP_PORT=1338 node server.js
 
