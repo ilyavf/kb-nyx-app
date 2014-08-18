@@ -2,17 +2,18 @@
     'use strict';
 
     define([
-        'auth/AuthModule'
-    ], function () {
+        'auth/AuthModule',
+        'config'
+    ], function (AuthModule, config) {
 
         // See http://docs.angularjs.org/api/ngMock/service/$httpBackend
 
         describe('Service: currentUser', function () {
             var $httpBackend,
                 currentUser,
-                loginUrl = 'http://server:1337/api/login',
-                profileUrl = 'http://server:1337/api/profile',
-                signupUrl = 'http://server:1337/api/signup';
+                loginUrl = 'http://server:' + config.apiPort + '/api/login',
+                profileUrl = 'http://server:' + config.apiPort + '/api/profile',
+                signupUrl = 'http://server:' + config.apiPort + '/api/signup';
 
             // load the service's module
             beforeEach(module('Nyx.Auth'));
