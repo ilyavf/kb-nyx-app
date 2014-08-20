@@ -21,6 +21,7 @@ var express = require('express'),
     proxy = require('./server/api/proxy'),
     photoApi = require('./server/api/photos'),
     tradeApi = require('./server/api/tradePhotos'),
+    calendarApi = require('./server/api/calendarPhotos'),
     userApi = require('./server/api/kbUsers'),
     bodyParser = require('body-parser'),
     https = require('https'),
@@ -62,6 +63,7 @@ if (SERVE_API) {
     app.get('/api/clusters', MOCK_API ? mockApi('clusters') : photoApi.getClusters);
     app.get('/api/album/:albumId/photos', MOCK_API ? mockApi('album') : photoApi.getAlbumPhotos);
     app.get('/api/trades', MOCK_API ? mockApi('trades') : tradeApi.getTrades);
+    app.get('/api/calendar/:year', MOCK_API ? mockApi('calendar_year') : calendarApi.getYear);
     app.get('/api/fb-user-info', userApi.fbUserInfo);
     app.get('/zeus/recommendations', mockApi('zeus/recommendations'));
 }

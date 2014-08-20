@@ -13,17 +13,22 @@
 (function (define) {
     'use strict';
 
-    define([], function () {
+    define([
+        'gallery/GalleryClusterBaseCtrl'
+    ], function (GalleryClusterBaseCtrl) {
 
-        var CalendarController = function ($scope, $rootScope, $timeout) {
+        var CalendarController = function ($scope, $rootScope, $routeParams, $location, $timeout, calendarClusterListData) {
+
+            var year = $routeParams.year || '2013';
+
+
+            GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout, calendarClusterListData(year), {
+                gotoPath: '/auth/albums/',
+                nav: {menu: 'MyKooboodle', submenu: 'calendar'}
+            });
 
             $scope.pageTitle = 'Calendar';
 
-            $timeout(function () {
-                console.log('[CalendarController] init. Broadcasting to nav menu ...');
-                $rootScope.$broadcast('navMain:changed', 'MyKooboodle', 'calendar');
-            }, 100);
-            $rootScope.$broadcast('nav:landed');
         };
 
         return CalendarController;

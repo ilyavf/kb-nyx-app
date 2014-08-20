@@ -29,6 +29,15 @@
                         }
                     })
                     .when('/auth/calendar', {
+                        templateUrl: 'views/mykooboodle/albums.html',
+                        controller: 'MyPage.CalendarCtrl',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
+                    })
+                    .when('/auth/calendar/:year', {
                         templateUrl: 'views/mykooboodle/calendar.html',
                         controller: 'MyPage.CalendarCtrl',
                         resolve: {

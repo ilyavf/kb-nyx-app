@@ -1,6 +1,6 @@
 // http://zdev.kooboodle.com/trade?currentPage=1
 
-module.export = {
+module.exports = {
     "code": 200,
     "message": "trades",
     "result": [

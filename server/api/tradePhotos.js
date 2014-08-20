@@ -179,5 +179,6 @@ module.exports = {
     getTrades: getTrades,
     getPhotoUrl: getPhotoUrl,
     getUrlPromiseByPid: getUrlPromiseByPid,
-    addThumbUrlsToCluster: addThumbUrlsToCluster
+    addThumbUrlsToCluster: addThumbUrlsToCluster,
+    addThumbUrlsToClusters: addThumbUrlsToClusters
 };

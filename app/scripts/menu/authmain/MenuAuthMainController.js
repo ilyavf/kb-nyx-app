@@ -36,10 +36,10 @@
                 items: [{
                     name: 'Albums',
                     code: 'albums'
-                }/*,{
+                },{
                     name: 'Calendar',
                     code: 'calendar'
-                },{
+                }/*,{
                     name: 'Shared Photos',
                     code: 'shared'
                 }*/]

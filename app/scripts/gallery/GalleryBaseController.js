@@ -14,8 +14,9 @@
 
     define([], function () {
 
+        // THIS IS NOT a DI angular component! Argument order matters!
         var GalleryBaseController = function ($scope, $rootScope, itemListData, viewAction) {
-            console.log('[AlbumsController] init');
+            console.log('[GalleryBaseController] init');
             $scope.loading = true;
 
             $scope.next = function () {
