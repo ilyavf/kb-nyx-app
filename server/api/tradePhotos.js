@@ -24,9 +24,11 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
         };
     };
 
+    console.log('***[getPhotoUrl] ' + url);
+
     return promiseGet(resultParseFunc, headers, url);
 
-})('http://' + cfg.opServer + '/photo/{photoId}/url/{size}.json', '500x200');
+})('http://' + cfg.opServer + '/photo1/{photoId}/url/{size}.json', '500x200');
 
 var getTrades = function (req, res) {
 
