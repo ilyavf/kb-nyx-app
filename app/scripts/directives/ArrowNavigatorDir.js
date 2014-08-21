@@ -25,22 +25,28 @@
                 scope: {
                     'items': '=',
                     'initIndex': '=',
-                    'onNext': '&onNext',
-                    'onPrev': '&onPrev'
+                    'onNext': '=',
+                    'onPrev': '='
                 },
                 link: function (scope) {
                     scope.currentIndex = scope.initIndex || 0;
                     scope.currentItem = scope.items[scope.currentIndex];
 
                     scope.next = function () {
-                        if (++scope.currentIndex > scope.items.length-1) scope.currentIndex = scope.items.length-1 ;
-                        scope.currentItem = scope.items[scope.currentIndex];
-                        scope.onNext(scope.currentItem);
+                        if (++scope.currentIndex > scope.items.length-1) {
+                            scope.currentIndex = scope.items.length-1 ;
+                        } else {
+                            scope.currentItem = scope.items[scope.currentIndex];
+                            scope.onNext(scope.currentItem);
+                        }
                     };
                     scope.prev = function () {
-                        if (--scope.currentIndex < 0) scope.currentIndex = 0;
-                        scope.currentItem = scope.items[scope.currentIndex];
-                        scope.onPrev(scope.currentItem);
+                        if (--scope.currentIndex < 0) {
+                            scope.currentIndex = 0;
+                        } else {
+                            scope.currentItem = scope.items[scope.currentIndex];
+                            scope.onPrev(scope.currentItem);
+                        }
                     };
                 }
             }

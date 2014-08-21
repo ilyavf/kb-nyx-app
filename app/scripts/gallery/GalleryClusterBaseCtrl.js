@@ -32,7 +32,7 @@
             }, options);
 
             // inherit from the base class:
-            GalleryBaseController($scope, $rootScope, albumClusterList, viewAction);
+            var api = GalleryBaseController($scope, $rootScope, albumClusterList, viewAction);
 
             console.log('[GalleryClusterBaseCtrl] init');
 
@@ -76,6 +76,8 @@
                 console.log('[viewAction] ' + targetName);
                 $scope.gotoGallery(targetName);
             };
+
+            return api;
         };
 
         return GalleryClusterBaseCtrl;

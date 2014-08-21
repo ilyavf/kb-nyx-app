@@ -22,16 +22,18 @@
             var year = $routeParams.year || '2013';
 
 
-            GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout, calendarClusterListData(year), {
+            var api = GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout, calendarClusterListData(year), {
                 gotoPath: '/auth/albums/',
                 nav: {menu: 'MyKooboodle', submenu: 'calendar'}
             });
 
             $scope.pageTitle = 'Calendar';
 
-            $scope.months = [2011,2012,2013];
-            $scope.next = function () {};
-            $scope.prev = function () {};
+            $scope.years = [2004,2005,2009,2013];
+            $scope.changeYear = function (year) {
+                console.log('[CalendarController.next] ' + year);
+                api.setListData(calendarClusterListData(year));
+            };
 
         };
 

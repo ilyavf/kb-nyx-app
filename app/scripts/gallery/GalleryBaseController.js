@@ -17,11 +17,14 @@
         // THIS IS NOT a DI angular component! Argument order matters!
         var GalleryBaseController = function ($scope, $rootScope, itemListData, viewAction) {
             console.log('[GalleryBaseController] init');
+
+            var listData = itemListData;
+
             $scope.loading = true;
 
-            $scope.next = function () {
+            $scope.next = function (optionalPage) {
                 $scope.loading = true;
-                itemListData.next().then(function (newPage) {
+                listData.next(optionalPage).then(function (newPage) {
                     $scope.loading = false;
                     var newItems = newPage.items;
                     console.log('[next] ' + newItems.length, newItems);
@@ -49,7 +52,7 @@
                     i.isSelected = false;
                 });
             };
-            $scope.$on('doc:end', function () { $scope.next(); });
+            //$scope.$on('doc:end', function () { $scope.next(); });
             $scope.$on('action-toolbar:selectAll', function () {
                 $scope.selectAll($scope.items);
                 $rootScope.$broadcast('action-toolbar:selected', $scope.items.length);
@@ -72,6 +75,15 @@
                     selected.map(function(i){return i.pid;})
                 );
             });
+
+            return {
+                setListData: function (_listData) {
+                    console.log('[GalleryBaseController.setListData] new data list', _listData);
+                    listData = _listData;
+                    $scope.items = [];
+                    $scope.next(0);
+                }
+            };
         };
 
         return GalleryBaseController;
