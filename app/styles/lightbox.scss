@@ -3,6 +3,7 @@
 @import 'colors';
 
 .lightbox {
+
   position: fixed;
   top: 50px;
   bottom: 0;
@@ -23,6 +24,8 @@
   }
 
   .img-container {
+    @include user-select(none);
+
     background-color: black;
     position: absolute;
     left:15px;
@@ -115,5 +118,4 @@
       }
     }
   }
-
 }

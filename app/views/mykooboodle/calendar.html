@@ -1,8 +1,18 @@
-<h2>{{pageTitle}}</h2>
-<p>
-    Calendar day clusters here ...
-</p>
+<div class="page-calendar">
 
-<gallery>
-    <cluster-item ng-repeat="item in items" data-title="item.title" data-url="item.subItems[$index%3].url" on-click="log"></cluster-item>
-</gallery>
+    <nx-arrow-nav data-items="months" data-init-index="0" data-on-next="next" data-on-prev="prev">Arrows</nx-arrow-nav>
+
+    <nx-gallery>
+        <nx-cluster ng-repeat="cluster in items"
+                    data-cluster="cluster"
+                    on-click="selectItem"
+                    on-dbl-click="gotoGallery"
+                    ng-if="cluster.items.length > 0"
+                ></nx-cluster>
+    </nx-gallery>
+
+    <div ng-if="loading" class="page-loading"></div>
+
+    <p>{{error}}</p>
+
+</div>

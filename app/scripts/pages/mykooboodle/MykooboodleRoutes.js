@@ -29,7 +29,7 @@
                         }
                     })
                     .when('/auth/calendar', {
-                        templateUrl: 'views/mykooboodle/albums.html',
+                        templateUrl: 'views/mykooboodle/calendar.html',
                         controller: 'MyPage.CalendarCtrl',
                         resolve: {
                             isUserAuthenticated: function (currentUser) {

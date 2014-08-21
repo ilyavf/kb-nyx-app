@@ -29,6 +29,10 @@
 
             $scope.pageTitle = 'Calendar';
 
+            $scope.months = [2011,2012,2013];
+            $scope.next = function () {};
+            $scope.prev = function () {};
+
         };
 
         return CalendarController;
