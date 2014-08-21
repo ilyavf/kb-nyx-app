@@ -19,12 +19,11 @@
 
         var CalendarController = function ($scope, $rootScope, $routeParams, $location, $timeout, calendarClusterListData, calendarYearsData) {
 
-            var year = $routeParams.year;
-
-
-            var parent;
+            var parent,
+                year = $routeParams.year || null;
 
             $scope.pageTitle = 'Calendar';
+            $scope.loading = true;
 
             $scope.years = [];
             $scope.initYear = 0;
@@ -35,6 +34,8 @@
                 console.log('CalendarController years: ', years);
                 $scope.years = years;
                 $scope.arrowNavControl.setItems(years, year ? years.indexOf(year) : years.length-1);
+
+                // inherit from a parent controller:
                 parent = GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout,
                     calendarClusterListData(year || years[years.length-1]),
                     {

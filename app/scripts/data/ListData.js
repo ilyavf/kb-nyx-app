@@ -62,7 +62,7 @@
                         $log.log('[ClusterListData.getPage]: received', arguments);
                         if (!data.error) {
                             $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
-                            options && options.preprocess && options.preprocess(data.result);
+                            options && options.preprocess && (data.result = options.preprocess(data.result));
                             pagesDeferred[pageNumber].resolve(
                                 dataToItems(getLocalPage(pageNumber), data.result)
                             );
