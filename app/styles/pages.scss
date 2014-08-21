@@ -1,3 +1,5 @@
+@import 'bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
+
 .page-calendar {
 
   margin-top: 50px;
@@ -7,7 +9,7 @@
     top: 51px;
     left: 50%;
     background-color: rgba(255,255,255,0.8);
-
     z-index: 100;
+    @include border-bottom-radius(40px);
   }
 }
