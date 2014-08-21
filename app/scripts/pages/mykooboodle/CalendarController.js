@@ -33,6 +33,7 @@
             $scope.changeYear = function (year) {
                 console.log('[CalendarController.next] ' + year);
                 api.setListData(calendarClusterListData(year));
+                api.init();
             };
 
         };

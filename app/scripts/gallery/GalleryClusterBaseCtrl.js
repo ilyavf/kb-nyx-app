@@ -31,8 +31,15 @@
                 nav: {menu: 'MyKooboodle', submenu: 'albums'}
             }, options);
 
+            var listData = albumClusterList;
+
             // inherit from the base class:
-            var api = GalleryBaseController($scope, $rootScope, albumClusterList, viewAction);
+            var baseApi = GalleryBaseController($scope, $rootScope, listData, viewAction);
+
+            var setListData = function (newListData) {
+                listData = newListData;
+                baseApi.setListData(newListData);
+            };
 
             console.log('[GalleryClusterBaseCtrl] init');
 
@@ -52,20 +59,22 @@
             }, 100);
             $rootScope.$broadcast('nav:landed');
 
-            // gallery:
-            albumClusterList.get().then(function (albumsPage) {
-                $scope.items = albumsPage.items;
-                $scope.loading = false;
-                console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
-                $scope.isActionToolbarReady.then(function () {
-                    $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
-                    $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+            // gallery init:
+            var init = function () {
+                listData.get().then(function (albumsPage) {
+                    $scope.items = albumsPage.items;
+                    $scope.loading = false;
+                    console.log('EVENT: action-toolbar:selectedTotal ' + albumsPage.totalItems);
+                    $scope.isActionToolbarReady.then(function () {
+                        $rootScope.$broadcast('action-toolbar:selectedTotal', albumsPage.totalItems);
+                        $rootScope.$broadcast('action-toolbar:selected', $scope.countSelected($scope.items));
+                    });
+                }, function (error) {
+                    $scope.loading = false;
+                    $scope.error = 'Unable to get the list of albums from server.';
+                    console.log('ERROR: GalleryClusterBaseCtrl cannot load cluster list: ' + error);
                 });
-            }, function (error) {
-                $scope.loading = false;
-                $scope.error = 'Unable to get the list of albums from server.';
-                console.log('ERROR: GalleryClusterBaseCtrl cannot load cluster list: ' + error);
-            });
+            };
             $scope.gotoGallery = function (dashedTitle) {
                 if (!dashedTitle) return;
 
@@ -77,7 +86,12 @@
                 $scope.gotoGallery(targetName);
             };
 
-            return api;
+            init();
+
+            return {
+                setListData: setListData,
+                init: init
+            };
         };
 
         return GalleryClusterBaseCtrl;

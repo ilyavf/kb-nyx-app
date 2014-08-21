@@ -81,7 +81,6 @@
                     console.log('[GalleryBaseController.setListData] new data list', _listData);
                     listData = _listData;
                     $scope.items = [];
-                    $scope.next(0);
                 }
             };
         };
