@@ -125,7 +125,7 @@
 
                     if (data) {
                         pagesDeferred[pageNumber] = $q.defer();
-                        options && options.preprocess && options.preprocess(data);
+                        options && options.preprocess && (data = options.preprocess(data));
                         pagesDeferred[pageNumber].resolve(
                             dataToItems(getLocalPage(pageNumber), data)
                         );
@@ -157,6 +157,7 @@
                             'syncLocal',
                             syncClusterLocal(getLocalPage, setLocalPage)
                         )),
+                        utils.maybeArr,
                         _.get('items')
 
                     )(data);

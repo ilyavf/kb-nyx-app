@@ -17,23 +17,38 @@
         'gallery/GalleryClusterBaseCtrl'
     ], function (GalleryClusterBaseCtrl) {
 
-        var CalendarController = function ($scope, $rootScope, $routeParams, $location, $timeout, calendarClusterListData) {
+        var CalendarController = function ($scope, $rootScope, $routeParams, $location, $timeout, calendarClusterListData, calendarYearsData) {
 
-            var year = $routeParams.year || '2013';
+            var year = $routeParams.year;
 
 
-            var api = GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout, calendarClusterListData(year), {
-                gotoPath: '/auth/albums/',
-                nav: {menu: 'MyKooboodle', submenu: 'calendar'}
-            });
+            var parent;
 
             $scope.pageTitle = 'Calendar';
 
-            $scope.years = [2004,2005,2009,2013];
+            $scope.years = [];
+            $scope.initYear = 0;
+            $scope.arrowNavControl = { setItems: function(){} };
+
+            calendarYearsData.get().then(function(years){
+                years = years && years.result || years; // fix mutable preprocess of the DataList.
+                console.log('CalendarController years: ', years);
+                $scope.years = years;
+                $scope.arrowNavControl.setItems(years, year ? years.indexOf(year) : years.length-1);
+                parent = GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout,
+                    calendarClusterListData(year || years[years.length-1]),
+                    {
+                        gotoPath: '/auth/albums/',
+                        nav: {menu: 'MyKooboodle', submenu: 'calendar'}
+                    }
+                );
+            });
+
             $scope.changeYear = function (year) {
+                $scope.loading = true;
                 console.log('[CalendarController.next] ' + year);
-                api.setListData(calendarClusterListData(year));
-                api.init();
+                parent && parent.setListData(calendarClusterListData(year));
+                parent && parent.init();
             };
 
         };

@@ -26,7 +26,8 @@
                     'items': '=',
                     'initIndex': '=',
                     'onNext': '=',
-                    'onPrev': '='
+                    'onPrev': '=',
+                    'control': '='
                 },
                 link: function (scope) {
                     scope.currentIndex = scope.initIndex || 0;
@@ -48,6 +49,11 @@
                             scope.onPrev(scope.currentItem);
                         }
                     };
+                    scope.control.setItems = function (items, index) {
+                        scope.items = items;
+                        scope.currentIndex = index || 0;
+                        scope.currentItem = scope.items[scope.currentIndex];
+                    }
                 }
             }
         };

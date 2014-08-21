@@ -26,7 +26,8 @@
         'data/AlbumPhotosData',
         'data/TradeListData',
         'data/TradeClusterData',
-        'data/CalendarClusterListData'
+        'data/CalendarClusterListData',
+        'data/CalendarYearsData'
     ],
         function (
             GalleryRx, PhotoGalleryCtrl,
@@ -34,7 +35,8 @@
             GalleryDir, GalleryPhotoDir, GalleryClusterDir, GalleryTradeDir,
             GalleryTradeeDir, ThumbsPreviewDir, ThumbListDir, FriendDir,
 
-            AlbumClusterListData, AlbumPhotosData, TradeListData, TradeClusterData, CalendarClusterListData
+            AlbumClusterListData, AlbumPhotosData, TradeListData, TradeClusterData,
+            CalendarClusterListData, CalendarYearsData
         ) {
             var moduleName = "Nyx.PhotoGallery";
 
@@ -57,6 +59,7 @@
                 .factory('tradeListData', TradeListData)
                 .factory('tradeClusterData', TradeClusterData)
                 .factory('calendarClusterListData', CalendarClusterListData)
+                .factory('calendarYearsData', CalendarYearsData)
 
                 .controller('PhotoGallery.PhotoGalleryCtrl', PhotoGalleryCtrl);
 
