@@ -110,6 +110,8 @@ var getYear = function (req, res) {
         })
         //.then(log3('all promises after thumb urls:', _.size))
 
+        .then(_.map(addPropFn('dashedTitle', _.compose(function(t){return t.replace(/\s/g, '-');}, _.prop('title')))))
+
         .then(function (clusters) {
             var result = {
                 success: true,
