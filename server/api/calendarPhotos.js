@@ -43,7 +43,7 @@ function toYmd (year, month, day) {
 function toYmdNextMonth (year, month, day) {
     year = parseInt(year);
     month = parseInt(month);
-    return toYmd((month === 12 ? ++year : year), ((month + 1)%12), day);
+    return toYmd((month === 12 ? ++year : year), ((month + 1)%12 || 12), day);
 }
 
 var getYear = function (req, res) {
