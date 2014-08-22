@@ -13,17 +13,23 @@ var promiseGet = _.curry(function (method, resultParseFunc, options, url) {
         requestOptions.json = options.data;
     }
 
-    console.log('[promiseGet] ' + method + ', ' + url + ', ', requestOptions);
+    //console.log('[promiseGet] ' + method + ', ' + url + ', ', requestOptions);
 
     request[method](requestOptions, function (error, res, body) {
         if (!error) {
             var json = tryParseBody(body);
             if (json.error) {
                 console.log('[promiseGet] ERROR: ' + json.message + ' [promiseGet] url=' + url);
-                deferred.reject(json.message + ' (' + res.statusCode + ')');
+                deferred.reject(new Error(json.message + ' (' + res.statusCode + ')'));
             } else {
-                var result = resultParseFunc && resultParseFunc(json.body) || json.body;
-                deferred.resolve(result);
+                // check if the result has error (code is not 200)
+                if (json.body.code && json.body.code != 200) {
+                    console.log('[promiseGet] ERROR: url=' + url, error);
+                    deferred.reject(new Error(json.body.message + ' In [promiseGet] for url=' + url));
+                } else {
+                    var result = resultParseFunc && resultParseFunc(json.body) || json.body;
+                    deferred.resolve(result);
+                }
             }
         } else {
             console.log('[promiseGet] ERROR: url=' + url, error);

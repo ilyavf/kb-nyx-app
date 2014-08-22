@@ -61,6 +61,7 @@
 
             // gallery init:
             var init = function () {
+                $scope.error = false;
                 listData.get().then(function (albumsPage) {
                     $scope.items = albumsPage.items;
                     $scope.loading = false;
@@ -71,8 +72,11 @@
                     });
                 }, function (error) {
                     $scope.loading = false;
-                    $scope.error = 'Unable to get the list of albums from server.';
-                    console.log('ERROR: GalleryClusterBaseCtrl cannot load cluster list: ' + error);
+                    $scope.error = {
+                        title: 'Unable to get the list of albums from server',
+                        message: error.message
+                    };
+                    console.log('ERROR: GalleryClusterBaseCtrl cannot load cluster list: ', error);
                 });
             };
             $scope.gotoGallery = function (dashedTitle) {

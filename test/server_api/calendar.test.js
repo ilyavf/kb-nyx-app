@@ -45,5 +45,13 @@ describe('Calendar', function(){
                     done();
                 });
         });
+    });
+    describe('#toYmdNextMonth(year, month, day)', function(){
+        it('should format next month correctly', function () {
+            assert.equal(api.toYmdNextMonth(2012,1,1), '20120201');
+            assert.equal(api.toYmdNextMonth(2012,11), '20121201');
+            assert.equal(api.toYmdNextMonth(2012,11,05), '20121205');
+            assert.equal(api.toYmdNextMonth(2012,12), '20130101');
+        })
     })
 });

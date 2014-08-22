@@ -43,7 +43,7 @@ function toYmd (year, month, day) {
 function toYmdNextMonth (year, month, day) {
     year = parseInt(year);
     month = parseInt(month);
-    return toYmd((month === 12 ? ++year : year), (month + 1)%12, day);
+    return toYmd((month === 12 ? ++year : year), ((month + 1)%12), day);
 }
 
 var getYear = function (req, res) {
@@ -63,9 +63,11 @@ var getYear = function (req, res) {
         // filter given year and take month:
         // :: array({year,month}) -> array(month)
         .then(_.compose(_.map(_.prop('month')), _.filter(_.where({'year':year}))))
+        //.then(log2('months'))
 
         // format all months to 2 digits:
         .then(_.map(formatXX))
+        //.then(log2('months formatted'))
 
         // retrieve photos by month:
         .then(_.compose(
@@ -80,29 +82,30 @@ var getYear = function (req, res) {
                 )
             })
         ))
-
-        .then(log3('all promises:', _.size))
-
+        //.then(log3('all promises:', _.size))
 
         // - reformat according to other cluster api
         .then(_.map(function (monthPhotos) {
+            //log2('monthPhotos[i]', monthPhotos);
             return {
                 title: (new Date(monthPhotos.photos[0].dateTaken * 1000)).toFormat('MMMM YYYY'), // see date-utils package
                 totalCount: monthPhotos.totalItems,
                 items: monthPhotos.photos
             }
         }))
+        //.then(log2('reformatted month photos'))
 
         // add thumbnail url per photo:
         .then(function (clusters) {
             return _.compose(
                 Q.all,
-                log3('url promises flatten', _.size),
+                //log3('url promises flatten', _.size),
                 _.flatten,                          // >>> array(promises)
                 _.map(_.map(getUrlPromiseByPid)),   // >>> array(array(promises)
                 _.map(_.prop('items'))             // >>> array(array({pid})
             )(clusters).then(addThumbUrlsToClusters(clusters))
         })
+        //.then(log3('all promises after thumb urls:', _.size))
 
         .then(function (clusters) {
             var result = {
@@ -120,20 +123,18 @@ var getYear = function (req, res) {
         })
 
         .catch(function (error) {
-            console.log('ERROR: cannot get year clusters. ' + error, error);
+            console.log('ERROR: cannot get year clusters. ' + error.message);
+            res.json({
+                error: 1,
+                message: error.message
+            });
         });
-
-
-//    util.format('http://%s/photos?takenAfter=%s&takenBefore=%s',
-//        cfg.zeusServer,
-//        takenAfter,
-//        takenBefore
-//    )
 
 };
 
 
 
 module.exports = {
-    getYear: getYear
+    getYear: getYear,
+    toYmdNextMonth: toYmdNextMonth
 };

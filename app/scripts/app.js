@@ -34,10 +34,13 @@
         'directives/ActionToolbar',
         'directives/EditableTitle',
         'directives/AjaxButtonDir',
-        'directives/ArrowNavigatorDir'
+        'directives/ArrowNavigatorDir',
+        'directives/ErrorMessageDir'
 
-    ], function (cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule, LightboxModule,
-                 MainCtrl, UserHomeCtrl, ListData, FbData, ActionToolbarDir, EditableTitleDir, AjaxButtonDir, ArrowNavigatorDir
+    ], function (
+        cfg, AuthModule, HomePageModule, MyPageModule, GivengetModule, SettingsModule, MenuModule, PhotoGalleryModule, ShareModule, LightboxModule,
+         MainCtrl, UserHomeCtrl, ListData, FbData,
+         ActionToolbarDir, EditableTitleDir, AjaxButtonDir, ArrowNavigatorDir, ErrorMessageDir
     ) {
 
         console.log('[app]: configuring app ', cfg);
@@ -98,6 +101,7 @@
         .directive('nxEditableTitle', EditableTitleDir)
         .directive('nxAjaxButton', AjaxButtonDir)
         .directive('nxArrowNav', ArrowNavigatorDir)
+        .directive('nxError', ErrorMessageDir)
 
         .controller('MainCtrl', MainCtrl)
         .controller('UserHomeCtrl', UserHomeCtrl);

@@ -24,8 +24,6 @@ var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
         };
     };
 
-    console.log('***[getPhotoUrl] ' + url);
-
     return promiseGet(resultParseFunc, headers, url);
 
 })('http://' + cfg.opServer + '/photo/{photoId}/url/{size}.json', '500x200');
@@ -47,8 +45,8 @@ var getTrades = function (req, res) {
     promiseGet(_.prop('result'), _.pick(['cookie'], req.headers),
         'http://' + cfg.zeusServer + '/recommendation?currentPage=1'
     )
-        .then(log3('number of clusters', _.size))
-        .then(log3('id of recommendation clusters', _.map(_.prop('cluster_id'))))
+        //.then(log3('number of clusters', _.size))
+        //.then(log3('id of recommendation clusters', _.map(_.prop('cluster_id'))))
 
         // normalize structure:
         .then(_.map(addPropFn('recommendation_id', _.prop('id'))))
@@ -75,7 +73,7 @@ var getTrades = function (req, res) {
         .then(function (clusters) {
             return _.compose(
                 Q.all,
-                log3('url promises flatten', _.size),
+                //log3('url promises flatten', _.size),
                 _.flatten,                          // >>> array(promises)
                 _.map(_.map(getUrlPromiseByPid)),   // >>> array(array(promises)
                 _.map(_.prop('items'))             // >>> array(array({pid})
@@ -131,8 +129,13 @@ var addMatchesFromCluster = addPropFn('matches', _.compose(utils.arrUnit, _.pick
 var getUrlPromiseByPid = _.compose(getPhotoUrl({}), _.prop('pid'));
 
 var addThumbUrlsToItems = _.curry(function (itemsPropName, urlPromises, cluster) {
-    log2('urlPromises', urlPromises);
-    _.compose(_.map(addPropFn('url', _.compose(_.prop('url'), log2('urlPromise'), reversedFind(urlPromises, _.where), log2('photo pid'), _.pick(['pid']), log3('photo keys', _.keys)))), utils.maybeArr, _.prop(itemsPropName))(cluster);
+    _.compose(
+        _.map(addPropFn(
+            'url',
+            _.compose(_.prop('url'), reversedFind(urlPromises, _.where), _.pick(['pid'])))
+        ),
+        utils.maybeArr, _.prop(itemsPropName)
+    )(cluster);
     return cluster;
 });
 var addThumbUrlsToCluster = _.curry(function (urlPromises, cluster) {
