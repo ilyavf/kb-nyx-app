@@ -52,6 +52,9 @@ var getYear = function (req, res) {
         timelineUrl = serverUrl + '/photos/timeline',
         photosUrl = serverUrl + '/photos?takenAfter={after}&takenBefore={before}&pageSize=5&currentPage=1'
 
+    console.log('[calendarPhotos.getYear] timelineUrl: ' + timelineUrl);
+    console.log('[calendarPhotos.getYear] photosUrl: ' + photosUrl);
+
     return promiseGet(
         _.prop('result'),
         _.pick(['cookie'], req.headers),

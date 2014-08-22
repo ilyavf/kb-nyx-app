@@ -13,7 +13,7 @@ var promiseGet = _.curry(function (method, resultParseFunc, options, url) {
         requestOptions.json = options.data;
     }
 
-    //console.log('[promiseGet] ' + method + ', ' + url + ', ', requestOptions);
+    console.log('[promiseGet] ' + method + ', ' + url + ', ', requestOptions);
 
     request[method](requestOptions, function (error, res, body) {
         if (!error) {

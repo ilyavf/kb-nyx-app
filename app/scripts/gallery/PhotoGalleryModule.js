@@ -19,7 +19,7 @@
         'directives/GalleryTradeDir',
         'directives/GalleryTradeeDir',
         'directives/ThumbsPreviewDir',
-        'directives/ThumblistDir',
+        'directives/ThumbListDir',
         'directives/GalleryFriendDir',
 
         'data/AlbumClusterListData',

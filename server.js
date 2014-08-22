@@ -83,7 +83,7 @@ var httpServer = http.createServer(app);
 httpServer.listen(APP_PORT);
 
 console.log(timestamp() + process.env.NODE_ENV.toUpperCase() + '. Client app folder: ' + clientDir);
-console.log(timestamp() + 'HTTP:  on port ' + APP_PORT + ' '
+console.log(timestamp() + 'HTTP: on port ' + APP_PORT + ' '
     + (SERVE_STATIC &&  SERVE_API ? 'STATIC and API'
         : (SERVE_API ? 'API only' : 'STATIC only')));
 console.log(timestamp() + 'Config: ' + cfg.opServer + ', ' + cfg.zeusServer);
