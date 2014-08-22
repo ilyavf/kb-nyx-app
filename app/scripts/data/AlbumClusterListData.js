@@ -48,7 +48,7 @@
                 });
             };
 
-            return ListData(apiUrl, 'AlbumClusters', {preprocess: _.compose(_.map(addProp('sync', sync)), _.get('items'))});
+            return ListData(apiUrl, 'AlbumClusters', {mutate: _.compose(_.map(addProp('sync', sync)), _.get('items'))});
         };
 
         return ClusterListData;

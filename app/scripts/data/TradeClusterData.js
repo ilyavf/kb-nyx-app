@@ -22,7 +22,7 @@
             return function (clusterId, sharedItems) {
                 sharedItems = sharedItems || [];
                 var addSharedFlag = _.compose(_.map(addPropIfMatch('alreadyShared', sharedItems)), _.get('items'));
-                return albumPhotosData(clusterId, {preprocess: addSharedFlag});
+                return albumPhotosData(clusterId, {mutate: addSharedFlag});
             }
         };
 

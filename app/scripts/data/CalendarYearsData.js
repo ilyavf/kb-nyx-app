@@ -23,7 +23,9 @@
                 prefix = proto + '://' + host,
                 apiUrl = prefix + '/photos/timeline';
 
-            var collectUniqueYears = _.compose(utils.log2('***'), _.uniq, _.map(_.prop('year')), _.prop('result'));
+            // NB: probably a mistake on zeus api that wraps data in "result" twice.
+
+            var collectUniqueYears = _.compose(utils.log2('*2*'), _.uniq, _.map(_.prop('year')), _.prop('result'));
 
             return ListData(apiUrl, 'CalendarYearsData', {preprocess: collectUniqueYears});
         };

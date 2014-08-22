@@ -1,5 +1,7 @@
 // http://zdev.kooboodle.com/photos/timeline
 
+// NB: probably a mistake on zeus api that wraps data in "result" twice.
+
 module.exports = {
     "code": 200,
     "message": "photos timeline",

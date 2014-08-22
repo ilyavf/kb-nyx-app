@@ -60,13 +60,45 @@
                     })
                     .success(function(data, status, headers, config) {
                         $log.log('[ClusterListData.getPage]: received', arguments);
+
+                        /*
+                            Response structure is:
+                            {
+                                code: <200>,
+                                error: <1 or 0>,
+                                message: <string>,
+                                result: <object or array>
+                            }
+                            Response for paged lists:
+                            {
+                                code: <200>,
+                                error: <1 or 0>,
+                                result: {
+                                    currentPage: <number>,
+                                    totalPages: <number>,
+                                    totalItems: <number>,
+                                    items: <array>
+                                }
+                            }
+
+                            After we checked "error" property being false,
+                            we store only "result" property of the response.
+
+                            There are two hooks for response data manipulation:
+                            - mutate, which can just mutate data's "result" property (not expected to return a new object);
+                            - preprocess, which can reformat data's "result" property completely returning a new object.
+                        */
+
                         if (!data.error) {
-                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
+
+                            options && options.mutate && options.mutate(data.result);
                             options && options.preprocess && (data.result = options.preprocess(data.result));
+
+                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
                             pagesDeferred[pageNumber].resolve(
                                 dataToItems(getLocalPage(pageNumber), data.result)
                             );
-                            totalPages.resolve(data.result.totalPages);
+                            data.result.totalPages && totalPages.resolve(data.result.totalPages);
                         } else {
                             console.log('Response is unsuccessful.', data);
                             pagesDeferred[pageNumber].reject({
@@ -125,7 +157,6 @@
 
                     if (data) {
                         pagesDeferred[pageNumber] = $q.defer();
-                        options && options.preprocess && (data = options.preprocess(data));
                         pagesDeferred[pageNumber].resolve(
                             dataToItems(getLocalPage(pageNumber), data)
                         );
