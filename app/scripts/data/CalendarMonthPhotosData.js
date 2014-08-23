@@ -1,11 +1,11 @@
 /**
- * CalendarPhotosData resource.
+ * CalendarMonthPhotosData resource.
  *
  * @memberOf    DataSource
- * @member      CalendarPhotosData
+ * @member      CalendarMonthPhotosData
  *
  * @author      IlyaVF
- * @date        April 29, 2014
+ * @date        August 23, 2014
  * @summary     Photos for a given album cluster
  * @property    {function} get  - Returns a promise of photos for a given album
  */
@@ -15,7 +15,7 @@
 
     define(['config'], function (config) {
 
-        var CalendarPhotosData = function ($location, ListData) {
+        var CalendarMonthPhotosData = function ($location, ListData) {
             var proto = $location.protocol(),
                 host = $location.host(),
                 port = config.apiPort,
@@ -29,11 +29,11 @@
                         ListData(apiUrl
                             .replace('{year}', year)
                             .replace('{month}', month), 'CalendarMonthPhotos-' + year + month, options),
-                    albumsByYear[year]);
+                        albumsByYear[year]);
             }
         };
 
-        return CalendarPhotosData;
+        return CalendarMonthPhotosData;
 
     });
 }(define));

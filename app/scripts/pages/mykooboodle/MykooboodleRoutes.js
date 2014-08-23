@@ -46,6 +46,15 @@
                             }
                         }
                     })
+                    .when('/auth/calendar/:year/:clusterDashedTitle', {
+                        templateUrl: 'views/gallery/gallery-photo.html',
+                        controller: 'MyPage.CalendarMonthCtrl',
+                        resolve: {
+                            isUserAuthenticated: function (currentUser) {
+                                return currentUser.isAuthenticated();
+                            }
+                        }
+                    })
                     .when('/auth/shared', {
                         templateUrl: 'views/mykooboodle/shared.html',
                         controller: 'MyPage.SharedCtrl',

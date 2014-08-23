@@ -36,10 +36,11 @@
                 $scope.arrowNavControl.setItems(years, year ? years.indexOf(year) : years.length-1);
 
                 // inherit from a parent controller:
+                var _year = year || years[years.length-1]
                 parent = GalleryClusterBaseCtrl($scope, $rootScope, $location, $timeout,
-                    calendarClusterListData(year || years[years.length-1]),
+                    calendarClusterListData(_year),
                     {
-                        gotoPath: '/auth/albums/',
+                        gotoPath: '/auth/calendar/' + _year + '/',
                         nav: {menu: 'MyKooboodle', submenu: 'calendar'}
                     }
                 );

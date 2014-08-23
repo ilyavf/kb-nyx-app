@@ -14,9 +14,10 @@
         './MykooboodleRoutes',
         './AlbumsController',
         './CalendarController',
+        './CalendarMonthCtrl',
         './SharedController'
     ],
-    function (Routes, AlbumsCtrl, CalendarCtrl, SharedCtrl) {
+    function (Routes, AlbumsCtrl, CalendarCtrl, CalendarMonthCtrl, SharedCtrl) {
         var moduleName = "Nyx.MyPage";
 
         angular
@@ -24,6 +25,7 @@
             .config(Routes)
             .controller('MyPage.AlbumsCtrl', AlbumsCtrl)
             .controller('MyPage.CalendarCtrl', CalendarCtrl)
+            .controller('MyPage.CalendarMonthCtrl', CalendarMonthCtrl)
             .controller('MyPage.SharedCtrl', SharedCtrl)
 
             // Handle global events:
