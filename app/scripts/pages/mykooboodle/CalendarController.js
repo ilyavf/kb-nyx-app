@@ -29,8 +29,8 @@
             $scope.initYear = 0;
             $scope.arrowNavControl = { setItems: function(){} };
 
-            calendarYearsData.get().then(function(years){
-                years = years && years.result || years; // fix mutable preprocess of the DataList.
+            calendarYearsData().get().then(function(years){
+                years = years;
                 console.log('CalendarController years: ', years);
                 $scope.years = years;
                 $scope.arrowNavControl.setItems(years, year ? years.indexOf(year) : years.length-1);
@@ -48,8 +48,13 @@
 
             $scope.changeYear = function (year) {
                 $scope.loading = true;
-                console.log('[CalendarController.next] ' + year);
-                parent && parent.setListData(calendarClusterListData(year));
+                console.log('[CalendarController.changeYear] ' + year);
+                parent && parent.setListData({
+                    listData: calendarClusterListData(year),
+                    options: {
+                        gotoPath: '/auth/calendar/' + year + '/'
+                    }
+                });
                 parent && parent.init();
             };
 

@@ -26,10 +26,14 @@
 
             return function (apiUrl, localStorageItemName, options) {
 
+                console.log('[ListData] ' + localStorageItemName + ', ' + apiUrl, options);
+
                 if (!apiUrl || typeof apiUrl !== 'string') {
                     throw new Error('Api url is required for the ListData service.');
                     return;
                 }
+
+                $rootScope.$on('user:logout', cleanupLocalData);
 
                 var pagesDeferred = [],
                     pageSize = options && options.pageSize || 30,
@@ -40,8 +44,6 @@
                 if (apiUrl[0] === '/') {
                     apiUrl = apiPrefix + apiUrl;
                 }
-
-                $rootScope.$on('user:logout', cleanupLocalData);
 
                 function getPage (pageNumber) {
 
@@ -84,21 +86,28 @@
                             After we checked "error" property being false,
                             we store only "result" property of the response.
 
-                            There are two hooks for response data manipulation:
+                            There are the hooks for response data result manipulation:
                             - mutate, which can just mutate data's "result" property (not expected to return a new object);
                             - preprocess, which can reformat data's "result" property completely returning a new object.
+                            - postprocess, which is applied after getting from storage.
                         */
 
                         if (!data.error) {
 
-                            options && options.mutate && options.mutate(data.result);
-                            options && options.preprocess && (data.result = options.preprocess(data.result));
+                            var _result;
 
-                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(data.result));
+                            options && options.mutate && options.mutate(data.result);
+
+                            _result = options && options.preprocess && options.preprocess(data.result) || data.result;
+
+                            $window.localStorage.setItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber, JSON.stringify(_result));
+
+                            options && options.postprocess && (_result = options.postprocess(_result));
+
                             pagesDeferred[pageNumber].resolve(
-                                dataToItems(getLocalPage(pageNumber), data.result)
+                                dataToItems(getLocalPage(pageNumber), _result)
                             );
-                            data.result.totalPages && totalPages.resolve(data.result.totalPages);
+                            _result.totalPages && totalPages.resolve(_result.totalPages) || totalPages.resolve(1);
                         } else {
                             console.log('Response is unsuccessful.', data);
                             pagesDeferred[pageNumber].reject({
@@ -149,18 +158,20 @@
                 }
 
                 function checkLocalData (pageNumber) {
+                    console.log('[checkLocalData] for ' + CONFIG_LOCALSTORAGE_ITEMNAME);
                     if (pagesDeferred[pageNumber]) {
                         return true;
                     }
 
-                    var data = JSON.parse($window.localStorage.getItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber));
+                    var _result = JSON.parse($window.localStorage.getItem(CONFIG_LOCALSTORAGE_ITEMNAME + '-' + pageNumber));
 
-                    if (data) {
+                    if (_result) {
+                        options && options.postprocess && (_result = options.postprocess(_result));
                         pagesDeferred[pageNumber] = $q.defer();
                         pagesDeferred[pageNumber].resolve(
-                            dataToItems(getLocalPage(pageNumber), data)
+                            dataToItems(getLocalPage(pageNumber), _result)
                         );
-                        totalPages.resolve(data.totalPages);
+                        totalPages.resolve(_result.totalPages);
                     }
 
                     return !!pagesDeferred[pageNumber];

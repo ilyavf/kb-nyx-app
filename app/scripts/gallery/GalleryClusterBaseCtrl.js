@@ -36,9 +36,11 @@
             // inherit from the base class:
             var baseApi = GalleryBaseController($scope, $rootScope, listData, viewAction);
 
-            var setListData = function (newListData) {
-                listData = newListData;
-                baseApi.setListData(newListData);
+            var setListData = function (config) {
+                console.log('[GalleryClusterBaseCtrl.setListData]', config);
+                listData = config.listData || config;
+                config.options && (options = angular.extend(options, config.options));
+                baseApi.setListData(listData);
             };
 
             console.log('[GalleryClusterBaseCtrl] init');

@@ -24,6 +24,7 @@
                 albumsByYear = {};
 
             return function (year, options) {
+                console.log('[CalendarClusterListData] for ' + year, options);
                 return albumsByYear[year] ||
                     (albumsByYear[year] = ListData(apiUrl.replace('{year}', year), 'CalendarYearPhotos-' + year, options),
                     albumsByYear[year]);

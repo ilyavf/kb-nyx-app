@@ -18,12 +18,12 @@
     ], function (PhotoGalleryCtrl) {
 
         var CalendarMonthCtrl = function ($scope, $rootScope, $routeParams, $location, $timeout,
-            calendarYearsData, calendarMonthPhotosData
+            calendarYearsData, calendarMonthPhotosData, albumClusterList, galleryRx)
         ){
 
             var parent,
                 year = $routeParams.year,
-                dashedTitle = $routeParams.dashedTitle;
+                dashedTitle = $routeParams.clusterDashedTitle;
 
             $scope.pageTitle = 'Calendar Month';
             $scope.loading = true;
@@ -38,12 +38,14 @@
                 $scope.arrowNavControl.setItems(months, 0);
 
                 // inherit from a parent controller:
-                parent = PhotoGalleryCtrl($scope, $rootScope, $location, $timeout,
+                parent = PhotoGalleryCtrl($scope, $routeParams, $rootScope, albumClusterList, calendarMonthPhotosData(year, months[0]), galleryRx);
+
+                /*parent = PhotoGalleryCtrl($scope, $rootScope, $location, $timeout,
                     calendarMonthPhotosData(dashedTitle),
                     {
                         //nav: {menu: 'MyKooboodle', submenu: 'calendar'}
                     }
-                );
+                );*/
             });
 
             $scope.changeMonth = function (month) {

@@ -26,9 +26,17 @@
             // NB: probably a mistake on zeus api that wraps data in "result" twice
             // (see server/data/zeus/calendar_timeline_mock.js for response example)
 
-            var collectUniqueYears = _.compose(utils.log2('*timeline*'), _.uniq, _.map(_.prop('year')), _.prop('result'));
+            var collectUniqueYears = _.compose(utils.log2('*timeline-years*'), _.uniq, _.map(_.prop('year')), _.prop('result')),
+                collectYearMonths = function (year) {
+                    return _.compose(utils.log2('*timeline-months-'+year+'*'), _.map(_.prop('month')), _.filter(_.where({year:year})), _.prop('result'));
+                };
 
-            return ListData(apiUrl, 'CalendarYearsData', {preprocess: collectUniqueYears});
+            //return ListData(apiUrl, 'CalendarTimeline2Data', {preprocess1: collectUniqueYears});
+
+            return function (year) {
+                var postprocess = year ? collectYearMonths(year) : collectUniqueYears;
+                return ListData(apiUrl, 'CalendarTimelineData', {postprocess: postprocess});
+            }
         };
 
         return CalendarYearsData;
