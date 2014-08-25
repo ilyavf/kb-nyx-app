@@ -11,7 +11,7 @@
 
     define([
         './GalleryReactive',
-        './PhotoGalleryController',
+        './PhotoGalleryCtrl',
 
         'directives/Gallery',
         'directives/GalleryPhotoDir',
@@ -54,6 +54,7 @@
                 .directive('nxFriend', FriendDir)
 
                 .factory('galleryRx', GalleryRx)
+
 
                 .factory('albumClusterList', AlbumClusterListData)
                 .factory('albumPhotosData', AlbumPhotosData)
