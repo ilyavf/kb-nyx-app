@@ -218,7 +218,9 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/views/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        // Bugfix for images not being updated with revved versions:
+        // https://github.com/yeoman/yeoman/issues/824#issuecomment-29137057
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images']
       }
     },
 
