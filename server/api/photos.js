@@ -2,6 +2,7 @@ var request = require('request'),
     Q = require('q'),
     _ = require('ramda'),
     util = require('util'),
+    dateUtils = require('date-utils'),
     nxutils = require('../utils'),
     log = nxutils.log,
     log2 = nxutils.log2,
@@ -32,8 +33,8 @@ var clusterList = function (req, res) {
             // also add some extras to the cluster:
             cluster.title = cluster.name;
             cluster.id = cluster.aid;
-            cluster.dateFrom = '2004-04-24T12:00';
-            cluster.dateTo = '2013-02-05T12:00';
+            cluster.startDate = cluster.startDate && (new Date((cluster.startDate) * 1000)).toJSON();
+            cluster.endDate = cluster.endDate && (new Date((cluster.endDate) * 1000)).toJSON();
             cluster.dashedTitle = cluster.name.toLowerCase().replace(/[\s\.\?,:;]/g, '-').replace(/[\-]+/g, '-');
         });
 
@@ -43,6 +44,13 @@ var clusterList = function (req, res) {
                 success: true,
                 result: clustersPage
             });
+        });
+    }).catch(function (error) {
+        console.log('ERROR [clusterList.getClusterList]', error);
+        res.json({
+            error: 1,
+            success: 0,
+            message: error
         });
     });
 };
@@ -82,11 +90,6 @@ var clusterPhotoList = function (req, res) {
         })
         //.catch(_.compose(res.json, nxutils.addProp('error', 1), nxutils.resultUnit)); // check later :)
         .catch(errorResponse(res));
-};
-
-module.exports = {
-    getClusters: clusterList,
-    getAlbumPhotos: clusterPhotoList
 };
 
 
@@ -176,7 +179,10 @@ function proxyTo (url, headers, resultParseFunc) {
         if (!error) {
             var result = resultParseFunc && resultParseFunc(JSON.parse(body).result) || JSON.parse(body).result;
             //console.log('[.proxyTo] url=' + url, result);
-            console.log('[.proxyTo] url=' + url + (result.join ? result.length + ': items' : ''));
+            console.log('[.proxyTo] success, url=' + url + (result.join ? result.length + ': items' : ''));
+            console.log('body:', body);
+            console.log('result:', result);
+            //if (result.code != 200) { /*error*/ }
             deferred.resolve(result);
         } else {
             console.log('ERROR: [.proxyTo] url=' + url, error);
@@ -194,3 +200,11 @@ function timestamp () {
 function get_req_info (req) {
     return util.format('%s: %s%s (referer: %s)', req.method, req.headers.host, req.url, req.headers.referer);
 }
+
+
+//------- API --------//
+
+module.exports = {
+    getClusters: clusterList,
+    getAlbumPhotos: clusterPhotoList
+};

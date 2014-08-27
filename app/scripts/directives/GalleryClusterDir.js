@@ -31,8 +31,8 @@
                     scope.title = scope.cluster.title;
                     scope.id = scope.cluster.id;
                     scope.dashedTitle = scope.cluster.dashedTitle;
-                    scope.dateFrom = scope.cluster.dateFrom;
-                    scope.dateTo = scope.cluster.dateTo;
+                    scope.startDate = scope.cluster.startDate;
+                    scope.endDate = scope.cluster.endDate;
                     scope.totalCount = scope.cluster.totalCount;
                     var items = scope.cluster.items.slice(1, 5);
                     while (items.length < 4) {
