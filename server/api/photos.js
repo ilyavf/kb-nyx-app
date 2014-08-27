@@ -10,6 +10,7 @@ var request = require('request'),
     photoUtils = require('./tradePhotos'),
     getUrlPromiseByPid = photoUtils.getUrlPromiseByPid,
     addThumbUrlsToCluster = photoUtils.addThumbUrlsToCluster,
+    getPhotoUrl = photoUtils.getPhotoUrl,
     promiseGet = require('./promiseReq').get,
     errorResponse = require('./promiseReq').errorResponse,
     cfg = require('../../app/scripts/config');
@@ -107,13 +108,14 @@ function addPhotoUrls (items, urlPropertyName, headers) {
         itemPromises = [];
 
     items.forEach(function (photo) {
-        itemPromises.push(getPhotoUrl((photo.pid || photo.id), '500x200', headers));
+        //itemPromises.push(getPhotoUrl((photo.pid || photo.id), '500x200', headers));
+        itemPromises.push(getPhotoUrl((photo.pid || photo.id)));
     });
 
     Q.all(itemPromises).then(function (photoUrls) {
         items.forEach(function (o) {
             var urlObj = photoUrls.filter(function (cur) {
-                return cur.id == (o.pid || o.id);
+                return cur.pid == (o.pid || o.id);
             })[0];
             o[urlPropertyName] = urlObj && urlObj.url;
         });
@@ -124,8 +126,8 @@ function addPhotoUrls (items, urlPropertyName, headers) {
 }
 
 function getClusterList (headers, query) {
-    var url = util.format('http://%s/albums?items=5&', cfg.zeusServer)
-            + (query && query.page ? 'page=' + query.page : '')
+    var url = util.format('http://%s/albums?items=5', cfg.zeusServer)
+            + (query && query.page ? '&page=' + query.page : '')
             + (query && query.pageSize ? '&pageSize=' + query.pageSize : ''),
         resultParseFunc = function (result) {
             if (!result) {
@@ -149,22 +151,6 @@ function getClusterList (headers, query) {
         _.pick(['cookie'], req.headers),
         url
     );*/
-}
-
-function getPhotoUrl (photoId, size, headers) {
-    var prefix = 'http://' + cfg.opServer,
-        url = prefix + '/photo/{photoId}/url/{size}.json'
-            .replace('{photoId}', photoId)
-            .replace('{size}', size),
-
-        resultParseFunc = function (result) {
-            return {
-                id: photoId,
-                url: prefix + result
-            };
-        };
-
-    return proxyTo(url, headers, resultParseFunc);
 }
 
 function proxyTo (url, headers, resultParseFunc) {

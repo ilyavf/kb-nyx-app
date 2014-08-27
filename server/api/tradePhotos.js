@@ -13,7 +13,25 @@ var request = require('request'),
 
     cfg = require('../../app/scripts/config');
 
-var getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
+var getPhotoUrl = _.curry(function  (url, size, photoId) {
+    url = url.replace('{pid}', photoId)
+        .replace('{res}', size);
+
+    var deferred = Q.defer();
+
+    console.log('[TradePhotos.getPhotoUrl] ' + photoId + ', ' + url);
+
+    deferred.resolve({
+        pid: photoId,
+        url: url
+    });
+
+    return deferred.promise;
+
+})('http://' + cfg.zeusServer + '/thumbnail/{pid}/{res}', '500');
+
+// Deprecated.
+var _old_getPhotoUrl = _.curry(function  (url, size, headers, photoId) {
     url = url.replace('{photoId}', photoId)
         .replace('{size}', size);
 
