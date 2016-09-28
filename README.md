@@ -189,7 +189,7 @@ Keep in mind the web app config located in 'app/scripts/config.js' which has api
 #Testing
 
 ##Unit tests via Karma
-We are using Jasmine (http://pivotal.github.io/jasmine/) as a unit test framework and Karma (http://karma-runner.github.io/) as a test runner.
+We are using Jasmine (https://jasmine.github.io/) as a unit test framework and Karma (http://karma-runner.github.io/) as a test runner.
 
 See config file: karma.conf.js
 
